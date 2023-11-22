@@ -75,3 +75,42 @@ if (!isDragging) {
     nextButton.click();
   }, 10000);  
 }
+
+// Recover color at image ends
+function transitionStartHandler() {
+  // Supprimez l'écouteur d'événement après l'exécution
+  imagesBox.removeEventListener('transitionstart', transitionStartHandler);
+
+  const imageShown = images[counter];
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Dessinez l'image sur le canvas
+  ctx.drawImage(imageShown, 0, 0);
+
+  // Obtenez les couleurs aux bords gauche et droit de l'image
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const leftColor = getColorAtPixel(imageData, 0);
+  const rightColor = getColorAtPixel(imageData, canvas.width - 1);
+
+  // Définissez la couleur de fond de #carousel-section avec un dégradé linéaire
+  const carouselSection = document.querySelector('#carousel-section');
+  carouselSection.style.background = `linear-gradient(to right, rgb(${leftColor.join(', ')}), rgb(${rightColor.join(', ')}))`;
+}
+
+// Ajoutez l'écouteur d'événement de début de transition
+imagesBox.addEventListener('transitionstart', () => {
+  transitionStartHandler();
+});
+// Déplacez la fonction getColorAtPixel à l'intérieur de transitionStartHandler si elle n'est pas utilisée ailleurs
+function getColorAtPixel(imageData, x) {
+  const data = imageData.data;
+  const colors = [data[0], data[1], data[2], data[3]];
+  // Print in hexa the color
+  return colors;
+}
+
+// When image are loaded, transitionStartHandler()
+images.forEach(image => {
+  image.addEventListener('load', transitionStartHandler);
+});

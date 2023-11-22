@@ -1,7 +1,15 @@
+/* Carousel section */
+#carousel-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--red);
+}
 /* Carousel */
 .carousel{
     width: 100%; /* width of the parent element */
-    height: 343px; /* height of the parent element */
+    max-height: 450px; /* height of the parent element */
+    min-height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +17,8 @@
     position: relative;
     -webkit-user-select : none;
     user-select: none;
+    max-width: 1200px;
+    aspect-ratio: 8 / 3;
 }
 /* Images */
 .carousel-images{
