@@ -3,6 +3,7 @@ const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 const imagesBox = document.querySelector('.carousel-images');
 const images = document.querySelectorAll('.carousel-images img');
+const carouselSection = document.querySelector('#carousel-section');
 
 let counter = 0;
 
@@ -35,6 +36,7 @@ imagesBox.addEventListener('touchmove', moveTouch);
 
 let isDragging = false;
 let initialX;
+let currentX;
 
 function startTouch(e) {
   initialX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -73,7 +75,7 @@ carousel.addEventListener('dragstart', preventImageDrag);
 if (!isDragging) {
   setInterval(() => {
     nextButton.click();
-  }, 10000);  
+  }, 10000);
 }
 
 // Recover color at image ends
@@ -90,11 +92,11 @@ function transitionStartHandler() {
 
   // Obtenez les couleurs aux bords gauche et droit de l'image
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const leftColor = getColorAtPixel(imageData, 0);
-  const rightColor = getColorAtPixel(imageData, canvas.width - 1);
+  const leftColor = getColorAtPixel(imageData);
+  const rightColor = getColorAtPixel(imageData);
 
   // Définissez la couleur de fond de #carousel-section avec un dégradé linéaire
-  const carouselSection = document.querySelector('#carousel-section');
+  // changement de linear gradient smooth
   carouselSection.style.background = `linear-gradient(to right, rgb(${leftColor.join(', ')}), rgb(${rightColor.join(', ')}))`;
 }
 
@@ -103,7 +105,7 @@ imagesBox.addEventListener('transitionstart', () => {
   transitionStartHandler();
 });
 // Déplacez la fonction getColorAtPixel à l'intérieur de transitionStartHandler si elle n'est pas utilisée ailleurs
-function getColorAtPixel(imageData, x) {
+function getColorAtPixel(imageData) {
   const data = imageData.data;
   const colors = [data[0], data[1], data[2], data[3]];
   // Print in hexa the color
