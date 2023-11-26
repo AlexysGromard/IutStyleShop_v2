@@ -27,8 +27,11 @@
     display: flex;
     transition: transform 0.5s;
 }
-.carousel-images img{
+.carousel-images a{
     min-width: 100%;
+}
+.carousel-images a img{
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }

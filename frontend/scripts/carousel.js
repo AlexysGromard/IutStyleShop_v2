@@ -3,6 +3,7 @@ const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 const imagesBox = document.querySelector('.carousel-images');
 const images = document.querySelectorAll('.carousel-images img');
+const imageHyperlinks = document.querySelectorAll('.carousel-images a');
 const carouselSection = document.querySelector('#carousel-section');
 
 let counter = 0;
@@ -38,22 +39,51 @@ let isDragging = false;
 let initialX;
 let currentX;
 
+/**
+ * Get the initial position of the mouse or touch
+ * @param {*} e mouse or touch event 
+ */
 function startTouch(e) {
   initialX = e.touches ? e.touches[0].clientX : e.clientX;
   isDragging = true;
 }
 
+/**
+ * Move the carousel with the mouse or touch
+ * @param {*} e  mouse or touch event
+ */
 function moveTouch(e) {
   // if imageBox is clicked
   if (isDragging){
     currentX = e.touches ? e.touches[0].clientX : e.clientX;
-    // Mettre à jour position de l'image en fonction de la position de la souris
+    // Update image position based on mouse position
     for (let i = 0; i < images.length; i++) {
       carousel.querySelector('.carousel-images').style.transform = `translateX(-${counter * 100 + (initialX - currentX) / 10}%)`;
     }
+    isClickable(false)
   }
 }
 
+/**
+ * Set the clickable state of the carousel
+ * @param {*} state true or false
+ */
+function isClickable(state) {
+  if (state === false) {
+    imageHyperlinks.forEach(imageHyperlink => {
+      imageHyperlink.style.pointerEvents = "none";
+    });
+  } else {
+    imageHyperlinks.forEach(imageHyperlink => {
+      imageHyperlink.style.pointerEvents = "auto";
+    });
+  }
+}
+
+/**
+ * Move the carousel at the end of the mouse or touch event
+ * @param {*} e  mouse or touch event
+ */
 function endTouch(e) {
   if (currentX && isDragging) {
     if (initialX > currentX) {
@@ -62,10 +92,14 @@ function endTouch(e) {
       prevButton.click();
     }
   }
+  isClickable(true)
   isDragging = false;
 }
 
-// Removal of drag and drop for image buttons
+/**
+ * Prevent the drag of the image when the carousel is moving
+ * @param {*} event mouse or touch event
+ */
 function preventImageDrag(event) {
     event.preventDefault();
 }
@@ -78,41 +112,55 @@ if (!isDragging) {
   }, 10000);
 }
 
-// Recover color at image ends
+/**
+ * Change the background color around the carousel
+ */
 function transitionStartHandler() {
-  // Supprimez l'écouteur d'événement après l'exécution
+  // Remove event listener after execution
   imagesBox.removeEventListener('transitionstart', transitionStartHandler);
 
   const imageShown = images[counter];
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
-  // Dessinez l'image sur le canvas
+  // Draw the image on the canvas
   ctx.drawImage(imageShown, 0, 0);
 
-  // Obtenez les couleurs aux bords gauche et droit de l'image
+  // Get the colors at the left and right edges of the image
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const leftColor = getColorAtPixel(imageData);
   const rightColor = getColorAtPixel(imageData);
 
-  // Définissez la couleur de fond de #carousel-section avec un dégradé linéaire
-  // changement de linear gradient smooth
+  // Set the background color of #carousel-section with a linear gradient
   carouselSection.style.background = `linear-gradient(to right, rgb(${leftColor.join(', ')}), rgb(${rightColor.join(', ')}))`;
 }
 
-// Ajoutez l'écouteur d'événement de début de transition
+// Add the transition start event listener
 imagesBox.addEventListener('transitionstart', () => {
   transitionStartHandler();
 });
-// Déplacez la fonction getColorAtPixel à l'intérieur de transitionStartHandler si elle n'est pas utilisée ailleurs
+/**
+ * Get the color of the pixel at the left and right of the image
+ * @param {*} imageData 
+ * @returns colors
+ */
 function getColorAtPixel(imageData) {
   const data = imageData.data;
   const colors = [data[0], data[1], data[2], data[3]];
   // Print in hexa the color
   return colors;
 }
-
 // When image are loaded, transitionStartHandler()
 images.forEach(image => {
   image.addEventListener('load', transitionStartHandler);
+});
+
+// When image move, delete the click event on <a>
+imageHyperlinks.forEach(imageHyperlink => {
+  imageHyperlink.addEventListener('click', (e) => {
+    // If the cursor is moving, prevent the link from opening
+    if (isDragging){
+      e.stopPropagation();
+    }
+  });
 });
