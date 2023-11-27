@@ -10,60 +10,8 @@
     <link rel="stylesheet" href="../styles/all-products.css">
 </head>
 <body>
-    <header>
-        <div class="header-top">
-            <a class="link-to-home" href="../"><img src="../assets/images/Header-Image/logo.svg" alt="Image logo"></a>
-            <label class="search-bar" for="search"><!-- Search bar -->
-                <div>
-                    <img alt="Image of loupe" src="../assets/images/loupe.svg" class="image-loupe">
-                    <input type="text" id="search" name="search" placeholder="Rechercher un article">
-                </div>
-                <a class="small-size button important-text" id="button-rechercher" href="#">Rechercher</a>
-            </label>
-            <div>
-                <button class="navigation-link-header">
-                    <div>
-                        <span class="navigation-link-header-title">Connexion</span>
-                        <span class="navigation-link-header-desc">Inscription</span>
-                    </div>
-                    <img alt="Image of user" src="../assets/images/user.svg">
-                </button>
-                <a class="navigation-link-header" href="../card/">
-                    <div id="shopping-cart-text">
-                        <span class="navigation-link-header-title">Panier</span>
-                        <span class="navigation-link-header-desc">0 articles</span>
-                    </div>
-                    <img alt="Image of shopping cart" src="../assets/images/Header-Image/panier.svg">
-                </a>
-            </div>
-        </div>
-        <div class="header-down">
-            <div class="header-down-link">
-                <a href="../all-products/">
-                    <img src="../assets/images/Header-Image/grid.svg" alt="grid">
-                    <span>Tous les produits</span>
-                </a>
-                <img src="../assets/images/Header-Image/line.svg" alt="horizontal-line" class="horizontal-line">
-                <a href="t-shirt/">
-                    <img src="../assets/images/Header-Image/t-shirt.svg" alt="t-shirt">
-                    <span>T-Shirt</span>
-                </a>
-                <a href="sweatshirt/">
-                    <img src="../assets/images/Header-Image/sweatshirt.svg" alt="sweatshirt">
-                    <span>Sweat-shirt </span>
-                </a>
-                <a href="sportswear/">
-                    <img src="../assets/images/Header-Image/jogger-pants.svg" alt="jogger-pants">
-                    <span>Tenue de sport</span>
-                </a>
-                <a href="accessories/">
-                    <img src="../assets/images/Header-Image/accessories.svg" alt="accessories">
-                    <span>Accessoire</span>
-                </a>
-            </div>
-            <a class="small-size button basic-text" href="#">Promotions</a>
-        </div>
-    </header>
+    <!-- Header -->
+    <?php include '../components/header.php'; ?>
     <main>
         <!-- Articles -->
         <div id="articles-part">
@@ -156,48 +104,8 @@
             </div>
         </section>
     </main>
-    <footer>
-        <img id="footer-logo" src="../assets/icons/logo.svg" alt="IUTStyleShop logo">
-        <!-- Sitemap -->
-        <div class="footer-box-container">
-            <h3 class="footer-box-title">Plan du site</h3>
-            <div class="footer-box">
-                <ul>
-                    <li><a href="../">Accueil</a></li>
-                    <li><a href="../all-products/">Tous les articles</a></li>
-                    <li><a href="t-shirt/">T-Shirt</a></li>
-                    <li><a href="sweatshirt/">Sweat-shirt</a></li>
-                </ul>
-                <ul>
-                    <li><a href="sportswear/">Tenue de sport</a></li>
-                    <li><a href="accessories/">Accessoires</a></li>
-                    <li><a href="#">Connexion</a></li>
-                    <li><a href="#">Inscription</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Credit -->
-        <div class="footer-box-container">
-            <h3 class="footer-box-title">Crédits</h3>
-            <div class="footer-box">
-                <ul>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Crédits et aspects légaux</a></li>
-                    <li><a href="#">Créateurs</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Payment methods -->
-        <div class="footer-box-container">
-            <h3 class="footer-box-title">Moyens de paiement</h3>
-            <div class="footer-box">
-                <div id="payment-methods-images">
-                    <img src="../assets/icons/visa.svg" alt="Visa logo">
-                    <img src="../assets/icons/mastercard.svg" alt="Mastercard logo">
-                    <img src="../assets/icons/card.svg" alt="CB logo">
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer -->
+    <?php include '../components/footer.php'; ?>
 </body>
 <script src="../scripts/all-products.js"></script>
+</html>
