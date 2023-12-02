@@ -16,7 +16,7 @@
                     </div>
                     <img alt="Image of user" src="/frontend/assets/images/user.svg">
                 </button>
-                <a class="navigation-link-header" href="/frontend/card/">
+                <a class="navigation-link-header" href="/card">
                     <div id="shopping-cart-text">
                         <span class="navigation-link-header-title">Panier</span>
                         <span class="navigation-link-header-desc">0 articles</span>

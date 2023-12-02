@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article - IUTStyleShop</title>
-    <link rel="stylesheet" href="../styles/variables.css">
-    <link rel="stylesheet" href="../styles/general.css">
-    <link rel="stylesheet" href="../styles/homePage.css">
-    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="/frontend/styles/variables.css">
+    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/homePage.css">
+    <link rel="stylesheet" href="/frontend/styles/article.css">
 </head>
 <body>
     <!-- Header -->
-    <?php include '../components/header.php'; ?>
+    <?php include 'frontend/components/header.php'; ?>
     <main class="article-parge">        
         <div class="article-page-left">
             <div class="article-image-box">
@@ -26,11 +26,11 @@
                 <div>
                     <span class="acticle-name">Titre</span>
                     <div class="stars">
-                        <img alt="Etoile Jaune" src="../assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="../assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="../assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="../assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Gris" src="../assets/icons/marquer-comme-star-pas-preferee.svg">
+                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
+                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
+                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
+                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
+                        <img alt="Etoile Gris" src="/frontend/assets/icons/marquer-comme-star-pas-preferee.svg">
                     </div>
                     <span class="small-article-text">186 évaluations</span>
                 </div>
@@ -61,12 +61,12 @@
         <div class="article-page-right">
             <button>
                 <span>Partager cet article</span>
-                <img src="../assets/images/partage.svg" alt="partager">
+                <img src="/frontend/assets/images/partage.svg" alt="partager">
             </button>
         </div>
     </main>
     <!-- Footer -->
-    <?php include '../components/footer.php'; ?>
+    <?php include 'frontend/components/footer.php'; ?>
 </body>
-<script src="../scripts/all-products.js"></script>
+<script src="/frontend/scripts/all-products.js"></script>
 </html>
