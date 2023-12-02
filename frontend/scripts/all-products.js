@@ -99,7 +99,7 @@ function addProductBox(){
     // Récupérer la div qui contient tous les produits
     product = '<div id="" class="boite_article"> <img class="image" src="' +retour.repeat(count) +'assets/articles/claquettes/claquettes.png" alt="Claquettes"><div class="bas_article"><div class="medium-important-text product-btn">Lorem ipsum</div><div class="stars"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Gris" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-pas-preferee.svg"></div><div class="availablity"><div class="small-text">Disponibilité :</div><div class="small-text green">En stock</div></div><div class="price-btn"><div class="price">0,00€</div><a class="button medium-size basic-text btn-add-card">Ajouter au panier</a></div></div></div>'
     // Lire le fichier JSON
-    var requestURL = retour.repeat(count)+'products/products.json';
+    var requestURL = retour+'products/products.json';//////////////////////////retour.repeat(count)+'products/products.json';
     // Supprimer tous les produits de la page
     document.getElementById('products-section').innerHTML = '';
     // Récypérer les articles qui correspondent aux filtres
@@ -417,7 +417,7 @@ function afficherPageProduit(dos){
     // Cette fonction va récupérer les infos du produit et les afficher sur la page produit
     // Les infos sont dans le JSON
     // Récupérer le JSON
-    var requestURL = retour.repeat(count)+'products/products.json';
+    var requestURL = retour+'products/products.json';///////////////////////retour.repeat(count)+'products/products.json';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';

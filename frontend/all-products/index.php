@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous les produits - IutStyleShop</title>
-    <link rel="stylesheet" href="../styles/variables.css">
-    <link rel="stylesheet" href="../styles/general.css">
-    <link rel="stylesheet" href="../styles/all-products.css">
+    <link rel="stylesheet" href="/frontend/styles/variables.css">
+    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/all-products.css">
 </head>
 <body>
     <!-- Header -->
-    <?php include '../components/header.php'; ?>
+    <?php include 'frontend/components/header.php'; ?>
     <main>
         <!-- Articles -->
         <div id="articles-part">
@@ -105,7 +105,7 @@
         </section>
     </main>
     <!-- Footer -->
-    <?php include '../components/footer.php'; ?>
+    <?php include 'frontend/components/footer.php'; ?>
 </body>
-<script src="../scripts/all-products.js"></script>
+<script src="/frontend/scripts/all-products.js"></script>
 </html>
