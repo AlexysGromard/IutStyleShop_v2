@@ -212,7 +212,7 @@ if(path.startsWith('/frontend/')){
     // Retirer 1 au nombre de /
     count = count - 2;
 }
-var retour = '../';
+var retour = "/frontend/"; //'../';
 
 
 
@@ -300,7 +300,7 @@ ajouterArticle = function(){
 if(pageName == "Panier"){
     drawPricePanier();
     drawNbArticles();
-    article = '<div class="article_rectangle big-size"><div class="image_article_panier small-size"></div><div class="informations-article"><div class="dispo_rect_article"><div class="medium-important-text">Lorem ipsum dolor sit amet</div><div class="availablity"><div class="small-text">Disponibilité :</div><div class="small-text green">En stock</div></div><div class="small-text">Taille : S</div></div><div><select class="quantity-size clickable"><option>1</option><option>2</option><option>3</option></select></div><div class="price2">25,99€</div><div><img src="../assets/icons/cross.svg" class="cross clickable"></div></div></div>'
+    article = '<div class="article_rectangle big-size"><div class="image_article_panier small-size"></div><div class="informations-article"><div class="dispo_rect_article"><div class="medium-important-text">Lorem ipsum dolor sit amet</div><div class="availablity"><div class="small-text">Disponibilité :</div><div class="small-text green">En stock</div></div><div class="small-text">Taille : S</div></div><div><select class="quantity-size clickable"><option>1</option><option>2</option><option>3</option></select></div><div class="price2">25,99€</div><div><img src="/frontend/assets/icons/cross.svg" class="cross clickable"></div></div></div>'
     // Lire localStorage et mettre dans un tableau
     shoopingCard = [];
     for(var i = 0; i < localStorage.length; i++){
@@ -318,7 +318,7 @@ if(pageName == "Panier"){
             pushArticle = pushArticle.replace('<div class="image_article_panier small-size"></div>', ("<img class='image_article_panier small-size' src='"+ retour.repeat(count)+"products/" + shoopingCard[i].nomDeDossier + "/" + shoopingCard[i].image +"'/>") );
             pushArticle = pushArticle.replace('Lorem ipsum dolor sit amet', shoopingCard[i].nom);
             pushArticle = pushArticle.replace('25,99€', shoopingCard[i].prix);
-            pushArticle = pushArticle.replace('../assets/icons/cross.svg', retour.repeat(count)+'assets/icons/cross.svg');
+            pushArticle = pushArticle.replace('/frontend/assets/icons/cross.svg', retour.repeat(count)+'assets/icons/cross.svg');
             // Quantité = à la quantité de l'article
             // Si la quantité > 3, rajouter 3 options à la fin de la balise <select>
             if (shoopingCard[i].quantite > 3){
@@ -327,9 +327,9 @@ if(pageName == "Panier"){
                 }
             }                
             pushArticle = pushArticle.replace('<option>'+ shoopingCard[i].quantite +'</option>', '<option selected>'+ shoopingCard[i].quantite +'</option>');
-            pushArticle = pushArticle.replace('../assets/images/produits/1/1.jpg', shoopingCard[i].image);
-            // Ajouter l'id du nom de dossier à l'élément <img src="../assets/icons/cross.svg" class="cross clickable">
-            pushArticle = pushArticle.replace('<img src="../assets/icons/cross.svg" class="cross clickable">', '<img src="../assets/icons/cross.svg" class="cross clickable" id="'+ shoopingCard[i].nomDeDossier +'">');
+            pushArticle = pushArticle.replace('/frontend/assets/images/produits/1/1.jpg', shoopingCard[i].image);
+            // Ajouter l'id du nom de dossier à l'élément <img src="/frontend/assets/icons/cross.svg" class="cross clickable">
+            pushArticle = pushArticle.replace('<img src="/frontend/assets/icons/cross.svg" class="cross clickable">', '<img src="/frontend/assets/icons/cross.svg" class="cross clickable" id="'+ shoopingCard[i].nomDeDossier +'">');
             // Ajouter l'article au panier
             document.getElementById('all-articles').innerHTML += pushArticle;
         }
@@ -467,7 +467,7 @@ if (pageName == 'Article'){
     var activeImage = document.getElementById('active-image');
     // Aller chercher l'image dans le dossier
     activeImage.src = retour.repeat(count)+'/products/'+ product.nomDeDossier +'/'+ product.images[0];
-    // Mettre les images dans #product-images :                     <button class="product-images"><img src="../assets/articles/claquettes/claquettes.png" alt="Article2"></button>
+    // Mettre les images dans #product-images :                     <button class="product-images"><img src="/frontend/assets/articles/claquettes/claquettes.png" alt="Article2"></button>
     var productImages = document.getElementById('product-images');
     for(var i = 0; i < product.images.length; i++){
         var pushImage = '<button class="product-images"><img src="'+ retour.repeat(count)+'/products/'+ product.nomDeDossier +'/'+ product.images[i] +'" alt="Article2"></button>';
