@@ -27,7 +27,7 @@
         </div>
         <div class="header-down">
             <div class="header-down-link">
-                <a href="/frontend/all-products/">
+                <a href="/products">
                     <img src="/frontend/assets/images/Header-Image/grid.svg" alt="grid">
                     <span>Tous les produits</span>
                 </a>
