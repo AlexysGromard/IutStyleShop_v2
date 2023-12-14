@@ -15,7 +15,20 @@ body{
     min-height: 100vh;
 }
 
-main{
+/* Colors */
+.green{
+    color: var(--green);
+}
+
+.grey{
+    color: var(--grey)
+}
+
+.dark-grey{
+    color: var(--dark-grey);
+}
+.red{
+    color: var(--red);
 }
 
 /* Header */
@@ -206,6 +219,11 @@ header{
 .button:active{
     filter: brightness(0.6);
 }
+.button.disabled {
+    background-color: var(--grey);
+    pointer-events: none;
+}
+
 .small-size{
     max-width:116px;
 }
@@ -420,7 +438,9 @@ header{
     font-weight: 500;
     cursor: pointer;
     width: max-content;
-    transition: color 0.1s; 
+    transition: color 0.1s;
+    text-decoration: none;
+    color: var(--black);
 }
 .medium-important-text:hover{
     color: var(--red);
@@ -435,6 +455,7 @@ header{
     flex-direction: column;
     gap: 7px;
 }
+
 
 .stars{
     gap: 5px;
@@ -458,18 +479,6 @@ header{
     font-size: 25px;
     line-height: 29px;
     letter-spacing: 0.02em;
-}
-
-.green{
-    color: var(--green);
-}
-
-.grey{
-    color:var(--grey)
-}
-
-.dark-grey{
-    color:var(--dark-grey);
 }
 
 .price-btn{

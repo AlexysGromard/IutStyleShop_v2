@@ -44,28 +44,31 @@
                 include 'components/article-card.php';
 
                 generateArticleComponent(
+                    $id = null,
                     $imageSrc = "/frontend/products/sweatshirt_iut_rouge/image1.png",
                     $title = "Sweat Rouge IUT",
                     $starCount = 4,
-                    $availability = "En stock",
+                    $availability = true,
                     $promotion = "0",
                     $price = "39.99",
                 );
 
                 generateArticleComponent(
+                    $id = null,
                     $imageSrc = "/frontend/products/mug_iut/image1.png",
                     $title = "MUG Blanc IUT",
                     $starCount = 4,
-                    $availability = "En stock",
+                    $availability = false,
                     $promotion = "0",
                     $price = "14.99",
                 );
 
                 generateArticleComponent(
+                    $id = null,
                     $imageSrc = "/frontend/products/tshirt_iut_rouge/image1.png",
                     $title = "T-Shirt Rouge IUT",
                     $starCount = 4,
-                    $availability = "En stock",
+                    $availability = true,
                     $promotion = "0",
                     $price = "19.99",
                 );

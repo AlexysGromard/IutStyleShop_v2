@@ -1,9 +1,14 @@
 <?php
+/**
+ * Cette fonction génère un composant d'article.
+ * Elle prend en paramètre les informations de l'article à afficher.
+ */
 function generateArticleComponent(
+    $id = null, // id de l'article, permet d'accéder à la page de l'article
     $imageSrc = "",
     $title = "unknown",
     $starCount = 0,
-    $availability = "unknown",
+    $availability = false,
     $promotion = "0",
     $price = "0,00",
 ) {
@@ -27,13 +32,15 @@ function generateArticleComponent(
     }
     ?>
 
-    <link rel="stylesheet" href="/frontend/styles/variables.css">
-    <link rel="stylesheet" href="/frontend/styles/general.css">
-
     <div class="boite_article">
-        <img class="image" src="<?= $imageSrc ?>" alt="<?= $title ?> image">
+        <!-- Image de l'article -->
+        <a href="<?= $id?>">
+            <img class="image" src="<?= $imageSrc ?>" alt="<?= $title ?> image">
+        </a>
         <div class="bas_article">
-            <span class="medium-important-text"><?= $title ?></span>
+            <!-- Titre de l'article -->
+            <a href="<?= $id?>" class="medium-important-text"><?= $title ?></a>
+            <!-- Etoiles (note)-->
             <div class="stars">
                 <?php
                 for ($i = 0; $i < round($starCount); $i++) {
@@ -48,16 +55,23 @@ function generateArticleComponent(
                 }
                 ?>
             </div>
+            <!-- Indicateur de disponibilité -->
             <div class="availablity">
                 <span class="small-text">Disponibilité :</span>
-                <span class="small-text green"><?= $availability ?></span>
+                <span class="small-text <?php echo $availability ? 'green' : 'red'; ?>">
+                    <?php echo $availability ? 'Disponible' : 'En rupture'; ?>
+                </span>
             </div>
+            <!-- Prix -->
             <div class="price-btn">
                 <div class="price-div <?php if ($promotion!=0) echo "promo"?>">
                     <span>Promotion <?= $promotion ?>%</span>
                     <span class="price"><?= $price ?>€</span>
                 </div>
-                <a class="button medium-size basic-text" href="#">Ajouter au panier</a>
+                <!-- BTN Ajouter au panier-->
+                <a class="button medium-size basic-text <?php echo $availability ?: 'disabled'?>" href="#">
+                    <?php echo $availability ? 'Ajouter au panier' : 'Indisponible'; ?>
+                </a>
             </div>
         </div>
     </div>
