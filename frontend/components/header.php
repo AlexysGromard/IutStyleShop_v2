@@ -26,29 +26,31 @@
             </div>
         </div>
         <div class="header-down">
-            <div class="header-down-link">
-                <a href="/frontend/all-products/">
-                    <img src="/frontend/assets/images/Header-Image/grid.svg" alt="grid">
-                    <span>Tous les produits</span>
-                </a>
-                <img src="/frontend/assets/images/Header-Image/line.svg" alt="horizontal-line" class="horizontal-line">
-                <a href="/frontend/all-products/t-shirt/">
-                    <img src="/frontend/assets/images/Header-Image/t-shirt.svg" alt="t-shirt">
-                    <span>T-Shirt</span>
-                </a>
-                <a href="/frontend/all-products/sweatshirt/">
-                    <img src="/frontend/assets/images/Header-Image/sweatshirt.svg" alt="sweatshirt">
-                    <span>Sweat-shirt </span>
-                </a>
-                <a href="/frontend/all-products/sportswear/">
-                    <img src="/frontend/assets/images/Header-Image/jogger-pants.svg" alt="jogger-pants">
-                    <span>Tenue de sport</span>
-                </a>
-                <a href="/frontend/all-products/accessories/">
-                    <img src="/frontend/assets/images/Header-Image/accessories.svg" alt="accessories">
-                    <span>Accessoire</span>
-                </a>
+            <div id="header-down-content">
+                <div class="header-down-link">
+                    <a href="/frontend/all-products/">
+                        <img src="/frontend/assets/images/Header-Image/grid.svg" alt="grid">
+                        <span>Tous les produits</span>
+                    </a>
+                    <img src="/frontend/assets/images/Header-Image/line.svg" alt="horizontal-line" class="horizontal-line">
+                    <a href="/frontend/all-products/t-shirt/">
+                        <img src="/frontend/assets/images/Header-Image/t-shirt.svg" alt="t-shirt">
+                        <span>T-Shirt</span>
+                    </a>
+                    <a href="/frontend/all-products/sweatshirt/">
+                        <img src="/frontend/assets/images/Header-Image/sweatshirt.svg" alt="sweatshirt">
+                        <span>Sweat-shirt </span>
+                    </a>
+                    <a href="/frontend/all-products/sportswear/">
+                        <img src="/frontend/assets/images/Header-Image/jogger-pants.svg" alt="jogger-pants">
+                        <span>Tenue de sport</span>
+                    </a>
+                    <a href="/frontend/all-products/accessories/">
+                        <img src="/frontend/assets/images/Header-Image/accessories.svg" alt="accessories">
+                        <span>Accessoires</span>
+                    </a>
+                </div>
+                <a class="small-size button basic-text" href="#">Promotions</a>
             </div>
-            <a class="small-size button basic-text" href="#">Promotions</a>
         </div>
     </header>
