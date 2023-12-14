@@ -40,79 +40,40 @@
             </a>
         </div>
         <div id="products">
-            <!-- Article 1 -->
-            <div id="sweatshirt_iut_rouge" class="boite_article"> 
-                <img class="image" src="/frontend/products/sweatshirt_iut_rouge/image1.png" alt="Sweat Rouge IUT">
-                <div class="bas_article">
-                    <span class="medium-important-text product-btn">Sweat Rouge IUT</span>
-                    <div class="stars">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Gris" src="/frontend/assets/icons/marquer-comme-star-pas-preferee.svg">
-                    </div>
-                    <div class="availablity">
-                        <span class="small-text">Disponibilité :</span>
-                        <span class="small-text green">En stock</span>
-                    </div>
-                    <div class="price-btn">
-                        <span class="price">39.99€</span>
-                        <a class="button medium-size basic-text btn-add-card" href="#">Ajouter au panier</a>
-                    </div>
-                </div>
-            </div>
+            <?php
+                include 'components/article-card.php';
 
-            <!-- Article 2 -->
-            <div id="mug_iut" class="boite_article"> 
-                <img class="image" src="/frontend/products/mug_iut/image1.png" alt="MUG Blanc IUT">
-                <div class="bas_article">
-                    <span class="medium-important-text product-btn">MUG Blanc IUT</span>
-                    <div class="stars">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Gris" src="/frontend/assets/icons/marquer-comme-star-pas-preferee.svg">
-                    </div>
-                    <div class="availablity">
-                        <span class="small-text">Disponibilité :</span>
-                        <span class="small-text green">En stock</span>
-                    </div>
-                    <div class="price-btn">
-                        <span class="price">14.99€</span>
-                        <a class="button medium-size basic-text btn-add-card" href="#">Ajouter au panier</a>
-                    </div>
-                </div>
-            </div>
+                generateArticleComponent(
+                    $imageSrc = "/frontend/products/sweatshirt_iut_rouge/image1.png",
+                    $title = "Sweat Rouge IUT",
+                    $starCount = 4,
+                    $availability = "En stock",
+                    $promotion = "0",
+                    $price = "39.99",
+                );
 
-            <!-- Article 3 -->
-            <div id="tshirt_iut_rouge" class="boite_article"> 
-                <img class="image" src="/frontend/products/tshirt_iut_rouge/image1.png" alt="T-Shirt Rouge IUT">
-                <div class="bas_article">
-                    <span class="medium-important-text product-btn">T-Shirt Rouge IUT</span>
-                    <div class="stars">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                        <img alt="Etoile Gris" src="/frontend/assets/icons/marquer-comme-star-pas-preferee.svg">
-                    </div>
-                    <div class="availablity">
-                        <span class="small-text">Disponibilité :</span>
-                        <span class="small-text green">En stock</span>
-                    </div>
-                    <div class="price-btn">
-                        <span class="price">19.99€</span>
-                        <a class="button medium-size basic-text btn-add-card" href="#">Ajouter au panier</a>
-                    </div>
-                </div>
-            </div>
+                generateArticleComponent(
+                    $imageSrc = "/frontend/products/mug_iut/image1.png",
+                    $title = "MUG Blanc IUT",
+                    $starCount = 4,
+                    $availability = "En stock",
+                    $promotion = "0",
+                    $price = "14.99",
+                );
+
+                generateArticleComponent(
+                    $imageSrc = "/frontend/products/tshirt_iut_rouge/image1.png",
+                    $title = "T-Shirt Rouge IUT",
+                    $starCount = 4,
+                    $availability = "En stock",
+                    $promotion = "0",
+                    $price = "19.99",
+                );
+            ?>
         </div> 
     </section>
     <!-- Footer -->
     <?php include 'components/footer.php'; ?>
 </body>
 <script src="/frontend/scripts/carousel.js"></script>
-<script src="/frontend/scripts/all-products.js"></script>
 </html>

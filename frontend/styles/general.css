@@ -473,11 +473,24 @@ header{
 }
 
 .price-btn{
-    margin-top: 6px;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     align-items: end;
-    gap: 57px;
+    justify-content: space-between;
+}
+
+.price-div {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
+.price-div.promo{ 
+    color: var(--red);
+}
+/* Si non promo, alors enlever premier élément */
+.price-div:not(.promo) > :first-child{
+    display: none;
 }
 
 /* Section title and header-products */
