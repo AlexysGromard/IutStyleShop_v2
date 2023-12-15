@@ -84,6 +84,9 @@
 
     <?php include 'components/error-popup.php'; ?>
     <?php include 'components/success-popup.php'; ?>
+
+    <?php include 'components/logout-popup.php'; ?>
+    
     <script src="/frontend/scripts/popup.js"></script>
 </body>
 <script src="/frontend/scripts/carousel.js"></script>

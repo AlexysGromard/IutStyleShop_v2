@@ -9,7 +9,11 @@ const cookiesPopupBtn = {
  * Affiche la popup de cookies
 */
 function showCookiesPopup() {
-    cookiesPopup.classList.add('active');
+    try {
+        cookiesPopup.classList.add('active');
+    } catch (error) {
+        showErrorPopup('Erreur', "Une erreur est survenue lors de l'affichage du popup de cookies.");
+    }
 }
 
 /**
@@ -75,8 +79,22 @@ const errorPopupDescription = errorPopup.querySelector('.status-popup-descriptio
 /**
  * Cette fonction affiche le popup d'erreur et le ferme automatiquement après 10 secondes
  * @param {string} title Le titre du popup
- * @param {*} description La description du popup
+ * @param {string} description La description du popup
  */
 function showErrorPopup(title, description) {
     showPopup(title, description, errorPopup, errorPopupTitle, errorPopupDescription);
+}
+
+// **** Logout Popup **** //
+const logoutPopupOverlay = document.querySelector('#logout-popup-overlay');
+
+/**
+ * Affiche la popup de déconnexion
+ */
+function showLogoutPopup() {
+    try{
+        logoutPopupOverlay.classList.add('active');
+    } catch (error) {
+        showErrorPopup('Erreur', "Une erreur est survenue lors de l'affichage du popup de déconnexion.");
+    }
 }
