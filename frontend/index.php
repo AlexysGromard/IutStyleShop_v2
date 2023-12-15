@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IutStyleShop</title>
-    <link rel="stylesheet" href="/frontend/styles/variables.css">
-    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <?php include 'common-includes.php'?>
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
     <link rel="stylesheet" href="/frontend/styles/carousel.css">
 </head>
@@ -48,7 +47,7 @@
                     $imageSrc = "/frontend/products/sweatshirt_iut_rouge/image1.png",
                     $title = "Sweat Rouge IUT",
                     $starCount = 4,
-                    $availability = true,
+                    $availability = false,
                     $promotion = "0",
                     $price = "39.99",
                 );
@@ -68,7 +67,7 @@
                     $imageSrc = "/frontend/products/tshirt_iut_rouge/image1.png",
                     $title = "T-Shirt Rouge IUT",
                     $starCount = 4,
-                    $availability = true,
+                    $availability = false,
                     $promotion = "0",
                     $price = "19.99",
                 );
@@ -77,17 +76,6 @@
     </section>
     <!-- Footer -->
     <?php include 'components/footer.php'; ?>
-
-    <!-- DEV -->
-    <link rel="stylesheet" href="styles/cookies.css">
-    <?php include 'components/cookies-popup.php'; ?>
-
-    <?php include 'components/error-popup.php'; ?>
-    <?php include 'components/success-popup.php'; ?>
-
-    <?php include 'components/logout-popup.php'; ?>
-    
-    <script src="/frontend/scripts/popup.js"></script>
 </body>
 <script src="/frontend/scripts/carousel.js"></script>
 </html>
