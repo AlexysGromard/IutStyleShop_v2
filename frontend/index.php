@@ -77,6 +77,11 @@
     </section>
     <!-- Footer -->
     <?php include 'components/footer.php'; ?>
+
+    <!-- DEV -->
+    <link rel="stylesheet" href="styles/cookies.css">
+    <?php include 'components/cookies-popup.php'; ?>
+    <script src="/frontend/scripts/popup.js"></script>
 </body>
 <script src="/frontend/scripts/carousel.js"></script>
 </html>

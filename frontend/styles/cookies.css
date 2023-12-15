@@ -1,0 +1,62 @@
+/* =============== */
+/* Cookies popup */
+/* =============== */
+#cookies-popup-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    background-color: rgba(10, 9, 8, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter : blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+#cookies-popup-overlay.active{
+    display: flex;
+}
+#cookies-popup{
+    background-color: var(--white);
+    padding: 24px;
+    height: max-content;
+    border-radius: 20px;
+    display: flex;
+}
+#cookies-popup-title{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+}
+#cookies-popup-description{
+    font-size: 12px;
+    max-width: 377px;
+    margin: 13px 0;
+    color: var(--dark-grey);
+}
+#cookies-popup-btn-container{
+    display: flex;
+    gap: 10px;
+}
+.button#accept-cookies{
+    color: var(--white);
+    max-width: 163px;
+}
+.button#deny-cookies{
+    color: var(--red);
+    max-width: 163px;
+    background-color: transparent;
+    border: solid 2px var(--red);
+}
+#cookies-popup-right{
+    display: flex;
+    align-items: end;
+}
+
+@media (max-width: 600px) {
+    #cookies-popup-right{
+        display: none;
+    }
+}
