@@ -100,6 +100,17 @@ if ($Help) {
     exit
 }
 
+# Vérifier si MySQL est installé
+$mysqlService = Get-Service | Where-Object { $_.DisplayName -eq 'MySQL' }
+
+
+
+# Si ni MySQL ni MariaDB n'est installé, arrêter le script
+if ($null -eq $mysqlService) {
+    Write-Host "Ni MySQL ni MariaDB n'est installé. Arrêt du script."
+    Exit
+}
+
 
 #CODE PRINCIPAL
 # Définir les informations de connexion
@@ -205,6 +216,7 @@ if ($reponse -eq "O") {
 }
 
 # TRIGGERS
+
 
 # PACKAGES
 
