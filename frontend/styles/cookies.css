@@ -60,3 +60,58 @@
         display: none;
     }
 }
+
+/* =============== */
+/* Cookies status */
+/* =============== */
+
+.status-popup{
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter : blur(4px);
+    padding: 8px 13px;
+    border-radius: 10px;
+    display: none;
+    max-width: 334px;
+    width: 100%;
+    gap: 11px;
+    z-index: 9999;
+}
+
+.status-popup.active{
+    display: flex;
+}
+
+.status-popup-right{
+    padding-top: 2px;
+}
+
+.status-popup-title{
+    font-size: 14px;
+    font-weight: 600;
+}
+.status-popup-description{
+    font-size: 12px;
+    font-weight: 400;
+}
+
+/* =============== */
+/* Cookies success */
+/* =============== */
+
+.status-popup.success{
+    background-color: rgba(120, 188, 97, 0.3);
+    color: var(--green);
+}
+
+/* =============== */
+/* Cookies error */
+/* =============== */
+
+.status-popup.error{
+    background-color: rgba(239, 35, 60, 0.3);
+    color: var(--red);
+}

@@ -81,6 +81,9 @@
     <!-- DEV -->
     <link rel="stylesheet" href="styles/cookies.css">
     <?php include 'components/cookies-popup.php'; ?>
+
+    <?php include 'components/error-popup.php'; ?>
+    <?php include 'components/success-popup.php'; ?>
     <script src="/frontend/scripts/popup.js"></script>
 </body>
 <script src="/frontend/scripts/carousel.js"></script>
