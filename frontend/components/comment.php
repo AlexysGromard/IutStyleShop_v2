@@ -1,8 +1,8 @@
-<head>
-    <?php include '../common-includes.php'; ?>
-    <link rel="stylesheet" href="../styles/article.css">
-</head>
 <?php 
+/**
+ * Cette fonction génère un composant de commentaire.
+ * Elle prend en paramètre les informations du commentaire à afficher.
+ */
 function generateCommentComponent(
     $name = "Unknown", 
     $rating = 0, 
@@ -42,5 +42,6 @@ function generateCommentComponent(
     </div>
 <?php 
 }
-// generateCommentComponent("Jean", 5, "Super produit, je recommande !");
+// generateCommentComponent("Jean", 5, "<script>alert('Hello');</script>");
+// generateCommentComponent("Jean", 5, "super produit");
 ?>

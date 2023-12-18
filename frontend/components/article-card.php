@@ -12,6 +12,9 @@ function generateArticleComponent(
     $promotion = "0",
     $price = "0,00",
 ) {
+    // ID validation (assuming positive integer IDs)
+    $id = is_numeric($id) ? intval($id) : null;
+
     // Stars count must be between 0 and 5
     if ($starCount < 0) {
         $starCount = 0;
@@ -30,6 +33,11 @@ function generateArticleComponent(
     if (!is_numeric($promotion) || $promotion < 0 || $promotion > 100) {
         $promotion = "0";
     }
+    // Escape output data
+    $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
+    $imageSrc = htmlspecialchars($imageSrc, ENT_QUOTES, 'UTF-8');
+    $promotion = htmlspecialchars($promotion, ENT_QUOTES, 'UTF-8');
+    $price = htmlspecialchars($price, ENT_QUOTES, 'UTF-8');
     ?>
 
     <div class="boite_article">
@@ -77,5 +85,5 @@ function generateArticleComponent(
     </div>
     <?php
 }
-// generateArticleComponent();
+generateArticleComponent();
 ?>
