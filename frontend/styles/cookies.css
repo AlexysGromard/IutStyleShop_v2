@@ -26,12 +26,12 @@
     display: flex;
 }
 #cookies-popup-title{
-    font-size: 16px;
+    font-size: var(--medium);
     font-weight: 500;
     color: var(--black);
 }
 #cookies-popup-description{
-    font-size: 12px;
+    font-size: var(--very-small);
     max-width: 377px;
     margin: 13px 0;
     color: var(--dark-grey);
@@ -90,11 +90,11 @@
 }
 
 .status-popup-title{
-    font-size: 14px;
+    font-size: var(--small);
     font-weight: 600;
 }
 .status-popup-description{
-    font-size: 12px;
+    font-size: var(--very-small);
     font-weight: 400;
 }
 
@@ -160,7 +160,7 @@
 }
 #logout-popup-description{
     color: var(--dark-grey);
-    font-size: 14px;
+    font-size: var(--small);
     max-width: 350px;
     text-align: center;
 }
