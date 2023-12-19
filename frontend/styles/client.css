@@ -1,0 +1,9 @@
+.box_menu_client{
+    display: flex;
+    flex-direction: column;
+}
+
+.imageClient{
+    max-width: 101px;
+    max-height: 101px;
+}

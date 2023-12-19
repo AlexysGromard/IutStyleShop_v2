@@ -36,20 +36,6 @@
     grid-template-columns: 64% 14% 17% 1fr;
 }
 
-.payment-size{
-    max-width: 381px;
-}
-
-.payment{
-    background-color: white;
-    padding: 24px 30px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    width: 100%;
-    height: max-content;
-}
-
 .line{
     height: 1px;
     width: 100%;
