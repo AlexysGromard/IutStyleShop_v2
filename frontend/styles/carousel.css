@@ -19,6 +19,8 @@
     user-select: none;
     max-width: 1200px;
     aspect-ratio: 8 / 3;
+    transition: background-color 1.5s ease; 
+
 }
 /* Images */
 .carousel-images{
@@ -26,6 +28,7 @@
     height: 100%;
     display: flex;
     transition: transform 0.5s;
+
 }
 .carousel-images a{
     min-width: 100%;
@@ -45,7 +48,6 @@
     padding: 10px;
     border-radius: 50%;
     background-color: transparent;
-    transition: background-color 0.25s;
 }
 
 .prev:hover, .next:hover{
