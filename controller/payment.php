@@ -1,10 +1,10 @@
 <?php
 namespace controller;
 
-class Client{
+class payment{
 
     function index(){
-        require "frontend/ClientSpace/index.php";
+        require "frontend/payment/payment.php";
     }
 
 }

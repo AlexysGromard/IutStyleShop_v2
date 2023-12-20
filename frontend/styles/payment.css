@@ -130,3 +130,16 @@ main{
     flex-direction: column;
     margin: 0% 0% 1% 11px;
 }
+
+
+/*
+.payment{
+    background-color: white;
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 100%;
+    height: max-content;
+}
+*/

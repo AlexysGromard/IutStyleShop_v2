@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paiement</title>
-    <link rel="stylesheet" href="../styles/variables.css">
-    <link rel="stylesheet" href="../styles/general.css">
-    <link rel="stylesheet" href="../styles/homePage.css">
-    <link rel="stylesheet" href="../styles/article.css">
-    <link rel="stylesheet" href="../styles/cart.css">
-    <link rel="stylesheet" href="../styles/payment.css">
+    <link rel="stylesheet" href="/frontend/styles/variables.css">
+    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/homePage.css">
+    <link rel="stylesheet" href="/frontend/styles/article.css">
+    <link rel="stylesheet" href="/frontend/styles/cart.css">
+    <link rel="stylesheet" href="/frontend/styles/payment.css">
 
 
 </head>
 <body>
-<?php include '../components/header.php'; ?>
+<?php include 'frontend/components/header.php'; ?>
 <div id="title-part">
     <span class="section-title-name">Paiement</span>
     <span class="">Régler mes achats</span>
@@ -118,6 +118,6 @@
     </div>
     </section>
 
-<?php include '../components/footer.php'; ?>
+<?php include 'frontend/components/footer.php'; ?>
 </body>
 </html>

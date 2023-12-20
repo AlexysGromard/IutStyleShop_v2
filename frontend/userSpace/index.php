@@ -7,7 +7,7 @@
     <title>Panier - IutStyleShop</title>
     <link rel="stylesheet" href="/frontend/styles/variables.css">
     <link rel="stylesheet" href="/frontend/styles/general.css">
-    <link rel="stylesheet" href="/frontend/styles/client.css">
+    <link rel="stylesheet" href="/frontend/styles/user.css">
     <!-- link rel="stylesheet" href="/frontend/styles/carousel.css" -->
     <!-- link rel="stylesheet" href="/frontend/styles/cart.css" -->
 </head>
@@ -19,19 +19,10 @@
     <main>
         <span class="section-title-name"> Espace utilisateur</span>
 
-        <div >
-            <!-- left -->
-            <div class="payment payment-size">
-                <div class="box_menu_client">
-                    <img class="imageClient" src="/frontend/assets/icons/client.png" alt="ImageClient">
-                    <span class="section-title-name">NOM Prenom</span>
-                    <span>N° de client : 1234567</span>
-                </div>
-                <!-- Boutton catégorie (deffinire la taille) -->
-                <div>
-
-                </div>
-                <a class="payment-size button important-text" href="#">Déconnection</a>
+        <div class = "">
+            <!-- left make by alexy-->
+            <div class="">
+                
             </div>
 
             <!-- right -->
