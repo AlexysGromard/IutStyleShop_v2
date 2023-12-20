@@ -1,0 +1,132 @@
+body{
+    --box-color :#FFFFFF;
+    --radio-checked-color: #EF233C;
+    --radio-color:#F1F3F4;
+}
+
+
+
+
+.personal-information{
+    background-color: var(--box-color);
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    flex: 1; 
+    max-width: 100%;
+    height: max-content;
+    margin-bottom: 10px;
+}
+main{
+    width:100%; 
+    margin : 0% 2% 2% 2%;
+}
+
+.payment-part{
+    max-width: 1fr;
+
+}
+#payment{
+    width:30%;
+
+}
+#title-part{
+    width:100%; 
+    margin : 2% 0% 0% 2%;
+}
+
+
+.personal-field {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 24px;
+    row-gap: 20px;
+
+}
+
+.field-name{
+    color: #000;
+    /* Regular16 */
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+    margin-bottom: 8px;
+
+}
+
+.field-part-name{
+    color: #000;
+    /* Semi16 */
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal; 
+    margin-bottom: 21px;
+}
+
+
+.radioButton{
+    appearance: none;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    background-color: var(--radio-color);
+    border-radius: 50%;
+}
+
+.radioButton:after{
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--radio-color);
+}
+.radioButton:checked{
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    background: var(--radio-checked-color);
+}
+
+input[type='text'],input[type='mail'],input[type='phone']{
+    font-family: 'Roboto';
+    display: flex;
+    font-size: var(--very-small);
+    line-height: 14.06px;
+    font-weight: 400;
+    padding: 11px 20px 11px;
+
+    width: 100%;
+
+    border: none;
+    background: none;
+    outline:  none;
+    border-radius:18px;
+    background-color: #F1F3F4;
+}
+
+
+input[id="civility-man"],input[id="civility-none"]{
+    margin-left:17.13px ;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+}
+#page{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+#title-part{
+    display: flex;
+    flex-direction: column;
+    margin: 0% 0% 1% 11px;
+}
