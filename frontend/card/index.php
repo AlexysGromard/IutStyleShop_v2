@@ -7,6 +7,7 @@
     <title>Panier - IutStyleShop</title>
     <link rel="stylesheet" href="/frontend/styles/variables.css">
     <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/general2.css">
     <link rel="stylesheet" href="/frontend/styles/carousel.css">
     <link rel="stylesheet" href="/frontend/styles/cart.css">
 </head>

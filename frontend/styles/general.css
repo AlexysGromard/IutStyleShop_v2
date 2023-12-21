@@ -647,19 +647,5 @@ footer{
         font-size: var(--very-small);
     }
 
-    /*petit boite on peux potensiellement rendre le nom plus générale*/
-    .payment-size{
-        max-width: 381px;
-    }
-    
-    /*petit boite on peux potensiellement rendre le nom plus générale*/
-    .payment{
-        background-color: red; /*white;*/
-        padding: 24px 30px;
-        display: flex;
-        flex-direction: column;
-        border-radius: 10px;
-        width: 100%;
-        height: max-content;
-    }
+
 }

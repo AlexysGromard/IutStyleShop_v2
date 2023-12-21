@@ -7,17 +7,7 @@ body{
 
 
 
-.personal-information{
-    background-color: var(--box-color);
-    padding: 24px 30px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    flex: 1; 
-    max-width: 100%;
-    height: max-content;
-    margin-bottom: 10px;
-}
+
 main{
     width:100%; 
     margin : 0% 2% 2% 2%;
@@ -131,15 +121,3 @@ main{
     margin: 0% 0% 1% 11px;
 }
 
-
-/*
-.payment{
-    background-color: white;
-    padding: 24px 30px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    width: 100%;
-    height: max-content;
-}
-*/

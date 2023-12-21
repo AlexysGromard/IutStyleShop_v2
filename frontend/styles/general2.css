@@ -1,0 +1,30 @@
+
+
+/*petit boite on peux potensiellement rendre le nom plus générale*/
+.payment-size{
+    max-width: 381px;
+}
+
+/*petit boite on peux potensiellement rendre le nom plus générale*/
+.payment{
+    background-color: white;
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 100%;
+    height: max-content;
+}
+
+/**/
+.personal-information{
+    background-color: var(--box-color);
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    flex: 1; 
+    max-width: 100%;
+    height: max-content;
+    margin-bottom: 10px;
+}

@@ -6,8 +6,9 @@
     <title>Paiement</title>
     <link rel="stylesheet" href="/frontend/styles/variables.css">
     <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/general2.css">
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
-    <link rel="stylesheet" href="/frontend/styles/article.css">
+    <!--link rel="stylesheet" href="/frontend/styles/article.css"-->
     <link rel="stylesheet" href="/frontend/styles/cart.css">
     <link rel="stylesheet" href="/frontend/styles/payment.css">
 
