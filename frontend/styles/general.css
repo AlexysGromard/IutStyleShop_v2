@@ -15,7 +15,20 @@ body{
     min-height: 100vh;
 }
 
-main{
+/* Colors */
+.green{
+    color: var(--green);
+}
+
+.grey{
+    color: var(--grey)
+}
+
+.dark-grey{
+    color: var(--dark-grey);
+}
+.red{
+    color: var(--red);
 }
 
 /* Header */
@@ -206,6 +219,11 @@ header{
 .button:active{
     filter: brightness(0.6);
 }
+.button.disabled {
+    background-color: var(--grey);
+    pointer-events: none;
+}
+
 .small-size{
     max-width:116px;
 }
@@ -264,19 +282,30 @@ header{
 }
 
 .informations-article{
-    display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 17% 18% 6.5%;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.article-actions-container{
+    display: flex;
+    gap: 40px;
+}
+
+/* Mobile */
+@media screen and (max-width: 530px) {
+    .article-actions-container{
+        gap: 10px;
+    }
 }
 
 .dispo_rect_article{
-    padding-left: 25px;
-    padding-top: 25px;
-    padding-bottom: 38px;
+    padding: 25px 0 38px 24px;
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .clickable{
@@ -300,7 +329,7 @@ header{
     -webkit-appearance: none;
     -moz-appearance: none;
     height: 21px;
-    width: 100%;
+    width: 44px;
     padding: 2px 8px 3px 12px;
     border: 1px solid var(--dark-grey);
     border-radius: 10.5px;
@@ -339,11 +368,17 @@ header{
 .header-down{
     background-color: var(--black);
     display: flex;
+    justify-content: center;
+}
+#header-down-content{
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 6px;
     padding: 1px 77px 1px 77px;
+    max-width: 1800px;
+    width: 100%;
 }
 
 
@@ -356,8 +391,6 @@ header{
 }
 
 .header-down div a{
-    background: none;
-    border: none;
 
     display: flex;
     flex-direction: row;
@@ -403,9 +436,10 @@ header{
     display: flex;
     flex-direction: row;
     gap: 62px;
-
+    justify-content: space-between;
     padding: 15px 64px 15px 77px;
-    
+    max-width: 1800px;
+    margin: 0 auto;
 }
 
 .header-top div:last-child{
@@ -420,7 +454,9 @@ header{
     font-weight: 500;
     cursor: pointer;
     width: max-content;
-    transition: color 0.1s; 
+    transition: color 0.1s;
+    text-decoration: none;
+    color: var(--black);
 }
 .medium-important-text:hover{
     color: var(--red);
@@ -435,6 +471,7 @@ header{
     flex-direction: column;
     gap: 7px;
 }
+
 
 .stars{
     gap: 5px;
@@ -460,24 +497,25 @@ header{
     letter-spacing: 0.02em;
 }
 
-.green{
-    color: var(--green);
-}
-
-.grey{
-    color:var(--grey)
-}
-
-.dark-grey{
-    color:var(--dark-grey);
-}
-
 .price-btn{
-    margin-top: 6px;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     align-items: end;
-    gap: 57px;
+    justify-content: space-between;
+}
+
+.price-div {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
+.price-div.promo{ 
+    color: var(--red);
+}
+/* Si non promo, alors enlever premier élément */
+.price-div:not(.promo) > :first-child{
+    display: none;
 }
 
 /* Section title and header-products */
@@ -591,8 +629,10 @@ footer{
         padding: 10px 15px;
     }
     .header-down{
-        padding: 0;
         overflow-x: scroll;
+    }
+    #header-down-content{
+        padding: 0 10px;
     }
     .header-down a {
         width: max-content;
