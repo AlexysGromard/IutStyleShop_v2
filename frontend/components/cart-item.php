@@ -64,5 +64,5 @@ function generateCartItemComponent(
 </div>
 <?php
 }
-generateCartItemComponent("Jean", "S", true ,3, 25.99,"Rouge" ,"tshirt_iut_rouge/image1.png")
+// generateCartItemComponent("Jean", "S", true ,3, 25.99,"Rouge" ,"tshirt_iut_rouge/image1.png")
 ?>

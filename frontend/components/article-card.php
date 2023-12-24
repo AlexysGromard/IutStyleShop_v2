@@ -85,5 +85,5 @@ function generateArticleComponent(
     </div>
     <?php
 }
-generateArticleComponent();
+// generateArticleComponent();
 ?>
