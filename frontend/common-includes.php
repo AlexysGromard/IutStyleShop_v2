@@ -5,6 +5,13 @@
 <link rel="stylesheet" href="/frontend/styles/general.css">
 <link rel="stylesheet" href="/frontend/styles/cookies.css">
 
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/frontend/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/frontend/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/frontend/assets/favicon/favicon-16x16.png">
+<link rel="mask-icon" href="/frontend/assets/favicon/safari-pinned-tab.svg" color="#D61644">
+<meta name="theme-color" content="#F8F8F8">
+
 <!-- PHP Components -->
 <?php include_once 'components/cookies-popup.php'; ?>
 
