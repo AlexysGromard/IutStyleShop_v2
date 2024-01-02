@@ -7,9 +7,19 @@ param (
     [switch]$CreateTables = $false,
     [switch]$CreateTriggers = $false,
     [switch]$CreatePackages = $false,
-    [int]$ManualMode = 1,  # Valeurs possibles : -1 (Manual), 0 (AutoWithoutTest), 1 (AutoWithTest)
-    [switch]$Help = $false
+    [switch]$Help = $false,
+    [int]$ManualMode = 1  # Valeurs possibles : -1 (Manual), 0 (AutoWithoutTest), 1 (AutoWithTest)
+
 )
+
+#IMPORTATION DES MODULES
+
+
+# Importer le module MySQL.Data
+Import-Module MySql.Data
+
+
+
 
 #VARIABLES GLOBALES
 # Définir une constante pour le chemin du fichier PS1
@@ -23,6 +33,15 @@ $DatabaseInfo = [PSCustomObject]@{
     DATABASE = $Database
 }
 
+# si les variables sont vides on les récupère dans le fichier DatabaseInfo.txt
+if ($Host -eq "") {
+    $DatabaseInfo = Get-Content -Path "$ScriptPath\cmd\DatabaseInfo.json" -Raw | ConvertFrom-Json
+    $Host = $DatabaseInfo.HOST
+    $User = $DatabaseInfo.USER
+    $Password = $DatabaseInfo.PASSWORD
+    $Database = $DatabaseInfo.DATABASE
+}
+
 
 # Utiliser les paramètres
 Write-Host "Host: $Host"
@@ -31,9 +50,17 @@ Write-Host "Password: $Password"
 Write-Host "Database: $Database"
 
 
-#IMPORTATION DES MODULES
-# Importer le module MySQL.Data
-Import-Module MySql.Data
+
+# Variable qui contient les logs
+$save_logs =  [PSCustomObject]@{
+        Date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        Etape = @()
+        Resultat = "OK"
+    }
+
+
+
+
 
 #FONCTIONS
 function Ecrire  {
@@ -88,7 +115,111 @@ function Connect-MySqlServer {
     return $connection
 }
 
+function log {
+    param (
+        [string]$Etape,
+        [string]$decription,
+        [string]$Resultat,
+        [string]$nom_executer,
+        [string]$Resultat_executer
+    )
+    # si l'etape est dans la liste des etapes on l'ajoute juste l'element executer
+    if ($save_logs.Etape.Etape -contains $Etape) {
+        $save_logs.Etape | Where-Object { $_.Etape -eq $Etape } | ForEach-Object {
+            $_.Liste_executer += [PSCustomObject]@{
+                nom = $nom_executer
+                resultat = $Resultat_executer
+            }
+        }
+    } else {
+        $save_logs.Etape += [PSCustomObject]@{
+            Etape = $Etape
+            Decription = $decription
+            Resultat = $Resultat
+            Liste_executer = @(
+                [PSCustomObject]@{
+                    nom = $nom_executer
+                    resultat = $Resultat_executer
+                }
+            )
+        }
+    }
+    return 
+}
 
+function executer_script_sql {
+    param (
+        [string]$nom_dossier,
+        [string]$connectionString
+    )
+    # Créer la connexion
+    $connection = Connect-MySqlServer -ConnectionString $connectionString
+
+    # execution du script
+
+    # le mode manuel , automatique sans test et automatique avec test
+    if ($ManualMode -eq -1){
+        # demander a l'utilisateur si il veut executer le script sql
+        $reponse = Read-Host "Voulez-vous executer le script sql '$nom_dossier' ? (O/N)"
+
+        if ($reponse -ne "O") {
+            Ecrire -texte "Le script sql '$nom_dossier' n'a pas été executer." -couleur "jaune"
+            log -Etape "$nom_dossier" -decription "Le script sql '$nom_dossier' n'a pas été executer." -Resultat "KO" -nom_executer $nom_dossier -Resultat_executer "KO"
+            
+        } else {
+            # recuperer tout les fichiers sql du dossier
+            $chemin = "$ScriptPath\database\$nom_dossier"
+            $fichiers = Get-ChildItem -Path $chemin -Filter "*.sql" -File
+            # parcourir tout les fichiers sql
+            foreach ($fichier in $fichiers) {
+                # recuperer le contenu du fichier
+                $contenu = Get-Content -Path $fichier.FullName
+                # executer le contenu du fichier
+                $command.CommandText = $contenu
+                $result = $command.ExecuteNonQuery()
+                # Vérifier le résultat
+                if ($result -eq 0) {
+                    Ecrire -texte "Le fichier '$fichier' a rencontrer un probleme lors de l'execution." -couleur "rouge"
+                    Ecrire -texte "Le script ne peut pas continuer." -couleur "rouge"   
+                    Ecrire -texte "Executer le fichier '$fichier' manuellement." -couleur "jaune"  
+                    Ecrire -texte "Fin du script." -couleur "rouge"
+                    log -Etape "$nom_dossier" -decription -nom_executer $fichier -Resultat_executer "OK"
+                }
+                Ecrire -texte "Le fichier '$fichier' a été executer." -couleur "vert"
+                log -Etape "$nom_dossier" -decription -nom_executer $fichier -Resultat_executer "OK"
+            }
+        }
+
+
+
+    } else {
+        # recuperer tout les fichiers sql du dossier
+        $chemin = "$ScriptPath\database\$nom_dossier"
+        $fichiers = Get-ChildItem -Path $chemin -Filter "*.sql" -File
+        # parcourir tout les fichiers sql
+        foreach ($fichier in $fichiers) {
+            # recuperer le contenu du fichier
+            $contenu = Get-Content -Path $fichier.FullName
+            # executer le contenu du fichier
+            $command.CommandText = $contenu
+            $result = $command.ExecuteNonQuery()
+            # Vérifier le résultat
+            if ($result -eq 0) {
+                Ecrire -texte "Le fichier '$fichier' a rencontrer un probleme lors de l'execution." -couleur "rouge"
+                Ecrire -texte "Le script ne peut pas continuer." -couleur "rouge"   
+                Ecrire -texte "Executer le fichier '$fichier' manuellement." -couleur "jaune"  
+                Ecrire -texte "Fin du script." -couleur "rouge"
+                log -Etape "$nom_dossier"  -nom_executer $fichier -Resultat_executer "KO"
+            }
+            Ecrire -texte "Le fichier '$fichier' a été executer." -couleur "vert"
+            log -Etape "$nom_dossier" -nom_executer $fichier -Resultat_executer "OK"
+        }
+    
+    }
+
+
+    
+}
 
 
 
@@ -97,17 +228,23 @@ function Connect-MySqlServer {
 if ($Help) {
     $helpContent = Get-Content -Path "$ScriptPath\cmd\help.txt" -Raw
     Write-Host $helpContent
+    log -Etape "Preprocessing" -decription "Affichage de l'aide" -Resultat "OK"
+    $save_logs | Out-File -FilePath "$ScriptPath\cmd\log\rapport.log" -Append
     exit
 }
+
 
 # Vérifier si MySQL est installé
 $mysqlService = Get-Service | Where-Object { $_.DisplayName -eq 'MySQL' }
 
 
 
+
 # Si ni MySQL ni MariaDB n'est installé, arrêter le script
 if ($null -eq $mysqlService) {
     Write-Host "Ni MySQL ni MariaDB n'est installé. Arrêt du script."
+    log -Etape "Preprocessing" -decription "Ni MySQL ni MariaDB n'est installé." -Resultat "KO"
+    $save_logs | Out-File -FilePath "$ScriptPath\cmd\log\rapport.log" -Append
     Exit
 }
 
@@ -130,97 +267,84 @@ $result = $command.ExecuteScalar()
 # Vérifier le résultat
 if ($result -eq $Database) {
     Ecrire -texte "La base de données '$Database' existe." -couleur "vert"
-} else {
+    log -Etape "Database" -decription "La base de données '$Database' existe." -Resultat "OK"
+
+} elseif($ManualMode -eq -1) {
     Ecrire -texte "La base de données '$Database' n'existe pas." -couleur "rouge"
     #Demander à l'utilisateur s'il veut créer la base de données
     $reponse = Read-Host "Voulez-vous créer la base de données '$Database' ? (O/N)"
     if ($reponse -ne "O") {
         Ecrire -texte "La base de données '$Database' n'a pas été créée." -couleur "rouge"
         Ecrire -texte "Le script ne peut pas continuer." -couleur "rouge"   
+        Ecrire -texte "Creer la base de données '$Database' manuellement." -couleur "jaune"  
         Ecrire -texte "Fin du script." -couleur "rouge"
+        log -Etape "Database" -decription "La base de données '$Database' n'existe pas." -Resultat "KO"
         exit
+    } else {
+        # appel du script de creation de la base de données
+        Ecrire -texte "Création de la base de données '$Database'..." -couleur "bleu"
+        # execution du script de creation de la base de données
+        $contenu = Get-Content -Path "$ScriptPath\database\create_database.sql"
+        $command.CommandText = $contenu
+        $result = $command.ExecuteNonQuery()
+        # Vérifier le résultat
+        if ($result -eq 0) {
+            Ecrire -texte "La base de données '$Database' a rencontrer un probleme lors de l'execution." -couleur "rouge"
+            Ecrire -texte "Le script ne peut pas continuer." -couleur "rouge"   
+            Ecrire -texte "Creer la base de données '$Database' manuellement." -couleur "jaune"  
+            Ecrire -texte "Fin du script." -couleur "rouge"
+            log -Etape "Database" -decription "La base de données '$Database' n'existe pas." -Resultat "KO"
+            exit
+        }
+        Ecrire -texte "La base de données '$Database' a été créée." -couleur "vert"
+        log -Etape "Database" -decription "La base de données '$Database' a été créée." -Resultat "OK"    
     }
+} else {
+# creer la base de donnees
 
-    # Créer la base de données
-    Ecrire -texte "Création de la base de données '$Database'..."
-    $query = "CREATE DATABASE $Database;"
-    $command.CommandText = $query
+    $contenu = Get-Content -Path "$ScriptPath\database\create_database.sql"
+    $command.CommandText = $contenu
     $result = $command.ExecuteNonQuery()
 
     # Vérifier le résultat
     if ($result -eq 0) {
-        Ecrire -texte "La base de données '$Database' n'a pas été créée." -couleur "rouge"
-        Ecrire -texte "Le script ne peut pas continuer." -couleur "rouge" 
+        Ecrire -texte "La base de données '$Database' a rencontrer un probleme lors de l'execution." -couleur "rouge"
+        Ecrire -texte "Le script ne peut pas continuer." -couleur "rouge"   
         Ecrire -texte "Creer la base de données '$Database' manuellement." -couleur "jaune"  
         Ecrire -texte "Fin du script." -couleur "rouge"
+        log -Etape "Database" -decription "La base de données '$Database' n'existe pas." -Resultat "KO"
         exit
+    
+
     }
     Ecrire -texte "La base de données '$Database' a été créée." -couleur "vert"
+    log -Etape "Database" -decription "La base de données '$Database' a été créée." -Resultat "OK"
 
 }
 
 
 #TABLES
-# Demander à l'utilisateur s'il veut créer ou mettre à jour les tables de la base de données
-$reponse = Read-Host "Voulez-vous créer ou mettre à jour les tables de la base de données '$Database' ? (O/N)"
-if ($reponse -eq "O") {
-    # Demander à l'utilisateur s'il veut créer ou remplacer Toutes tables
-    $reponse = Read-Host "Voulez-vous créer ou remplacer Toutes tables ? (O/N)"
-    #si oui on lance toute les fichiers sql du dossier tables
-    if ($reponse -eq "O") {
-        Ecrire -texte "Création ou remplacement de toutes les tables..."
-        #Récupérer la liste des fichiers SQL
-        $fichiers = Get-ChildItem -Path "$ScriptPath\tables" -Filter "*.sql"
-        #Parcourir la liste des fichiers SQL
-        foreach ($fichier in $fichiers) {
-            # Lire le contenu du fichier
-            $contenu = Get-Content -Path $fichier.FullName
-            # Exécuter le contenu du fichier
-            $command.CommandText = $contenu
-            $result = $command.ExecuteNonQuery()
-            # Vérifier le résultat ou si le fichier sql a lancé une erreur
-            if ($result -eq 0) {
-                Ecrire -texte "Le fichier '$fichier' a rencontrer un probleme lors de l'execution." -couleur "rouge" 
-                #On sauvegarde le fichier sql dans un dossier erreur
-
-            }
-            else{
-                Ecrire -texte "Le fichier '$fichier' a été exécuté." -couleur "bleu"
-            }
-
-        }
-        Ecrire -texte "Toutes les tables ont été créées ou remplacées." -couleur "vert"
-    }
-    else {
-        #Demander à l'utilisateur s'il veut créer ou remplacer une table pour chaque fichier sql
-        $fichiers = Get-ChildItem -Path "$ScriptPath\tables" -Filter "*.sql"
-        #Parcourir la liste des fichiers SQL
-        foreach ($fichier in $fichiers) {
-            # Demander à l'utilisateur s'il veut créer ou remplacer la table
-            $reponse = Read-Host "Voulez-vous créer ou remplacer la table '$fichier' ? (O/N)"
-            if ($reponse -eq "O") {
-                Ecrire -texte "Création ou remplacement de la table '$fichier'..."
-                # Lire le contenu du fichier
-                $contenu = Get-Content -Path $fichier.FullName
-                # Exécuter le contenu du fichier
-                $command.CommandText = $contenu
-                $result = $command.ExecuteNonQuery()
-                # Vérifier le résultat
-                if ($result -eq 0) {
-                    Ecrire -texte "La table '$fichier' a rencontrer un probleme lors de l'execution." -couleur "rouge"
-                }
-                Ecrire -texte "La table '$fichier' a été créée ou remplacée." -couleur "vert"
-            }
-        }
-    }
-}
 
 # TRIGGERS
-
+executer_script_sql -nom_dossier "Triggers" -connectionString $connectionString
 
 # PACKAGES
+executer_script_sql -nom_dossier "Packages" -connectionString $connectionString
 
 # TESTS
+if ($ManualMode -eq 1) {
+    executer_script_sql -nom_dossier "Tests" -connectionString $connectionString
+} elseif ($ManualMode -eq 0) {
+    # demander a l'utilisateur si il veut executer le script sql
+    $reponse = Read-Host "Voulez-vous executer le script sql 'Tests' ? (O/N)"
+
+    if ($reponse -eq "O") {
+        executer_script_sql -nom_dossier "Tests" -connectionString $connectionString
+    }
+    else {
+        log -Etape "Tests" -decription "Le script sql 'Tests' n'a pas été executer." -Resultat "KO"
+    }
+} 
 
 
 #FIN DU SCRIPT
@@ -230,56 +354,13 @@ $connection.Close()
 # Afficher Le rapport du script
 
 Ecrire -texte "\n\nRapport du script" -couleur "cyan"
-$rapport = Get-Content -Path "$ScriptPath\cmd\rapport.txt" -Raw
-Write-Host $rapport
+Write-Host $save_logs
 
 #Ajouter le rapport dans un fichier log
-$rapport | Out-File -FilePath "$ScriptPath\cmd\log\rapport.log" -Append
+$save_logs | Out-File -FilePath "$ScriptPath\cmd\log\rapport.log" -Append
 
 # Afficher un message de fin
 Ecrire -texte "\nFin du script." -couleur "magenta"
 
-
-$liste_Etape = 
-
-$rapportEntry = @{
-    "Date" = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Liste_Etape = @(
-        @{
-        nom = "Tables"
-        Liste_executer = @(
-            @{
-                nom = "Table 1"
-                resultat = "OK"
-            },
-            @{
-                nom = "Table 2"
-                resultat = "OK"
-            },
-            @{
-                nom = "Table 3"
-            }
-        )
-    
-    }
-    @{
-        nom = "Triggers"
-        Liste_executer = @(
-            @{
-                nom = "Trigger 1"
-                resultat = "OK"
-            },
-            @{
-                nom = "Trigger 2"
-                resultat = "OK"
-            },
-            @{
-                nom = "Trigger 3"
-            }
-        )
-    
-    }
-    )
-}
 
 
