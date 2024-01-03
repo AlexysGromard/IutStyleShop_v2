@@ -1,4 +1,4 @@
-/* Main */
+/* Main 
 main{
     margin: 45px 77px 94px 77px;
     display: flex;
@@ -7,6 +7,7 @@ main{
     gap: 54px;
     min-height: 56.3vh;
 }
+*/
 
 /* sort-order (Select/otpion) */
 #sort-order{

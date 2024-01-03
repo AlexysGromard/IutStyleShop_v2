@@ -86,7 +86,7 @@
         </div>
     </main>
     <section id="payment">
-        <div class="payment payment-size payment-part">
+        <div class="large_box payment-size payment-part">
                     <div class="first-section-payment">
                         <div class="payment-title-text">Montant total de vos produits</div>
                         <div class="payment-text dark-grey">Prix TTC</div>

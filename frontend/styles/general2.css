@@ -1,12 +1,10 @@
-
-
 /*petit boite on peux potensiellement rendre le nom plus générale*/
-.payment-size{
+.payment-size{ /* .payment-size*/
     max-width: 381px;
 }
 
-/*petit boite on peux potensiellement rendre le nom plus générale*/
-.payment{
+/*petit boite*/
+.large_box , .normal_box{ /* .payment*/
     background-color: white;
     padding: 24px 30px;
     display: flex;
@@ -14,10 +12,15 @@
     border-radius: 10px;
     width: 100%;
     height: max-content;
+    gap: 20px;
 }
 
-/**/
-.personal-information{
+.normal_box{ /* .payment*/
+    width: min-content;
+}
+
+/*
+.personal-information{ personal-information
     background-color: var(--box-color);
     padding: 24px 30px;
     display: flex;
@@ -28,3 +31,49 @@
     height: max-content;
     margin-bottom: 10px;
 }
+*/
+
+
+.radio_button_space{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap : 5px;
+}
+
+.inputText_space{
+    width: 46%;
+    flex : auto; /**/
+    display: flex;
+    flex-direction: column;
+    gap : 7px;
+}
+
+/**/
+
+.sidebar{
+    font-family: 'Roboto';
+    display: flex;
+    font-size: var(--very-small);
+    line-height: 14.06px;
+    font-weight: 400;
+    padding: 11px 20px 11px;
+    width: 100%;
+    border: none;
+    border-radius: 18px;
+    background-color: #F1F3F4;
+}
+/**/
+
+.square_of_2{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.square_of_2 > div{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
