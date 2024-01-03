@@ -325,6 +325,11 @@ if ($result -eq $Database) {
 
 #TABLES
 
+
+
+
+
+
 # TRIGGERS
 executer_script_sql -nom_dossier "Triggers" -connectionString $connectionString
 

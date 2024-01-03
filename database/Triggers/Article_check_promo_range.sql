@@ -1,5 +1,5 @@
 
-CREATE TRIGGER check_promo_range
+CREATE TRIGGER Article_check_promo_range
 BEFORE INSERT, UPDATE ON Article
 FOR EACH ROW
 BEGIN

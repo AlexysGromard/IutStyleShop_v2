@@ -1,9 +1,7 @@
-
-CREATE TRIGGER before_insert_update_Article
+CREATE TRIGGER Article_check_note_range
 BEFORE INSERT, UPDATE ON Article
 FOR EACH ROW
 BEGIN
-
     IF NEW.note > 5.00 THEN
         SIGNAL SQLSTATE '45200' SET MESSAGE_TEXT = 'La note ne peut pas dépasser 5.00';
     END IF;

@@ -1,4 +1,4 @@
-CREATE TRIGGER update_article_votants
+CREATE TRIGGER Commentaire_update_article_votants
 AFTER INSERT, DELETE ON Commentaire
 FOR EACH ROW
 BEGIN
