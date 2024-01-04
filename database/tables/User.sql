@@ -7,6 +7,7 @@ CREATE OR REPLACE TABLE User (
 	password VARCHAR(255) NOT NULL, -- crypter avec bcrypt
 	nom VARCHAR(64) NULL,
 	prenom  VARCHAR(64) NULL,
+	genre VARCHAR(16) NULL,
 	role VARCHAR(16) NOT NULL,
 	adresse VARCHAR2(255) NULL,
 	ville VARCHAR(128) NULL,
