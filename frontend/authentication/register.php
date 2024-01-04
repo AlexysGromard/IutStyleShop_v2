@@ -87,7 +87,7 @@
                 </div>
                 <div class="action-box change-method">
                     <span class="change-method-text">Vous avez déjà un compte IutStyleShop ?</span>
-                    <a class="change-method-btn" href="/frontend/authentication/register.php">Connexion</a>
+                    <a class="change-method-btn" href="/frontend/authentication/login.php">Connexion</a>
                 </div>
             </section>
         </main>
