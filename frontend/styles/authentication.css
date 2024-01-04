@@ -26,7 +26,11 @@ header{
     gap: 31px;
     padding: 80px 10px 200px 10px;
 }
-
+@media screen and (max-width: 768px){
+    #main-section{
+        padding: 40px 10px 200px 10px;
+    }
+}
 
 /* === Page title === */
 #page-title-section{
@@ -122,6 +126,13 @@ form .action-box{
     margin: 0 auto;
 }
 
+.button.without-passkey{
+    text-decoration: none;
+    color: var(--white);
+    max-width: 200px;
+    margin: 0 auto;
+}
+
 /* === change method === */
 .action-box.change-method{
     display: flex;
@@ -150,4 +161,41 @@ form .action-box{
     .change-method-btn{
         font-size: var(--small);
     }
+}
+
+/* === Confirmation form === */
+.confirmation-input{
+    border: solid 2px #A8ABAE;
+    width: 47px;
+    height: 47px;
+    border-radius: 10px;
+    font-size: var(--big);
+    text-align: center;
+}
+.confirmation-input:focus{
+    border: 2px solid var(--red);
+    outline: none;
+}
+#confirmation-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 379px;
+    margin: 0 auto;
+}
+#confirmation-form-input-box{
+    display: flex;
+    flex-direction: row;
+    gap: 37px;
+}
+
+.confirmation-form-part{
+    display: flex;
+    gap: 15px;
+}
+
+#btn-resend-code{
+    color: var(--red);
+    font-size: var(--very-small);
+    text-decoration: none;
+    align-self: end;
 }
