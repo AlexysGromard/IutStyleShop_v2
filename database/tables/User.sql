@@ -17,5 +17,5 @@ CREATE OR REPLACE TABLE User (
 
 INSERT INTO User (email, password, nom, prenom, adresse, ville, code_postal, Complement_adresse)
 VALUES 
-('admin@iutstyleshop.com', 'admin', NULL, NULL, 'admin', NULL, NULL , NULL, NULL);
+('admin@iutstyleshop.com', 'admin', NULL, NULL, NULL, 'admin', NULL, NULL , NULL, NULL);
 
