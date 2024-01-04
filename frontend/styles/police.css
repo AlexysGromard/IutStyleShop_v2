@@ -1,7 +1,10 @@
 /***Black***/
 /**/
+span, label{
+    color: purple;
+}
 
-.policew2{
+.Black_police_40{
     color: var(--black);
     font-family: Roboto;
     font-size: 12px;
@@ -10,8 +13,8 @@
     line-height: normal;
 }
 
-.policew3{
-    color: var(--Black, #0A0908);
+.Black_police_45{
+    color: var(--black, #0A0908);
     font-family: Roboto;
     font-size: 14px;
     font-style: normal;
@@ -19,8 +22,8 @@
     line-height: normal;
 }
 
-.policew4{
-    color: var(--Black);
+.Black_police_50{
+    color: var(--black);
     font-family: Roboto;
     font-size: 14px;
     font-style: normal;
@@ -28,7 +31,7 @@
     line-height: normal;
 }
 
-.policew1{
+.Black_police_55{
     color: var(--black);
     font-family: Roboto;
     font-size: 16px;
@@ -38,7 +41,7 @@
 }
 /**/
 
-.policex2{
+.Black_police_60{
     color: var(--black);
     font-family: Roboto;
     font-size: 16px;
@@ -47,7 +50,7 @@
     line-height: normal;
 }
 
-.policex1{
+.Black_police_65{
     color: var(--black);
     font-family: Roboto;
     font-size: 16px;
@@ -56,7 +59,7 @@
     line-height: normal;
 }
 
-.policex3{
+.Black_police_70{
     color: var(--black);
     font-family: Roboto;
     font-size: 22px;
@@ -65,7 +68,7 @@
     line-height: normal;
 }
 
-.policex5{
+.Black_police_75{
     color: var(--black);
     font-family: Roboto;
     font-size: 25px;
@@ -76,8 +79,8 @@
 
 /***White***/
 
-.policey1{
-    color: var(--White, #F6F7F9);
+.White_police_40{
+    color: var(--white, #F6F7F9);
     font-family: Roboto;
     font-size: 14px;
     font-style: normal;
@@ -87,7 +90,7 @@
 
 /***Gray***/
 
-.policez1{
+.Gray_police_40{
     color: var(--dark-grey);
     font-family: Roboto;
     font-size: 12px;
@@ -95,7 +98,8 @@
     font-weight: 400;
     line-height: normal;
 }
-.policez3{
+
+.Gray_police_45{
     color: var(--dark-grey);
     font-family: Roboto;
     font-size: 14px;
@@ -104,8 +108,8 @@
     line-height: normal;
 }
 
-.policez2{
-    color: var(--Grey);
+.Gray_police_50{
+    color: var(--grey);
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;
@@ -118,8 +122,8 @@
 
 /***Red***/
 
-.policeaa1{
-    color: var(--Red, #EF233C);
+.Red_police_55{
+    color: var(--red);
     text-align: center;
     font-family: Roboto;
     font-size: 14px;

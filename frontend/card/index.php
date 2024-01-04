@@ -30,7 +30,8 @@
                     <img src="/frontend/assets/icons/poubelle-de-recyclage.png">
                 </div>
             </div> 
-            <div class="payment payment-size">
+
+            <div class="normal_box_payment payment-size">
                 <div class="first-section-payment">
                     <div class="payment-title-text">Montant total de vos produits</div>
                     <div class="payment-text dark-grey">Prix TTC</div>
