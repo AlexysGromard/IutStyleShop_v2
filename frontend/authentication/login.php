@@ -24,6 +24,7 @@
         </div>
         <section id="actions-container">
             <div class="action-box">
+                <!-- Connexion par mot de passe -->
                 <form action="" method="">
                     <!-- Adresse email -->
                     <div class="input-box">
@@ -43,6 +44,16 @@
                     <!-- Btn -->
                     <input class="button form-button" type="submit" value="Se connecter">
                 </form>
+                <!-- Barre de séparation -->
+                <div class="separator-bar">
+                    <span class="separator-bar-text">OU</span>
+                </div>
+                <!-- Passkey -->
+                <a class="passkey-button" href="#"><img src="/frontend/assets/icons/passskey_logo.svg" alt="Passkey logo">Se connecter avec Passkey</a>
+            </div>
+            <div class="action-box change-method">
+                <span class="change-method-text">Vous êtes nouveau sur IutStyleShop ?</span>
+                <a class="change-method-btn" href="/frontend/authentication/register.php">Créer un compte</a>
             </div>
         </section>
     </main>
