@@ -67,6 +67,12 @@ header{
     gap: 20px;
 }
 
+form .action-box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
 /* === Password recovery & password-header === */
 .link-to-password-recovery{
     color: var(--red);
@@ -119,6 +125,7 @@ header{
 /* === change method === */
 .action-box.change-method{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;

@@ -35,6 +35,34 @@
 .input-field:focus{
     outline: none;
 }
+/* radio */
+input[type="radio"]{
+    height: 17px;
+    width: 17px;
+    appearance: none;
+    background-color: #F1F3F4;
+    border-radius: 50%;
+    cursor: pointer;
+}
+input[type="radio"]:checked{
+    background-color: var(--red);
+}
+
+
+.input-radio-element{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.radio-label{
+    color: var(--black);
+    font-size: var(--very-small);
+}
+
+.input-radio-choices{
+    display: flex;
+    gap: 17px;
+}
 
 /* Error message */
 .input-error-message{
