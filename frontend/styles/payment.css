@@ -1,17 +1,14 @@
+/*
 body{
     --box-color :#FFFFFF;
     --radio-checked-color: #EF233C;
     --radio-color:#F1F3F4;
-}
+}*/
 
 
 
 
 
-main{
-    width:100%; 
-    margin : 0% 2% 2% 2%;
-}
 
 .payment-part{
     max-width: 1fr;
@@ -58,7 +55,7 @@ main{
     margin-bottom: 21px;
 }
 
-
+/*
 .radioButton{
     appearance: none;
     cursor: pointer;
@@ -82,7 +79,9 @@ main{
     border-radius: 20px;
     background: var(--radio-checked-color);
 }
+*/
 
+/*
 input[type='text'],input[type='mail'],input[type='phone']{
     font-family: 'Roboto';
     display: flex;
@@ -98,26 +97,33 @@ input[type='text'],input[type='mail'],input[type='phone']{
     outline:  none;
     border-radius:18px;
     background-color: #F1F3F4;
-}
+}*/
 
-
+/*
 input[id="civility-man"],input[id="civility-none"]{
     margin-left:17.13px ;
 }
+*/
 
-main{
-    display: flex;
-    flex-direction: column;
-}
-#page{
+.element_page{
     display: flex;
     flex-direction: row;
+    gap : 21px;
     
 }
 
+/*
 #title-part{
     display: flex;
     flex-direction: column;
     margin: 0% 0% 1% 11px;
 }
 
+*/
+
+.payment_left_box{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    gap : 25px
+}

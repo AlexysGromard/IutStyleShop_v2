@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
     <link rel="stylesheet" href="/frontend/styles/police.css">
-    <!-- link rel="stylesheet" href="/frontend/styles/carousel.css" -->
-    <!-- link rel="stylesheet" href="/frontend/styles/cart.css" -->
 </head>
 <body>
     
@@ -20,8 +18,7 @@
     <?php include 'frontend/components/header.php'; ?>
 
     <main class = "user_general">
-        <span class="section-title-name"> Espace utilisateur</span>
-
+        <span class="policex3"> Espace utilisateur</span>
         <div class = "user_general_element_box">
             <!-- left make by alexy-->
             <div class="large_box payment-size">
@@ -182,7 +179,7 @@
                             </div>
                             <div>
                                 <div class="inputText_space">
-                                    <label class="policew1" for="complement_adresse">Complément d’adresse</label>
+                                    <label class="policew1" for="complement_adresse">Complément d'adresse</label>
                                     <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse">
                                 </div>
                                 <div class="inputText_space">

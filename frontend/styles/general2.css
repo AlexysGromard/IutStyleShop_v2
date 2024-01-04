@@ -3,8 +3,13 @@
     max-width: 381px;
 }
 
+.titel_box{
+    display: flex;
+    flex-direction: column;
+}
+
 /*petit boite*/
-.large_box , .normal_box{ /* .payment*/
+.large_box , .normal_box, .normal_box_payment{ /* .payment*/
     background-color: white;
     padding: 24px 30px;
     display: flex;
@@ -15,8 +20,12 @@
     gap: 20px;
 }
 
-.normal_box{ /* .payment*/
+.normal_box{ 
     width: min-content;
+}
+
+.normal_box_payment{ 
+    gap: 10px;
 }
 
 /*
@@ -34,13 +43,6 @@
 */
 
 
-.radio_button_space{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap : 5px;
-}
-
 .inputText_space{
     width: 46%;
     flex : auto; /**/
@@ -50,6 +52,26 @@
 }
 
 /**/
+.radio_button_space{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    gap : 5px;
+}
+
+.radioButton {
+    appearance: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--light-gray);
+}
+
+.radioButton:checked {
+    background: var(--red);
+}
 
 .sidebar{
     font-family: 'Roboto';
@@ -61,7 +83,7 @@
     width: 100%;
     border: none;
     border-radius: 18px;
-    background-color: #F1F3F4;
+    background-color: var(--light-gray);
 }
 /**/
 

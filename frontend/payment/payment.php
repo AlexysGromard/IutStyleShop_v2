@@ -8,116 +8,142 @@
     <link rel="stylesheet" href="/frontend/styles/general.css">
     <link rel="stylesheet" href="/frontend/styles/general2.css">
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
-    <!--link rel="stylesheet" href="/frontend/styles/article.css"-->
+    <link rel="stylesheet" href="/frontend/styles/police.css">
+
     <link rel="stylesheet" href="/frontend/styles/cart.css">
+    <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/payment.css">
 
 
 </head>
 <body>
 <?php include 'frontend/components/header.php'; ?>
-<div id="title-part">
-    <span class="section-title-name">Paiement</span>
-    <span class="">Régler mes achats</span>
-</div>
-<div id="page">
-    <main>
-        <div class="personal-information">
-            <span class="field-part-name">Informations personnelles</span>
-            <form>
-                <legend class="field-name" >Civilité</legend>
-                <input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility">
-                <label class="field-name" for="civility-woman">Femme</label>
-                <input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility">
-                <label class="field-name"  for="civility-man">Homme</label>
-                <input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" checked>
-                <label class="field-name" for="civility-none">Ne souhaite pas se prononcer</label>
-                <br><br>
-                
-                
-                <div class="personal-field">
-                    <div>
-                        <label class="field-name" for="last-name">Nom</label>
-                        <input type="text" placeholder="Votre nom" id="last-name">
-                    </div>
-                    <div>
-                        <label class="field-name" for="first-name">Prénom</label>
-                        <input type="text" placeholder="Prénom" id="first-name">
-                    </div>
-                    <div>
-                        <label class="field-name" for="mail">Adresse mail</label>
-                        <input type="mail" placeholder="Votre adresse mail" id="mail">
-                    </div>
-                    <div>
-                        <label class="field-name" for="phone">Numéro de téléphone</label>
-                        <input type="phone" placeholder="06 00 00 00 00" id="phone">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="personal-information">
-            <span class="field-part-name">Localisation</span>
-            <form>
-                <div class="personal-field">
-                    <div>
-                        <label class="field-name" for="adress">Adresse</label>
-                        <input type="text" placeholder="1 Rue Maréchal Joffre" id="adress">
-                    </div>
-                    <div>
-                        <label class="field-name" for="postal-code">Code postal</label>
-                        <input type="text" placeholder="44000" id="postal-code">
-                    </div>
-                    <div>
-                        <label class="field-name" for="additional-address">Complément d'adresse</label>
-                        <input type="text" placeholder="Appartement B15" id="additional-address">
-                    </div> 
-                    <div>
-                        <label class="field-name" for="city">Ville</label>
-                        <input type="text" placeholder="Nantes" id="city">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="personal-information">
-            <span class="field-part-name">Méthode de paiement</span>
-            <form>
-                <!-- à remplir  -->
-            </form>
-        </div>
-    </main>
-    <section id="payment">
-        <div class="large_box payment-size payment-part">
-                    <div class="first-section-payment">
-                        <div class="payment-title-text">Montant total de vos produits</div>
-                        <div class="payment-text dark-grey">Prix TTC</div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="second-section-payment">
-                        <div class="text-espace"><div class="payment-text grey">Sous-total</div><div id="st" class="payment-text text-weight-price">0.00€</div></div>
-                        <div class="text-espace"><div class="payment-text grey">Taxes</div><div id="taxes" class="payment-text text-weight-price">0.00€</div></div>
-                        <div class="text-espace"><div class="payment-text grey">Code promotionnel</div><div class="payment-text text-weight-price">0,00€</div></div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="third-section-payment">
-                        <div class="payment-text">Code promo</div>
-                        <div class="boite-code-promo">
-                            <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
-                        </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="final-section-payment">
-                        <div class="text-espace">
-                            <div>
-                                <div class="payment-text">Prix total</div>
-                                <div class="payment-scearch-text">Ce prix inclus les remises</div>
-                            </div>
-                            <div class="price">0.00€</div>
-                        </div>
-                    </div>
-                    <a class="payment-size button important-text" href="#">Passer la commande</a>
-                </div>
+
+<main class="user_general">
+    <div class="titel_box">
+        <span class="policex3">Paiement</span>
+        <span class="policez2">Régler mes achats</span>
     </div>
-    </section>
+
+    <div class="element_page">
+        <!-- ~~~~~~~~~~~~Ajouter des require~~~~~~~~~~~~ -->
+        <form class="payment_left_box" action="xx">
+            <div class="large_box" >        
+                <span class="policex1">Informations personnelles</span>
+                <div class="civility_choice_space">
+                    <span class="policew1" >Civilité</span>
+                    <div>
+                        <label for="civility-woman" class="radio_button_space">
+                            <input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility">
+                            <span class="policew2" >Femme</span>
+                        </label>
+                        <label for="civility-man" class="radio_button_space">
+                            <input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility">
+                            <span class="policew2"  >Homme</span>
+                        </label>
+                        <label for="civility-none" class="radio_button_space">
+                            <input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" checked>
+                            <span class="policew2" >Ne souhaite pas se prononcer</span>
+                        </label>
+                    </div>
+                </div>              
+                <div class="square_of_2">
+                    <div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="last-name">Nom</label>
+                            <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="first-name">Prénom</label>
+                            <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="mail">Adresse mail</label>
+                            <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="phone">Numéro de téléphone</label>
+                            <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="large_box">
+                <!-- infomation sur l'adresse phisique -->
+                <span class="policex1">Localisation</span>
+
+                <div class="square_of_2">
+                    <div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="adresse">Adresse</label>
+                            <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="code">Code postal</label>
+                            <input class="sidebar" type="text" placeholder="44000" id="code" name="code">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="complement_adresse">Complément d'adresse</label>
+                            <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="policew1" for="ville">Ville</label>
+                            <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="large_box">
+                <span class="policex1">Méthode de paiement</span>
+                
+                <!-- à remplir  -->
+                
+            </div>
+            <button type="submit" class="payment-size button policey1">Passer la commande</button>
+        </form>
+
+        <div id="payment">
+            <div class="normal_box_payment payment-size">
+                        <div class="titel_box">
+                            <div class="policex1">Montant total de vos produits</div>
+                            <div class="policez3">Prix TTC</div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="second-section-payment">
+                            <div class="text-espace"><span class="policez3">Sous-total</span><span id="st" class="policew4">0.00€</span></div>
+                            <div class="text-espace"><span class="policez3">Taxes</span><span id="taxes" class="policew4">0.00€</span></div>
+                            <div class="text-espace"><span class="policez3">Code promotionnel</span><span class="policew4">0,00€</span></div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="third-section-payment">
+                            <div class="policew3">Code promo</div>
+                            <div class="boite-code-promo">
+                                <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="final-section-payment">
+                            <div class="text-espace">
+                                <div>
+                                    <div class="policew3">Prix total</div>
+                                    <div class="policez1">Ce prix inclus les remises</div>
+                                </div>
+                                <div class="policex5">0.00€</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+            </div>
+        </div>
+        
+</main>
 
 <?php include 'frontend/components/footer.php'; ?>
 </body>
