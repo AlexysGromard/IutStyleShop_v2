@@ -1,6 +1,6 @@
 
 CREATE TRIGGER Ticket_check_priceunitaire_positive
-BEFORE INSERT, UPDATE ON Accessoire
+BEFORE INSERT, UPDATE ON ArticleComande
 FOR EACH ROW
 BEGIN
     IF NEW.quantite < 0 THEN

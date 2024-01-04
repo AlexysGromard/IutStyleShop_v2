@@ -1,6 +1,6 @@
 
 CREATE TRIGGER Ticket_check_quantite_range
-BEFORE INSERT, UPDATE ON ArticleComande
+BEFORE INSERT, UPDATE ON ArticleCommande
 FOR EACH ROW
 BEGIN
     IF NEW.quantite < 0 OR NEW.quantite > 100 THEN
