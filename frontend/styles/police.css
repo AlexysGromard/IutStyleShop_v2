@@ -1,6 +1,6 @@
 /***Black***/
 /**/
-span, label{
+span, label, p{ /*pour vérifier si des élément n'on pas été modifier*/
     color: purple;
 }
 
