@@ -1,0 +1,57 @@
+/*
+* Nom du fichier : form.css
+* Description : Fichier de style commun pour les formulaires
+*/
+
+/* === Input box === */
+.input-box{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+}
+
+/* === Label === */
+.input-label{
+    color: var(--black);
+    font-size: var(--medium);
+}
+
+/* === Input === */
+/* Text */
+.input-field{
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    padding: 12px 15px;
+    font-size: var(--small);
+    color: var(--black);
+    background-color: #F1F3F4;
+}
+.input-field::placeholder{
+    color: var(--dark-grey);
+    opacity: 0.5;
+}
+.input-field:focus{
+    outline: none;
+}
+
+/* Error message */
+.input-error-message{
+    color: var(--red);
+    font-size: var(--very-small);
+    display: none;
+}
+
+.input-error-message.active{
+    display: block;
+}
+
+/* === Button === */
+.form-button{
+    color: var(--white);
+    border: none;
+    max-width: 116px;
+    align-self: flex-end;
+    font-weight: 300;
+}

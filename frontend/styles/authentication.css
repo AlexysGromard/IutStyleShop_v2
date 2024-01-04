@@ -1,0 +1,86 @@
+/*
+* Nom du fichier : authentication.css
+* Description : Fichier de style pour les pages d'authentification
+*/
+
+
+/* === Header (Auth only) === */
+header{
+    background-color: #FFFFFF;
+}
+.header-top{
+    align-items: center;
+}
+.button.method-change-button{
+    max-width: 132px;
+    color: var(--white);
+    font-weight: 400;
+    font-size: var(--medium);
+}
+
+/* === Main === */
+#main-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 31px;
+    padding: 80px 0 200px 0;
+}
+
+
+/* === Page title === */
+
+#page-title-section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#page-title-section #title{
+    font-size: var(--big);
+    font-weight: 500;
+    color: var(--black);
+}
+
+#page-title-section #subtitle{
+    font-size: var(--medium);
+    color: var(--black);
+    font-weight: 400;
+}
+
+/* === actions container (and childs) === */
+#actions-container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 10px;
+}
+
+.action-box{
+    background-color: #FFFFFF;
+    padding: 21px 24px;
+    border-radius: 20px;
+}
+.action-box form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* === Password recovery & password-header === */
+.link-to-password-recovery{
+    color: var(--red);
+    font-size: var(--small);
+    text-decoration: none;
+}
+.link-to-password-recovery:hover{
+    text-decoration: underline;
+}
+
+#password-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
