@@ -1,9 +1,6 @@
-<head>
-    <?php include_once "../common-includes.php"; ?>
-    <link rel="stylesheet" href="/frontend/styles/user.css">
-</head>
 <?php
 function generateUserPanelComponent(
+    $actionsSelect,
     $userName = "Unknown",
     $userId = 0,
     $userGender = "Unknown",
@@ -16,14 +13,16 @@ function generateUserPanelComponent(
     $userType = htmlspecialchars($userType, ENT_QUOTES, 'UTF-8');
 
     // ID validation (assuming positive integer IDs)
-    $userId = is_numeric($userId) ? intval($userId) : null;
+    $userId = is_numeric($userId) ? intval($userId) : null; // il est possible de ne pas avoir id ???
 
     // Gender must be "M" or "F"
     $userGender = in_array($userGender, ["M", "F"]) ? $userGender : "Unknown";
 
     // User type must be "admin" or "client"
-    $userType = in_array($userType, ["admin", "client"]) ? $userType : "Unknown";
+    $userType = in_array($userType, ["admin", "client"]) ? $userType : "Unknown"; //il est possible de ne pas savoir ???
 
+   
+    
     // Actions list
     $actions = [
         "admin" => [
@@ -34,30 +33,41 @@ function generateUserPanelComponent(
             "Base de codes promotionnel" => "#"
         ],
         "client" => [
-            "Mes informations" => "#",
-            "Mes commandes" => "#",
-            "Mon adresse" => "#",
-            "Mes paramètres" => "#"
+            "Mes informations" => "/user/user_space/informations",
+            "Mes commandes" => "/user/user_space/commandes",
+            "Mon adresse" => "/user/user_space/adresse",
+            "Mes paramètres" => "/user/user_space/parametres"
         ]
     ];
+    
+    //action selected
+    if (!(($userType == "admin" && in_array($actionsSelect,array_keys($actions["admin"]))) || ($userType == "client" && in_array($actionsSelect,array_keys($actions["client"]))))){
+        echo "ERREUR".$userType;
+    }
 ?>
 
-<div id="user-panel-container">
+<div class="large_box payment-size ">
     <div id="user-informations">
         <div id="user-picture-container">
             <?php
-                $photoPath = ($userGender === "M") ? "../assets/icons/user-man.png" : "../assets/icons/user-woman.png";
+                $photoPath = ($userGender === "M") ? "/frontend/assets/icons/user-man.png" : "/frontend/assets/icons/user-woman.png";
             ?>
             <img src="<?php echo $photoPath; ?>" alt="Photo de profil">
         </div>
-        <span id="user-name"><?php echo $userName; ?></span>
-        <span id="user-id">N° de<?php echo ($userType === "client" ? " client" : " user"); ?> : <?php echo $userId; ?></span>
+        <span classe="Black_police_60" id="user-name"><?php echo $userName; ?></span>
+        <span class="Black_police_40" id="user-id">N° de<?php echo ($userType === "client" ? " client" : " user"); ?> : <?php echo $userId; ?></span>
     </div>
     <div id="user-actions">
         <!-- Liste des actions -->
         <ul id="user-actions-list">
             <?php foreach ($actions[$userType] as $actionName => $actionLink) : ?>
-                <li class="user-actions-link"><a href="<?php echo $actionLink; ?>"><?php echo $actionName; ?></a></li>
+
+                <?php if ($actionName == $actionsSelect):?>
+                    <li class="user-actions-link selected"><a href="<?php echo $actionLink; ?>"><?php echo $actionName; ?></a></li>
+                <?php else: ?>
+                    <li class="user-actions-link"><a href="<?php echo $actionLink; ?>"><?php echo $actionName; ?></a></li>
+                <?php endif; ?>
+
                 <?php if ($actionName !== array_key_last($actions[$userType])) : ?>
                     <hr class="user-action-separation">
                 <?php endif; ?>
@@ -70,5 +80,4 @@ function generateUserPanelComponent(
 
 <?php
 }
-generateUserPanelComponent("Jean", 4364801, "M", "admin");
 ?>

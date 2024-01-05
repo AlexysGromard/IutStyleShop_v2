@@ -28,24 +28,24 @@
     <div class="header-down">
         <div id="header-down-content">
             <div class="header-down-link">
-                <a href="/frontend/all-products/">
+                <a href="/products">
                     <img src="/frontend/assets/images/Header-Image/grid.svg" alt="grid">
                     <span>Tous les produits</span>
                 </a>
                 <img src="/frontend/assets/images/Header-Image/line.svg" alt="horizontal-line" class="horizontal-line">
-                <a href="/frontend/all-products/t-shirt/">
+                <a href="/products/filter/t-shirt/">
                     <img src="/frontend/assets/images/Header-Image/t-shirt.svg" alt="t-shirt">
                     <span>T-Shirt</span>
                 </a>
-                <a href="/frontend/all-products/sweatshirt/">
+                <a href="/products/filter/sweat-shirt/">
                     <img src="/frontend/assets/images/Header-Image/sweatshirt.svg" alt="sweatshirt">
                     <span>Sweat-shirt </span>
                 </a>
-                <a href="/frontend/all-products/sportswear/">
+                <a href="/products/filter/sportswear/">
                     <img src="/frontend/assets/images/Header-Image/jogger-pants.svg" alt="jogger-pants">
                     <span>Tenue de sport</span>
                 </a>
-                <a href="/frontend/all-products/accessories/">
+                <a href="/products/filter/accessories/">
                     <img src="/frontend/assets/images/Header-Image/accessories.svg" alt="accessories">
                     <span>Accessoires</span>
                 </a>

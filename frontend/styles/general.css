@@ -198,13 +198,14 @@ header{
     font-weight: 500;
 }
 
-.button{
+.button, .clear_button{
     display: flex;
     padding: 0 16px;
     width: 100%;
     min-width: max-content;
     height: 33px;
     background-color: var(--red);
+    border: none;
     border-radius:16.5px;
     cursor: pointer;
     justify-content: center;
@@ -213,10 +214,16 @@ header{
     text-decoration: none;
     transition: filter 0.2s;
 }
-.button:hover{
+
+.clear_button{
+    background-color: white;
+    border: 2px solid var(--red);
+}
+
+.button:hover, .clear_button:hover{
     filter: brightness(0.8);
 }
-.button:active{
+.button:active, .clear_button:active{
     filter: brightness(0.6);
 }
 .button.disabled {
@@ -686,4 +693,6 @@ footer{
     .section-title-results{
         font-size: var(--very-small);
     }
+
+
 }
