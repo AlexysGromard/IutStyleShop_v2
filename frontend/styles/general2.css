@@ -30,7 +30,7 @@
 
 .inputText_space{
     width: 46%;
-    flex : auto; /**/
+    flex : auto;
     display: flex;
     flex-direction: column;
     gap : 7px;

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
     <link rel="stylesheet" href="/frontend/styles/police.css">
+    <!--?php include "..\components\user-panel"?-->
 </head>
 <body>
     
@@ -21,13 +22,15 @@
         <span class="Black_police_70"> Espace utilisateur</span>
         <div class = "user_general_element_box">
             <!-- left make by alexy-->
-            <div class="large_box payment-size">
-                
-            </div>
+            
+
+            <?php include "frontend/components/user-panel.php" ?>
+            <?php generateUserPanelComponent($actionSelect, $personne->nom." ".$personne->prenom, $personne->id, $personne->genre, $personne->role); ?>
+
 
             <!-- right -->
             <div class="user_right_box">
-                <?php if ($valueSelected == "informations") :?> 
+                <?php if ($actionSelect == "Mes informations") :?> 
                     <!-- information personnel -->
                     <form class="large_box" action="xx">
                         
@@ -91,7 +94,7 @@
                         <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
 
                     </form>
-                <?php elseif ($valueSelected == "commandes") :?>
+                <?php elseif ($actionSelect == "Mes commandes") :?>
                     <div class="large_box" action="xx">
 
                         <!-- hystorique commande -->
@@ -161,7 +164,7 @@
                         </div>
                         
                     </div>
-                <?php elseif ($valueSelected == "adresse") :?>
+                <?php elseif ($actionSelect == "Mon adresse") :?>
                     <form class="large_box" action="xx">
                         <!-- infomation sur l'adresse phisique -->
                         <span class="Black_police_65">Mon adresse</span>
@@ -192,7 +195,7 @@
                         <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
 
                     </form>
-                <?php elseif ($valueSelected == "parametres") :?>
+                <?php elseif ($actionSelect == "Mes paramètres") :?>
                     <div class="normal_box">
                         <div class="titel_box">
                             <span class="Black_police_65">Mes paramètres</span>

@@ -180,3 +180,94 @@
     width: 111px;
     height: 111px;
 }
+
+
+/*___*/
+/* === Composant admin-pannel === */
+#user-panel-container{
+    max-width: 300px;
+    border-radius: 20px;
+    padding: 17px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+/* user informations */
+#user-informations{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#user-picture-container{
+    max-width: 130px;
+    height: 130px;
+    width: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    overflow: hidden;
+}
+
+#user-picture-container img{
+    max-width: 101px;
+    max-height: 101px;
+    width: 100%;
+    height: 100%;
+}
+
+#user-name{
+    margin-top: 16px;
+}
+#user-id{
+    margin-top: 2px;
+}
+
+/* user actions */
+#user-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+#user-actions-list{
+    display: flex;
+    flex-direction: column;
+}
+.user-actions-link{
+    padding: 9px 15px;
+    list-style: none;
+    position: relative;
+}
+.user-actions-link.selected::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 2px;
+    background-color: var(--red);
+}
+
+.user-action-separation{
+    height: 1px;
+    background-color: #F1F3F4;
+    border: none;
+}
+#user-actions-list li a{
+    font-size: var(--small);
+    color: var(--black);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+#user-actions-list li a:hover{
+    color: var(--red);
+}
+/* logout button */
+#logout-button{
+    color: var(--white);
+    width: 100%;
+}
