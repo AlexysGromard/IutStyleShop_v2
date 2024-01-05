@@ -10,8 +10,8 @@
     --background : #F8F8F8;
     /* Fonts */
     font-size: 12px; /* Default size */
-    --very-small : 1em;
-    --small : 1.167em;
-    --medium: 1.333em;
-    --big: 1.833em;
+    --very-small : 1em; /* 12px */
+    --small : 1.167em; /* 14px */
+    --medium: 1.333em; /* 16px */
+    --big: 1.833em; /* 22px */
 }
