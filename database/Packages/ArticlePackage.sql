@@ -33,10 +33,9 @@ CREATE PACKAGE ArticlePackage AS
     PROCEDURE DisponibleArticle(p_id INT);
 
     -- Fonction pour récupérer les informations d'un article
-    FUNCTION GetArticleInfo(p_id INT) RETURNS CURSOR;
+    PROCEDURE GetArticleInfo(p_id INT, OUT p_article TEXT, OUT p_image TEXT, OUT p_accessoire_or_vetement TEXT);
+    
 
-    -- Fonction pour calculer la moyenne des notes d'un article
-    FUNCTION CalculateAverageNote(p_id INT) RETURNS FLOAT;
 
     -- Insertion d'une image
     PROCEDURE InsertImage(
@@ -116,11 +115,17 @@ CREATE PACKAGE BODY ArticlePackage AS
     END;
 
 
-    -- Fonction pour récupérer les informations d'un article
-    FUNCTION GetArticleInfo(p_id INT) RETURNS CURSOR
+    -- Procédure pour récupérer les informations d'un article
+    CREATE PROCEDURE GetArticleInfo(p_id INT, OUT p_article TEXT, OUT p_image TEXT, OUT p_accessoire_or_vetement TEXT)
     BEGIN
         -- Logique pour récupérer les informations de l'article avec l'ID spécifié
-        RETURN QUERY SELECT * FROM Article WHERE id = p_id;
+        SELECT * FROM Article WHERE id = p_id INTO p_article;
+        SELECT * FROM Image WHERE ID_article = p_id INTO p_image;
+        IF (SELECT category FROM Article WHERE id = p_id) = 'accessoire' THEN
+            SELECT * FROM Accessoire WHERE ID_article = p_id INTO p_accessoire_or_vetement;
+        ELSE
+            SELECT * FROM Vetement WHERE ID_article = p_id INTO p_accessoire_or_vetement;
+        END IF;
     END;
 
     -- Procédure pour insérer une image
@@ -141,7 +146,7 @@ CREATE PACKAGE BODY ArticlePackage AS
         -- Logique pour supprimer une image de la table Image
         DELETE FROM Image WHERE ID_article = p_id;
     END;
-    
+
 END;
 
 
