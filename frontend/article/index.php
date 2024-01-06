@@ -151,8 +151,8 @@
                             <img alt="Etoile Gris" src="/frontend/assets/icons/marquer-comme-star-pas-preferee.svg">
                             <?php endif ?>
                             <?php endforeach ?>
-                            <span id="article-stars-text"><?= $articleActual->notes ?> sur 5</span>
                         </div>
+                        <span id="article-stars-text"><?= $articleActual->notes ?> sur 5</span>
                     </div>
                     <!-- Répartition des étoiles -->
                     <!-- TODO : Implementer la fonction de récupération des étoiles -->

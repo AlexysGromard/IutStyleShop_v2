@@ -271,14 +271,19 @@
 #article-stars{
     display: flex;
     align-items: center;
+}
+
+#article-stars-box{
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-top: 5px;
 }
 
 #article-stars-text{
-    font-size: var(--medium);
+    font-size: var(--small);
+    font-weight: 500;
     color: var(--black);
-    line-height: 1.5;
-    margin-left: 8px;
 }
 
 /* Répartition des étoiles */
