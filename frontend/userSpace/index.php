@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace utilisateur - IutStyleShop</title>
-    <link rel="stylesheet" href="/frontend/styles/variables.css">
-    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>IutStyleShop - Espace utilisateur</title>
+    <?php include 'frontend/common-includes.php'?>
     <link rel="stylesheet" href="/frontend/styles/general2.css">
     <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
@@ -19,7 +18,7 @@
     <?php include 'frontend/components/header.php'; ?>
 
     <main class = "user_general">
-        <span class="Black_police_70"> Espace utilisateur</span>
+        <span class="page-title"> Espace utilisateur</span>
         <div class = "user_general_element_box">
             <!-- left make by alexy-->
             
@@ -33,71 +32,93 @@
                 <?php if ($actionSelect == "Mes informations") :?> 
                     <!-- information personnel -->
                     <form class="large_box" action="xx">
-                        
                         <span class="Black_police_65">Informations personnelles</span>
                         <div class="civility_choice_space">
-                            <span class="Black_police_55" >Civilité</span>
+                            <!-- Civilité -->
                             <div>
-                                <label for="civility-woman" class="radio_button_space">
-                                    <input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility">
-                                    <span class="Black_police_40" >Femme</span>
-                                </label>
-                                <label for="civility-man" class="radio_button_space">
-                                    <input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility">
-                                    <span class="Black_police_40"  >Homme</span>
-                                </label>
-                                <label for="civility-none" class="radio_button_space">
-                                    <input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" checked>
-                                    <span class="Black_police_40" >Ne souhaite pas se prononcer</span>
-                                </label>
+                                <!-- Genre -->
+                                <div class="input-box">
+                                    <span class="input-label">Civilité</span>
+                                    <!-- Input radio -->
+                                    <div class="input-radio-choices">
+                                        <!-- Homme -->
+                                        <div class="input-radio-element">
+                                            <input type="radio" name="civility" id="man">
+                                            <label class="radio-label" for="man">Homme</label>
+                                        </div>
+                                        <!-- Femme -->
+                                        <div class="input-radio-element">
+                                            <input type="radio" name="civility" id="women">
+                                            <label class="radio-label" for="women">Femme</label>
+                                        </div>
+                                        <!-- Autre -->
+                                        <div class="input-radio-element">
+                                            <input type="radio" name="civility" id="other">
+                                            <label class="radio-label" for="other">Ne souhaite pas se prononcer</label>
+                                        </div>
+                                    </div>
+                                    <span class="input-error-message">Genre incomplet</span>
+                                </div>
                             </div>
                         </div>              
                         <div class="square_of_2">
                             <div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="last-name">Nom</label>
-                                    <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom">
+                                <!-- Nom -->
+                                <div class="input-box">
+                                    <label class="input-label" for="lastname">Nom</label>
+                                    <input class="input-field" type="text" id="lastname" name="lastname" placeholder="Entrez votre nom">
+                                    <span class="input-error-message">Nom invalide</span>
                                 </div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="first-name">Prénom</label>
-                                    <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom">
+                                <!-- Prénom -->
+                                <div class="input-box">
+                                    <label class="input-label" for="firstname">Prénom</label>
+                                    <input class="input-field" type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom">
+                                    <span class="input-error-message">Prénom invalide</span>
                                 </div>
                             </div>
                             <div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="mail">Adresse mail</label>
-                                    <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail">
+                                <!-- Adresse email -->
+                                <div class="input-box">
+                                    <label class="input-label" for="email">Adresse mail</label>
+                                    <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail">
+                                    <span class="input-error-message">Adresse mail invalide</span>
                                 </div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="phone">Numéro de téléphone</label>
-                                    <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel">
+                                <!-- Numéro de téléphone -->
+                                <div class="input-box">
+                                    <label class="input-label" for="phone">Numéro de téléphone</label>
+                                    <input class="input-field" type="tel" id="phone" name="phone" placeholder="Entrez votre numéro de téléphone">
+                                    <span class="input-error-message">Numéro de téléphone invalide</span>
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
+                        <!-- Btn -->
+                        <input class="button form-button" type="submit" value="Valider">
                     </form>
 
                     <!-- modification password -->
                     <form class="large_box" action="xx">
                         <span class="Black_police_65">Changer de mot de passe</span>
                         <div class="input_password_space">
-                            <div class="inputText_space">
-                                <label class="Black_police_55" for="currentpasswords">Mot de passe actuel</label>
-                                <input class="sidebar" type="password" placeholder="**************" id="currentpasswords" name="currentpasswords" minlength="8" required>
+                            <!-- Mot de passe actuel-->
+                            <div class="input-box">
+                                <label class="input-label" for="password">Mot de passe actuel</label>
+                                <input class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe actuel">
+                                <span class="input-error-message">Mot de passe invalide</span>
                             </div>
-                            <div class="inputText_space">
-                                <label class="Black_police_55" for="newpasswords">Nouveau mot de passe</label>
-                                <input class="sidebar" type="password" placeholder="**************" id="newpasswords" name="newpasswords" minlength="8" required>
+                            <!-- Confirmation du mot de passe -->
+                            <div class="input-box">
+                                <label class="input-label" for="password-confirmation">Nouveau mot de passe</label>
+                                <input class="input-field" type="password" id="password-confirmation" name="password-confirmation" placeholder="Entrez votre nouveau mot de passe">
+                                <span class="input-error-message">Le mot de passe ne correspond pas aux exigences</span>
                             </div>
                         </div>
-                        <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
-
+                        <!-- Btn -->
+                        <input class="button form-button" type="submit" value="Valider">
                     </form>
                 <?php elseif ($actionSelect == "Mes commandes") :?>
                     <div class="large_box" action="xx">
 
-                        <!-- hystorique commande -->
+                        <!-- historique commande -->
                         <div class= titel_box>
                             <span class="Black_police_65">Historique de vos commandes</span>
                             <span class="Black_police_45">2022 - 2024</span>
@@ -125,7 +146,7 @@
                                         </div>
                                         <label class="drop_down_button">
                                             <input type="checkbox" id="checkbox_product_0" onclick="unroll_items(0)">
-                                            <img src="/frontend/assets/icons/blackarrow.png" alt="">
+                                            <img src="/frontend/assets/icons/blackarrow.png" alt="Image de flèche">
                                         </label>
                                     </div>
                                 </div>
@@ -171,29 +192,36 @@
 
                         <div class="square_of_2">
                             <div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="adresse">Adresse</label>
-                                    <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse">
+                                <!-- Adresse -->
+                                <div class="input-box">
+                                    <label class="input-label" for="adresse">Adresse</label>
+                                    <input class="input-field" type="text" id="adresse" name="adresse" placeholder="Entrez votre adresse">
+                                    <span class="input-error-message">Adresse invalide</span>
                                 </div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="code">Code postal</label>
-                                    <input class="sidebar" type="text" placeholder="44000" id="code" name="code">
+                                <!-- Code postal -->
+                                <div class="input-box">
+                                    <label class="input-label" for="code_postal">Code postal</label>
+                                    <input class="input-field" type="text" id="code_postal" name="code_postal" placeholder="Entrez votre code postal">
+                                    <span class="input-error-message">Code postal invalide</span>
                                 </div>
                             </div>
                             <div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="complement_adresse">Complément d'adresse</label>
-                                    <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse">
+                                <!-- Complément d'adresse -->
+                                <div class="input-box">
+                                    <label class="input-label" for="complement_adresse">Complément d'adresse</label>
+                                    <input class="input-field" type="text" id="complement_adresse" name="complement_adresse" placeholder="Entrez votre complément d'adresse">
+                                    <span class="input-error-message">Complément d'adresse invalide</span>
                                 </div>
-                                <div class="inputText_space">
-                                    <label class="Black_police_55" for="ville">Ville</label>
-                                    <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville">
+                                <!-- Ville -->
+                                <div class="input-box">
+                                    <label class="input-label" for="ville">Ville</label>
+                                    <input class="input-field" type="text" id="ville" name="ville" placeholder="Entrez votre ville">
+                                    <span class="input-error-message">Ville invalide</span>
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
-
+                        <!-- Btn -->
+                        <input class="button form-button" type="submit" value="Valider">
                     </form>
                 <?php elseif ($actionSelect == "Mes paramètres") :?>
                     <div class="normal_box">
