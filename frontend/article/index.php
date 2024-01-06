@@ -66,7 +66,7 @@
             </div>
             <!-- Boutton partager -->
             <div class="article-page-right">
-                <button>
+                <button id="copyLinkButton">
                     <span>Partager cet article</span>
                     <img src="/frontend/assets/images/partage.svg" alt="partager">
                 </button>
@@ -222,4 +222,19 @@
     <?php include 'frontend/components/footer.php'; ?>
 </body>
 <!-- script src="/frontend/scripts/all-products.js"></script-->
+<script>
+    document.getElementById("copyLinkButton").addEventListener("click", function() {
+        // URL de votre article
+        var articleUrl = window.location.href;
+
+        // Copier le lien dans le presse-papiers
+        navigator.clipboard.writeText(articleUrl)
+            .then(function() {
+                showSuccessPopup("Copié !", "Le lien de l'article a été copié dans votre presse-papiers.");
+            })
+            .catch(function(err) {
+                showErrorPopup("Erreur", "Impossible de copier le lien de l'article dans votre presse-papiers.");
+            });
+    });
+</script>
 </html>
