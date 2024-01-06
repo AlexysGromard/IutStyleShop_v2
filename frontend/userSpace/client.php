@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
     <link rel="stylesheet" href="/frontend/styles/police.css">
-    <!--?php include "..\components\user-panel"?-->
 </head>
 <body>
     
@@ -21,16 +20,14 @@
     <main class = "user_general">
         <span class="Black_police_70"> Espace utilisateur</span>
         <div class = "user_general_element_box">
-            <!-- left make by alexy-->
-            
-
+            <!-- left -->
             <?php include "frontend/components/user-panel.php" ?>
             <?php generateUserPanelComponent($actionSelect, $personne->nom." ".$personne->prenom, $personne->id, $personne->genre, $personne->role); ?>
 
 
             <!-- right -->
             <div class="user_right_box">
-                <?php if ($actionSelect == "Mes informations") :?> 
+                <?php if ($actionSelect == "Mes informations") :?>
                     <!-- information personnel -->
                     <form class="large_box" action="xx">
                         

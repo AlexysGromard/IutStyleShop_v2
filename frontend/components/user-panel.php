@@ -29,8 +29,8 @@ function generateUserPanelComponent(
             "Base de données utilisateurs" => "#",
             "Base de données commandes" => "#",
             "Base de données articles " => "#",
-            "Base de données des avis" => "#",
-            "Base de codes promotionnel" => "#"
+            "Base de données avis" => "#",
+            "Base de données codes promotionnel" => "#"
         ],
         "client" => [
             "Mes informations" => "/user/user_space/informations",
@@ -54,7 +54,7 @@ function generateUserPanelComponent(
             ?>
             <img src="<?php echo $photoPath; ?>" alt="Photo de profil">
         </div>
-        <span classe="Black_police_60" id="user-name"><?php echo $userName; ?></span>
+        <span class="Black_police_60" id="user-name"><?php echo $userName; ?></span>
         <span class="Black_police_40" id="user-id">N° de<?php echo ($userType === "client" ? " client" : " user"); ?> : <?php echo $userId; ?></span>
     </div>
     <div id="user-actions">

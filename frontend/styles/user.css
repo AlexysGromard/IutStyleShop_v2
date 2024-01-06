@@ -21,6 +21,7 @@
     flex-direction: row;
     gap : 21px;
 }
+
 .user_general{
     margin: 45px 77px 94px 77px;
     display: flex;
