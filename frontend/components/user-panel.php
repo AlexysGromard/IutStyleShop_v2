@@ -33,10 +33,10 @@ function generateUserPanelComponent(
             "Base de données codes promotionnel" => "#"
         ],
         "client" => [
-            "Mes informations" => "/user/user_space/informations",
-            "Mes commandes" => "/user/user_space/commandes",
-            "Mon adresse" => "/user/user_space/adresse",
-            "Mes paramètres" => "/user/user_space/parametres"
+            "Mes informations" => "/user/client_space/informations",
+            "Mes commandes" => "/user/client_space/commandes",
+            "Mon adresse" => "/user/client_space/adresse",
+            "Mes paramètres" => "/user/client_space/parametres"
         ]
     ];
     

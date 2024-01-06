@@ -21,6 +21,7 @@
 
 .large_gray_box{
     background-color: var(--light-gray);
+    gap: 0px;
 }
 
 .normal_box{ 
@@ -49,7 +50,7 @@
     gap : 5px;
 }
 
-.radioButton {
+.radioButton, .radioButton_reverse {
     appearance: none;
     height: 15px;
     width: 15px;
@@ -58,11 +59,17 @@
     background-color: var(--light-gray);
 }
 
-.radioButton:checked {
+.radioButton:checked, .radioButton_reverse:checked {
     background: var(--red);
 }
 
-.sidebar{
+.radioButton_reverse{
+    background-color: white
+}
+
+
+
+.sidebar, .sidebar_reverse{
     font-family: 'Roboto';
     display: flex;
     font-size: var(--very-small);
@@ -73,6 +80,10 @@
     border: none;
     border-radius: 18px;
     background-color: var(--light-gray);
+}
+
+.sidebar_reverse{
+    background-color: white;
 }
 /**/
 

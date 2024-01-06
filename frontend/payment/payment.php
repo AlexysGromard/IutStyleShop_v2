@@ -104,49 +104,64 @@
                 <span class="Black_police_65">Méthode de paiement</span>
                 
                 <!-- à remplir  -->
-                <form>
-                    <div class="accordion">
-                        <div>
-                            <input type="radio" name="panel" id="panel-1" class="panel">
-                            <label for="panel-1" class="panel-name">Carte de crédit</label>
+                
+                    <div class="large_gray_box">
+                        <div class ="top_payment_method">
+                            <label  for="panel-1"  class = "radio_button_space">
+                                <input type="radio" name="panel" id="panel-1" class="radioButton_reverse" onclick="unroll_items(1)">
+                                <span class="Black_police_55">Carte de crédit</span>
+                            </label>
                             <div class="payment-type-img">
-                                <img src="../assets/icons/visa2.svg">
-                                <img src="../assets/icons/mastercard.svg">
-                                
-                            </div>
-                            <div class="accordion__content accordion__content--small">
-                                <div class="personal-field">
-                                    <div>
-                                        <label class="field-name" for="number">Numéro carte bancaire</label>
-                                        <input type="text" placeholder="XXXX XXXX XXXX XXXX" id="number">
-                                    </div>
-                                    <div>
-                                        <label class="field-name" for="card-name">Nom sur la carte</label>
-                                        <input type="text" placeholder="Mr Bertrand" id="card-name">
-                                    </div>
-                                    <div>
-                                        <label class="field-name" for="date">Date d'expiration</label>
-                                        <input type="date" id="date">
-                                    </div>
-                                    
-                                    <div>
-                                        <label class="field-name" for="cvec">CVEC</label>
-                                        <input type="text" placeholder="123" id="cvec">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <img class="payment-type-img" src="../assets/icons/bitcoin.svg">
-                            <input type="radio" name="panel" id="panel-2" class="panel">
-                            <label for="panel-2" class="panel-name">Bitcoin</label>
-                            <div class="accordion__content accordion__content--small">
-                                <p class="accordion__body">Vous payerez en bitcoin après avoir validé votre commande.</p>
+                                <img src="/frontend/assets/icons/visa2.svg">
+                                <img src="/frontend/assets/icons/mastercard.svg">
                             </div>
                         </div>
                         
+
+                        <div id="box-payment-1" class="accordion__content square_of_2">
+
+                            <div>
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="number">Numéro carte bancaire</label>
+                                    <input class="sidebar_reverse" type="text" placeholder="XXXX XXXX XXXX XXXX" id="number">
+                                </div>
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="card-name">Nom sur la carte</label>
+                                    <input class="sidebar_reverse" type="text" placeholder="Mr Bertrand" id="card-name">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="date">Date d'expiration</label>
+                                    <input class="sidebar_reverse" type="date" id="date">
+                                </div>
+                                
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="cvec">CVEC</label>
+                                    <input class="sidebar_reverse" type="text" placeholder="123" id="cvec">
+                                </div>
+                            </div>
+
                         </div>
-                    </form>
+                    </div>
+                    <div class="large_gray_box">
+                        <div class ="top_payment_method">
+                            <label class="radio_button_space" for="panel-2">
+                                <input type="radio" name="panel" id="panel-2" class="radioButton_reverse" onclick="unroll_items(2)">
+                                <span  class="Black_police_55">Bitcoin</span>
+                            </label>
+
+                            <img class="payment-type-img" src="/frontend/assets/icons/bitcoin.svg">
+                        </div>
+                        
+                        
+                        <div id="box-payment-2" class="accordion__content accordion__content--small">
+                            <p class="Black_police_45">Vous payerez en bitcoin après avoir validé votre commande.</p>
+                        </div>
+                    </div>
+                    
+                
                 
             </div>
             <button type="submit" class="payment-size button White_police_40">Passer la commande</button>
@@ -188,4 +203,5 @@
 
 <?php include 'frontend/components/footer.php'; ?>
 </body>
+<script src="/frontend/scripts/payment.js"></script>
 </html>

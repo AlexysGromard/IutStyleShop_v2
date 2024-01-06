@@ -4,7 +4,6 @@ function unroll_items(numProduct){
     var boxProduct = document.getElementById("box_product_"+numProduct);
 
     if (checkBox.checked == true){
-        boxProduct.overflow = false;
         boxProduct.style.maxHeight = "100%";
         
     }else{
