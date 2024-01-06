@@ -1,4 +1,3 @@
-DELIMITER //
 
 CREATE OR REPLACE PACKAGE CommentairePackages AS
 
@@ -18,7 +17,7 @@ CREATE OR REPLACE PACKAGE CommentairePackages AS
 
 END CommentairePackages;
 
-//
+
 
 CREATE OR REPLACE PACKAGE BODY CommentairePackages AS
 
@@ -59,5 +58,3 @@ CREATE OR REPLACE PACKAGE BODY CommentairePackages AS
 
 END CommentairePackages;
 
-//
-DELIMITER ;

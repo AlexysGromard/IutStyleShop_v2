@@ -54,7 +54,7 @@ CREATE OR REPLACE PACKAGE UserPackage AS
 
 
 END UserPackage;
-/
+
 
 CREATE OR REPLACE PACKAGE BODY UserPackage AS
 
@@ -168,4 +168,4 @@ CREATE OR REPLACE PACKAGE BODY UserPackage AS
     END GetConnectedUser;
 
 END UserPackage;
-/
+
