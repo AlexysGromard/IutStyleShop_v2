@@ -1,4 +1,4 @@
-body{
+  body{
     --box-color :#FFFFFF;
     --radio-checked-color: #EF233C;
     --radio-color:#F1F3F4;
@@ -13,13 +13,13 @@ body{
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    flex: 1; 
+    flex: 1;
     max-width: 100%;
     height: max-content;
     margin-bottom: 10px;
 }
 main{
-    width:100%; 
+    width:100%;
     margin : 0% 2% 2% 2%;
 }
 
@@ -32,8 +32,9 @@ main{
 
 }
 #title-part{
-    width:100%; 
-    margin : 2% 0% 0% 2%;
+    display: flex;
+    flex-direction: column;
+    margin: 2% 0% 1% 2%;
 }
 
 
@@ -52,7 +53,7 @@ main{
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal; 
+    line-height: normal;
     margin-bottom: 8px;
 
 }
@@ -64,7 +65,7 @@ main{
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
-    line-height: normal; 
+    line-height: normal;
     margin-bottom: 21px;
 }
 
@@ -110,6 +111,16 @@ input[type='text'],input[type='mail'],input[type='phone']{
     background-color: #F1F3F4;
 }
 
+input[type='date']{
+    display: flex;
+    padding: 11px 20px 11px;
+    border-radius:18px;
+    border:none;
+    outline: none;
+    width: 100%;
+    background-color: #ffffff;
+}
+
 
 input[id="civility-man"],input[id="civility-none"]{
     margin-left:17.13px ;
@@ -122,11 +133,64 @@ main{
 #page{
     display: flex;
     flex-direction: row;
-    
+
+}
+.section-title-name{
+    size: var(--big);
 }
 
-#title-part{
-    display: flex;
-    flex-direction: column;
-    margin: 0% 0% 1% 11px;
+.sub-title{
+    size: var(--medium);
+
 }
+
+/* Pour l'accordéon */
+.accordion{
+    /* background-color: aqua; */
+}
+
+.accordion__content{
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height 0.4s ease;
+    
+
+}
+
+.panel:checked~.accordion__content{
+    max-height: 100vh;
+    transition: max-height 1s ease;
+
+}
+.panel{
+    background-color: #FFFFFF;
+}
+
+.panel-name{
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.payment-type-img{
+    float: right;
+    margin-top: -5px;
+}
+
+.accordion>div{
+    background-color: #F1F3F4;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+.accordion>div input[type="text"]{
+    background-color: #FFFFFF;
+}
+
+
