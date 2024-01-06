@@ -8,7 +8,7 @@
 }
 
 /*petit boite*/
-.large_box , .normal_box, .normal_box_payment{
+.large_box, .large_gray_box , .normal_box, .normal_box_payment{
     background-color: white;
     padding: 24px 30px;
     display: flex;
@@ -17,6 +17,10 @@
     width: 100%;
     height: max-content;
     gap: 20px;
+}
+
+.large_gray_box{
+    background-color: var(--light-gray);
 }
 
 .normal_box{ 
