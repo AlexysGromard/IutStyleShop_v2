@@ -4,7 +4,7 @@ namespace controller;
 class article{
 
     function index(){
-        echo "il n'y a pas d'index";
+        echo "Erreur 404 - Page introuvable";
     }
 
     function visuel($a){
