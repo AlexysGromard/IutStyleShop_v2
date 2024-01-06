@@ -572,6 +572,32 @@ footer{
     align-items: center;
     gap: 7px;
 }
+
+
+/*Radio button style*/
+.radioButton{
+    appearance: none;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    background-color: var(--radio-color);
+    border-radius: 50%;
+}
+
+.radioButton:after{
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--radio-color);
+}
+.radioButton:checked{
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    background: var(--radio-checked-color);
+}
 /* max-width: 1005px Footer */
 @media screen and (max-width: 1005px) {
     footer{

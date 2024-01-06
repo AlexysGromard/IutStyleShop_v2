@@ -7,6 +7,8 @@
     --white: #F6F7F9;
     --red: #EF233C;
     --background : #F8F8F8;
+    --radio-checked-color: #EF233C;
+    --radio-color:#F1F3F4;
     /* Fonts */
     font-size: 12px; /* Default size */
     --very-small : 1em;

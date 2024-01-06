@@ -1,7 +1,6 @@
   body{
     --box-color :#FFFFFF;
-    --radio-checked-color: #EF233C;
-    --radio-color:#F1F3F4;
+    
 }
 
 
@@ -70,29 +69,7 @@ main{
 }
 
 
-.radioButton{
-    appearance: none;
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    background-color: var(--radio-color);
-    border-radius: 50%;
-}
 
-.radioButton:after{
-    top: 9px;
-    left: 9px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--radio-color);
-}
-.radioButton:checked{
-    width: 15px;
-    height: 15px;
-    border-radius: 20px;
-    background: var(--radio-checked-color);
-}
 
 input[type='text'],input[type='mail'],input[type='phone']{
     font-family: 'Roboto';
