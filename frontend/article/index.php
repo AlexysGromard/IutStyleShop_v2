@@ -1,12 +1,3 @@
-<?php
-    //vérifiaction
-    if (!isset($articleActual)){
-        echo "BIZZARE IL N'Y A PAS D'ARTICLE";
-    }else{
-        echo "<pre>"; var_dump($articleActual); echo "</pre>";
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -28,7 +19,7 @@
             <div class="article-page-left">
                 <div class="article-image-box">
                     <img id=active-image class="article-image" alt="Article" src=<?= $articleActual->image ?> />
-                    <!-- All images of the product -->
+                    <!-- Toutes les images du produit -->
                     <div id="product-images">
                         <!-- Images in JS -->
                     </div>
@@ -91,52 +82,51 @@
                 <span class="section-title-results">Basé sur des articles similaires</span>
             </div>
             <div id="recommendations-articles-box">
-            <?php
-                include 'frontend/components/article-card.php';
-                
-                // TODO : Implementer la fonction de récupération des articles similaires
+                <?php
+                    include 'frontend/components/article-card.php';
+                    
+                    // TODO : Implementer la fonction de récupération des articles similaires
 
-                generateArticleComponent(
-                    $id = null,
-                    $imageSrc = "/frontend/products/sweatshirt_iut_rouge/image1.png",
-                    $title = "Sweat Rouge IUT",
-                    $starCount = 4,
-                    $availability = false,
-                    $promotion = "0",
-                    $price = "39.99",
-                );
+                    generateArticleComponent(
+                        $id = null,
+                        $imageSrc = "/frontend/products/sweatshirt_iut_rouge/image1.png",
+                        $title = "Sweat Rouge IUT",
+                        $starCount = 4,
+                        $availability = false,
+                        $promotion = "0",
+                        $price = "39.99",
+                    );
 
-                generateArticleComponent(
-                    $id = null,
-                    $imageSrc = "/frontend/products/mug_iut/image1.png",
-                    $title = "MUG Blanc IUT",
-                    $starCount = 4,
-                    $availability = false,
-                    $promotion = "0",
-                    $price = "14.99",
-                );
+                    generateArticleComponent(
+                        $id = null,
+                        $imageSrc = "/frontend/products/mug_iut/image1.png",
+                        $title = "MUG Blanc IUT",
+                        $starCount = 4,
+                        $availability = false,
+                        $promotion = "0",
+                        $price = "14.99",
+                    );
 
-                generateArticleComponent(
-                    $id = null,
-                    $imageSrc = "/frontend/products/mug_iut/image1.png",
-                    $title = "MUG Blanc IUT",
-                    $starCount = 4,
-                    $availability = false,
-                    $promotion = "0",
-                    $price = "14.99",
-                );
+                    generateArticleComponent(
+                        $id = null,
+                        $imageSrc = "/frontend/products/mug_iut/image1.png",
+                        $title = "MUG Blanc IUT",
+                        $starCount = 4,
+                        $availability = false,
+                        $promotion = "0",
+                        $price = "14.99",
+                    );
 
-                generateArticleComponent(
-                    $id = null,
-                    $imageSrc = "/frontend/products/tshirt_iut_rouge/image1.png",
-                    $title = "T-Shirt Rouge IUT",
-                    $starCount = 4,
-                    $availability = false,
-                    $promotion = "0",
-                    $price = "19.99",
-                );
-            ?>
-                
+                    generateArticleComponent(
+                        $id = null,
+                        $imageSrc = "/frontend/products/tshirt_iut_rouge/image1.png",
+                        $title = "T-Shirt Rouge IUT",
+                        $starCount = 4,
+                        $availability = false,
+                        $promotion = "0",
+                        $price = "19.99",
+                    );
+                ?>
             </div>
         </section>
         <!-- Commentaires -->
@@ -204,6 +194,7 @@
                 <!-- Right part -->
                 <div id="comments-right-part">
                     <!-- Commentaires -->
+                    <!-- TODO : Implementer la fonction de récupération des commentaires -->
                     <?php include_once 'frontend/components/comment.php'; 
                     
                     generateCommentComponent(

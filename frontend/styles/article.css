@@ -226,6 +226,18 @@
     padding: 16px 0;
     display: flex;
     justify-content: space-between;
+    overflow: scroll;
+}
+
+#recommendations-articles-box .boite_article{
+    margin: 0 10px;
+}
+/* Supprimer margin pour le premier et le dernier article */
+#recommendations-articles-box .boite_article:first-child{
+    margin-left: 0;
+}
+#recommendations-articles-box .boite_article:last-child{
+    margin-right: 0;
 }
 
 /* === Partie commentaires === */
@@ -363,3 +375,40 @@
     font-size: var(--small);
     color: var(--dark);
 }
+
+/* === MOBILE === */
+@media screen and (max-width: 750px){
+    /* Main */
+    .article-main{
+        padding: 20px;
+    }
+    /* Article section */
+    #article-section{
+        flex-direction: column;
+        gap: 20px;
+        
+    }
+    .article-page-left{
+        flex-direction: column;
+    }
+    .acticle-info-box{
+        padding-left: 0;
+    }
+    .article-image{
+        width: auto;
+        height: auto;
+    }
+    .acticle-info-box{
+        gap: 10px;
+    }
+
+    /* Commentaires */
+
+    #comments-box{
+        flex-direction: column;
+    }
+    #comments-left-part{
+        max-width: 100%;
+    }
+}
+    
