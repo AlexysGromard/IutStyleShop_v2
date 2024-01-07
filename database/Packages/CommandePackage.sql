@@ -10,6 +10,7 @@ CREATE OR REPLACE PACKAGE CommandePackage AS
     -- Procédure pour supprimer une commande
     PROCEDURE DeleteCommande(p_id INT);
 
+    -- Procédure pour update le statut d'une commandes
     PROCEDURE UpdateCommande(p_id INT, p_statut VARCHAR2);
 
     -- Fonction pour récupérer les commandes d'un utilisateur

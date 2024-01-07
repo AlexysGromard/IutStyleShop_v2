@@ -229,3 +229,15 @@ VALUES --(idArticle entre 1 et 10)(idCommande entre 1 et 18)(taille si id idArti
 (5, 18, NULL, 15.99, 3), -- Taille NULL pour idArticle 5
 (8, 18, 'XL', 39.99, 1), -- Taille XL pour idArticle 8
 (10, 18, 'S', 9.99, 5); -- Taille S pour idArticle 10
+
+
+--Update de la table Commande pour ajouter le bon prix total
+UPDATE Commande
+SET prixTotal = (SELECT SUM(prixUnitaire * quantite) FROM ArticleCommande WHERE ArticleCommande.idCommande = Commande.id);
+
+--Update de la table Article pour ajouter le bon nombre de votant et la bonne note
+UPDATE Article
+SET votant = (SELECT COUNT(note) FROM Commantaire WHERE Commantaire.idArticle = Article.id),
+notes = (SELECT AVG(note) FROM Commantaire WHERE Commantaire.idArticle = Article.id);
+
+

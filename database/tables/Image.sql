@@ -3,3 +3,4 @@ CREATE OR REPLACE TABLE Image (
     lien VARCHAR(255) NOT NULL UNIQUE,
     id_Article INT PRIMARY KEY NOT NULL,
     FOREIGN KEY (id_Article) REFERENCES Article (id)
+);
