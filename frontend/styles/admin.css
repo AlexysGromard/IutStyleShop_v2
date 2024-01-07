@@ -1,0 +1,62 @@
+.admin_general{
+    margin: 45px 77px 94px 77px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.admin_general_element_box{
+    display: flex;
+    flex-direction: row;
+    gap : 21px;
+}
+
+.table_admin{
+    background: var(--background);
+    border-collapse: collapse;
+    text-align: center;
+    border-radius: 20px;
+
+}
+
+
+.table_admin > thead > tr > th{
+    background-color: var(--black); 
+    padding: 13px;
+}
+
+.table_admin > thead > tr > th:first-child{
+    border-top-left-radius: 20px;
+}
+
+.table_admin > thead > tr > th:last-child{
+    border-top-right-radius: 20px;
+}
+
+.table_admin > tbody > tr:nth-child(2n){
+    background-color: #E2E2E2;
+}
+
+.table_admin > tbody > tr > td{
+    margin: 6px 0px;
+}
+
+.table_admin > tbody {
+    gap: 6px;
+    
+}
+
+.table_admin a{
+    text-decoration: none;
+}
+
+.table_admin a{
+    
+}
+
+
+.action_space{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}

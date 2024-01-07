@@ -3,6 +3,7 @@
     --black: #0A0908;
     --dark-grey: #606368;
     --grey: #656D70;
+    --light-gray: #F1F3F4;
     --green: #78BC61;
     --white: #F6F7F9;
     --red: #EF233C;
@@ -11,8 +12,8 @@
     --radio-color:#F1F3F4;
     /* Fonts */
     font-size: 12px; /* Default size */
-    --very-small : 1em;
-    --small : 1.167em;
-    --medium: 1.333em;
-    --big: 1.833em;
+    --very-small : 1em; /* 12px */
+    --small : 1.167em; /* 14px */
+    --medium: 1.333em; /* 16px */
+    --big: 1.833em; /* 22px */
 }

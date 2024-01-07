@@ -7,6 +7,11 @@ class products{
         require "frontend/all-products/index.php";
     }
 
+    function filter($param){
+        //TODO
+        require "frontend/all-products/index.php";
+    }
+
 }
 
 ?>

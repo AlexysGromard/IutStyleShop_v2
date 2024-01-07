@@ -3,161 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paiement</title>
-    <link rel="stylesheet" href="../styles/variables.css">
-    <link rel="stylesheet" href="../styles/general.css">
-    <link rel="stylesheet" href="../styles/homePage.css">
-    <link rel="stylesheet" href="../styles/article.css">
-    <link rel="stylesheet" href="../styles/cart.css">
-    <link rel="stylesheet" href="../styles/payment.css">
+    <title>Paiement - IutStyleShop</title>
+    <link rel="stylesheet" href="/frontend/styles/variables.css">
+    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/general2.css">
+    <link rel="stylesheet" href="/frontend/styles/homePage.css">
+    <link rel="stylesheet" href="/frontend/styles/police.css">
+
+    <link rel="stylesheet" href="/frontend/styles/cart.css">
+    <link rel="stylesheet" href="/frontend/styles/user.css">
+    <link rel="stylesheet" href="/frontend/styles/payment.css">
 
 
 </head>
 <body>
-<?php include '../components/header.php'; ?>
-<div id="title-part">
-    <span class="section-title-name">Paiement</span>
-    <span class="sub-title">Régler mes achats</span>
-</div>
-<div id="page">
-    <main>
-        <div class="personal-information">
-            <span class="field-part-name">Informations personnelles</span>
-            <form>
-                <legend class="field-name" >Civilité</legend>
-                <input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility">
-                <label class="field-name" for="civility-woman">Femme</label>
-                <input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility">
-                <label class="field-name"  for="civility-man">Homme</label>
-                <input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" checked>
-                <label class="field-name" for="civility-none">Ne souhaite pas se prononcer</label>
-                <br><br>
-                
-                
-                <div class="personal-field">
-                    <div>
-                        <label class="field-name" for="last-name">Nom</label>
-                        <input type="text" placeholder="Votre nom" id="last-name">
-                    </div>
-                    <div>
-                        <label class="field-name" for="first-name">Prénom</label>
-                        <input type="text" placeholder="Prénom" id="first-name">
-                    </div>
-                    <div>
-                        <label class="field-name" for="mail">Adresse mail</label>
-                        <input type="mail" placeholder="Votre adresse mail" id="mail">
-                    </div>
-                    <div>
-                        <label class="field-name" for="phone">Numéro de téléphone</label>
-                        <input type="phone" placeholder="06 00 00 00 00" id="phone">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="personal-information">
-            <span class="field-part-name">Localisation</span>
-            <form>
-                <div class="personal-field">
-                    <div>
-                        <label class="field-name" for="adress">Adresse</label>
-                        <input type="text" placeholder="1 Rue Maréchal Joffre" id="adress">
-                    </div>
-                    <div>
-                        <label class="field-name" for="postal-code">Code postal</label>
-                        <input type="text" placeholder="44000" id="postal-code">
-                    </div>
-                    <div>
-                        <label class="field-name" for="additional-address">Complément d'adresse</label>
-                        <input type="text" placeholder="Appartement B15" id="additional-address">
-                    </div> 
-                    <div>
-                        <label class="field-name" for="city">Ville</label>
-                        <input type="text" placeholder="Nantes" id="city">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="personal-information">
-            <span class="field-part-name">Méthode de paiement</span>
-            <form>
-            <div class="accordion">
-                <div>
-                    <input type="radio" name="panel" id="panel-1" class="panel">
-                    <label for="panel-1" class="panel-name">Carte de crédit</label>
-                    <div class="payment-type-img">
-                        <img src="../assets/icons/visa2.svg">
-                        <img src="../assets/icons/mastercard.svg">
-                        
-                    </div>
-                    <div class="accordion__content accordion__content--small">
-                        <div class="personal-field">
-                            <div>
-                                <label class="field-name" for="number">Numéro carte bancaire</label>
-                                <input type="text" placeholder="XXXX XXXX XXXX XXXX" id="number">
-                            </div>
-                            <div>
-                                <label class="field-name" for="card-name">Nom sur la carte</label>
-                                <input type="text" placeholder="Mr Bertrand" id="card-name">
-                            </div>
-                            <div>
-                                <label class="field-name" for="date">Date d'expiration</label>
-                                <input type="date" id="date">
-                            </div>
-                             
-                            <div>
-                                <label class="field-name" for="cvec">CVEC</label>
-                                <input type="text" placeholder="123" id="cvec">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <img class="payment-type-img" src="../assets/icons/bitcoin.svg">
-                    <input type="radio" name="panel" id="panel-2" class="panel">
-                    <label for="panel-2" class="panel-name">Bitcoin</label>
-                    <div class="accordion__content accordion__content--small">
-                        <p class="accordion__body">Vous payerez en bitcoin après avoir validé votre commande.</p>
-                    </div>
-                </div>
-                
-                </div>
-            </form>
-        </div>
-    </main>
-    <section id="payment">
-        <div class="payment payment-size payment-part">
-                    <div class="first-section-payment">
-                        <div class="payment-title-text">Montant total de vos produits</div>
-                        <div class="payment-text dark-grey">Prix TTC</div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="second-section-payment">
-                        <div class="text-espace"><div class="payment-text grey">Sous-total</div><div id="st" class="payment-text text-weight-price">0.00€</div></div>
-                        <div class="text-espace"><div class="payment-text grey">Taxes</div><div id="taxes" class="payment-text text-weight-price">0.00€</div></div>
-                        <div class="text-espace"><div class="payment-text grey">Code promotionnel</div><div class="payment-text text-weight-price">0,00€</div></div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="third-section-payment">
-                        <div class="payment-text">Code promo</div>
-                        <div class="boite-code-promo">
-                            <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
-                        </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="final-section-payment">
-                        <div class="text-espace">
-                            <div>
-                                <div class="payment-text">Prix total</div>
-                                <div class="payment-scearch-text">Ce prix inclus les remises</div>
-                            </div>
-                            <div class="price">0.00€</div>
-                        </div>
-                    </div>
-                    <a class="payment-size button important-text" href="#">Passer la commande</a>
-                </div>
-    </div>
-    </section>
+<?php include 'frontend/components/header.php'; ?>
 
-<?php include '../components/footer.php'; ?>
+<main class="user_general">
+    <div class="titel_box">
+        <span class="Black_police_70">Paiement</span>
+        <span class="Gray_police_50">Régler mes achats</span>
+    </div>
+
+    <div class="element_page">
+        <!-- ~~~~~~~~~~~~Ajouter des require~~~~~~~~~~~~ -->
+        <form class="payment_left_box" action="xx">
+            <div class="large_box" >        
+                <span class="Black_police_65">Informations personnelles</span>
+                <div class="civility_choice_space">
+                    <span class="Black_police_55" >Civilité</span>
+                    <div>
+                        <label for="civility-woman" class="radio_button_space">
+                            <input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility">
+                            <span class="Black_police_40" >Femme</span>
+                        </label>
+                        <label for="civility-man" class="radio_button_space">
+                            <input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility">
+                            <span class="Black_police_40"  >Homme</span>
+                        </label>
+                        <label for="civility-none" class="radio_button_space">
+                            <input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" checked>
+                            <span class="Black_police_40" >Ne souhaite pas se prononcer</span>
+                        </label>
+                    </div>
+                </div>              
+                <div class="square_of_2">
+                    <div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="last-name">Nom</label>
+                            <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="first-name">Prénom</label>
+                            <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="mail">Adresse mail</label>
+                            <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="phone">Numéro de téléphone</label>
+                            <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="large_box">
+                <!-- infomation sur l'adresse phisique -->
+                <span class="Black_police_65">Localisation</span>
+
+                <div class="square_of_2">
+                    <div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="adresse">Adresse</label>
+                            <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="code">Code postal</label>
+                            <input class="sidebar" type="text" placeholder="44000" id="code" name="code">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="complement_adresse">Complément d'adresse</label>
+                            <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse">
+                        </div>
+                        <div class="inputText_space">
+                            <label class="Black_police_55" for="ville">Ville</label>
+                            <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="large_box">
+                <span class="Black_police_65">Méthode de paiement</span>
+                
+                <!-- à remplir  -->
+                
+                    <div class="large_gray_box">
+                        <div class ="top_payment_method">
+                            <label  for="panel-1"  class = "radio_button_space">
+                                <input type="radio" name="panel" id="panel-1" class="radioButton_reverse" onclick="unroll_items(1)">
+                                <span class="Black_police_55">Carte de crédit</span>
+                            </label>
+                            <div class="payment-type-img">
+                                <img src="/frontend/assets/icons/visa2.svg">
+                                <img src="/frontend/assets/icons/mastercard.svg">
+                            </div>
+                        </div>
+                        
+
+                        <div id="box-payment-1" class="accordion__content square_of_2">
+
+                            <div>
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="number">Numéro carte bancaire</label>
+                                    <input class="sidebar_reverse" type="text" placeholder="XXXX XXXX XXXX XXXX" id="number">
+                                </div>
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="card-name">Nom sur la carte</label>
+                                    <input class="sidebar_reverse" type="text" placeholder="Mr Bertrand" id="card-name">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="date">Date d'expiration</label>
+                                    <input class="sidebar_reverse" type="date" id="date">
+                                </div>
+                                
+                                <div class="inputText_space">
+                                    <label class="Black_police_55" for="cvec">CVEC</label>
+                                    <input class="sidebar_reverse" type="text" placeholder="123" id="cvec">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="large_gray_box">
+                        <div class ="top_payment_method">
+                            <label class="radio_button_space" for="panel-2">
+                                <input type="radio" name="panel" id="panel-2" class="radioButton_reverse" onclick="unroll_items(2)">
+                                <span  class="Black_police_55">Bitcoin</span>
+                            </label>
+
+                            <img class="payment-type-img" src="/frontend/assets/icons/bitcoin.svg">
+                        </div>
+                        
+                        
+                        <div id="box-payment-2" class="accordion__content accordion__content--small">
+                            <p class="Black_police_45">Vous payerez en bitcoin après avoir validé votre commande.</p>
+                        </div>
+                    </div>
+                    
+                
+                
+            </div>
+            <button type="submit" class="payment-size button White_police_40">Passer la commande</button>
+        </form>
+
+        <div class="normal_box_payment payment-size">
+            <div class="titel_box">
+                <span class="Black_police_65">Montant total de vos produits</span>
+                <span class="Gray_police_45">Prix TTC</span>
+            </div>
+            <div class="line"></div>
+            <div class="second-section-payment">
+                <div class="text-espace"><span class="Gray_police_45">Sous-total</span><span id="st" class="Black_police_50">0.00€</span></div>
+                <div class="text-espace"><span class="Gray_police_45">Taxes</span><span id="taxes" class="Black_police_50">0.00€</span></div>
+                <div class="text-espace"><span class="Gray_police_45">Code promotionnel</span><span class="Black_police_50">0,00€</span></div>
+            </div>
+            <div class="line"></div>
+            <div class="third-section-payment">
+                <span class="Black_police_45">Code promo</span>
+                <div class="boite-code-promo">
+                    <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="final-section-payment">
+                <div class="text-espace">
+                    <div>
+                        <span class="Black_police_45">Prix total</span>
+                        <span class="Gray_police_40">Ce prix inclus les remises</span>
+                    </div>
+                    <span class="Black_police_75">0.00€</span>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+</main>
+
+<?php include 'frontend/components/footer.php'; ?>
 </body>
+<script src="/frontend/scripts/payment.js"></script>
 </html>

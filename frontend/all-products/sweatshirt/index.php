@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Header -->
-    <?php include 'frontend/components/header.php'; ?>
+    <?php include '../../components/header.php'; ?>
     <main>
         <!-- Articles -->
         <div id="articles-part">
@@ -81,7 +81,7 @@
         </section>
     </main>
     <!-- Footer -->
-    <?php include 'frontend/components/footer.php'; ?>
+    <?php include '../../components/footer.php'; ?>
 </body>
 <script src="/frontend/scripts/all-products.js"></script>
 </html>

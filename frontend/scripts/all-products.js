@@ -397,21 +397,21 @@ function drawNbArticles(){
     nombreArticles.innerHTML = nbArticles + " articles";
 }
 
-// PAGE PRODUIT
-function ajouterClickableSurProduit(){
-    var productBtn = document.getElementsByClassName('product-btn');
-    var productImage = document.getElementsByClassName('image');
+// // PAGE PRODUIT
+// function ajouterClickableSurProduit(){
+//     var productBtn = document.getElementsByClassName('product-btn');
+//     var productImage = document.getElementsByClassName('image');
 
-    for(var i = 0; i < productBtn.length; i++){
-        // Ajouter un event listener sur les titres des produits
-        productBtn[i].addEventListener('click', function(){
-            afficherPageProduit(this.parentElement.parentElement.id)
-        });
-        productImage[i].addEventListener('click', function(){
-            afficherPageProduit(this.parentElement.id)
-        });
-    }
-}
+//     for(var i = 0; i < productBtn.length; i++){
+//         // Ajouter un event listener sur les titres des produits
+//         productBtn[i].addEventListener('click', function(){
+//             afficherPageProduit(this.parentElement.parentElement.id)
+//         });
+//         productImage[i].addEventListener('click', function(){
+//             afficherPageProduit(this.parentElement.id)
+//         });
+//     }
+// }
 
 function afficherPageProduit(dos){  
     // Cette fonction va récupérer les infos du produit et les afficher sur la page produit

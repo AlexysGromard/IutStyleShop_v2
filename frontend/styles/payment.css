@@ -1,173 +1,53 @@
-  body{
-    --box-color :#FFFFFF;
+.element_page{
+    display: flex;
+    flex-direction: row;
+    gap : 21px;
     
 }
 
+@media screen and (max-width: 1100px) {
 
 
+    .element_page{
+        flex-direction: column-reverse;
+    }
+}
 
-.personal-information{
-    background-color: var(--box-color);
-    padding: 24px 30px;
+.payment_left_box{
+    flex: auto;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
-    flex: 1;
-    max-width: 100%;
-    height: max-content;
-    margin-bottom: 10px;
+    gap : 25px
 }
-main{
-    width:100%;
-    margin : 0% 2% 2% 2%;
-}
+/* Pour l'accordéon */
 
-.payment-part{
-    max-width: 1fr;
-
-}
-#payment{
-    width:30%;
-
-}
-#title-part{
-    display: flex;
-    flex-direction: column;
-    margin: 2% 0% 1% 2%;
-}
-
-
-.personal-field {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    column-gap: 24px;
-    row-gap: 20px;
-
-}
-
-.field-name{
-    color: #000;
-    /* Regular16 */
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin-bottom: 8px;
-
-}
-
-.field-part-name{
-    color: #000;
-    /* Semi16 */
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-bottom: 21px;
-}
-
-
-
-
-input[type='text'],input[type='mail'],input[type='phone']{
-    font-family: 'Roboto';
-    display: flex;
-    font-size: var(--very-small);
-    line-height: 14.06px;
-    font-weight: 400;
-    padding: 11px 20px 11px;
-
-    width: 100%;
-
-    border: none;
-    background: none;
-    outline:  none;
-    border-radius:18px;
-    background-color: #F1F3F4;
-}
-
-input[type='date']{
-    display: flex;
-    padding: 11px 20px 11px;
-    border-radius:18px;
-    border:none;
-    outline: none;
-    width: 100%;
-    background-color: #ffffff;
-}
-
-
-input[id="civility-man"],input[id="civility-none"]{
-    margin-left:17.13px ;
-}
-
-main{
-    display: flex;
-    flex-direction: column;
-}
-#page{
+.top_payment_method{
     display: flex;
     flex-direction: row;
-
-}
-.section-title-name{
-    size: var(--big);
+    justify-content: space-between;
 }
 
-.sub-title{
-    size: var(--medium);
-
-}
-
-/* Pour l'accordéon */
-.accordion{
-    /* background-color: aqua; */
+.payment-type-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
 }
 
 .accordion__content{
     overflow: hidden;
     max-height: 0px;
     transition: max-height 0.4s ease;
-    
-
 }
 
 .panel:checked~.accordion__content{
     max-height: 100vh;
     transition: max-height 1s ease;
-
-}
-.panel{
-    background-color: #FFFFFF;
 }
 
-.panel-name{
-    font-family: 'Roboto';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
 
-}
 
-.payment-type-img{
-    float: right;
-    margin-top: -5px;
-}
 
-.accordion>div{
-    background-color: #F1F3F4;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    padding: 20px;
 
-}
-
-.accordion>div input[type="text"]{
-    background-color: #FFFFFF;
-}
 
 

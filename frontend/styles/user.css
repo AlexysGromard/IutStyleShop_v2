@@ -1,0 +1,274 @@
+.box_menu_client{
+    display: flex;
+    flex-direction: column;
+}
+
+.imageClient{
+    max-width: 101px;
+    max-height: 101px;
+}
+
+/*général*/
+.user_right_box{
+    flex : auto;
+    display: flex;
+    flex-direction: column;
+    gap : 25px;
+}
+
+.user_general_element_box{
+    display: flex;
+    flex-direction: row;
+    gap : 21px;
+}
+
+.user_general{
+    margin: 45px 77px 94px 77px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+
+/*informations*/
+
+.civility_choice_space{
+    display: flex;
+    flex-direction: column;
+    gap : 8px ;
+}
+
+.civility_choice_space > div{
+    display: flex;
+    flex-direction: row;
+    gap: 17px;
+}
+
+
+.button_check{
+    align-self: end;
+}
+
+.input_password_space{
+    display: flex;
+    flex-direction: column;
+    gap : 20px;
+}
+
+
+/*commandes*/
+
+.all_commandes_box{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.all_commande_box{
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.first_product_image{
+    width: 50px;
+    height: 50px;
+}
+
+.commande_box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content : space-between;
+}
+
+.commande_box_left{
+    display: flex;
+    flex-direction: row;
+    gap: 11px;
+    align-items: center;
+
+}
+
+.commande_box_right{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.commande_text_box_left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: max-content;
+}
+
+.commande_text_box_right{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: max-content;
+}
+
+.drop_down_button{
+    border : none;
+    background: none;
+    align-items: center;
+}
+
+.drop_down_button > input{
+    display: none;
+}
+
+.drop_down_button img{
+    width: 20px;
+    height: 20px;
+    transition: transform 0.1s;
+}
+
+.drop_down_button > input:checked + img{
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+/**/
+.all_products_command{
+    display: flex;
+    flex-direction: column;
+    gap : 12px;
+    
+	max-height : 0px;	
+	margin: 0; padding: 0;
+	overflow: hidden;
+	transition: max-height 0.5s;
+}
+
+
+.product_image_commande{
+    width: 94px;
+    height: 94px;
+}
+
+.product_box_commande{
+    margin-right: 50px;
+}
+
+.product_box_left_commande{
+    gap : 96px;
+}
+
+/*parametres*/
+
+.cookie_space, .button_cookie_space{
+    display: flex;
+    flex-direction: row;
+}
+
+.information_cookie_space{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.button_cookie_space{
+    gap: 10px;
+    align-items: center;
+}
+
+.image_cookie{
+    width: 111px;
+    height: 111px;
+}
+
+
+/*___*/
+/* === Composant admin-pannel === */
+#user-panel-container{
+    max-width: 300px;
+    border-radius: 20px;
+    padding: 17px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+/* user informations */
+#user-informations{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#user-picture-container{
+    max-width: 130px;
+    height: 130px;
+    width: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    overflow: hidden;
+}
+
+#user-picture-container img{
+    max-width: 101px;
+    max-height: 101px;
+    width: 100%;
+    height: 100%;
+}
+
+#user-name{
+    margin-top: 16px;
+}
+#user-id{
+    margin-top: 2px;
+}
+
+/* user actions */
+#user-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+#user-actions-list{
+    display: flex;
+    flex-direction: column;
+}
+.user-actions-link{
+    padding: 9px 15px;
+    list-style: none;
+    position: relative;
+}
+.user-actions-link.selected::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 2px;
+    background-color: var(--red);
+}
+
+.user-action-separation{
+    height: 1px;
+    background-color: #F1F3F4;
+    border: none;
+}
+#user-actions-list li a{
+    font-size: var(--small);
+    color: var(--black);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+#user-actions-list li a:hover{
+    color: var(--red);
+}
+/* logout button */
+#logout-button{
+    color: var(--white);
+    width: 100%;
+}
