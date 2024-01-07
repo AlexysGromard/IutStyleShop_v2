@@ -1,5 +1,7 @@
 <?php
 
+namespace backend\entity;
+
 /*  @Entity @Table(name="commande") */
 class ComandeEntity
 {

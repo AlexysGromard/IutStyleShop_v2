@@ -1,5 +1,7 @@
 <?php
 
+namespace backend\entity;
+
 /* @Entity @Table(name="article") */
 class ArticleEntity
 {
@@ -264,3 +266,5 @@ class ArticleEntity
 
 
 }
+
+?>

@@ -1,5 +1,7 @@
 <?php
 
+namespace backend\entity;
+
 /* @Entity @Table(name="image") */
 class ImageEntity 
 {
@@ -43,3 +45,5 @@ class ImageEntity
    
 
 }
+
+?>

@@ -1,4 +1,7 @@
 <?php
+
+namespace backend\entity;
+
 /*
 * @Entity @Table(name="code_promo")
 */
