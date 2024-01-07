@@ -30,8 +30,6 @@ function unroll_items(numPayment){
         boxPaymentSelect.style.maxHeight = "100%";
         boxPaymentSelect.style.marginTop = "20px";
         boxPaymentSelect.style.transition = "0.4s max-height 0.1s";
-        
-        
-        
+
     }
 }
