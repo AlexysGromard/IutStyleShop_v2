@@ -50,7 +50,7 @@ class Connexion
     public function __construct()
     {
         //'mysql:host=localhost;dbname=blog', 'root', ''
-        $this->pdo = new SPDO::getInstance('mysql:host=localhost;dbname=blog', 'root', '', [\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"])->getConnexion();
+        $this->pdo = SPDO::getInstance('mysql:host=localhost;dbname=blog', 'root', '', [\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"])->getConnexion();
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
     
