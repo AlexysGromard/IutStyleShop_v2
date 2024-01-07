@@ -1,5 +1,5 @@
 
-CREATE OR REPLACE PACKAGE CommentairePackages AS
+CREATE OR REPLACE PACKAGE CommentairePackage AS
 
     -- Procédure pour ajouter un nouveau commentaire
     PROCEDURE InsertCommentaire(
