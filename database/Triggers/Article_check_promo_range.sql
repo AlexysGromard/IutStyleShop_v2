@@ -1,4 +1,4 @@
-
+DELIMITER //
 CREATE TRIGGER Article_check_promo_range
 BEFORE INSERT, UPDATE ON Article
 FOR EACH ROW
@@ -7,4 +7,5 @@ BEGIN
         SIGNAL SQLSTATE '45202' SET MESSAGE_TEXT = 'La promotion doit être comprise entre 0 et 100';
     END IF;
 END;
-
+//
+DELIMITER ;

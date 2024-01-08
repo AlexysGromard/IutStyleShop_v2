@@ -1,4 +1,4 @@
-
+DELIMITER //
 CREATE TRIGGER Commentaire_update_article_note
 AFTER INSERT, UPDATE, DELETE ON Commentaire
 FOR EACH ROW
@@ -11,3 +11,5 @@ BEGIN
     )
     WHERE Article.idArticle = NEW.idArticle;
 END;
+//
+DELIMITER ;

@@ -1,3 +1,4 @@
+DELIMITER //
 CREATE TRIGGER Article_check_note_range
 BEFORE INSERT, UPDATE ON Article
 FOR EACH ROW
@@ -10,3 +11,5 @@ BEGIN
         SIGNAL SQLSTATE '45201' SET MESSAGE_TEXT = 'La note ne peut pas être inférieure à 0.00';
     END IF;
 END;
+//
+DELIMITER ;

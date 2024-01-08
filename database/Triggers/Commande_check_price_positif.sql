@@ -1,4 +1,4 @@
-
+DELIMITER //
 CREATE TRIGGER  Commande_check_price_positif
 BEFORE INSERT, UPDATE ON  Commande
 FOR EACH ROW
@@ -8,3 +8,5 @@ BEGIN
         SET MESSAGE_TEXT = 'Le prix ne peut pas être négatif';
     END IF;
 END;
+//
+DELIMITER ;
