@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBUser extends Connexion implements UserInterface
+class DBUser extends Connection implements UserInterface
 {
     public function add($entity)
     {   

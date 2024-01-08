@@ -112,6 +112,14 @@
     </section>
     <!-- Footer -->
     <?php include 'components/footer.php'; ?>
+
+    <!-- TEST -->
+    <?php
+        include_once '../backend'.DIRECTORY_SEPARATOR.'DAO'.DIRECTORY_SEPARATOR.'Connection.php';
+
+        $db = new backend\DAO\Connection();
+    ?>
+
 </body>
 <script src="/frontend/scripts/carousel.js"></script>
 <script src="/frontend/scripts/all-products.js"></script>

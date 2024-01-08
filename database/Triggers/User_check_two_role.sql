@@ -1,3 +1,4 @@
+DELIMITER //
 -- Verifie que dans la table user, un utilisateur ne peut avoir que deux roles (admin et client)
 CREATE OR REPLACE TRIGGER User_check_two_role
 BEFORE INSERT OR UPDATE ON User
@@ -9,3 +10,5 @@ IF (NEW.role  NOT IN ('admin', 'client')) THEN
     END IF;
 END IF;
 END;
+//
+DELIMITER ;

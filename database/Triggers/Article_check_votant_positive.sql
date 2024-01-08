@@ -1,3 +1,4 @@
+DELIMITER //
 CREATE TRIGGER Article_check_votant_positive
 BEFORE INSERT, UPDATE ON Article
 FOR EACH ROW
@@ -7,4 +8,5 @@ BEGIN
         SET MESSAGE_TEXT = 'Les votant ne peuvent pas être négatif';
     END IF;
 END;
-
+//
+DELIMITER ;

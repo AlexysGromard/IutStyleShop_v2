@@ -1,4 +1,4 @@
-
+DELIMITER //
 CREATE TRIGGER Panier_check_quantite_range
 BEFORE INSERT, UPDATE ON Panier
 FOR EACH ROW
@@ -7,3 +7,5 @@ BEGIN
         SIGNAL SQLSTATE '45400' SET MESSAGE_TEXT = 'La quantite doit être comprise entre 0 et 100';
     END IF;
 END;
+//
+DELIMITER ;

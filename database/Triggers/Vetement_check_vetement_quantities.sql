@@ -1,4 +1,4 @@
-
+DELIMITER //
 CREATE TRIGGER check_vetement_quantities
 BEFORE INSERT, UPDATE ON Vetement
 FOR EACH ROW
@@ -8,3 +8,5 @@ BEGIN
         SET MESSAGE_TEXT = 'Les quantités ne peuvent pas être négatives pour les tailles XS, S, M, L, XL';
     END IF;
 END;
+//
+DELIMITER ;

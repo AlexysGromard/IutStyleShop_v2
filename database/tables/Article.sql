@@ -9,6 +9,6 @@ CREATE OR REPLACE TABLE Article (
 	votant INT NOT NULL,
 	notes	FLOAT NOT NULL, 
 	prix FLOAT NOT NULL,-- ne peut pas etre negatif
-	promo TINYINT NOT NULL  -- ne peut pas etre < 0 ou >100
-	disponible BOOLEAN NOT NULL,
+	promo TINYINT NOT NULL,  -- ne peut pas etre < 0 ou >100
+	disponible BOOLEAN NOT NULL
 );

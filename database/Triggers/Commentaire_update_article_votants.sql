@@ -1,3 +1,4 @@
+DELIMITER //
 CREATE TRIGGER Commentaire_update_article_votants
 AFTER INSERT, DELETE ON Commentaire
 FOR EACH ROW
@@ -14,3 +15,5 @@ BEGIN
     SET votants = votants_count
     WHERE Article.idArticle = NEW.idArticle;
 END;
+//
+DELIMITER ;
