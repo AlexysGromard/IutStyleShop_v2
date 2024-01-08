@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBArticle extends Connexion implements ArticleInterface
+class DBArticle extends Connection implements ArticleInterface
 {
     public function add($entity)
     {   
