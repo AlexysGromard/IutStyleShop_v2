@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-
+require_once 'backend/config/config.php';
 
 class SPDO
 {
@@ -20,7 +20,7 @@ class SPDO
     }
 
     public static function getInstance(string $dsn,
-                                       ?string $username = null,
+                                        ?string $username = null,
                                        ?string $password = null,
                                        ?array $options = null,
                                        ?string $exec = null):SPDO
@@ -39,21 +39,26 @@ class SPDO
 
 
 /**
- * Class Connexion
+ * Class Connection
  * @package backend\DAO
- * Connexion à la base de données
+ * Connection à la base de données
  */
-class Connexion
+class Connection
 {
-    private $pdo;
-
     public function __construct()
     {
         //'mysql:host=localhost;dbname=blog', 'root', ''
-        $this->pdo = SPDO::getInstance('mysql:host=localhost;dbname=blog', 'root', '', [\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"])->getConnexion();
-        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
-    
+
+    public function connect() : \PDO{
+        try{
+            $pdo = SPDO::getInstance(DB_CONFIG["type"].':host='.DB_CONFIG["host"].';dbname='.DB_CONFIG["dbname"], DB_CONFIG["username"], DB_CONFIG["password"], [\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"])->getConnexion();
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        } catch (\PDOException $e) {
+            die("Échec de la connexion à la base de données : " . $e->getMessage());
+        }
+    }
 }
 
 ?>
