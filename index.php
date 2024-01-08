@@ -17,7 +17,7 @@ spl_autoload_register(function($class) {
         echo "<h1>".$path."</h1>";
         echo '<pre>'.$class.PHP_EOL.$include.PHP_EOL.'not found'.'</pre>';
     }
-    });
+});
 
 
 $router = new system\Router();

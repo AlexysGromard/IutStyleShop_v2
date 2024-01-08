@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-require_once '../backend/config/config.php'; //TODO : A corriger avec MVC
+require_once 'backend/config/config.php'; //TODO : A corriger avec MVC
 
 class SPDO
 {
@@ -59,8 +59,8 @@ class Connection
                 )->getConnexion();
             return $pdo;
         } catch (\PDOException $e) {
-            die("Échec de la connexion à la base de données : " . $e->getMessage());
-            // TODO : Intégrer erreur avec PopUp
+            echo "<script>showErrorPopup('Erreur de connexion','Une erreur est survenue lors de la connexion à la base de données.')</script>";
+            die();
         }
     }
 }

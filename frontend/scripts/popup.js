@@ -16,17 +16,6 @@ function showCookiesPopup() {
     }
 }
 
-/**
- * Ferme la popup de cookies
- */
-function hideCookiesPopup() {
-    cookiesPopup.classList.remove('active');
-}
-
-for (let key in cookiesPopupBtn) {
-    cookiesPopupBtn[key].addEventListener('click', hideCookiesPopup);
-}
-
 // **** Status popup **** //
 
 /**

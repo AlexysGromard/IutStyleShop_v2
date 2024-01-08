@@ -23,3 +23,6 @@
 
 <!-- JS files -->
 <script src="/frontend/scripts/popup.js"></script>
+
+<!-- Call cookies verification -->
+<?php include_once 'backend'.DIRECTORY_SEPARATOR.'cookies.php'; Cookies::verifyCookies() ?>

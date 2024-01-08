@@ -2,7 +2,7 @@
 
 namespace backend\entity;
 
-require "/backend/entity/PanierEntity.php";
+require "backend/entity/PanierEntity.php";
 use \backend\entity\PanierEntity;
 
 /*
@@ -25,7 +25,11 @@ class UserEntity
 	code_postal MEDIUMINT NULL,
 	Complement_adresse VARCHAR2(128) NULL,
     */
+
+    // Utilisateur non identifié
+    private ?bool $cookieAccepted = null;
     
+    // Utilisateur identifié‡
     private int $id;
     private string $email;
     private string $password;
@@ -38,21 +42,24 @@ class UserEntity
     private int $code_postal;
     private string $complement_adresse;
 
-    //
     public PanierEntity $panier;
 
 
-    public function __construct(int $id,
-                                string $email,
-                                string $password,
-                                string $nom,
-                                string $prenom,
-                                string $genre,
-                                string $role,
-                                string $adresse,
-                                string $ville,
-                                string $complement_adresse,
-                                PanierEntity $panier)
+    public function __construct()
+    {
+        // Si l'utilisateur n'a pas de cookie, ouvrir pop-up de cookie
+        $this->cookieAccepted = isset($_COOKIE['cookie']) ? $_COOKIE['cookie'] : null;
+        if ($this->cookieAccepted == null) {
+            $this->askForCookies();
+        }
+    }
+
+    public function askForCookies()
+    {
+        echo "<script>showCookiesPopup()</script>";
+    }
+
+    public function createIdentifiedUser(int $id, string $email, string $password, string $nom, string $prenom, string $genre,string $role,string $adresse, string $ville,string $complement_adresse,PanierEntity $panier)
     {
         $this->id = $id;
         $this->setEmail($email);
@@ -65,9 +72,12 @@ class UserEntity
         $this->setVille($ville);
         $this->setComplementAdresse($complement_adresse);
         $this->panier = $panier;
+    }
 
-
-
+    public function acceptCookies()
+    {
+        $this->cookieAccepted = true;
+        // Stocker la class dans un cookie
 
     }
 
@@ -248,6 +258,11 @@ class UserEntity
     public function setComplementAdresse(string $complement_adresse): void 
     {
         $this->complement_adresse = $complement_adresse;
+    }
+
+    public function getCookieAccepted(): ?bool
+    {
+        return $this->cookieAccepted;
     }
 
 
