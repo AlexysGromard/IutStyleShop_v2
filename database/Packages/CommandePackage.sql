@@ -1,5 +1,5 @@
 DELIMITER //
-CREATE OR REPLACE PACKAGE CommandePackage AS
+CREATE OR REPLACE PACKAGE CommandePackage
 
 
     -- Procédure pour ajouter une nouvelle commande
@@ -28,7 +28,7 @@ CREATE OR REPLACE PACKAGE CommandePackage AS
 END CommandePackage;
 //
 
-CREATE OR REPLACE PACKAGE BODY CommandePackage AS
+CREATE OR REPLACE PACKAGE BODY CommandePackage
 
     -- Procédure pour ajouter une nouvelle commande
     PROCEDURE InsertCommande(
