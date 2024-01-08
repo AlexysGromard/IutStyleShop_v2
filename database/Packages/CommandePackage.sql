@@ -1,4 +1,4 @@
-DELIMITER //
+DELIMITER $$
 CREATE OR REPLACE PACKAGE CommandePackage
 
 
@@ -26,7 +26,12 @@ CREATE OR REPLACE PACKAGE CommandePackage
 
 
 END CommandePackage;
-//
+
+$$
+
+DELIMITER ;
+
+DELIMITER $$
 
 CREATE OR REPLACE PACKAGE BODY CommandePackage
 
@@ -111,5 +116,5 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage
     END GetALLArticlesCommandes;
 
 END CommandePackage;
-//
+$$
 DELIMITER;
