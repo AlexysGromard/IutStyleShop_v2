@@ -1,6 +1,6 @@
 <header>
     <div class="header-top">
-        <a class="link-to-home" href="/frontend/"><img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo"></a>
+        <a class="link-to-home" href="/"><img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo"></a>
         <label class="search-bar" for="search"><!-- Search bar -->
             <div>
                 <img alt="Image of loupe" src="/frontend/assets/images/loupe.svg" class="/frontend/image-loupe">

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>IutStyleShop - Inscription</title>
-    <?php include '../common-includes.php'?>
-    <link rel="stylesheet" href="../styles/authentication.css">
+    <?php include 'frontend/common-includes.php'?>
+    <link rel="stylesheet" href="frontend/styles/authentication.css">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
             <a class="link-to-home" href="/frontend/">
                 <img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo">
             </a>
-            <a class="button method-change-button">Connexion</a>
+            <a href="/login" class="button method-change-button">Connexion</a>
         </div>
     </header>
     <form action="" method="">
@@ -87,12 +87,12 @@
                 </div>
                 <div class="action-box change-method">
                     <span class="change-method-text">Vous avez déjà un compte IutStyleShop ?</span>
-                    <a class="change-method-btn" href="/frontend/authentication/login.php">Connexion</a>
+                    <a class="change-method-btn" href="/login">Connexion</a>
                 </div>
             </section>
         </main>
     </form>
     <!-- Footer -->
-    <?php include '../components/footer.php'; ?>
+    <?php include 'frontend/components/footer.php'; ?>
 </body>
 </html>
