@@ -2,6 +2,9 @@
 
 namespace backend\entity;
 
+require "/backend/entity/PanierEntity.php";
+use \backend\entity\PanierEntity;
+
 /*
 * @Entity @Table(name="user")
 */
@@ -35,7 +38,38 @@ class UserEntity
     private int $code_postal;
     private string $complement_adresse;
 
+    //
+    public PanierEntity $panier;
 
+
+    public function __construct(int $id,
+                                string $email,
+                                string $password,
+                                string $nom,
+                                string $prenom,
+                                string $genre,
+                                string $role,
+                                string $adresse,
+                                string $ville,
+                                string $complement_adresse,
+                                PanierEntity $panier)
+    {
+        $this->id = $id;
+        $this->setEmail($email);
+        $this->setPassword($password);
+        $this->setNom($nom);
+        $this->setPrenom($prenom);
+        $this->setGenre($genre);
+        $this->setRole($role);
+        $this->setAdresse($adresse);
+        $this->setVille($ville);
+        $this->setComplementAdresse($complement_adresse);
+        $this->panier = $panier;
+
+
+
+
+    }
 
     /*
     * Getters & Setters

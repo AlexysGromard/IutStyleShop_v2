@@ -21,48 +21,23 @@ class ArticleEntity
 	disponible BOOLEAN NOT NULL,
     */
 
-    protected int $id;
-    protected string $nom;
-    protected string $category;
-    protected string $genre;
-    protected string $couleur;
-    protected string $description;
-    protected int $votant;
-    protected float $notes;
-    protected float $prix;
-    protected int $promo;
-    protected bool $disponible;
+    private int $id;
+    private string $nom;
+    private string $category;
+    private string $genre;
+    private string $couleur;
+    private string $description;
+    private int $votant;
+    private float $notes;
+    private float $prix;
+    private int $promo;
+    private bool $disponible;
     // quantite en stock 1 seul taille pour les asccessoires et xs, s, m, l, xl pour les vetements 
-    protected array $quantite;
-
-    protected array $images;
-
-
-    static function CreateArticle(  int $id,
-                                    string $nom,
-                                    string $category,
-                                    string $genre,
-                                    string $couleur,
-                                    string $description,
-                                    int $votant,
-                                    float $notes,
-                                    float $prix,
-                                    int $promo,
-                                    bool $disponible,
-                                    $quantite,
-                                    array $images,
-                                    $type)
-    {
-        $newArticle = null;
-        if ($type=="Accessoire"){
-            $newArticle = new AccessoireEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
-        }elseif ($type=="Accessoire"){
-            $newArticle = new AccessoireVetement($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
-        }
-
-        return $newArticle
-    }
-
+    private array $quantite;
+    /**
+     * @var ImageEntity[]
+     */
+    private array $images;
 
 
     /* Getters & Setters */
@@ -156,6 +131,13 @@ class ArticleEntity
         return $this->disponible;
     }
 
+    /*
+    * @return array
+    */
+    public function getQuantite(): array
+    {
+        return $this->quantite;
+    }
 
     /*
     * @return ImageEntity[]
@@ -248,6 +230,14 @@ class ArticleEntity
     }
 
     /*
+    * @param array $quantite
+    */
+    public function setQuantite(array $quantite): void
+    {
+        $this->quantite = $quantite;
+    }
+
+    /*
     * @param ImageEntity[] $images
     */
     public function setImages(array $images): void
@@ -258,7 +248,7 @@ class ArticleEntity
     /*
     * @param ImageEntity $image
     */
-    public function addImage(string $image): void
+    public function addImage(ImageEntity $image): void
     {
         $this->images[] = $image;
     }
@@ -266,7 +256,7 @@ class ArticleEntity
     /*
     * @param ImageEntity $image
     */
-    public function removeImage(string $image): void
+    public function removeImage(ImageEntity $image): void
     {
         $key = array_search($image, $this->images);
         if ($key !== false) {

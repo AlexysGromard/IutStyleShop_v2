@@ -18,78 +18,36 @@ class CodePromoEntity
 	FOREIGN KEY (id_Article) REFERENCES Article (id)
     */
 
-    private int $id_user;
-    private int $id_article;
-    private string $taille;
-    private int $quantite;
 
-    /* Getters & Setters */
-
-    /*
-    * @return int
-    */
-    public function getIdUser(): int
-    {
-        return $this->id_user;
+    private int $id;
+    private string $code;
+    private float $promo;
+    
+    public function __construct(int $id,string $code,float $promo) {
+        $this->id = $id;
+        $this->setCode($code);
+        $this->setPromo($promo);
     }
 
-    /*
-    * @return int
-    */
-    public function getIdArticle(): int
-    {
-        return $this->id_article;
+    function getId(): int {
+        return $this->id;
     }
 
-    /*
-    * @return string
-    */
-
-    public function getTaille(): string
-    {
-        return $this->taille;
+    function getCode(): string{
+        return $this->code;
     }
 
-    /*
-    * @return int
-    */
-    public function getQuantite(): int
-    {
-        return $this->quantite;
+    function getPromo(): string{
+        return $this->promo;
     }
 
-    /*
-    * @param int $id_user
-    */
-    public function setIdUser(int $id_user): void
-    {
-        $this->id_user = $id_user;
+    function setCode(string $code){
+        return $this->code = $code;
     }
 
-    /*
-    * @param int $id_article
-    */
-    public function setIdArticle(int $id_article): void
-    {
-        $this->id_article = $id_article;
+    function setPromo(float $promo){
+        return $this->promo = $promo;
     }
-
-    /*
-    * @param string $taille
-    */
-    public function setTaille(string $taille): void
-    {
-        $this->taille = $taille;
-    }
-
-    /*
-    * @param int $quantite
-    */
-    public function setQuantite(int $quantite): void
-    {
-        $this->quantite = $quantite;
-    }
-
 }
 
 ?>

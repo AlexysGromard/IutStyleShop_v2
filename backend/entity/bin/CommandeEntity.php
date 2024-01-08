@@ -18,7 +18,7 @@ class ComandeEntity
     */
 
     private int $id;
-    private array $articlesComande; //ArticleComandeEntity
+    private int $id_user;
     private string $date;
     private string $statut;
     private float $prix;
@@ -26,19 +26,6 @@ class ComandeEntity
      * @var ArticleCommandeEntity[]
      */
     private array $articlesCommandes;
-
-    public function __construct(int $id,
-                                array $articlesComande,
-                                string $date,
-                                string $statut,
-                                float $prix)
-    {
-        $this->id = $id;
-        $this->setArticlesCommandes($articlesComande);
-        $this->setDate($date);
-        $this->setStatut($statut);
-        $this->setPrix($prix);
-    }
 
 
     /* Getters & Setters */
@@ -52,12 +39,12 @@ class ComandeEntity
         return $this->id;
     }
 
-    /**
-     * @return ArticleCommandeEntity[]
-     */
-    public function getArticlesCommandes(): array
+    /*
+    * @return int
+    */
+    public function getIdUser(): int
     {
-        return $this->articlesComande;
+        return $this->id_user;
     }
 
     /*
@@ -84,6 +71,13 @@ class ComandeEntity
         return $this->prix;
     }
 
+    /*
+    * @param int $id_user
+    */
+    public function setIdUser(int $id_user): void
+    {
+        $this->id_user = $id_user;
+    }
 
     /*
     * @param string $date
@@ -91,14 +85,6 @@ class ComandeEntity
     public function setDate(string $date): void
     {
         $this->date = $date;
-    }
-
-    /**
-     * @param ArticleCommandeEntity[] $articlesCommandes
-     */
-    public function setArticlesCommandes(array $articlesComande): void
-    {
-        $this->articlesComande = $articlesComande;
     }
 
     /*
@@ -119,6 +105,21 @@ class ComandeEntity
 
     /* Fonction pour la liste d'articleComande */
 
+    /**
+     * @return ArticleCommandeEntity[]
+     */
+    public function getArticlesCommandes(): array
+    {
+        return $this->articlesCommandes;
+    }
+
+    /**
+     * @param ArticleCommandeEntity[] $articlesCommandes
+     */
+    public function setArticlesCommandes(array $articlesCommandes): void
+    {
+        $this->articlesCommandes = $articlesCommandes;
+    }
 
     public function addArticleCommande(ArticleCommandeEntity $articleCommande): void
     {

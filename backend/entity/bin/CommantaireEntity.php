@@ -18,38 +18,27 @@ class CommantaireEntity
 	FOREIGN KEY (ID_Article) REFERENCES Article(id)
     */
 
-    private UserEntity $user;
-    private ArticleEntity $article;
+    private int $id_user;
+    private int $id_article;
     private float $note;
     private string $commentaire;
-
-    function __construct(UserEntity $user,
-                        ArticleEntity $article,
-                        float $note,
-                        string $commentaire)
-    {
-        $this->$user = $user;
-        $this->$article = $article;
-        $this->setNote($note);
-        $this->setCommentaire($commentaire);
-    }
 
     /* Getters & Setters */
     
     /*  
     * @return int
     */
-    public function getUser(): UserEntity
+    public function getIdUser(): int
     {
-        return $this->user;
+        return $this->id_user;
     }
 
     /*
     * @return int
     */
-    public function getArticle(): ArticleEntity
+    public function getIdArticle(): int
     {
-        return $this->article;
+        return $this->id_article;
     }
 
     /*
@@ -68,6 +57,21 @@ class CommantaireEntity
         return $this->commentaire;
     }
 
+    /*
+    * @param int $id_user
+    */
+    public function setIdUser(int $id_user): void
+    {
+        $this->id_user = $id_user;
+    }
+
+    /*
+    * @param int $id_article
+    */
+    public function setIdArticle(int $id_article): void
+    {
+        $this->id_article = $id_article;
+    }
 
     /*
     * @param float $note
