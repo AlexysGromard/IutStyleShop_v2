@@ -1,3 +1,4 @@
+DELIMITER //
 CREATE OR REPLACE PACKAGE UserPackage AS
 
     -- Procédure pour insérer un nouvel utilisateur qui est un client
@@ -54,7 +55,7 @@ CREATE OR REPLACE PACKAGE UserPackage AS
 
 
 END UserPackage;
-
+//
 
 CREATE OR REPLACE PACKAGE BODY UserPackage AS
 
@@ -168,4 +169,5 @@ CREATE OR REPLACE PACKAGE BODY UserPackage AS
     END GetConnectedUser;
 
 END UserPackage;
-
+//
+DELIMITER;

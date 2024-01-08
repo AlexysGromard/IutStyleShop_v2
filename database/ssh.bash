@@ -17,9 +17,9 @@ fi
 
 
 # CONSTANTE
-default_username="default_user"
-default_server_ip="default_server_ip"
-default_password="default_password"
+default_username="user"
+default_server_ip="172.26.82.50"
+default_password="lJNb3Dg5"
 
 #VARIABLE GLOBAL
 # Initialiser les variables avec les valeurs par défaut

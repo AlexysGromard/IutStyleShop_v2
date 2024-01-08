@@ -1,4 +1,5 @@
-
+SET sql_mode=ORACLE;
+DELIMITER //
 CREATE OR REPLACE PACKAGE CommandePackage AS
 
     -- Procédure pour ajouter une nouvelle commande
@@ -13,13 +14,15 @@ CREATE OR REPLACE PACKAGE CommandePackage AS
     -- Procédure pour update le statut d'une commandes
     PROCEDURE UpdateCommande(p_id INT, p_statut VARCHAR2);
 
-    -- Fonction pour récupérer les commandes d'un utilisateur
-    FUNCTION GetCommandes(p_id_user INT) RETURN SYS_REFCURSOR , SYS_REFCURSOR;
+    -- PROCEDURE pour récupérer les commandes d'un utilisateur
+    PROCEDURE GetCommandes(p_id_user INT, OUT p_commande CURSOR, OUT p_articlecommande CURSOR);
 
-    FUNCTION GetAllCommandes() RETURN SYS_REFCURSOR , SYS_REFCURSOR;
+    -- Procédure pour récupérer toutes les commandes
+        PROCEDURE GetAllCommandes(OUT p_commande CURSOR, OUT p_articlecommande CURSOR);
+
 
 END CommandePackage;
-
+//
 
 CREATE OR REPLACE PACKAGE BODY CommandePackage AS
 
@@ -71,47 +74,38 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage AS
     END UpdateCommande;
 
     -- Fonction pour récupérer les commandes d'un utilisateur
-    FUNCTION GetCommandes(p_id_user INT) RETURN SYS_REFCURSOR IS
-        -- Déclaration d'un curseur pour récupérer les commandes
-        v_cursor SYS_REFCURSOR;
-        v_cursor2 SYS_REFCURSOR;
+    PROCEDURE PROCEDURE GetCommandes(p_id_user INT, OUT p_commande CURSOR, OUT p_articlecommande CURSOR) IS
     BEGIN
         -- Sélectionner les commandes de l'utilisateur spécifié
-        OPEN v_cursor FOR
+        OPEN p_commande FOR
         SELECT ID, ID_user, date_commande, prix_total
         FROM Commande
         WHERE ID_user = p_id_user;
 
-        -- Sélectionner les articles de la commande
-        OPEN v_cursor2 FOR
-        SELECT ID_commande, ID_article, taille, prix_unitaire, quantite
-        FROM CommandeArticle
-        WHERE ID_commande = p_id_user;
+        -- Sélectionner les articles de la commande pour l'utilisateur spécifié
+        OPEN p_articlecommande FOR
+        SELECT ca.ID_commande, ca.ID_article, ca.taille, ca.prix_unitaire, ca.quantite
+        FROM CommandeArticle ca
+        INNER JOIN Commande c ON c.ID_commande = ca.ID_commande
+        WHERE c.ID_user = p_id_user;
+        
 
-
-
-
-        -- Retourner le curseur
-        RETURN v_cursor, v_cursor2;
     END GetCommandes;
 
-    FUNCTION GetAllCommandes() RETURN SYS_REFCURSOR IS
-        -- Déclaration d'un curseur pour récupérer les commandes
-        v_cursor SYS_REFCURSOR, v_cursor2 SYS_REFCURSOR;
+    PROCEDURE GetAllCommandes(OUT p_commande CURSOR, OUT p_articlecommande CURSOR) IS
     BEGIN
-        -- Sélectionner les commandes de l'utilisateur spécifié
-        OPEN v_cursor FOR
+        -- Sélectionner toutes les commandes
+        OPEN p_commande FOR
         SELECT ID, ID_user, date_commande, prix_total
         FROM Commande;
 
-        -- Sélectionner les articles de la commande
-        OPEN v_cursor2 FOR
+        -- Sélectionner tous les articles de commande
+        OPEN p_articlecommande FOR
         SELECT ID_commande, ID_article, taille, prix_unitaire, quantite
         FROM CommandeArticle;
 
-
-        -- Retourner le curseur
-        RETURN v_cursor, v_cursor2;
     END GetAllCommandes;
 
 END CommandePackage;
+//
+DELIMITER;

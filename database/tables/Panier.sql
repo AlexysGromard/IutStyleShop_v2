@@ -1,5 +1,5 @@
 --Table Panier
-CREATE TABLE Panier(
+CREATE OR REPLACE TABLE Panier(
 	ID_User INT NOT NULL, 
 	id_Article INT NOT NULL,
 	taille VARCHAR(4) NOT NULL, -- ne peut qu'omporté que des valeur choisie et max : xxxl
