@@ -18,7 +18,7 @@ class ComandeEntity
     */
 
     private int $id;
-    private array $articleComande; //ArticleComandeEntity
+    private array $articlesComande; //ArticleComandeEntity
     private string $date;
     private string $statut;
     private float $prix;
@@ -28,13 +28,13 @@ class ComandeEntity
     private array $articlesCommandes;
 
     public function __construct(int $id,
-                                array $articleComande,
+                                array $articlesComande,
                                 string $date,
                                 string $statut,
                                 float $prix)
     {
         $this->id = $id;
-        $this->setArticlesCommandes($articleComande);
+        $this->setArticlesCommandes($articlesComande);
         $this->setDate($date);
         $this->setStatut($statut);
         $this->setPrix($prix);
@@ -57,7 +57,7 @@ class ComandeEntity
      */
     public function getArticlesCommandes(): array
     {
-        return $this->articlesCommandes;
+        return $this->articlesComande;
     }
 
     /*
@@ -96,9 +96,9 @@ class ComandeEntity
     /**
      * @param ArticleCommandeEntity[] $articlesCommandes
      */
-    public function setArticlesCommandes(array $articlesCommandes): void
+    public function setArticlesCommandes(array $articlesComande): void
     {
-        $this->articlesCommandes = $articlesCommandes;
+        $this->articlesComande = $articlesComande;
     }
 
     /*
