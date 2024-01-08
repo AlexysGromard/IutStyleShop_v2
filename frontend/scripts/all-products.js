@@ -153,55 +153,7 @@ function addProductBox(){
     }
 }
 
-// Récupérer 2 inputs de type range
-const fromSlider = document.getElementById('fromSlider');
-const toSlider = document.getElementById('toSlider');
-// Récupérer les 2 span qui affichent les valeurs
-const fromValue = document.getElementById('fromValue');
-const toValue = document.getElementById('toValue');
-
-// Si les valeurs des inputs changent
-fromSlider.oninput = function() {
-    putGoodValues();
-    // Afficher la valeur de l'input dans le span
-    fromValue.innerHTML = fromSlider.value;
-    toValue.innerHTML = toSlider.value;
 }
-toSlider.oninput = function() {
-    putGoodValues();
-    toValue.innerHTML = toSlider.value;
-    fromValue.innerHTML = fromSlider.value;
-}
-
-// FILTER IN SMARTPHONE
-// Si #filter-section-title:after est cliqué
-priceSlider = document.getElementById('price-slider');
-if (document.getElementById('product-type')){
-    typeCheckbox = document.getElementById('type-checkbox'); 
-}
-colorCheckbox = document.getElementById('color-checkbox');
-
-// Quand on clique sur filter-section-title:after
-filterSectionTitle = document.getElementById('filter-section-title');
-
-filterSectionTitle.addEventListener('click', function(){
-    // Mettre les ID à display: none
-    if(priceSlider.style.display == 'none'){
-        priceSlider.style.display = 'block';
-        if (document.getElementById('product-type')){
-            typeCheckbox.style.display = 'block';
-        }
-        colorCheckbox.style.display = 'block';
-    } else {
-        priceSlider.style.display = 'none';
-        if (document.getElementById('product-type')){
-            typeCheckbox.style.display = 'none';
-        }
-        colorCheckbox.style.display = 'none';
-    }
-});
-
-} // Fin de la condition de produit
 
 // Récupérer la position de la page dans arborecence
 var path = window.location.pathname;
@@ -216,20 +168,6 @@ var retour = "/frontend/"; //'../';
 
 
 
-// Si un des sliders est déplacé
-function putGoodValues(){
-    var fromValue = fromSlider.value;
-    var toValue = toSlider.value;
-    // Si le slider de gauche est plus grand que le slider de droite
-    if(fromValue > toValue && fromValue != 0 && toValue != 100){
-        // Mettre la valeur du slider de gauche dans le slider de droite
-        toSlider.value = fromValue;
-    }
-    else if(toValue < fromValue && toValue != 100 && fromValue != 0){
-        // Mettre la valeur du slider de droite dans le slider de gauche
-        fromSlider.value = toValue;
-    }
-}
 
 
 
