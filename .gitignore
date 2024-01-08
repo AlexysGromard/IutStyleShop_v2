@@ -2,3 +2,4 @@
 .DS_Store
 # Accès to the database
 backend/config/config.php
+backend/config/config.php
