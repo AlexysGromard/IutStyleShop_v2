@@ -26,11 +26,11 @@ function generateUserPanelComponent(
     // Actions list
     $actions = [
         "admin" => [
-            "Base de données utilisateurs" => "#",
-            "Base de données commandes" => "#",
-            "Base de données articles " => "#",
-            "Base de données avis" => "#",
-            "Base de données codes promotionnel" => "#"
+            "Base de données utilisateurs" => "/user/admin_space/utilisateurs",
+            "Base de données commandes" => "/user/admin_space/commandes",
+            "Base de données articles " => "/user/admin_space/articles",
+            "Base de données avis" => "/user/admin_space/avis",
+            "Base de données codes promotionnel" => "/user/admin_space/codes_promotionnel"
         ],
         "client" => [
             "Mes informations" => "/user/client_space/informations",

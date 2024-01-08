@@ -36,7 +36,7 @@ class user{
         //vérifier que c'est bien un admin
         //todo
 
-        if (count($param) != 1 || !in_array($param[0], array("utilisateurs","commandes","articles","avis","codes_promotionnel"))){
+        if (count($param) < 1 || !in_array($param[0], array("utilisateurs","commandes","articles","avis","codes_promotionnel"))){
             echo "Erreur";die();
         }
 
@@ -63,7 +63,16 @@ class user{
 
         $commande = new \backend\Commande(100,2,"06/01/2024 13:07","Expédié",50.0);
         $array_commandes = array($commande,$commande,$commande);
+        
+        $numcommand = null;
+        if (isset($param[1]) && is_numeric($param[1])){
+            //vérifier que la command exist
+            $numcommande = $param[1];
+            $commande = new \backend\Commande(100,2,"06/01/2024 13:07","Expédié",50.0);
+        }
+
     
+
         require "frontend/userSpace/admin.php";
     }
 }

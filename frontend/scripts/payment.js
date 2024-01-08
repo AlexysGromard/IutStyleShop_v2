@@ -22,11 +22,13 @@ function unroll_items(numPayment){
     if (radiobutton.checked == true){
 
         for (var box in listbox){
+            listbox[box].style.overflow = "hidden";
             listbox[box].style.maxHeight = "0px";
             listbox[box].style.marginTop = "0px";
             listbox[box].style.transition = "max-height 0.4s";
         }
 
+        boxPaymentSelect.style.overflow = "visible";
         boxPaymentSelect.style.maxHeight = "100%";
         boxPaymentSelect.style.marginTop = "20px";
         boxPaymentSelect.style.transition = "0.4s max-height 0.1s";

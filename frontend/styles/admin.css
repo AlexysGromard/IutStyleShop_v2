@@ -50,13 +50,26 @@
     text-decoration: none;
 }
 
-.table_admin a{
-    
+.table_admin .Red_police_50:hover{
+    text-decoration: underline;
 }
 
+.table_admin .Red_police_50:active{
+    text-decoration: none;
+}
 
 .action_space{
     display: flex;
     gap: 12px;
     justify-content: center;
+}
+
+
+.all_products_command{
+    max-height: 100%;
+    overflow: visible;
+}
+
+.product_box_commande{
+    margin-right: 0px;
 }
