@@ -118,8 +118,6 @@
         include_once '../backend'.DIRECTORY_SEPARATOR.'DAO'.DIRECTORY_SEPARATOR.'Connection.php';
 
         $db = new backend\DAO\Connection();
-        $db->connect();
-        echo '<br>';
     ?>
 
 </body>
