@@ -1,18 +1,8 @@
-.container {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 20px 54px;
-    grid-auto-flow: row;
-    grid-template-areas:
-        "name name category category"
-        "description description gender gender"
-        "description description color color"
-        "description description price promo"
-        "size size inCatalog inCatalog"
-        "pictures pictures insertPicture insertPicture"
-        "pictures pictures insertPicture insertPicture"
-        "stock stock . ."; 
-        
+
+main{
+    min-height: 80vh;
+    padding-top: 39px;
+    padding-left: 77px;
 }
 .formCreateArticle{
     background-color: #fff;
@@ -29,27 +19,36 @@
     margin-bottom: 21px;
 }
 
-.name { grid-area: name; }
-
-.description { grid-area: description; }
-
-.category { grid-area: category; }
-
-.gender { grid-area: gender; }
-
-.color { grid-area: color; }
-
-.price-part { grid-area: price; }
-
-.promo { grid-area: promo; }
-
-.size { 
-    grid-area: size; 
+.formCreateArticle>div{
+    display: flex;
+    flex-direction: row;
+    gap:54px;
+    row-gap: 54px;
+}
+.formCreateArticle>div>div{
+    min-width: 573px;
+    padding-bottom: 20px;
+    
 }
 
-.inCatalog { grid-area: inCatalog; }
+.field-name{
+    padding-bottom:7px ;
+}
+.price-section{
+    display: flex;
+    flex-direction: row;
+    gap:13px;
+}
+.price-section>div{
+    width: 100%;
+}
+.vertical-input{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
 
-input[type='text'],input[type='mail'],input[type='phone'],textarea{
+input[type='text'],input[type='mail'],input[type='phone'],input[type='number'],textarea{
     font-family: 'Roboto';
     display: flex;
     font-size: var(--very-small);
@@ -88,7 +87,7 @@ select{
 .pictures { 
     grid-area: pictures; 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 133px 133px 133px;
     column-gap: 16px;
     row-gap: 16px;
 }
@@ -117,9 +116,10 @@ select{
 }
   
 
-.pictures>div{
-    height: auto;
-    width: 1fr;
+.pictures>div,.pictures>img{
+    width: 133px;
+    height: 133px; 
+
     border-radius: 10px;
     background: #F1F3F4;
 }
@@ -175,7 +175,7 @@ select{
 
 /*Tab from the stock part*/
 .stock > table {
-  width: 100%;
+  width: 521px;
   border-collapse: collapse;
   overflow: hidden;
   border-radius: 20px;

@@ -25,7 +25,7 @@
             <ul>
                 <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Crédits et aspects légaux</a></li>
-                <li><a href="#">Créateurs</a></li>
+                <li><a href="/frontend/credits/credit.php">Créateurs</a></li>
             </ul>
         </div>
     </div>
