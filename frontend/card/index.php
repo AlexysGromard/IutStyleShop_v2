@@ -18,7 +18,7 @@
     <section class="sections-panier">
             <!-- Section title -->
             <div class="section-title">
-                <span class="section-title-name">Meilleures ventes</span>
+                <span class="section-title-name">Votre pannier</span>
                 <span class="section-title-results">3 articles</span>
             </div>
             <div class="articles-payment-box">
@@ -46,7 +46,11 @@
                 <div class="third-section-payment">
                     <div class="payment-text">Code promo</div>
                     <div class="boite-code-promo">
-                        <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                        <form action="" method="">
+                            <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                            <button class="button">Valider</button>
+                        </form>
+
                     </div>
                 </div>
                 <div class="line"></div>

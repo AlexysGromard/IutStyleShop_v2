@@ -194,6 +194,12 @@ header{
     line-height: 16.41px;
 }
 
+.payment-scearch-text{
+    font-weight: 400;
+    font-size: var(--very-small);
+    color: var(--black);
+}
+
 .text-weight-price{
     font-weight: 500;
 }
