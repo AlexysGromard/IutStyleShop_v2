@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="header-top">
-            <a class="link-to-home" href="/frontend/">
+            <a class="link-to-home" href="/">
                 <img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo">
             </a>
             <a href="/login" class="button method-change-button">Connexion</a>
