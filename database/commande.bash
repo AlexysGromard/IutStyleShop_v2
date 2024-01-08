@@ -14,7 +14,7 @@ database='DB_IutStyleShop'
 # Database
 echo ""
 echo "Exécution des fichiers Database : "
-mysql --host='$host' --user='$user' --database='' --password='$password' < "mariadb/database.sql"
+mysql --host=$host --user=$user --database=$database --password=$password < "mariadb/database.sql"
 
 
 
@@ -54,11 +54,11 @@ find "$dossier" -type f -name "*.sql" | while read -r fichier; do
 done
 
 # Package
-echo ""
-echo "Exécution des fichiers Package :"
-dossier="Packages"
-find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-    echo "* $fichier"
-    mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
-done
+# echo ""
+# echo "Exécution des fichiers Package :"
+# dossier="Packages"
+# find "$dossier" -type f -name "*.sql" | while read -r fichier; do
+#     echo "* $fichier"
+#     mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
+# done
 
