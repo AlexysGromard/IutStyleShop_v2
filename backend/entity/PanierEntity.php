@@ -5,78 +5,25 @@ namespace backend\entity;
 /*  @Entity @Table(name="commande") */
 class PanierEntity
 {
-    /*
-    Table SQL Panier
+    
+    private array $articles;
+    private array $quantites;
+    private array $taille;
 
-    id_user INT NOT NULL,
-    id_produit INT NOT NULL,
-    quantite INT NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES user(id),
-    FOREIGN KEY (id_produit) REFERENCES produit(id)
-    */
-
-    private int $id;
-    private int $id_user;
-    private int $id_produit;
-    private int $quantite;
-
-    /* Getters & Setters */
-
-    /*
-    * @return int
-    */
-    public function getId(): int
+    function __construct(array $articles, array $quantites, array $taille)
     {
-        return $this->id;
+
+        if (count($articles) != count($quantites) || count($quantites) != count($taille)){
+            throw new \Exception('erreur');
+        }
+
+        $this->articles = $articles;
+        $this->quantites = $quantites;
+        $this->taille = $taille;
     }
 
-    /*
-    * @return int
-    */
-    public function getIdUser(): int
-    {
-        return $this->id_user;
-    }
-
-    /*
-    * @return int
-    */
-    public function getIdProduit(): int
-    {
-        return $this->id_produit;
-    }
-
-    /*
-    * @return int
-    */
-    public function getQuantite(): int
-    {
-        return $this->quantite;
-    }
-
-    /*  
-    * @param int $id_user
-    */
-    public function setIdUser(int $id_user): void
-    {
-        $this->id_user = $id_user;
-    }
-
-    /*
-    * @param int $id_produit
-    */
-    public function setIdProduit(int $id_produit): void
-    {
-        $this->id_produit = $id_produit;
-    }
-
-    /*
-    * @param int $quantite
-    */
-    public function setQuantite(int $quantite): void
-    {
-        $this->quantite = $quantite;
-    }
+    
+    
 }
 
 ?>
