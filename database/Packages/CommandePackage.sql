@@ -1,24 +1,28 @@
-SET sql_mode=ORACLE;
 DELIMITER //
 CREATE OR REPLACE PACKAGE CommandePackage AS
 
+
     -- Procédure pour ajouter une nouvelle commande
-    PROCEDURE InsertCommande(
-        p_id_user INT,
-        p_id_CodePromo INT
-    );
+    PROCEDURE InsertCommande(p_id_user INT, p_id_CodePromo INT );
 
     -- Procédure pour supprimer une commande
     PROCEDURE DeleteCommande(p_id INT);
 
     -- Procédure pour update le statut d'une commandes
-    PROCEDURE UpdateCommande(p_id INT, p_statut VARCHAR2);
+    PROCEDURE UpdateStatutCommande(p_id INT, p_statut VARCHAR(64));
 
     -- PROCEDURE pour récupérer les commandes d'un utilisateur
-    PROCEDURE GetCommandes(p_id_user INT, OUT p_commande CURSOR, OUT p_articlecommande CURSOR);
+    PROCEDURE GetCommandes(p_id_user INT)
+
+    -- Procédure pour récupérer tous les articles de commande
+    PROCEDURE GetArticleCommande(p_id_commande INT);
 
     -- Procédure pour récupérer toutes les commandes
-        PROCEDURE GetAllCommandes(OUT p_commande CURSOR, OUT p_articlecommande CURSOR);
+    PROCEDURE GetAllCommandes();
+
+    -- Procédure pour récupérer tous les articles de commande
+    PROCEDURE GetALLArticlesCommandes();
+
 
 
 END CommandePackage;
@@ -30,7 +34,7 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage AS
     PROCEDURE InsertCommande(
         p_id_user INT,
         p_id_CodePromo INT
-    ) IS
+    )
     BEGIN
         -- Déclaration d'une variable pour le prix total de la commande
         v_prix_total FLOAT;
@@ -42,9 +46,9 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage AS
         -- Ajouter une nouvelle commande à la table Commande
         INSERT INTO Commande (ID_user,statut )
         VALUES (p_id_user,'en cours');
-        -- Boucle qui insert tous les articles du panier dans la table CommandeArticle
+        -- Boucle qui insert tous les articles du panier dans la table ArticleCommande
         FOR i IN (SELECT ID_article, taille, quantite FROM Panier WHERE ID_user = p_id_user) LOOP
-            INSERT INTO CommandeArticle (ID_commande, ID_article, taille ,prix_unitaire, quantite)
+            INSERT INTO ArticleCommande (ID_commande, ID_article, taille ,prix_unitaire, quantite)
             VALUES ((SELECT MAX(ID) FROM Commande), i.ID_article, i.taille, SELECT prix * (1 - promo) * (1 - promoglobale) FROM Article WHERE ID = i.ID_article ,i.quantite);
             -- Calculer le prix total de la commande
             v_prix_total := v_prix_total + (SELECT prix * (1 - promo) * (1 - promoglobale) FROM Article WHERE ID = i.ID_article) * i.quantite;
@@ -59,52 +63,52 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage AS
     END InsertCommande;
 
     -- Procédure pour supprimer une commande
-    PROCEDURE DeleteCommande(p_id INT) IS
+    PROCEDURE DeleteCommande(p_id INT)
     BEGIN
         -- Supprimer la commande de la table Commande
         DELETE FROM Commande WHERE ID = p_id;
-        DELETE FROM CommandeArticle WHERE ID_commande = p_id;
+        DELETE FROM ArticleCommande WHERE ID_commande = p_id;
     END DeleteCommande;
 
     -- Procédure pour update le statut d'une commande
-    PROCEDURE UpdateCommande(p_id INT, p_statut VARCHAR2) IS
+    PROCEDURE UpdateStatutCommande(p_id INT, p_statut VARCHAR(64))
     BEGIN
         -- Supprimer la commande de la table Commande
         UPDATE Commande SET statut = p_statut WHERE ID = p_id;
-    END UpdateCommande;
+    END UpdateStatutCommande;
 
     -- Fonction pour récupérer les commandes d'un utilisateur
-    PROCEDURE PROCEDURE GetCommandes(p_id_user INT, OUT p_commande CURSOR, OUT p_articlecommande CURSOR) IS
+    PROCEDURE GetCommandes(p_id_user INT)
     BEGIN
-        -- Sélectionner les commandes de l'utilisateur spécifié
-        OPEN p_commande FOR
+        -- Sélectionner toutes les commandes
         SELECT ID, ID_user, date_commande, prix_total
         FROM Commande
         WHERE ID_user = p_id_user;
+    END 
 
-        -- Sélectionner les articles de la commande pour l'utilisateur spécifié
-        OPEN p_articlecommande FOR
+    -- Procédure pour récupérer toutes les commandes
+    PROCEDURE GetArticleCommande(p_id_commande INT)
+    BEGIN
+        -- Sélectionner tous les articles de commande
         SELECT ca.ID_commande, ca.ID_article, ca.taille, ca.prix_unitaire, ca.quantite
-        FROM CommandeArticle ca
-        INNER JOIN Commande c ON c.ID_commande = ca.ID_commande
-        WHERE c.ID_user = p_id_user;
-        
+        FROM ArticleCommande ca
+        WHERE ca.ID_commande = p_id_commande;
+    END GetArticleCommande;
 
-    END GetCommandes;
 
-    PROCEDURE GetAllCommandes(OUT p_commande CURSOR, OUT p_articlecommande CURSOR) IS
+    PROCEDURE GetAllCommandes()
     BEGIN
         -- Sélectionner toutes les commandes
-        OPEN p_commande FOR
         SELECT ID, ID_user, date_commande, prix_total
         FROM Commande;
-
-        -- Sélectionner tous les articles de commande
-        OPEN p_articlecommande FOR
-        SELECT ID_commande, ID_article, taille, prix_unitaire, quantite
-        FROM CommandeArticle;
-
     END GetAllCommandes;
+
+    PROCEDURE GetALLArticlesCommandes()
+    BEGIN
+        -- Sélectionner tous les articles de commande
+        SELECT ca.ID_commande, ca.ID_article, ca.taille, ca.prix_unitaire, ca.quantite
+        FROM ArticleCommande ca;
+    END GetALLArticlesCommandes;
 
 END CommandePackage;
 //
