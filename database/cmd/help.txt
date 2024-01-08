@@ -1,0 +1,22 @@
+Script d'automatisation de base de données
+
+Ce script permet de créer automatiquement une base de données dans MariaDB avec diverses options. Voici comment utiliser le script :
+
+Paramètres obligatoires :
+  -Host           : L'adresse du serveur MariaDB.
+  -User           : Le nom d'utilisateur pour la connexion à MariaDB.
+  -Password       : Le mot de passe pour la connexion à MariaDB.
+  -Database       : Le nom de la base de données à créer.
+
+Options facultatives :
+  -CreateTables   : Crée des tables dans la base de données.
+  -CreateTriggers : Crée des déclencheurs dans la base de données.
+  -CreatePackages : Crée des packages dans la base de données.
+  -CreateTests    : Crée des tests dans la base de données.
+  -ManualMode     : Spécifie le mode d'exécution (-1 pour manuel, 0 pour auto sans test, 1 pour auto avec test).
+  -Help           : Affiche l'aide.
+
+Exemples d'utilisation :
+  .\VotreScript.ps1 -Host "localhost" -User "utilisateur" -Password "motdepasse" -Database "MaBase" -CreateTables -CreateTriggers
+  .\VotreScript.ps1 -Host "localhost" -User "utilisateur" -Password "motdepasse" -Database "MaBase" -CreatePackages -ManualMode -1
+  .\VotreScript.ps1 -Help
