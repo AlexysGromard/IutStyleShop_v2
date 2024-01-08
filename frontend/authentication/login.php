@@ -25,12 +25,12 @@
         <section id="actions-container">
             <div class="action-box">
                 <!-- Connexion par mot de passe -->
-                <form action="" method="">
+                <form action="<?='login/loginCheck'?>" method="POST">
                     <!-- Adresse email -->
                     <div class="input-box">
                         <label class="input-label" for="email">Adresse mail</label>
-                        <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail">
-                        <span class="input-error-message">Adresse mail invalide</span>
+                        <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail" value="<?php echo (isset($_SESSION['email']) && $_SESSION['email']) ? $_SESSION['email'] : "";?>">
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["email"]) && $_SESSION['errors']["email"]) ? "active" : ""; ?>">Adresse mail invalide</span>
                     </div>
                     <!-- Mot de passe -->
                     <div class="input-box">
@@ -39,7 +39,7 @@
                             <a class="link-to-password-recovery" href="/frontend/authentication/password-recovery.php">Mot de passe oublié ?</a>
                         </div>
                         <input class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
-                        <span class="input-error-message">Mot de passe invalide</span>
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["password"]) && $_SESSION['errors']["password"]) ? "active" : ""; ?>">Mot de passe invalide</span>
                     </div>
                     <!-- Btn -->
                     <input class="button form-button" type="submit" value="Se connecter">
