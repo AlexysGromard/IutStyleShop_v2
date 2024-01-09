@@ -13,8 +13,8 @@
         <div>
             <a href="/login" class="navigation-link-header">
                 <div>
-                    <span class="navigation-link-header-title">Connexion</span>
-                    <span class="navigation-link-header-desc">Inscription</span>
+                    <span class="navigation-link-header-title"><?php echo isset($_SESSION['user']) ? $_SESSION['user']->getPrenom()." ".$_SESSION["user"]->getNom() : "Connexion";?></span>
+                    <span class="navigation-link-header-desc"><?php echo isset($_SESSION['user']) ? "Espace utilisateur" : "Inscription";?></span>
                 </div>
                 <img alt="Image of user" src="/frontend/assets/images/user.svg">
             </a>

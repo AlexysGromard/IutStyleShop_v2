@@ -58,6 +58,9 @@ class UserEntity
         echo "<script>showCookiesPopup()</script>";
     }
 
+    /*
+    * Créer un utilisateur identifié
+    */
     public function createIdentifiedUser(int $id, string $email, string $nom, string $prenom, string $genre,string $role,string $adresse, string $ville,string $complement_adresse,PanierEntity $panier)
     {
         $this->id = $id;
@@ -70,6 +73,21 @@ class UserEntity
         $this->setVille($ville);
         $this->setComplementAdresse($complement_adresse);
         $this->panier = $panier;
+
+        // Sauvegarder l'utilisateur dans la session
+        $this->saveUserSession();
+    }
+
+    /*
+    * Sauvegarder l'utilisateur dans la session
+    */
+    public function saveUserSession()
+    {
+        // Si il n'y a pas de session, en créer une
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $_SESSION['user'] = $this;
     }
 
     /*
