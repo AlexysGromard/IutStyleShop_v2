@@ -33,6 +33,7 @@
     background: #FFFFFF;
     border-radius: 10px;
     max-width: 292px;
+
     flex-direction: column;
     transform: scale(0); /* Initial scale set to 0 */
     animation: expand 1s ease-out forwards; 
@@ -42,10 +43,13 @@
 }
 
 .box-creator{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap:39px;
-    margin-top: 74px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right:77px;
+    margin-top:74px;
+
+    
 }
 
 main{

@@ -164,8 +164,10 @@
 
                 </tr>
             </table>
+            <input id="addProductButton" class="medium-size button basic-text"  value="Ajouter un article" href="#">
+
         </div>
-        <input style="margin-left:auto;margin-right:24px" id="addProductButton" class="medium-size button basic-text"  value="Ajouter un article" href="#">
+        
 
 
         

@@ -5,8 +5,11 @@ main{
     padding-left: 77px;
 }
 .formCreateArticle{
+    border-radius: 20px; 
     background-color: #fff;
     padding: 24px;
+    margin-right: 77px;
+    width: fit-content;
 }
 .formCreateArticle>p:first-child{
     color: #000;
@@ -94,6 +97,9 @@ select{
 
 .insertPicture { grid-area: insertPicture; }
 .stock { grid-area: stock; }
+.stock> table+input{
+    margin:auto 24px 0 auto;
+}
   
 
 .container div input[type="text"]{

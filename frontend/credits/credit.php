@@ -16,85 +16,85 @@
         <p class="section-title-results">4 personnes</p>
         <div class="box-creator">
 
-        <div class="box"> 
-                <img class="image" src="/frontend/assets/images/credits/Alexys.png" alt="Alexys">
-                <div>
-                    <span id="link-text">Alexys</span>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
-                        Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
-                    </p>
-                </div>
-                <div class="bas_article">
-                    <span id="link-text">Liens</span>
-                    <div class="link-part">
-                        <a href="https://www.linkedin.com/in/alexys-gromard/"><img alt="Linkedin" src="/frontend/assets/icons/linkedin.png"></a>
-                        <a href="https://gitlab.univ-nantes.fr/E226772R"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
-
-                        
-                        
-                    </div>
-                </div>
-            </div>
-
             <div class="box"> 
-                <img class="image" src="/frontend/assets/images/credits/Bryan.png" alt="Bryan">
-                <div>
-                    <span id="link-text">Bryan</span>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
-                        Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
-                    </p>
-                </div>
-                <div class="bas_article">
-                    <span id="link-text">Liens</span>
-                    <div class="link-part">
-                        <a href="https://www.linkedin.com/in/bryan-levy-a7452a24a/"><img alt="Linkedin" src="/frontend/assets/icons/linkedin.png"></a>
-                        <a href="https://gitlab.univ-nantes.fr/E224508F"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
+                    <img class="image" src="/frontend/assets/images/credits/Alexys.png" alt="Alexys">
+                    <div>
+                        <span id="link-text">Alexys</span>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
+                            Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
+                        </p>
+                    </div>
+                    <div class="bas_article">
+                        <span id="link-text">Liens</span>
+                        <div class="link-part">
+                            <a href="https://www.linkedin.com/in/alexys-gromard/"><img alt="Linkedin" src="/frontend/assets/icons/linkedin.png"></a>
+                            <a href="https://gitlab.univ-nantes.fr/E226772R"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
 
-                        
+                            
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        <div class="box"> 
-                <img class="image" src="/frontend/assets/images/credits/Floran.png" alt="Floran">
-                <div>
-                    <span id="link-text">Floran</span>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
-                        Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
-                    </p>
-                </div>
-                <div class="bas_article">
-                    <span id="link-text">Liens</span>
-                    <div class="link-part">
-                        <a href="https://www.linkedin.com/in/floran-martel-546830291/"><img alt="Linkedin" src="/frontend/assets/icons/linkedin.png"></a>
-                        <a href="https://gitlab.univ-nantes.fr/E226752U"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
+                <div class="box"> 
+                    <img class="image" src="/frontend/assets/images/credits/Bryan.png" alt="Bryan">
+                    <div>
+                        <span id="link-text">Bryan</span>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
+                            Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
+                        </p>
+                    </div>
+                    <div class="bas_article">
+                        <span id="link-text">Liens</span>
+                        <div class="link-part">
+                            <a href="https://www.linkedin.com/in/bryan-levy-a7452a24a/"><img alt="Linkedin" src="/frontend/assets/icons/linkedin.png"></a>
+                            <a href="https://gitlab.univ-nantes.fr/E224508F"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
 
-                        
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="box"> 
-                <img class="image" src="/frontend/assets/images/credits/Lancelot.png" alt="Lancelot">
-                <div>
-                    <span id="link-text">Lancelot</span>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
-                        Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
-                    </p>
-                </div>
-                <div class="bas_article">
-                    <span id="link-text">Liens</span>
-                    <div class="link-part">
-                        <a href="https://gitlab.univ-nantes.fr/E226125N"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
-                        <!-- https://github.com/IIXIVII -->
-                        
+                <div class="box"> 
+                    <img class="image" src="/frontend/assets/images/credits/Floran.png" alt="Floran">
+                    <div>
+                        <span id="link-text">Floran</span>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
+                            Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
+                        </p>
+                    </div>
+                    <div class="bas_article">
+                        <span id="link-text">Liens</span>
+                        <div class="link-part">
+                            <a href="https://www.linkedin.com/in/floran-martel-546830291/"><img alt="Linkedin" src="/frontend/assets/icons/linkedin.png"></a>
+                            <a href="https://gitlab.univ-nantes.fr/E226752U"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
+
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="box"> 
+                    <img class="image" src="/frontend/assets/images/credits/Lancelot.png" alt="Lancelot">
+                    <div>
+                        <span id="link-text">Lancelot</span>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
+                            Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
+                        </p>
+                    </div>
+                    <div class="bas_article">
+                        <span id="link-text">Liens</span>
+                        <div class="link-part">
+                            <a href="https://gitlab.univ-nantes.fr/E226125N"><img alt="Gitlab" src="/frontend/assets/icons/gitlab.png"></a>
+                            <!-- https://github.com/IIXIVII -->
+                            
+                        </div>
+                    </div>
+                </div>
 
             
 
