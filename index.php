@@ -11,7 +11,6 @@ spl_autoload_register(function($class) {
     
     //echo "REQUIRE : ".$include."<br>";
     if (file_exists($include)){
-        
         require $include;
     }else{
         echo "<h1>".$path."</h1>";

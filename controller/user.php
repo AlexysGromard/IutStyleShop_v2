@@ -25,7 +25,6 @@ class user{
                 $actionSelect = "Mes paramètres";
         }
         
-
     
         require "frontend/userSpace/client.php";
     }
@@ -61,16 +60,31 @@ class user{
         
         $array_user = array($personne,$personne,$personne,$personne);
 
+
+        //sicommande
         $commande = new \backend\Commande(100,2,"06/01/2024 13:07","Expédié",50.0);
         $array_commandes = array($commande,$commande,$commande);
         
         $numcommand = null;
         if (isset($param[1]) && is_numeric($param[1])){
             //vérifier que la command exist
-            $numcommande = $param[1];
+            $numcommande = $param[1];//modifiable
             $commande = new \backend\Commande(100,2,"06/01/2024 13:07","Expédié",50.0);
         }
 
+        //si article
+        $article = null;
+        if (isset($param[1])){
+            if (is_numeric($param[1])){
+                //vérifier que la command exist
+                //$numArticle = $param[1];
+                $article = new \backend\Article("T-shirt Rouge","T-shirt","H","/image/truc.png",4.9,3,"compacte et durable","Rouge",true, 23.99 ,0); //modifier
+            }else if ($param[1] == "nouvelArticle"){
+                $article = new \backend\Article(null,null,null,null,null,null,null,null,null,null,null);
+            }
+    
+        }
+        
     
 
         require "frontend/userSpace/admin.php";

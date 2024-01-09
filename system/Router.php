@@ -16,6 +16,7 @@ class Router
      */
     function route()
     {
+        
         $scriptName = $_SERVER["SCRIPT_NAME"];
         $requestURI = $_SERVER["REQUEST_URI"];
 
@@ -41,9 +42,10 @@ class Router
             $controllerMethod="index";
         else
             $controllerMethod=$params[0];
-
+        
         array_shift($params);
             $class = "\controller\\".$controller;
+            
             $controllerinstance = new $class();
             $controllerinstance->$controllerMethod($params);
        
