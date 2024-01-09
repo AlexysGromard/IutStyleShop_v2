@@ -11,4 +11,4 @@ DELIMITER //
         -- Logique pour insérer une image dans la table Image
         INSERT INTO Image (lien ,ID_article) VALUES (p_image, p_id);
     END //
-DELIMITER;
+DELIMITER ;

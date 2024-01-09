@@ -24,4 +24,4 @@ DELIMITER //
             description = p_description, prix = p_prix, promo = p_promo, disponible = p_disponible
         WHERE id = p_id;
     END //
-DELIMITER;
+DELIMITER ;
