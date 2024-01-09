@@ -14,3 +14,4 @@ BEGIN
     INNER JOIN Commande c ON c.ID_commande = ca.ID_commande
     WHERE c.ID_user = p_id_user;
 END //
+DELIMITER ;
