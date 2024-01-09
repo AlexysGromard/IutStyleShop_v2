@@ -43,6 +43,10 @@ class login {
             if (empty($password)) {
                 $this->errors['password'] = true;
             }
+        }
+
+        // Si il y a au moins une erreur
+        if (in_array(true, $this->errors)) {
             $_SESSION['errors'] = $this->errors;
 
             header("Location: /login");
@@ -51,6 +55,7 @@ class login {
 
         // TODO : Vérifier qu'il est dans la base de données.
         // TODO : Si oui, le connecter et le rediriger vers la page client/admin
+        // TODO : Supprimer les données de la session
     }
 
 }

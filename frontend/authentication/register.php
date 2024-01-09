@@ -17,7 +17,7 @@
             <a href="/login" class="button method-change-button">Connexion</a>
         </div>
     </header>
-    <form action="" method="">
+    <form action="<?='register/registerCheck'?>" method="POST">
         <main id="main-section">
             <div id="page-title-section">
                 <h1 id="title">Inscription</h1>
@@ -33,33 +33,33 @@
                         <div class="input-radio-choices">
                             <!-- Homme -->
                             <div class="input-radio-element">
-                                <input type="radio" name="civility" id="man">
+                                <input value="m" type="radio" name="civility" id="man" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "m" )? "checked" : "";?>>
                                 <label class="radio-label" for="man">Homme</label>
                             </div>
                             <!-- Femme -->
                             <div class="input-radio-element">
-                                <input type="radio" name="civility" id="women">
+                                <input value="w" type="radio" name="civility" id="women" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "w") ? "checked" : "";?>>
                                 <label class="radio-label" for="women">Femme</label>
                             </div>
                             <!-- Autre -->
                             <div class="input-radio-element">
-                                <input type="radio" name="civility" id="other">
+                                <input value="n" type="radio" name="civility" id="other" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "n") ? "checked" : "";?>>
                                 <label class="radio-label" for="other">Ne souhaite pas se prononcer</label>
                             </div>
                         </div>
-                        <span class="input-error-message">Genre incomplet</span>
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["civility"]) && $_SESSION['errors']["civility"]) ? "active" : ""; ?>">Genre incomplet</span>
                     </div>
                     <!-- Nom -->
                     <div class="input-box">
                         <label class="input-label" for="lastname">Nom</label>
-                        <input class="input-field" type="text" id="lastname" name="lastname" placeholder="Entrez votre nom">
-                        <span class="input-error-message">Nom invalide</span>
+                        <input class="input-field" type="text" id="lastname" name="lastname" placeholder="Entrez votre nom" value="<?php echo (isset($_SESSION['lastname']) && $_SESSION['lastname']) ? $_SESSION['lastname'] : "";?>">
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["lastname"]) && $_SESSION['errors']["lastname"]) ? "active" : ""; ?>">Nom invalide</span>
                     </div>
                     <!-- Prénom -->
                     <div class="input-box">
                         <label class="input-label" for="firstname">Prénom</label>
-                        <input class="input-field" type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom">
-                        <span class="input-error-message">Prénom invalide</span>
+                        <input class="input-field" type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom" value="<?php echo (isset($_SESSION['firstname']) && $_SESSION['firstname']) ? $_SESSION['firstname'] : "";?>">
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["firstname"]) && $_SESSION['errors']["firstname"]) ? "active" : ""; ?>">Prénom invalide</span>
                     </div>
                 </div>
                 <!-- Identifiants -->
@@ -67,20 +67,20 @@
                     <!-- Adresse email -->
                     <div class="input-box">
                         <label class="input-label" for="email">Adresse mail</label>
-                        <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail">
-                        <span class="input-error-message">Adresse mail invalide</span>
+                        <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail" value="<?php echo (isset($_SESSION['email']) && $_SESSION['email']) ? $_SESSION['email'] : "";?>">
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["email"]) && $_SESSION['errors']["email"]) ? "active" : ""; ?>">Adresse mail invalide</span>
                     </div>
                     <!-- Mot de passe -->
                     <div class="input-box">
                         <label class="input-label" for="password">Mot de passe</label>
                         <input class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
-                        <span class="input-error-message">Mot de passe invalide</span>
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["password"]) && $_SESSION['errors']["password"]) ? "active" : ""; ?>">Mot de passe invalide</span>
                     </div>
                     <!-- Confirmation du mot de passe -->
                     <div class="input-box">
                         <label class="input-label" for="password-confirmation">Confirmation du mot de passe</label>
                         <input class="input-field" type="password" id="password-confirmation" name="password-confirmation" placeholder="Confirmez votre mot de passe">
-                        <span class="input-error-message">Confirmation du mot de passe invalide</span>
+                        <span class="input-error-message <?php echo (isset($_SESSION['errors']["passwordConfirmation"]) && $_SESSION['errors']["passwordConfirmation"]) ? "active" : ""; ?>">Confirmation du mot de passe invalide</span>
                     </div>
                     <!-- Btn -->
                     <input class="button form-button" type="submit" value="S'inscrire">
