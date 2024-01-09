@@ -14,4 +14,4 @@ DELIMITER //
             SELECT * FROM Vetement WHERE ID_article = p_id INTO p_accessoire_or_vetement;
         END IF;
     END //
-DELIMITER;
+DELIMITER ;

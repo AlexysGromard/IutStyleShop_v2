@@ -10,4 +10,4 @@ DELIMITER //
             UPDATE Article SET disponible = TRUE WHERE id = p_id;
         END IF;
     END//
-DELIMITER;
+DELIMITER ;

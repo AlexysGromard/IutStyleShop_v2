@@ -10,4 +10,4 @@ DELIMITER //
         -- Logique pour supprimer une image de la table Image
         DELETE FROM Image WHERE ID_article = p_id;
     END //
-DELIMITER;
+DELIMITER ;
