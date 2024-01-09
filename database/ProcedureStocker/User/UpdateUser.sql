@@ -1,4 +1,4 @@
-// DELIMITER
+DELIMITER // 
 
 -- Procédure pour mettre à jour les informations d'un utilisateur
     CREATE OR REPLACE PROCEDURE UpdateUser(

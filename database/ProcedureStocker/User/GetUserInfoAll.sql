@@ -1,10 +1,8 @@
-// DELIMITER
+DELIMITER // 
 
-CREATE OR REPLACE FUNCTION GetUserInfoAll() RETURN SYS_REFCURSOR
+CREATE OR REPLACE PROCEDURE GetUserInfoAll()
         BEGIN
-        -- Logique pour récupérer les informations d'un utilisateur avec l'ID spécifié
-        DECLARE v_cursor SYS_REFCURSOR;
-        OPEN v_cursor FOR SELECT * FROM User;
-        RETURN v_cursor;
+        -- récupérer les informations d'un utilisateur avec l'ID spécifié
+        SELECT * FROM User;
     END //
 DELIMITER ;

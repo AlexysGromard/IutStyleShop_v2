@@ -8,10 +8,7 @@ BEGIN
 
     -- Sélectionner tous les articles de chaque commande
     SELECT *
-    FROM CommandeArticle ca
+    FROM CommandeArticle;
     
-
-
-
 END //
 DELIMITER ;
