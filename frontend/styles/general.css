@@ -37,6 +37,11 @@ header{
 }
 
 /*Start search-bar*/
+.search-bar-form{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
 .search-bar{
     display: flex;
     flex-direction: row;
@@ -44,8 +49,8 @@ header{
     background-color: #F1F3F4;
     border-radius: 20px;
     align-items: center;
-    flex-grow: 1;
     height: fit-content;
+    width: 100%;
 }
 
 .search-bar div:first-child{
