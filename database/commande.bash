@@ -13,44 +13,46 @@ database='DB_IutStyleShop'
 
 # Database
 echo ""
-echo "Exécution des fichiers Database : "
-echo "* DB_IutStyleShop"
+echo " \e[35m Exécution des fichiers Database : "
+echo "\e[34m* \e[0m $database \e[31m"
 sudo mysql --host=$host --user=$user --database="" --password=$password < "mariadb/database.sql"
 
 
 
 # Table
 echo ""
-echo "Exécution des fichiers Tables : "
-echo "* User"
+echo "\e[35m Exécution des fichiers Tables : "
+echo "\e[34m* \e[0m User \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/User.sql"
 
-echo "* Article"
+echo "\e[34m* \e[0m Article \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Article.sql"
-echo "* Image"
+echo "\e[34m* \e[0m Image \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Image.sql"
-echo "* Accesoire"
+echo "\e[34m* \e[0m Accesoire \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Accesoire.sql"
-echo "* Vetement"
+echo "\e[34m* \e[0m Vetement \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Vetement.sql"
 
-echo "* Panier"
+echo "\e[34m* \e[0m Panier \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Panier.sql"
 
-echo "* Commentaire"
+echo "\e[34m* \e[0m Commentaire \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Commentaire.sql"
 
-echo "* Commande"
+echo "\e[34m* \e[0m Commande \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Commande.sql"
-echo "* ArticleCommande"
+echo "\e[34m* \e[0m ArticleCommande \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/ArticleCommande.sql"
+
+echo "\e[34m* \e[0m CodePromo \e[31m"
 
 # Trigger
 echo ""
-echo "Exécution des fichiers Triggers :"
+echo "\e[35m Exécution des fichiers Trigger : "
 dossier="Triggers"
 find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-    echo "* $fichier"
+    echo "\e[34m* \e[0m $fichier \e[31m"
     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
 done
 
@@ -65,7 +67,7 @@ done
 
 #Procedure Stockée
 echo ""
-echo "Exécution des fichiers Procedure Stockée :"
+echo "\e[35m Exécution des fichiers Procedure Stockée : "
 dossier="ProcedureStocker"
 # ProcedureStocker/
 # ├── Article
@@ -84,7 +86,7 @@ dossier="ProcedureStocker"
 # └── User
 
 find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-    echo "* $fichier"
+    echo "\e[34m* \e[0m $fichier \e[31m"
     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
 done
 
