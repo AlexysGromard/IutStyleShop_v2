@@ -1,5 +1,8 @@
 <div class="large_box">
-    <span class="Black_police_65">Base de données codes promotionnel</span>
+    <div class="title_space">
+        <span class="Black_police_65">Base de données codes promotionnel</span>
+        <a href="" class="White_police_40 small-size button">Ajouter un code</a>
+    </div>
 
     <table class="table_admin">
         <thead>

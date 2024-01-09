@@ -57,68 +57,18 @@ inputFile.addEventListener("change", function (event) {
 
 
 insertBtn.addEventListener("click", function (){
-	console.log("test");
 	if(imgArea.dataset.img != "upload.svg"){
-		/*
-		var divs = imagesPart.querySelectorAll("div");
-        // Supprimer chaque balise div
-        divs.forEach(function(div) {
-            div.remove();
-        });
-
-		//
-		const allImg = imgArea.querySelectorAll('img');
-		allImg.forEach(item=> item.remove());
-		const uploadImg = document.createElement('img');
-		uploadImg.src = "../assets/icons/upload.svg";
-		imgArea.appendChild(uploadImg);
-
-
-		const img = document.createElement('img');
-		img.src = imgArea.dataset.img;
-		imagesPart.appendChild(img)
-		nbImages = imagesPart.querySelectorAll("img").length;
-
-		for (var i = nbImages; i < 6; i++) {
-			const div = document.createElement('div');
-			imagesPart.appendChild(div)
-		}
-
-		var boxs = imagesPart.querySelectorAll("div");
-
-		//get all image + tout suprimer
-		var allImage = [];
-		for (div of imagesPart.querySelectorAll("div")){
-			for (img of imagesPart.querySelectorAll("img")){
-				allImage.push(img);
-				img.remove();
-			}
-			for (sousDiv of imagesPart.querySelectorAll("img")){
-				sousDiv.remove();
-			}
-			div.remove();
-		}
-
-
-
-		var divs = imagesPart.querySelectorAll("div")+imagesPart.querySelectorAll("img")
-		//suprimer tout
-		divs.forEach(function(div) {
-            div.remove();
-        });
-		*/
 		var allImage = []
 		for (div of imagesPart.querySelectorAll("div")){
 			for (Sousdiv of div.querySelectorAll("div")){
-				for (img of Sousdiv.querySelectorAll("label")){
+				for (img of Sousdiv.querySelectorAll("img")){
 					allImage.push(img);
-					console.log(allImage)
 				}
 			}
 		}
 
-		const newimg = document.createElement('label');
-		newimg.setAttribute("data-image", imgArea.dataset.img);
+		const newimg = document.createElement('img');
+		newimg.src = imgArea.dataset.img;
 		allImage.push(newimg);
 
 		updateImage(allImage);
@@ -126,6 +76,22 @@ insertBtn.addEventListener("click", function (){
 	}
 
 })
+
+function suprimerImage(numimage){
+	var allImage = []
+	for (div of imagesPart.querySelectorAll("div")){
+		for (Sousdiv of div.querySelectorAll("div")){
+			for (img of Sousdiv.querySelectorAll("img")){
+				allImage.push(img);
+			}
+		}
+	}
+
+	allImage.splice(numimage, 1);
+
+
+	updateImage(allImage);
+}
 
 function updateImage(allImage){
 
@@ -137,29 +103,29 @@ function updateImage(allImage){
 	}
 	
 	nbImages = allImage.length;
-	console.log(nbImages)
-	console.log(Math.ceil(nbImages/3)-1)
 
 	for (var numligne = 0; numligne<= Math.ceil(nbImages/3)-1; numligne++){
 		var box = document.createElement('div');
 		for (var numcolonne = 0; numcolonne< 3; numcolonne++){
 			if (numligne*3+numcolonne <= (nbImages-1)){
-				console.log(allImage[numligne*3+numcolonne])
 				div = document.createElement('div');
 
 				var id = "inputImage"+(numligne*3+numcolonne).toString();
 
-				var label = document.createElement('button');
+				var input = document.createElement('input');
+				input.setAttribute("id", id);
+				input.setAttribute("onclick", "suprimerImage("+id+")");
+
+				var label = document.createElement('label');
 				label.setAttribute("for", id);
-				image.id = id;
 
-				var image = allImage[numligne*3+numcolonne];
-				image.setAttribute("for", id);
 
+
+				div.appendChild(input);
+				label.appendChild(allImage[numligne*3+numcolonne]);
 				div.appendChild(label);
-				div.appendChild(allImage[numligne*3+numcolonne]);
 				
-				box.appendChild(div)
+				box.appendChild(div);
 			}else{
 				box.appendChild(document.createElement('div'));
 			}

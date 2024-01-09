@@ -1,7 +1,11 @@
 
-<?php if ($article==null) : //modifier en juste commande?>
+<?php if ($article==null) :?>
     <div class="large_box">
-        <span class="Black_police_65">Base de données articles</span>                        
+        <div class="title_space">
+            <span class="Black_police_65">Base de données articles</span> 
+            <a href="" class="White_police_40 small-size button">Ajouter un article</a>
+        </div>
+                               
 
         <table class="table_admin">
             <thead>
@@ -150,11 +154,6 @@
             <p class="Black_police_55">Images du produit</p>
             <div class ="image_box">
                 <div class="pictures">
-                    <div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
                     <div>
                         <div></div>
                         <div></div>
