@@ -73,3 +73,117 @@
 .product_box_commande{
     margin-right: 0px;
 }
+/**/
+.top_ajout_article{
+    display: flex;
+    flex-direction: column;
+    gap : 20px;
+}
+
+.input_box{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.input_box > div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.formCreateArticle{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.price-section{
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+}
+
+.checkbox_input_box{
+
+}
+
+.size{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.size > div{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+
+.pictures{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.pictures > div{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.pictures> div >div, .pictures>div>div>label{
+    width: 133px;
+    height: 133px; 
+
+    border-radius: 10px;
+    background: #F1F3F4;
+}
+
+.pictures>div>div>img:hover{
+    content: "X";
+    opacity: 1;
+}
+.pictures>div>div>img ~ button{
+    display: none;
+}
+
+
+.image_box{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+#image-insert {
+    display: none;
+}
+
+#image-insert ~ label {
+    color: #60636880;
+    background-color: #F1F3F4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 282px;
+    width: 282px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  .elargire{
+    flex:auto
+  }
+
+  .insertPicture{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }

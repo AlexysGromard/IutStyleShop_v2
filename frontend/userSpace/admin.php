@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="/frontend/styles/police.css">
     <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/admin.css">
+    
     <?php include 'frontend/components/table.php'; ?>
+    
 </head>
 <body>
     <!-- Header -->
@@ -30,7 +32,7 @@
 
             <!-- right -->
             <div class="user_right_box">
-                <div class="large_box">
+                
                     <?php if ($actionSelect == "Base de données utilisateurs") :?>
                         <?php require "frontend/userSpace/adminSpace/utilisateurs.php";?>
                         
@@ -47,7 +49,7 @@
                         <?php require "frontend/userSpace/adminSpace/codes_promotionnel.php";?>
 
                     <?php endif; ?>
-                </div>
+                
             </div>
         </div>
 

@@ -33,12 +33,17 @@
 }
 
 
-.inputText_space{
+.inputText_space, .large_inputText_space{
     width: 46%;
     flex : auto;
     display: flex;
     flex-direction: column;
     gap : 7px;
+}
+
+.large_inputText_space{
+    width: 100%;
+    flex: initial;
 }
 
 /**/
@@ -69,7 +74,7 @@
 
 
 
-.sidebar, .sidebar_reverse{
+.sidebar, .sidebar_reverse , .textArea{
     font-family: 'Roboto';
     display: flex;
     font-size: var(--very-small);
@@ -80,6 +85,11 @@
     border: none;
     border-radius: 18px;
     background-color: var(--light-gray);
+}
+
+.textArea{
+    resize: none;
+    height: 203px;
 }
 
 .sidebar_reverse{

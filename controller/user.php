@@ -80,7 +80,7 @@ class user{
                 //$numArticle = $param[1];
                 $article = new \backend\Article("T-shirt Rouge","T-shirt","H","/image/truc.png",4.9,3,"compacte et durable","Rouge",true, 23.99 ,0); //modifier
             }else if ($param[1] == "nouvelArticle"){
-                $article = new \backend\Article(null,null,null,null,null,null,null,null,null,null,null);
+                $article = "nouvelArticle";
             }
     
         }

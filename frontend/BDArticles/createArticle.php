@@ -16,7 +16,7 @@
         <p>Article</p>
         <div>
             <div class="name">
-                    <label for="article-name" class="field-name">Nom de l'article</label>
+                    <label for="article-name" class="Black_police_55">Nom de l'article</label>
                     <input id="article-name" placeholder="Nom de l'article" type="text">
             </div>  
             <div class="category">

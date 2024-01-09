@@ -28,7 +28,7 @@ function generateUserPanelComponent(
         "admin" => [
             "Base de données utilisateurs" => "/user/admin_space/utilisateurs",
             "Base de données commandes" => "/user/admin_space/commandes",
-            "Base de données articles " => "/user/admin_space/articles",
+            "Base de données articles" => "/user/admin_space/articles",
             "Base de données avis" => "/user/admin_space/avis",
             "Base de données codes promotionnel" => "/user/admin_space/codes_promotionnel"
         ],
