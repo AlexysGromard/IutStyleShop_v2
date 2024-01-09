@@ -6,15 +6,39 @@
         <span class="Black_police_55" >Civilité</span>
         <div>
             <label for="civility-woman" class="radio_button_space">
-                <input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility">
+                <?php
+                    $input = '<input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility" ';
+                    if ($personne->genre=='F' ) {
+                        $input.= 'checked ';
+                    }
+                    $input.= '/> ';
+                    echo $input;
+
+                    ?>
                 <span class="Black_police_40" >Femme</span>
             </label>
             <label for="civility-man" class="radio_button_space">
-                <input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility">
+                <?php
+                $input = '<input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility" ';
+                if ($personne->genre=='M' ) {
+                    $input.= 'checked ';
+                }
+                $input.= '/> ';
+                echo $input;
+
+                ?>
                 <span class="Black_police_40"  >Homme</span>
             </label>
             <label for="civility-none" class="radio_button_space">
-                <input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" checked>
+                <?php
+                    $input = '<input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" ';
+                    if ($personne->genre!='M' && $personne->genre!='F' ) {
+                        $input.= 'checked ';
+                    }
+                    $input.= '/> ';
+                    echo $input;
+
+                ?>  
                 <span class="Black_police_40" >Ne souhaite pas se prononcer</span>
             </label>
         </div>
@@ -23,21 +47,21 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="last-name">Nom</label>
-                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom">
+                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" value=<?= $personne->nom; ?>>
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="first-name">Prénom</label>
-                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom">
+                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" value=<?= $personne->prenom; ?>>
             </div>
         </div>
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="mail">Adresse mail</label>
-                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail">
+                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" value=<?= $personne->mail; ?>>
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="phone">Numéro de téléphone</label>
-                <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel">
+                <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel" >
             </div>
         </div>
     </div>

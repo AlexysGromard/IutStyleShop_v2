@@ -66,6 +66,14 @@ insertBtn.addEventListener("click", function (){
             div.remove();
         });
 
+		//
+		const allImg = imgArea.querySelectorAll('img');
+		allImg.forEach(item=> item.remove());
+		const uploadImg = document.createElement('img');
+		uploadImg.src = "../assets/icons/upload.svg";
+		imgArea.appendChild(uploadImg);
+
+
 		const img = document.createElement('img');
 		img.src = imgArea.dataset.img;
 		imagesPart.appendChild(img)
