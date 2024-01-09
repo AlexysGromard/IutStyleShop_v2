@@ -60,7 +60,7 @@ class ArticleEntity
             $newArticle = new AccessoireVetement($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
         }
 
-        return $newArticle
+        return $newArticle;
     }
 
 

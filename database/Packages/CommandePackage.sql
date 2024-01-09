@@ -15,10 +15,13 @@ CREATE OR REPLACE PACKAGE CommandePackage AS
     PROCEDURE UpdateCommande(p_id INT, p_statut VARCHAR2);
 
     -- PROCEDURE pour récupérer les commandes d'un utilisateur
-    PROCEDURE GetCommandes(p_id_user INT, OUT p_commande CURSOR, OUT p_articlecommande CURSOR);
+    PROCEDURE GetCommandes(p_id_user INT);
 
     -- Procédure pour récupérer toutes les commandes
-        PROCEDURE GetAllCommandes(OUT p_commande CURSOR, OUT p_articlecommande CURSOR);
+    PROCEDURE GetAllCommandes();
+
+    -- Procédure pour récupérer toutes les Article d'une commandes
+    PROCEDURE GetAllArticleCommandeOfCommande(p_id_commande INT);
 
 
 END CommandePackage;
@@ -74,7 +77,7 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage AS
     END UpdateCommande;
 
     -- Fonction pour récupérer les commandes d'un utilisateur
-    PROCEDURE PROCEDURE GetCommandes(p_id_user INT, OUT p_commande CURSOR, OUT p_articlecommande CURSOR) IS
+    PROCEDURE GetCommandes(p_id_user INT) IS
     BEGIN
         -- Sélectionner les commandes de l'utilisateur spécifié
         OPEN p_commande FOR
@@ -91,20 +94,27 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage AS
         
 
     END GetCommandes;
+    
 
-    PROCEDURE GetAllCommandes(OUT p_commande CURSOR, OUT p_articlecommande CURSOR) IS
+    PROCEDURE GetAllCommandes() IS
     BEGIN
         -- Sélectionner toutes les commandes
-        OPEN p_commande FOR
         SELECT ID, ID_user, date_commande, prix_total
         FROM Commande;
 
-        -- Sélectionner tous les articles de commande
-        OPEN p_articlecommande FOR
-        SELECT ID_commande, ID_article, taille, prix_unitaire, quantite
-        FROM CommandeArticle;
 
     END GetAllCommandes;
+
+    /**/
+    PROCEDURE GetAllArticleCommandeOfCommande(p_id_commande INT) IS
+    BEGIN
+
+        -- Sélectionner tous les articles de commande
+        SELECT ID_commande, ID_article, taille, prix_unitaire, quantite
+        FROM CommandeArticle
+        WHERE ID_commande=p_id_commande;
+
+    END GetAllArticleCommandeOfCommande;
 
 END CommandePackage;
 //
