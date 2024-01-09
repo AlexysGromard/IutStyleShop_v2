@@ -6,7 +6,5 @@ CREATE OR REPLACE  PROCEDURE DeleteAllPanier(
 BEGIN
     -- Supprimer tous les articles du panier
     DELETE FROM Panier WHERE ID_Utilisateur = p_iduser;
-END DeleteAllPanier;
-
-//
+END //
 DELIMITER ;

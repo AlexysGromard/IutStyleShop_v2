@@ -1,7 +1,7 @@
 DELIMITER //
 CREATE OR REPLACE PROCEDURE UpdateCodePromo(
     p_id INT,
-    p_texte VARCHAR2,
+    p_texte VARCHAR(255),
     p_promo TINYINT
 )
 BEGIN
@@ -9,6 +9,5 @@ BEGIN
     UPDATE CodePromo
     SET texte = p_texte, promo = p_promo
     WHERE id = p_id;
-END UpdateCodePromo;
-//
+END //
 DELIMITER ;
