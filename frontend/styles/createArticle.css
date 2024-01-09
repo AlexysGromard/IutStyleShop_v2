@@ -157,7 +157,7 @@ select{
 }
 
 #image-insert~label::before{
-    content:attr(data-img);
+    content:"";
     height:282px;
     width: 282px;
     
@@ -171,7 +171,7 @@ select{
     font-size: 20px;
     opacity: 0;
     border-radius: 10px; 
-    background: rgba(0, 0,0,.5);
+    background: rgba(0, 0,0,.3);
 }
 
 #image-insert~label.active:hover::before{
