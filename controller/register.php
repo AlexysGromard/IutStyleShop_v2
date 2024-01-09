@@ -100,8 +100,7 @@ class register {
             exit();
         }
 
-        // TODO : Le connecter et le rediriger vers la page client/admin
-        // TODO : Supprimer les données de la session
+        header("Location: /emailConfirmation");
     }
 }
 ?>

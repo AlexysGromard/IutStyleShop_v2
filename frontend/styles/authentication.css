@@ -193,6 +193,16 @@ form .action-box{
     gap: 15px;
 }
 
+/* Mobile */
+@media screen and (max-width: 768px){
+    #confirmation-form-input-box{
+        justify-content: space-between;
+    }
+    .confirmation-form-part{
+        gap: 5px;
+    }
+}
+
 #btn-resend-code{
     color: var(--red);
     font-size: var(--very-small);

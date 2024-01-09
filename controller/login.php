@@ -10,7 +10,7 @@ class login {
 
     function index(){
         require "frontend/authentication/login.php";
-
+        
         unset($_SESSION['errors']);
     }
 
