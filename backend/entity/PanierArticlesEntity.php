@@ -19,7 +19,7 @@ class PanierArticleEntity
 
     private int $id_article;
     private string $taille;
-    private int quantite;
+    private int $quantite;
 
     function __construct(int $id_article,
                          string $taille,

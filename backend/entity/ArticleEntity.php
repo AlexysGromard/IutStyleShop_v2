@@ -32,9 +32,6 @@ class ArticleEntity
     protected float $prix;
     protected int $promo;
     protected bool $disponible;
-    // quantite en stock 1 seul taille pour les asccessoires et xs, s, m, l, xl pour les vetements 
-    protected array $quantite;
-
     protected array $images;
 
 
@@ -50,7 +47,7 @@ class ArticleEntity
                                     int $promo,
                                     bool $disponible,
                                     array $images,
-                                    $type)
+                                    $type) : ArticleEntity
     {
         $newArticle = null;
         if ($type=="Accessoire"){

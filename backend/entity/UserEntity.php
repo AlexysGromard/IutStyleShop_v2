@@ -29,7 +29,6 @@ class UserEntity
     private int $id;
     private string $email;
     private string $telephone;
-    private string $password;
     private string $nom;
     private string $prenom;
     private string $genre;
@@ -43,7 +42,6 @@ class UserEntity
     public function __construct(int $id,
                                 string $email,
                                 string $telephone,
-                                string $password,
                                 string $nom,
                                 string $prenom,
                                 string $genre,
@@ -56,7 +54,6 @@ class UserEntity
         $this->id = $id;
         $this->setEmail($email);
         $this->setTelephone($telephone);
-        $this->setPassword($password);
         $this->setNom($nom);
         $this->setPrenom($prenom);
         $this->setGenre($genre);
@@ -96,13 +93,6 @@ class UserEntity
         return $this->telephone;
     }
 
-    /*
-    * @return string
-    */
-    public function getPassword(): string 
-    {
-        return $this->password;
-    }
 
     /*
     * @return string
@@ -187,14 +177,6 @@ class UserEntity
     public function setTelephone(string $telephone): void
     {
         $this->telephone = $telephone;
-    }
-
-        /*
-    * @param string $password
-    */
-    public function setPassword(string $password): void 
-    {
-        $this->password = $password;
     }
 
     /*
