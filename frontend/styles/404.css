@@ -1,0 +1,45 @@
+/*
+* Nom du fichier : 404.css
+* Description : Fichier de style pour la page 404
+*/
+
+/* === Main === */
+main{
+    height: 70vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.container{
+    padding: 0 15% 10% 0;
+}
+
+.container h1{
+    font-size: 5em;
+    color: var(--red);
+}
+
+.container p{
+    font-size: 2em;
+    color: var(--dark-grey);
+}
+
+/* Mobile */
+@media screen and (max-width: 750px){
+    main{
+        flex-direction: column;
+    }
+
+    .container{
+        padding: 0 10% 10% 0;
+    }
+
+    .container h1{
+        font-size: 2.5em;
+    }
+
+    .container p{
+        font-size: 1.2em;
+    }
+}
