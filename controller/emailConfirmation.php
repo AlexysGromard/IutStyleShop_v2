@@ -108,7 +108,12 @@ class emailConfirmation {
         }
 
         // TODO : Ajouter l'utilisateur dans la base de données
-        // TODO : Supprimer les données de la session
+        // Supprimer les données de la session
+        unset($_SESSION['civility']);
+        unset($_SESSION['lastname']);
+        unset($_SESSION['firstname']);
+        unset($_SESSION['email']);
+        unset($_SESSION['confirmationCode']);
         // TODO : Envoyer l'utilisateur vers la page de connexion
     }
 }
