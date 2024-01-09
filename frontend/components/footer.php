@@ -38,7 +38,6 @@
                 <img src="/frontend/assets/icons/mastercard.svg" alt="Mastercard logo">
                 <img src="/frontend/assets/icons/card.svg" alt="CB logo"> 
                 <img src="/frontend/assets/icons/bitcoin.png" alt="BTC logo"> 
-
             </div>
         </div>
     </div>
