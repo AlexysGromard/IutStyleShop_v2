@@ -77,7 +77,7 @@ CREATE OR REPLACE PACKAGE BODY CommandePackage AS
     END UpdateCommande;
 
     -- Fonction pour récupérer les commandes d'un utilisateur
-    PROCEDURE GetCommandes(p_id_user INT) IS
+    PROCEDURE PROCEDURE GetCommandes(p_id_user INT, OUT p_commande CURSOR, OUT p_articlecommande CURSOR) IS
     BEGIN
         -- Sélectionner les commandes de l'utilisateur spécifié
         OPEN p_commande FOR
