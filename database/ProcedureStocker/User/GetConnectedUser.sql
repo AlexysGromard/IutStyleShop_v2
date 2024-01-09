@@ -1,4 +1,4 @@
-// DELIMITER
+DELIMITER //
 
 -- Fonction pour récupérer les informations d'un utilisateur par son email et si le mot de passe est correct
     CREATE OR REPLACE FUNCTION GetConnectedUser() RETURN SYS_REFCURSOR

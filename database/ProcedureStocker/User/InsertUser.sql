@@ -1,20 +1,19 @@
 DELIMITER //
 -- Procédure pour insérer un nouvel utilisateur qui est un client
 CREATE OR REPLACE PROCEDURE InsertUserClient(
-        p_email VARCHAR2(128),
-        p_password VARCHAR2(64),
-        p_nom VARCHAR2(64),
-        p_prenom VARCHAR2(64),
-        p_genre VARCHAR2(16),
-        p_address VARCHAR2(256),
-        p_ville VARCHAR2(128),
+        p_email VARCHAR(128),
+        p_password VARCHAR(64),
+        p_nom VARCHAR(64),
+        p_prenom VARCHAR(64),
+        p_genre VARCHAR(16),
+        p_address VARCHAR(256),
+        p_ville VARCHAR(128),
         p_code_postal MEDIUMINT,
-        p_complement_adresse VARCHAR2(64)
+        p_complement_adresse VARCHAR(64)
     )
     BEGIN
         -- crypter le mot de passe avec BCRYPT
         crypter := BCRYPT(p_password); 
-
 
         -- Logique pour insérer un nouvel utilisateur dans la table User
         INSERT INTO User (email, password, nom, prenom, role, address, ville, code_postal, complement_adresse)
