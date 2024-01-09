@@ -69,7 +69,7 @@ done
 #Procedure Stockée
 echo -e ""
 echo -e "\e[35m Exécution des fichiers Procedure Stockée : "
-dossier="ProcedureStocker"
+dossier="ProcedureStocke"
 # ProcedureStocker/
 # ├── Article
 # ├── CodePromo
