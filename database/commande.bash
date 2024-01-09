@@ -22,27 +22,27 @@ sudo mysql --host=$host --user=$user --database="" --password=$password < "maria
 # Table
 echo ""
 echo "Exécution des fichiers Tables : "
-echo "* User"
+echo "\e[0m* User"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/User.sql"
 
-echo "* Article"
+echo "\e[0m* Article"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Article.sql"
-echo "* Image"
+echo "\e[0m* Image"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Image.sql"
-echo "* Accesoire"
+echo "\e[0m* Accesoire"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Accesoire.sql"
-echo "* Vetement"
+echo "\e[0m* Vetement"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Vetement.sql"
 
-echo "* Panier"
+echo "\e[0m* Panier"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Panier.sql"
 
-echo "* Commentaire"
+echo "\e[0m* Commentaire"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Commentaire.sql"
 
-echo "* Commande"
+echo "\e[0m* Commande"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/Commande.sql"
-echo "* ArticleCommande"
+echo "\e[0m* ArticleCommande"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/ArticleCommande.sql"
 
 # Trigger
