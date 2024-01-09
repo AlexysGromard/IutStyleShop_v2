@@ -72,13 +72,6 @@ class UserEntity
         $this->panier = $panier;
     }
 
-    public function acceptCookies()
-    {
-        $this->cookieAccepted = true;
-        // Stocker la class dans un cookie
-
-    }
-
     /*
     * Getters & Setters
     */
