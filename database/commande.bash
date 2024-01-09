@@ -6,8 +6,8 @@
 # USE your_database;
 # SHOW TABLES;
 
-password='password'
-user='admin'
+password=''
+user='root'
 host='localhost'
 database='DB_IutStyleShop'
 
