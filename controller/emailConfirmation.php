@@ -42,6 +42,9 @@ class emailConfirmation {
     }
 
     function sendCode() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $confirmationCode = $this->generateConfirmationCode();
         // Stockage dans la session
         $_SESSION['confirmationCode'] = $confirmationCode;

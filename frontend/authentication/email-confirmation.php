@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <span class="input-error-message <?php echo (isset($_SESSION['errors']["code"]) && $_SESSION['errors']["code"]) ? "active" : ""; ?>">Code invalide</span>
-                    <a id="btn-resend-code" href="#">Renvoyer le code</a>
+                    <a href="/emailConfirmation" id="btn-resend-code">Renvoyer le code</a>
                     <!-- Btn -->
                     <input class="button form-button" type="submit" value="Vérifier">
                 </form>

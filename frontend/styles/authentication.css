@@ -208,4 +208,7 @@ form .action-box{
     font-size: var(--very-small);
     text-decoration: none;
     align-self: end;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
