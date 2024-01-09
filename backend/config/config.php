@@ -7,4 +7,8 @@
         "type" => "type",
         "port" => 0000 
     );
+    const MAIL_CONFIG = array(
+        "email" => "iutstyleshop@gmail.com",
+        "password" => "guaf eoov nycx bfrz",
+    );
 ?>

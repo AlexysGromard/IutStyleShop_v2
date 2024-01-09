@@ -9,13 +9,13 @@
             <a class="small-size button important-text" id="button-rechercher" href="#">Rechercher</a>
         </label>
         <div>
-            <button class="navigation-link-header">
+            <a href="/login" class="navigation-link-header">
                 <div>
                     <span class="navigation-link-header-title">Connexion</span>
                     <span class="navigation-link-header-desc">Inscription</span>
                 </div>
                 <img alt="Image of user" src="/frontend/assets/images/user.svg">
-            </button>
+            </a>
             <a class="navigation-link-header" href="/card">
                 <div id="shopping-cart-text">
                     <span class="navigation-link-header-title">Panier</span>
