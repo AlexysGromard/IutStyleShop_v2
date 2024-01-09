@@ -44,7 +44,6 @@ function calculerCoefficientRessemblance($query, $product){
 
 
 function search($query){
-    echo "La recherche est : " . $query . "<br>";
     // Récupérer tous les articles
     $products = getProductNames();
 

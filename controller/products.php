@@ -23,6 +23,10 @@ class products{
 
         require "backend/search.php";
         $results = search($search);
+
+        // Rediriger vers la page des produits
+        // TODO : Indiquer dans la page les articles
+        require "frontend/all-products/index.php";
     }
 
 }
