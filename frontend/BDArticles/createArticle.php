@@ -12,7 +12,6 @@
 <body>
     <?php include '../components/header.php'; ?>
     <main>
-    <?php include "frontend/components/user-panel.php" ?>
     <form class="formCreateArticle" action="#" method="GET">
         <p>Article</p>
         <div>
