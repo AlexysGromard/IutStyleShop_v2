@@ -1,4 +1,4 @@
-// DELIMITER
+DELIMITER // 
 
 -- update role
     CREATE OR REPLACE PROCEDURE UpdateRole(

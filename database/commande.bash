@@ -6,14 +6,15 @@
 # USE your_database;
 # SHOW TABLES;
 
-password=''
-user='root'
+password='password'
+user='admin'
 host='localhost'
 database='DB_IutStyleShop'
 
 # Database
 echo ""
 echo "Exécution des fichiers Database : "
+echo "* DB_IutStyleShop"
 sudo mysql --host=$host --user=$user --database="" --password=$password < "mariadb/database.sql"
 
 
