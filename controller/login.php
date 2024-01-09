@@ -35,7 +35,6 @@ class login {
             $_SESSION['email'] = $email;
         }
 
-
         // Si l'un des champs est vide
         if (empty($email) || empty($password)) {
             if (empty($email)) {
@@ -49,6 +48,9 @@ class login {
             header("Location: /login");
             exit();
         }
+
+        // TODO : Vérifier qu'il est dans la base de données.
+        // TODO : Si oui, le connecter et le rediriger vers la page client/admin
     }
 
 }

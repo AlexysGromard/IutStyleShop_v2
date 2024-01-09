@@ -29,7 +29,7 @@
                     <!-- Adresse email -->
                     <div class="input-box">
                         <label class="input-label" for="email">Adresse mail</label>
-                        <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail" value="<?php echo (isset($_SESSION['email']) && $_SESSION['email']) ? $_SESSION['email'] : "";?>">
+                        <input required class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail" value="<?php echo (isset($_SESSION['email']) && $_SESSION['email']) ? $_SESSION['email'] : "";?>">
                         <span class="input-error-message <?php echo (isset($_SESSION['errors']["email"]) && $_SESSION['errors']["email"]) ? "active" : ""; ?>">Adresse mail invalide</span>
                     </div>
                     <!-- Mot de passe -->
@@ -38,7 +38,7 @@
                             <label class="input-label" for="password">Mot de passe</label>
                             <a class="link-to-password-recovery" href="/frontend/authentication/password-recovery.php">Mot de passe oublié ?</a>
                         </div>
-                        <input class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
+                        <input required class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
                         <span class="input-error-message <?php echo (isset($_SESSION['errors']["password"]) && $_SESSION['errors']["password"]) ? "active" : ""; ?>">Mot de passe invalide</span>
                     </div>
                     <!-- Btn -->
