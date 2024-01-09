@@ -110,7 +110,25 @@ class emailConfirmation {
             exit();
         }
 
-        // TODO : Ajouter l'utilisateur dans la base de données
+        // Création de l'utilisateur
+        $user = new \backend\entity\UserEntity();
+        $user->createIdentifiedUser(
+            0,
+            $_SESSION['email'],
+            $_SESSION['lastname'],
+            $_SESSION['firstname'],
+            $_SESSION['civility'],
+            "client",
+            "",
+            "",
+            "",
+            new \backend\entity\PanierEntity(
+                array(),
+                array(),
+                array()
+            )
+        );
+
         // Supprimer les données de la session
         unset($_SESSION['civility']);
         unset($_SESSION['lastname']);

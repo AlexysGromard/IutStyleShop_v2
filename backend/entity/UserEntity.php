@@ -32,7 +32,6 @@ class UserEntity
     // Utilisateur identifié‡
     private int $id;
     private string $email;
-    private string $password;
     private string $nom;
     private string $prenom;
     private string $genre;
@@ -59,11 +58,10 @@ class UserEntity
         echo "<script>showCookiesPopup()</script>";
     }
 
-    public function createIdentifiedUser(int $id, string $email, string $password, string $nom, string $prenom, string $genre,string $role,string $adresse, string $ville,string $complement_adresse,PanierEntity $panier)
+    public function createIdentifiedUser(int $id, string $email, string $nom, string $prenom, string $genre,string $role,string $adresse, string $ville,string $complement_adresse,PanierEntity $panier)
     {
         $this->id = $id;
         $this->setEmail($email);
-        $this->setPassword($password);
         $this->setNom($nom);
         $this->setPrenom($prenom);
         $this->setGenre($genre);
@@ -101,14 +99,6 @@ class UserEntity
     public function getEmail(): string
     {
         return $this->email;
-    }
-
-    /*
-    * @return string
-    */
-    public function getPassword(): string 
-    {
-        return $this->password;
     }
 
     /*
@@ -186,14 +176,6 @@ class UserEntity
     public function setEmail(string $email): void 
     {
         $this->email = $email;
-    }
-
-        /*
-    * @param string $password
-    */
-    public function setPassword(string $password): void 
-    {
-        $this->password = $password;
     }
 
     /*
