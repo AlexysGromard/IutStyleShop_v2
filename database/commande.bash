@@ -54,11 +54,39 @@ find "$dossier" -type f -name "*.sql" | while read -r fichier; do
 done
 
 # Package
+# echo ""
+# echo "Exécution des fichiers Package :"
+# dossier="Packages"
+# find "$dossier" -type f -name "*.sql" | while read -r fichier; do
+#     echo "* $fichier"
+#     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
+# done
+
+#Procedure Stockée
 echo ""
-echo "Exécution des fichiers Package :"
-dossier="Packages"
+echo "Exécution des fichiers Procedure Stockée :"
+dossier="ProcedureStocker"
+# ProcedureStocker/
+# ├── Article
+# ├── CodePromo
+# │   ├── DeleteCodePromo.sql
+# │   ├── GetAllCodePromo.sql
+# │   ├── GetCodePromo.sql
+# │   ├── InsertCodePromo.sql
+# │   └── UpdateCodePromo.sql
+# ├── Commande
+# ├── Commentaire
+# ├── Panier
+# │   ├── DeleteAllPanier.sql
+# │   ├── DeleteArticlePanier.sql
+# │   └── InsertPanier.sql
+# └── User
+
 find "$dossier" -type f -name "*.sql" | while read -r fichier; do
     echo "* $fichier"
     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
 done
+
+
+
 
