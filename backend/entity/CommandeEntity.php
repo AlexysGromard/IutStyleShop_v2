@@ -18,14 +18,13 @@ class ComandeEntity
     */
 
     private int $id;
-    private array $articlesComande; //ArticleComandeEntity
-    private string $date;
-    private string $statut;
-    private float $prix;
     /**
      * @var ArticleCommandeEntity[]
      */
-    private array $articlesCommandes;
+    private array $articlesCommandes; //ArticleComandeEntity
+    private string $date;
+    private string $statut;
+    private float $prix;
 
     public function __construct(int $id,
                                 array $articlesComande,

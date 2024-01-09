@@ -28,6 +28,7 @@ class UserEntity
     
     private int $id;
     private string $email;
+    private string $telephone;
     private string $password;
     private string $nom;
     private string $prenom;
@@ -38,12 +39,10 @@ class UserEntity
     private int $code_postal;
     private string $complement_adresse;
 
-    //
-    public PanierEntity $panier;
-
 
     public function __construct(int $id,
                                 string $email,
+                                string $telephone,
                                 string $password,
                                 string $nom,
                                 string $prenom,
@@ -51,11 +50,12 @@ class UserEntity
                                 string $role,
                                 string $adresse,
                                 string $ville,
-                                string $complement_adresse,
-                                PanierEntity $panier)
+                                string $complement_adresse
+                                )
     {
         $this->id = $id;
         $this->setEmail($email);
+        $this->setTelephone($telephone);
         $this->setPassword($password);
         $this->setNom($nom);
         $this->setPrenom($prenom);
@@ -64,11 +64,6 @@ class UserEntity
         $this->setAdresse($adresse);
         $this->setVille($ville);
         $this->setComplementAdresse($complement_adresse);
-        $this->panier = $panier;
-
-
-
-
     }
 
     /*
@@ -91,6 +86,14 @@ class UserEntity
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    /*
+    * @return string
+    */
+    public function getTelephone(): string
+    {
+        return $this->telephone;
     }
 
     /*
@@ -176,6 +179,14 @@ class UserEntity
     public function setEmail(string $email): void 
     {
         $this->email = $email;
+    }
+
+    /*
+    * @param string $telephone
+    */
+    public function setTelephone(string $telephone): void
+    {
+        $this->telephone = $telephone;
     }
 
         /*

@@ -49,15 +49,16 @@ class ArticleEntity
                                     float $prix,
                                     int $promo,
                                     bool $disponible,
-                                    $quantite,
                                     array $images,
                                     $type)
     {
         $newArticle = null;
         if ($type=="Accessoire"){
+            
             $newArticle = new AccessoireEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
         }elseif ($type=="Accessoire"){
-            $newArticle = new AccessoireVetement($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
+
+            $newArticle = new VetementEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
         }
 
         return $newArticle;
