@@ -7,7 +7,7 @@
         <div>
             <label for="civility-woman" class="radio_button_space">
                 <?php
-                    $input = '<input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility" ';
+                    $input = '<input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
                     if ($personne->genre=='F' ) {
                         $input.= 'checked ';
                     }
@@ -19,19 +19,19 @@
             </label>
             <label for="civility-man" class="radio_button_space">
                 <?php
-                $input = '<input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility" ';
-                if ($personne->genre=='M' ) {
-                    $input.= 'checked ';
-                }
-                $input.= '/> ';
-                echo $input;
+                    $input = '<input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
+                    if ($personne->genre=='M' ) {
+                        $input.= 'checked ';
+                    }
+                    $input.= '/> ';
+                    echo $input;
 
                 ?>
                 <span class="Black_police_40"  >Homme</span>
             </label>
             <label for="civility-none" class="radio_button_space">
                 <?php
-                    $input = '<input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" ';
+                    $input = '<input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
                     if ($personne->genre!='M' && $personne->genre!='F' ) {
                         $input.= 'checked ';
                     }
@@ -47,17 +47,17 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="last-name">Nom</label>
-                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" value=<?= $personne->nom; ?>>
+                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval=<?= $personne->nom; ?> oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="first-name">Prénom</label>
-                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" value=<?= $personne->prenom; ?>>
+                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" initval=<?= $personne->prenom; ?> oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
             </div>
         </div>
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="mail">Adresse mail</label>
-                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" value=<?= $personne->mail; ?>>
+                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" initval=<?= $personne->mail; ?> oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="phone">Numéro de téléphone</label>
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
+    <button id="button-civilite" type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
 </form>
 
 <!-- modification password -->
@@ -82,6 +82,6 @@
             <input class="sidebar" type="password" placeholder="**************" id="newpasswords" name="newpasswords" minlength="8" required>
         </div>
     </div>
-    <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
+    <button type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
 
 </form>

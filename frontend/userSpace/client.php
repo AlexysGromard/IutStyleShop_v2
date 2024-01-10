@@ -47,6 +47,6 @@
     <?php include 'frontend/components/footer.php'; ?>
 
 </body>
-<script src="/frontend/scripts/commands.js"></script>
+<script src="/frontend/scripts/clientSpace.js"></script>
 
 </html>
