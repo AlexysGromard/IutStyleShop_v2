@@ -46,7 +46,7 @@ class DAO{
         if (isset($params[3])){
             call_user_func([$this->dao, $params[1]]);
         } else {
-            $arguments[] = $params[3]
+            $arguments[] = $params[3];
             //call_user_func([$this->dao, $params[1]]);
         }
 
