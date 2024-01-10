@@ -65,6 +65,29 @@ class UserEntity
         $this->setAdresse($adresse);
         $this->setVille($ville);
         $this->setComplementAdresse($complement_adresse);
+        // Si l'utilisateur n'a pas de cookie, ouvrir pop-up de cookie
+        $this->cookieAccepted = isset($_COOKIE['cookie']) ? $_COOKIE['cookie'] : null;
+        if ($this->cookieAccepted == null) {
+            $this->askForCookies();
+        }
+        $this->saveUserSession();
+    }
+
+    /*
+    * Sauvegarder l'utilisateur dans la session
+    */
+    public function saveUserSession()
+    {
+        // Si il n'y a pas de session, en créer une
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $_SESSION['user'] = $this;
+    }
+
+    public function askForCookies()
+    {
+        echo "<script>showCookiesPopup()</script>";
     }
 
     /*
