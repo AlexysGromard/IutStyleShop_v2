@@ -3,7 +3,6 @@ namespace controller;
 
 require_once 'backend/config/config.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/PHPMailer.php';
-require_once 'backend/library/PHPMailer-6.9.1/src/SMTP.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -20,13 +19,13 @@ class emailConfirmation {
         session_start();
 
         if (isset($_SESSION['email'])) {
+            unset($_SESSION['errors']);
             session_write_close();
+
             require "frontend/authentication/email-confirmation.php";
 
             // Send code
             $this->sendCode();
-
-            unset($_SESSION['errors']);
         } else {
             header("Location: /register");
             exit();
