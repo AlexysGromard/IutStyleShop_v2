@@ -4,9 +4,13 @@ namespace controller;
 
 class DAO{
 
-    private \Backend\DAO\DAOInterface $dao;
+class DAO{
 
+    private \backend\DAO\DAOInterface $dao;
 
+    function index(){
+        require "frontend/DAO/DBArticle.php";
+    }
 
     function index($className, $methodName, $params = array()) {
         // Créez une instance de la classe DAO
