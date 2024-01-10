@@ -1,0 +1,205 @@
+
+main{
+    min-height: 80vh;
+    padding-top: 39px;
+    padding-left: 77px;
+}
+.formCreateArticle{
+    border-radius: 20px; 
+    background-color: #fff;
+    padding: 24px;
+    margin-right: 77px;
+    width: fit-content;
+}
+.formCreateArticle>p:first-child{
+    color: #000;
+    /* Semi16 */
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal; 
+    margin-bottom: 21px;
+}
+
+.formCreateArticle>div{
+    display: flex;
+    flex-direction: row;
+    gap:54px;
+    row-gap: 54px;
+}
+.formCreateArticle>div>div{
+    min-width: 573px;
+    padding-bottom: 20px;
+    
+}
+
+.field-name{
+    padding-bottom:7px ;
+}
+.price-section{
+    display: flex;
+    flex-direction: row;
+    gap:13px;
+}
+.price-section>div{
+    width: 100%;
+}
+.vertical-input{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+input[type='text'],input[type='mail'],input[type='phone'],input[type='number'],textarea{
+    font-family: 'Roboto';
+    display: flex;
+    font-size: var(--very-small);
+    line-height: 14.06px;
+    font-weight: 400;
+    padding: 11px 20px 11px;
+
+    width: 100%;
+
+    border: none;
+    background: none;
+    outline:  none;
+    border-radius:18px;
+    background-color: #F1F3F4;
+}
+textarea{
+    resize: none;
+    height: 90%;
+
+}
+input[type="text"]::placeholder {
+             
+    top:0;
+}
+
+select{
+    display: flex;
+    padding: 11px 20px 11px;
+    border-radius:18px;
+    border:none;
+    outline: none;
+    width: 100%;
+    background-color: #F1F3F4;
+}
+
+.pictures { 
+    grid-area: pictures; 
+    display: grid;
+    grid-template-columns: 133px 133px 133px;
+    column-gap: 16px;
+    row-gap: 16px;
+}
+
+.insertPicture { grid-area: insertPicture; }
+.stock { grid-area: stock; }
+.stock> table+input{
+    margin:auto 24px 0 auto;
+}
+  
+
+.container div input[type="text"]{
+    width: 100%
+}
+
+.description>input[type="text"]{
+    height: 90%;
+}
+
+.radio-part{
+    display: flex;
+    flex-direction: row;
+}
+.radio-part>*{
+    margin-right: 15px;
+}
+.radio-part input+label{
+    cursor: pointer;
+}
+  
+
+.pictures>div,.pictures>img{
+    width: 133px;
+    height: 133px; 
+
+    border-radius: 10px;
+    background: #F1F3F4;
+}
+
+/*Insert Image part */
+
+#image-insert{
+    display: none;
+}
+
+#image-insert~label{
+    color:#60636880;
+    background-color: #F1F3F4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:282px;
+    width: 282px;
+    cursor: pointer;
+    border-radius: 10px; 
+    /* Text font */
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+#image-insert~label::before{
+    content:"";
+    height:282px;
+    width: 282px;
+    
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    color:#ffffff;
+    font-weight: 500;
+    font-size: 20px;
+    opacity: 0;
+    border-radius: 10px; 
+    background: rgba(0, 0,0,.3);
+}
+
+#image-insert~label.active:hover::before{
+    opacity: 1;
+}
+
+
+/*Tab from the stock part*/
+.stock > table {
+  width: 521px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 20px;
+
+
+}
+.stock> table th {
+    background: #0A0908;
+    color:white;
+    height: 39px; 
+}
+
+.stock>table td{
+    background: #F8F8F8; 
+    text-align: center; 
+    vertical-align: middle;
+    height: 39px; 
+
+
+
+}

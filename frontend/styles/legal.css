@@ -1,0 +1,39 @@
+/*
+* Nom du fichier : legal.css
+* Description : Fichier de style pour les pages légales
+*/
+
+/* === Main === */
+#legal-main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 925px;
+    width: 100%;
+    padding: 20px;
+    margin: 100px auto;
+}
+
+.legal-part{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.legal-part h2{
+    font-size: var(--big);
+    color: var(--black);
+}
+
+.legal-part p{
+    font-size: var(--small);
+    color: var(--dark-grey);
+}
+
+/* Mobile */
+@media screen and (max-width: 750px){
+    #legal-main{
+        margin: 20px auto;
+    }
+}

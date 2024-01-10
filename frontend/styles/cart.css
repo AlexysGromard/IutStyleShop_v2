@@ -36,20 +36,6 @@
     grid-template-columns: 64% 14% 17% 1fr;
 }
 
-.payment-size{
-    max-width: 381px;
-}
-
-.payment{
-    background-color: white;
-    padding: 24px 30px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    width: 100%;
-    height: max-content;
-}
-
 .line{
     height: 1px;
     width: 100%;
@@ -85,6 +71,16 @@
     width: 100%;
     border-radius:18px;
     background-color: #F1F3F4;
+}
+.boite-code-promo form{
+    display: flex;
+    width: 100%;
+}
+
+.boite-code-promo form button{
+    max-width: 103px;
+    height: 100%;
+    color: var(--white);
 }
 
 .code-promo{
