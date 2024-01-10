@@ -1,40 +1,41 @@
+DELIMITER //
 CREATE OR REPLACE PACKAGE UserPackage AS
 
     -- Procédure pour insérer un nouvel utilisateur qui est un client
     PROCEDURE InsertUserClient(
-        p_email VARCHAR2,
-        p_password VARCHAR2,
-        p_nom VARCHAR2,
-        p_prenom VARCHAR2,
-        p_genre VARCHAR2,
-        p_address VARCHAR2,
-        p_ville VARCHAR2,
+        p_email VARCHAR,
+        p_password VARCHAR,
+        p_nom VARCHAR,
+        p_prenom VARCHAR,
+        p_genre VARCHAR,
+        p_address VARCHAR,
+        p_ville VARCHAR,
         p_code_postal MEDIUMINT,
-        p_complement_adresse VARCHAR2
+        p_complement_adresse VARCHAR
     );
 
     -- Procédure pour mettre à jour les informations d'un utilisateur
     PROCEDURE UpdateUser(
-        p_email VARCHAR2,
-        p_nom VARCHAR2,
-        p_prenom VARCHAR2,
-        p_genre VARCHAR2,
-        p_address VARCHAR2,
-        p_ville VARCHAR2,
+        p_email VARCHAR,
+        p_nom VARCHAR,
+        p_prenom VARCHAR,
+        p_genre VARCHAR,
+        p_address VARCHAR,
+        p_ville VARCHAR,
         p_code_postal MEDIUMINT,
-        p_complement_adresse VARCHAR2
+        p_complement_adresse VARCHAR
     );
 
     -- Update password
     PROCEDURE UpdatePassword(
         p_id INT,
-        p_password VARCHAR2
+        p_password VARCHAR
     );
 
     -- update role
     PROCEDURE UpdateRole(
         p_id INT,
-        p_role VARCHAR2
+        p_role VARCHAR
     );
 
     -- Procédure pour supprimer un utilisateur
@@ -45,7 +46,7 @@ CREATE OR REPLACE PACKAGE UserPackage AS
 
     FUNCTION GetUserInfoAll() RETURN SYS_REFCURSOR;
 
-    FUNCTION GetUserId(p_email VARCHAR2) RETURN INT;
+    FUNCTION GetUserId(p_email VARCHAR) RETURN INT;
     
     -- Fonction pour récupérer les informations d'un utilisateur par son email et si le mot de passe est correct
     FUNCTION GetConnectedUser() RETURN SYS_REFCURSOR;
@@ -54,21 +55,21 @@ CREATE OR REPLACE PACKAGE UserPackage AS
 
 
 END UserPackage;
-
+//
 
 CREATE OR REPLACE PACKAGE BODY UserPackage AS
 
     -- Procédure pour insérer un nouvel utilisateur qui est un client
     PROCEDURE InsertUserClient(
-        p_email VARCHAR2,
-        p_password VARCHAR2,
-        p_nom VARCHAR2,
-        p_prenom VARCHAR2,
-        p_genre VARCHAR2,
-        p_address VARCHAR2,
-        p_ville VARCHAR2,
+        p_email VARCHAR,
+        p_password VARCHAR,
+        p_nom VARCHAR,
+        p_prenom VARCHAR,
+        p_genre VARCHAR,
+        p_address VARCHAR,
+        p_ville VARCHAR,
         p_code_postal MEDIUMINT,
-        p_complement_adresse VARCHAR2
+        p_complement_adresse VARCHAR
     )
     BEGIN
         -- crypter le mot de passe avec BCRYPT
@@ -83,15 +84,15 @@ CREATE OR REPLACE PACKAGE BODY UserPackage AS
     -- Procédure pour mettre à jour les informations d'un utilisateur
     PROCEDURE UpdateUser(
         p_id INT,
-        p_email VARCHAR2,
-        p_password VARCHAR2,
-        p_nom VARCHAR2,
-        p_prenom VARCHAR2,
-        p_genre VARCHAR2,
-        p_address VARCHAR2,
-        p_ville VARCHAR2,
+        p_email VARCHAR,
+        p_password VARCHAR,
+        p_nom VARCHAR,
+        p_prenom VARCHAR,
+        p_genre VARCHAR,
+        p_address VARCHAR,
+        p_ville VARCHAR,
         p_code_postal MEDIUMINT,
-        p_complement_adresse VARCHAR2
+        p_complement_adresse VARCHAR
     )
     BEGIN
         -- Logique pour mettre à jour les informations d'un utilisateur dans la table User
@@ -105,7 +106,7 @@ CREATE OR REPLACE PACKAGE BODY UserPackage AS
     -- Update password
     PROCEDURE UpdatePassword(
         p_id INT,
-        p_password VARCHAR2
+        p_password VARCHAR
     )
     BEGIN
         -- Logique pour mettre à jour le mot de passe d'un utilisateur dans la table User
@@ -117,7 +118,7 @@ CREATE OR REPLACE PACKAGE BODY UserPackage AS
     -- update role
     PROCEDURE UpdateRole(
         p_id INT,
-        p_role VARCHAR2
+        p_role VARCHAR
     )
     BEGIN
         -- Logique pour mettre à jour le role d'un utilisateur dans la table User
@@ -150,7 +151,7 @@ CREATE OR REPLACE PACKAGE BODY UserPackage AS
         RETURN v_cursor;
     END GetUserInfo;
 
-    FUNCTION GetUserId(p_email VARCHAR2) RETURN INT
+    FUNCTION GetUserId(p_email VARCHAR) RETURN INT
     BEGIN
         -- Logique pour récupérer l'ID d'un utilisateur avec l'email spécifié
         DECLARE v_id INT;
@@ -168,4 +169,5 @@ CREATE OR REPLACE PACKAGE BODY UserPackage AS
     END GetConnectedUser;
 
 END UserPackage;
-
+//
+DELIMITER;

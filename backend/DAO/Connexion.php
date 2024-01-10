@@ -39,12 +39,15 @@ class SPDO
 
 
 /**
- * Class Connection
+ * Class Connexion
  * @package backend\DAO
- * Connection à la base de données
+ * Connexion à la base de données
  */
-class Connection
+class Connexion
 {
+    # attribut de connexion
+    private \PDO $pdo;
+
     public function __construct()
     {
         try{

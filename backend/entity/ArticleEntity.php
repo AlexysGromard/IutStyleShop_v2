@@ -32,9 +32,6 @@ class ArticleEntity
     protected float $prix;
     protected int $promo;
     protected bool $disponible;
-    // quantite en stock 1 seul taille pour les asccessoires et xs, s, m, l, xl pour les vetements 
-    protected array $quantite;
-
     protected array $images;
 
 
@@ -49,18 +46,19 @@ class ArticleEntity
                                     float $prix,
                                     int $promo,
                                     bool $disponible,
-                                    $quantite,
                                     array $images,
-                                    $type)
+                                    $type) : ArticleEntity
     {
         $newArticle = null;
         if ($type=="Accessoire"){
+            
             $newArticle = new AccessoireEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
         }elseif ($type=="Accessoire"){
-            $newArticle = new AccessoireVetement($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
+
+            $newArticle = new VetementEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
         }
 
-        return $newArticle
+        return $newArticle;
     }
 
 

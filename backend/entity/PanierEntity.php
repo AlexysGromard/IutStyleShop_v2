@@ -5,24 +5,53 @@ namespace backend\entity;
 /*  @Entity @Table(name="commande") */
 class PanierEntity
 {
-    
-    private array $articles;
-    private array $quantites;
-    private array $taille;
+    /* 
+    *@var ArticleCommandeEntity[]
+    */
+    private array $panierArticles; //ArticleComandeEntity
 
-    function __construct(array $articles, array $quantites, array $taille)
+    public function __construct(array $panierArticles)
     {
+        $this->setPanierArticles($panierArticles);
+    }
+    
+    /* Getters & Setters */
 
-        if (count($articles) != count($quantites) || count($quantites) != count($taille)){
-            throw new \Exception('erreur');
-        }
-
-        $this->articles = $articles;
-        $this->quantites = $quantites;
-        $this->taille = $taille;
+    /**
+     * @return ArticleCommandeEntity[]
+     */
+    public function getPanierArticles(): array
+    {
+        return $this->panierArticles;
     }
 
-    
+    /**
+     * @param ArticleCommandeEntity[] $panierArticles
+     */
+    public function setPanierArticles(array $panierArticles): void
+    {
+        $this->panierArticles = $panierArticles;
+    }
+
+    /**
+     * @param ArticleCommandeEntity $panierArticle
+     */
+    public function addPanierArticle(ArticleCommandeEntity $panierArticle): void
+    {
+        $this->panierArticles[] = $panierArticle;
+    }
+    /**
+     * @param ArticleCommandeEntity $panierArticle
+     */
+    public function removePanierArticle(ArticleCommandeEntity $panierArticle): void
+    {
+        $index = array_search($panierArticle, $this->panierArticles);
+        if ($index !== false) {
+            unset($this->panierArticles[$index]);
+        }
+    }
+
+   
     
 }
 

@@ -23,7 +23,7 @@
                 </div>
                 <!-- Btn 'All products' -->
                 <select title="sort-order" id="sort-order">
-                    <option value="pertinance">Pertinance</option>
+                    <option value="pertinance">Pertinence</option>
                     <option value="ascending-price">Prix croissant</option>
                     <option value="descending-price">Prix décroissant</option>
                 </select>
@@ -35,7 +35,7 @@
         </div>
         <!-- Section filters -->
         <section id="filter-section">
-            <span id="filter-section-title">Filter votre recherche</span>
+            <span id="filter-section-title">Filtrer votre recherche</span>
             <!-- Price Slider -->
             <div class="filter-container" id="price-slider">
                 <span class="filter-title">prix</span>

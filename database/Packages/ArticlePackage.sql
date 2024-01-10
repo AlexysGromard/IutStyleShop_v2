@@ -1,3 +1,4 @@
+DELIMITER //
 -- Déclaration du package
 
 CREATE PACKAGE ArticlePackage AS
@@ -49,7 +50,7 @@ CREATE PACKAGE ArticlePackage AS
     );
 
 END;
-
+//
 
 
 
@@ -148,6 +149,6 @@ CREATE PACKAGE BODY ArticlePackage AS
     END;
 
 END;
-
-
+//
+DELIMITER ;
 

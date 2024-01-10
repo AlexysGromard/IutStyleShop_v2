@@ -3,7 +3,7 @@
 namespace backend\entity;
 
 /* @Entity @Table(name="article") */
-class AccessoireVetement extends ArticleEntity
+class VetementEntity extends ArticleEntity
 {
     /*
     Table SQL Article
@@ -46,7 +46,7 @@ class AccessoireVetement extends ArticleEntity
                                     array $images)
     {
         if (count($quantite) != 5){
-            throw new \Exception('erreur');
+            throw new \Exception('erreur VetementEntity.php : quantite doit etre un tableau de 5 entiers');
         }
         
         $this->id = $id;

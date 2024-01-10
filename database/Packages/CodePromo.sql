@@ -1,3 +1,4 @@
+DELIMITER //
 CREATE OR REPLACE PACKAGE CodePromoPackage AS
 
     -- Procédure pour insérer un nouveau code promo
@@ -21,8 +22,7 @@ CREATE OR REPLACE PACKAGE CodePromoPackage AS
 
     FUNCTION GetCodePromoInfoAll() RETURN SYS_REFCURSOR;
 
-END CodePromoPackage;
-
+END //
 
 CREATE OR REPLACE PACKAGE BODY CodePromoPackage AS
 
@@ -75,4 +75,6 @@ CREATE OR REPLACE PACKAGE BODY CodePromoPackage AS
         RETURN v_cursor;
     END GetCodePromoInfo;
 
-END CodePromoPackage;
+END //
+
+DELIMITER;
