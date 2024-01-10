@@ -3,12 +3,12 @@
 namespace backend\entity;
 
 /*
-* @Entity @Table(name="commantaire")
+* @Entity @Table(name="commentaire")
 */
-class CommantaireEntity
+class CommentaireEntity
 {
     /*
-    Table SQL Commantaire
+    Table SQL Commentaire
     
 	ID_User INT PRIMARY KEY NOT NULL, 
 	ID_Article INT PRIMARY KEY NOT NULL,
