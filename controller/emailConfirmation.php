@@ -7,7 +7,6 @@ require_once 'backend/library/PHPMailer-6.9.1/src/SMTP.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
@@ -45,9 +44,14 @@ class emailConfirmation {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $confirmationCode = $this->generateConfirmationCode();
-        // Stockage dans la session
-        $_SESSION['confirmationCode'] = $confirmationCode;
+        try {
+            $confirmationCode = $this->generateConfirmationCode();
+            // Stockage dans la session
+            $_SESSION['confirmationCode'] = $confirmationCode;
+        } catch (Exception $e) {
+            echo "<script>showErrorPopup('Erreur à la génération du code','Une erreur est survenue lors de la génération du code.')</script>";
+            return;
+        }
 
         // Send email
         $to = $_SESSION['email'];
