@@ -99,7 +99,7 @@ function addProductBox(){
     // Récupérer la div qui contient tous les produits
     product = '<div id="" class="boite_article"> <img class="image" src="' +retour.repeat(count) +'assets/articles/claquettes/claquettes.png" alt="Claquettes"><div class="bas_article"><div class="medium-important-text product-btn">Lorem ipsum</div><div class="stars"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Jaune" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-preferee.svg"><img alt="Etoile Gris" src="'+retour.repeat(count)+'assets/icons/marquer-comme-star-pas-preferee.svg"></div><div class="availablity"><div class="small-text">Disponibilité :</div><div class="small-text green">En stock</div></div><div class="price-btn"><div class="price">0,00€</div><a class="button medium-size basic-text btn-add-card">Ajouter au panier</a></div></div></div>'
     // Lire le fichier JSON
-    var requestURL = retour+'products/products.json';//////////////////////////retour.repeat(count)+'products/products.json';
+    var requestURL = retour.repeat(count)+'products/products.json';
     // Supprimer tous les produits de la page
     document.getElementById('products-section').innerHTML = '';
     // Récypérer les articles qui correspondent aux filtres
@@ -153,7 +153,55 @@ function addProductBox(){
     }
 }
 
+// Récupérer 2 inputs de type range
+const fromSlider = document.getElementById('fromSlider');
+const toSlider = document.getElementById('toSlider');
+// Récupérer les 2 span qui affichent les valeurs
+const fromValue = document.getElementById('fromValue');
+const toValue = document.getElementById('toValue');
+
+// Si les valeurs des inputs changent
+fromSlider.oninput = function() {
+    putGoodValues();
+    // Afficher la valeur de l'input dans le span
+    fromValue.innerHTML = fromSlider.value;
+    toValue.innerHTML = toSlider.value;
 }
+toSlider.oninput = function() {
+    putGoodValues();
+    toValue.innerHTML = toSlider.value;
+    fromValue.innerHTML = fromSlider.value;
+}
+
+// FILTER IN SMARTPHONE
+// Si #filter-section-title:after est cliqué
+priceSlider = document.getElementById('price-slider');
+if (document.getElementById('product-type')){
+    typeCheckbox = document.getElementById('type-checkbox'); 
+}
+colorCheckbox = document.getElementById('color-checkbox');
+
+// Quand on clique sur filter-section-title:after
+filterSectionTitle = document.getElementById('filter-section-title');
+
+filterSectionTitle.addEventListener('click', function(){
+    // Mettre les ID à display: none
+    if(priceSlider.style.display == 'none'){
+        priceSlider.style.display = 'block';
+        if (document.getElementById('product-type')){
+            typeCheckbox.style.display = 'block';
+        }
+        colorCheckbox.style.display = 'block';
+    } else {
+        priceSlider.style.display = 'none';
+        if (document.getElementById('product-type')){
+            typeCheckbox.style.display = 'none';
+        }
+        colorCheckbox.style.display = 'none';
+    }
+});
+
+} // Fin de la condition de produit
 
 // Récupérer la position de la page dans arborecence
 var path = window.location.pathname;
@@ -164,10 +212,24 @@ if(path.startsWith('/frontend/')){
     // Retirer 1 au nombre de /
     count = count - 2;
 }
-var retour = "/frontend/"; //'../';
+var retour = '../';
 
 
 
+// Si un des sliders est déplacé
+function putGoodValues(){
+    var fromValue = fromSlider.value;
+    var toValue = toSlider.value;
+    // Si le slider de gauche est plus grand que le slider de droite
+    if(fromValue > toValue && fromValue != 0 && toValue != 100){
+        // Mettre la valeur du slider de gauche dans le slider de droite
+        toSlider.value = fromValue;
+    }
+    else if(toValue < fromValue && toValue != 100 && fromValue != 0){
+        // Mettre la valeur du slider de droite dans le slider de gauche
+        fromSlider.value = toValue;
+    }
+}
 
 
 
@@ -238,7 +300,7 @@ ajouterArticle = function(){
 if(pageName == "Panier"){
     drawPricePanier();
     drawNbArticles();
-    article = '<div class="article_rectangle big-size"><div class="image_article_panier small-size"></div><div class="informations-article"><div class="dispo_rect_article"><div class="medium-important-text">Lorem ipsum dolor sit amet</div><div class="availablity"><div class="small-text">Disponibilité :</div><div class="small-text green">En stock</div></div><div class="small-text">Taille : S</div></div><div><select class="quantity-size clickable"><option>1</option><option>2</option><option>3</option></select></div><div class="price2">25,99€</div><div><img src="/frontend/assets/icons/cross.svg" class="cross clickable"></div></div></div>'
+    article = '<div class="article_rectangle big-size"><div class="image_article_panier small-size"></div><div class="informations-article"><div class="dispo_rect_article"><div class="medium-important-text">Lorem ipsum dolor sit amet</div><div class="availablity"><div class="small-text">Disponibilité :</div><div class="small-text green">En stock</div></div><div class="small-text">Taille : S</div></div><div><select class="quantity-size clickable"><option>1</option><option>2</option><option>3</option></select></div><div class="price2">25,99€</div><div><img src="../assets/icons/cross.svg" class="cross clickable"></div></div></div>'
     // Lire localStorage et mettre dans un tableau
     shoopingCard = [];
     for(var i = 0; i < localStorage.length; i++){
@@ -256,7 +318,7 @@ if(pageName == "Panier"){
             pushArticle = pushArticle.replace('<div class="image_article_panier small-size"></div>', ("<img class='image_article_panier small-size' src='"+ retour.repeat(count)+"products/" + shoopingCard[i].nomDeDossier + "/" + shoopingCard[i].image +"'/>") );
             pushArticle = pushArticle.replace('Lorem ipsum dolor sit amet', shoopingCard[i].nom);
             pushArticle = pushArticle.replace('25,99€', shoopingCard[i].prix);
-            pushArticle = pushArticle.replace('/frontend/assets/icons/cross.svg', retour.repeat(count)+'assets/icons/cross.svg');
+            pushArticle = pushArticle.replace('../assets/icons/cross.svg', retour.repeat(count)+'assets/icons/cross.svg');
             // Quantité = à la quantité de l'article
             // Si la quantité > 3, rajouter 3 options à la fin de la balise <select>
             if (shoopingCard[i].quantite > 3){
@@ -265,9 +327,9 @@ if(pageName == "Panier"){
                 }
             }                
             pushArticle = pushArticle.replace('<option>'+ shoopingCard[i].quantite +'</option>', '<option selected>'+ shoopingCard[i].quantite +'</option>');
-            pushArticle = pushArticle.replace('/frontend/assets/images/produits/1/1.jpg', shoopingCard[i].image);
-            // Ajouter l'id du nom de dossier à l'élément <img src="/frontend/assets/icons/cross.svg" class="cross clickable">
-            pushArticle = pushArticle.replace('<img src="/frontend/assets/icons/cross.svg" class="cross clickable">', '<img src="/frontend/assets/icons/cross.svg" class="cross clickable" id="'+ shoopingCard[i].nomDeDossier +'">');
+            pushArticle = pushArticle.replace('../assets/images/produits/1/1.jpg', shoopingCard[i].image);
+            // Ajouter l'id du nom de dossier à l'élément <img src="../assets/icons/cross.svg" class="cross clickable">
+            pushArticle = pushArticle.replace('<img src="../assets/icons/cross.svg" class="cross clickable">', '<img src="../assets/icons/cross.svg" class="cross clickable" id="'+ shoopingCard[i].nomDeDossier +'">');
             // Ajouter l'article au panier
             document.getElementById('all-articles').innerHTML += pushArticle;
         }
@@ -335,27 +397,27 @@ function drawNbArticles(){
     nombreArticles.innerHTML = nbArticles + " articles";
 }
 
-// // PAGE PRODUIT
-// function ajouterClickableSurProduit(){
-//     var productBtn = document.getElementsByClassName('product-btn');
-//     var productImage = document.getElementsByClassName('image');
+// PAGE PRODUIT
+function ajouterClickableSurProduit(){
+    var productBtn = document.getElementsByClassName('product-btn');
+    var productImage = document.getElementsByClassName('image');
 
-//     for(var i = 0; i < productBtn.length; i++){
-//         // Ajouter un event listener sur les titres des produits
-//         productBtn[i].addEventListener('click', function(){
-//             afficherPageProduit(this.parentElement.parentElement.id)
-//         });
-//         productImage[i].addEventListener('click', function(){
-//             afficherPageProduit(this.parentElement.id)
-//         });
-//     }
-// }
+    for(var i = 0; i < productBtn.length; i++){
+        // Ajouter un event listener sur les titres des produits
+        productBtn[i].addEventListener('click', function(){
+            afficherPageProduit(this.parentElement.parentElement.id)
+        });
+        productImage[i].addEventListener('click', function(){
+            afficherPageProduit(this.parentElement.id)
+        });
+    }
+}
 
 function afficherPageProduit(dos){  
     // Cette fonction va récupérer les infos du produit et les afficher sur la page produit
     // Les infos sont dans le JSON
     // Récupérer le JSON
-    var requestURL = retour+'products/products.json';///////////////////////retour.repeat(count)+'products/products.json';
+    var requestURL = retour.repeat(count)+'products/products.json';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
@@ -405,7 +467,7 @@ if (pageName == 'Article'){
     var activeImage = document.getElementById('active-image');
     // Aller chercher l'image dans le dossier
     activeImage.src = retour.repeat(count)+'/products/'+ product.nomDeDossier +'/'+ product.images[0];
-    // Mettre les images dans #product-images :                     <button class="product-images"><img src="/frontend/assets/articles/claquettes/claquettes.png" alt="Article2"></button>
+    // Mettre les images dans #product-images :                     <button class="product-images"><img src="../assets/articles/claquettes/claquettes.png" alt="Article2"></button>
     var productImages = document.getElementById('product-images');
     for(var i = 0; i < product.images.length; i++){
         var pushImage = '<button class="product-images"><img src="'+ retour.repeat(count)+'/products/'+ product.nomDeDossier +'/'+ product.images[i] +'" alt="Article2"></button>';

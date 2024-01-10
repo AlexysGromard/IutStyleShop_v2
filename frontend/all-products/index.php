@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous les produits - IutStyleShop</title>
-    <link rel="stylesheet" href="/frontend/styles/variables.css">
-    <link rel="stylesheet" href="/frontend/styles/general.css">
-    <link rel="stylesheet" href="/frontend/styles/all-products.css">
+    <link rel="stylesheet" href="../styles/variables.css">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/all-products.css">
 </head>
 <body>
     <!-- Header -->
-    <?php include 'frontend/components/header.php'; ?>
+    <?php include '../components/header.php'; ?>
     <main>
         <!-- Articles -->
         <div id="articles-part">
@@ -23,7 +23,7 @@
                 </div>
                 <!-- Btn 'All products' -->
                 <select title="sort-order" id="sort-order">
-                    <option value="pertinance">Pertinence</option>
+                    <option value="pertinance">Pertinance</option>
                     <option value="ascending-price">Prix croissant</option>
                     <option value="descending-price">Prix décroissant</option>
                 </select>
@@ -35,7 +35,7 @@
         </div>
         <!-- Section filters -->
         <section id="filter-section">
-            <span id="filter-section-title">Filtrer votre recherche</span>
+            <span id="filter-section-title">Filter votre recherche</span>
             <!-- Price Slider -->
             <div class="filter-container" id="price-slider">
                 <span class="filter-title">prix</span>
@@ -105,8 +105,7 @@
         </section>
     </main>
     <!-- Footer -->
-    <?php include 'frontend/components/footer.php'; ?>
+    <?php include '../components/footer.php'; ?>
 </body>
-<script src="/frontend/scripts/all-products.js"></script>
-<script src="/frontend/scripts/products.js"></script>
+<script src="../scripts/all-products.js"></script>
 </html>
