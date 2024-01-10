@@ -1,11 +1,11 @@
 <?php
     const DB_CONFIG = array(
-        "dbname" => "db_name",
-        "username" => "db_username",
-        "password" => "db_password",
-        "host" => "db_host",
-        "type" => "type",
-        "port" => 0000 
+        "dbname" => "DB_IutStyleShop",
+        "username" => "sql",
+        "password" => "sql",
+        "host" => "localhost",
+        "type" => "mysql",
+        "port" => "3306" 
     );
     const MAIL_CONFIG = array(
         "email" => "iutstyleshop@gmail.com",
