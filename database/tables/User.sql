@@ -16,5 +16,7 @@ CREATE OR REPLACE TABLE User (
 	Complement_adresse VARCHAR(128) DEFAULT NULL
 );
 
-INSERT INTO User (email, password, nom, prenom, genre, role, adresse, ville, code_postal, Complement_adresse)
-VALUES ('admin@iutstyleshop.com', 'admin', NULL, NULL, NULL, 'admin',NULL, NULL, NULL , NULL);
+
+
+INSERT INTO User (email, telephone,password, nom, prenom, genre, role, adresse, ville, code_postal, Complement_adresse)
+VALUES ('admin@iutstyleshop.com','0102030405', 'admin', NULL, NULL, NULL, 'admin',NULL, NULL, NULL , NULL);

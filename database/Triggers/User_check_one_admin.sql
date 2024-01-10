@@ -7,7 +7,7 @@ BEGIN
 
     DECLARE admin_count INT;
 
-    SELECT COUNT(*) INTO admin_count FROM User WHERE admin = 1;
+    SELECT COUNT(*) INTO admin_count FROM User WHERE role="admin";
     IF admin_count = 0 THEN
         SIGNAL SQLSTATE '45050'
         SET MESSAGE_TEXT = 'Il doit y avoir au moins un admin dans la table User';
@@ -21,7 +21,7 @@ BEGIN
 
     DECLARE admin_count INT;
     
-    SELECT COUNT(*) INTO admin_count FROM User WHERE admin = 1;
+    SELECT COUNT(*) INTO admin_count FROM User WHERE role="admin";
     IF admin_count = 0 THEN
         SIGNAL SQLSTATE '45050'
         SET MESSAGE_TEXT = 'Il doit y avoir au moins un admin dans la table User';
@@ -35,7 +35,7 @@ BEGIN
 
     DECLARE admin_count INT;
 
-    SELECT COUNT(*) INTO admin_count FROM User WHERE admin = 1;
+    SELECT COUNT(*) INTO admin_count FROM User WHERE role="admin";
     IF admin_count = 0 THEN
         SIGNAL SQLSTATE '45050'
         SET MESSAGE_TEXT = 'Il doit y avoir au moins un admin dans la table User';

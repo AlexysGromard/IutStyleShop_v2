@@ -47,15 +47,10 @@ echo -e "    \e[34m * \e[0m ArticleCommande \e[31m"
 sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/ArticleCommande.sql"
 
 echo -e "    \e[34m * \e[0m CodePromo \e[31m"
+sudo mysql --host=$host --user=$user --database=$database --password=$password < "tables/CodePromo.sql"
 
-# Trigger
-echo -e ""
-echo -e "\e[35m Exécution des fichiers Trigger : "
-dossier="Triggers"
-find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-    echo -e "    \e[34m * \e[0m $fichier \e[31m"
-    sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
-done
+
+
 
 # Package
 # echo -e ""
@@ -93,4 +88,38 @@ done
 
 
 
+#Tests
+echo -e ""
+echo -e "\e[35m Exécution des fichiers Tests : "
+dossier="Tests"
+# ProcedureStocker/
+# ├── Article
+# ├── CodePromo
+# │   ├── DeleteCodePromo.sql
+# │   ├── GetAllCodePromo.sql
+# │   ├── GetCodePromo.sql
+# │   ├── InsertCodePromo.sql
+# │   └── UpdateCodePromo.sql
+# ├── Commande
+# ├── Commentaire
+# ├── Panier
+# │   ├── DeleteAllPanier.sql
+# │   ├── DeleteArticlePanier.sql
+# │   └── InsertPanier.sql
+# └── User
 
+find "$dossier" -type f -name "*.sql" | while read -r fichier; do
+    echo -e "    \e[34m * \e[0m $fichier \e[31m"
+    sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
+done
+
+
+
+# Trigger
+echo -e ""
+echo -e "\e[35m Exécution des fichiers Trigger : "
+dossier="Triggers"
+find "$dossier" -type f -name "*.sql" | while read -r fichier; do
+    echo -e "    \e[34m * \e[0m $fichier \e[31m"
+    sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
+done
