@@ -24,7 +24,7 @@
             
 
             <?php include "frontend/components/user-panel.php" ?>
-            <?php generateUserPanelComponent($actionSelect, $personne->nom." ".$personne->prenom, $personne->id, $personne->genre, $personne->role); ?>
+            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), $personne->getRole()); ?>
 
 
             <!-- right -->

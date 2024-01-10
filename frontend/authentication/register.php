@@ -33,17 +33,17 @@
                         <div class="input-radio-choices">
                             <!-- Homme -->
                             <div class="input-radio-element">
-                                <input value="m" type="radio" name="civility" id="man" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "m" )? "checked" : "";?>>
+                                <input value="M" type="radio" name="civility" id="man" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "m" )? "checked" : "";?>>
                                 <label class="radio-label" for="man">Homme</label>
                             </div>
                             <!-- Femme -->
                             <div class="input-radio-element">
-                                <input value="w" type="radio" name="civility" id="women" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "w") ? "checked" : "";?>>
+                                <input value="W" type="radio" name="civility" id="women" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "w") ? "checked" : "";?>>
                                 <label class="radio-label" for="women">Femme</label>
                             </div>
                             <!-- Autre -->
                             <div class="input-radio-element">
-                                <input value="n" type="radio" name="civility" id="other" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "n") ? "checked" : "";?>>
+                                <input value="N" type="radio" name="civility" id="other" <?php echo (isset($_SESSION['civility']) && $_SESSION['civility'] == "n") ? "checked" : "";?>>
                                 <label class="radio-label" for="other">Ne souhaite pas se prononcer</label>
                             </div>
                         </div>

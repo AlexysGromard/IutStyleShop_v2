@@ -39,7 +39,7 @@ class register {
         $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
         
         // Vérification du genre
-        if ($civility != "m" && $civility != "w" && $civility != "n") {
+        if ($civility != "M" && $civility != "W" && $civility != "N") {
             $this->errors['civility'] = true;
         } else {
             // Stockage du genre dans la session
