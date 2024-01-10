@@ -4,10 +4,11 @@ namespace controller;
 require_once 'backend/config/config.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/PHPMailer.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/Exception.php';
+require_once 'backend/library/PHPMailer-6.9.1/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+use PHPMailer\PHPMailer\SMTP;
 
 class emailConfirmation {
 
@@ -43,14 +44,10 @@ class emailConfirmation {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        try {
-            $confirmationCode = $this->generateConfirmationCode();
-            // Stockage dans la session
-            $_SESSION['confirmationCode'] = $confirmationCode;
-        } catch (Exception $e) {
-            echo "<script>showErrorPopup('Erreur à la génération du code','Une erreur est survenue lors de la génération du code.')</script>";
-            return;
-        }
+
+        $confirmationCode = $this->generateConfirmationCode();
+        // Stockage dans la session
+        $_SESSION['confirmationCode'] = $confirmationCode;
 
         // Send email
         $to = $_SESSION['email'];
