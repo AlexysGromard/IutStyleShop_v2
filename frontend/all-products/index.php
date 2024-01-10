@@ -101,6 +101,8 @@
                     </ul>
                 </div>
             </div>
+            <!-- Boutton Valider -->
+            <button class="small-size button important-text" id="button-validate">Valider les filtres</button>
         </section>
     </main>
     <!-- Footer -->
