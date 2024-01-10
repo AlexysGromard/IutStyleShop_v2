@@ -4,7 +4,14 @@ namespace backend\DAO;
 
 class DBUser extends Connexion implements DoubleEntityInterface
 {
-    public function add($entity, $password)
+    /**
+     * Ajoute un utilisateur
+     * 
+     * @param UserEntity $entity
+     * @param string $element
+     * @return void
+     */
+    public function add($entity, $element)
     { 
         $requete = "CALL InsertUser(?,?,?,?,?,?,?,?,?,?)";
 
@@ -13,7 +20,7 @@ class DBUser extends Connexion implements DoubleEntityInterface
 
         $stmt->bindParam(1, $entity->mail, \PDO::PARAM_STR);
         $stmt->bindParam(2, $entity->telephone, \PDO::PARAM_STR);
-        $stmt->bindParam(3, $password, \PDO::PARAM_STR);
+        $stmt->bindParam(3, $element, \PDO::PARAM_STR);
         $stmt->bindParam(4, $entity->nom, \PDO::PARAM_STR);
         $stmt->bindParam(5, $entity->prenom, \PDO::PARAM_STR);
         $stmt->bindParam(6, $entity->genre, \PDO::PARAM_STR);
@@ -25,6 +32,12 @@ class DBUser extends Connexion implements DoubleEntityInterface
         $stmt->execute();
     }
 
+    /**
+     * Update un utilisateur
+     * 
+     * @param UserEntity $entity
+     * @return void
+     */
     public function update($entity)
     {
 
@@ -50,6 +63,13 @@ class DBUser extends Connexion implements DoubleEntityInterface
 
     }
 
+    /**
+     * Update le role d'un utilisateur
+     * 
+     * @param int $id
+     * @param string $role
+     * @return void
+     */
     public function updaterole($id, $role)
     {
         $requete = "CALL UpdateUserRole(?,?)";
@@ -62,6 +82,13 @@ class DBUser extends Connexion implements DoubleEntityInterface
         $stmt->execute();
     }
 
+    /**
+     * Update le mot de passe d'un utilisateur
+     * 
+     * @param int $id
+     * @param string $password
+     * @return void
+     */
     public function updatepassword($id, $password)
     {
         $requete = "CALL UpdateUserPassword(?,?)";
@@ -74,27 +101,45 @@ class DBUser extends Connexion implements DoubleEntityInterface
         $stmt->execute();
     }
 
-    public function delete($id)
+    /**
+     * Delete un utilisateur
+     * 
+     * @param UserEntity $entity
+     * @return void
+     */
+    public function delete($entity)
     {
         $requete = "CALL DeleteUser(?)";
 
         $stmt = $this->pdo->prepare($requete);
 
-        $stmt->bindParam(1, $id, \PDO::PARAM_INT);
+        $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
 
         $stmt->execute();
     }
 
+    /**
+     * Donne un utilisateur par son id
+     * 
+     * @param int $id
+     * @return UserEntity
+     */
     public function getall()
     {
         $requete = "CALL GetUserInfoAll()";
         $stmt = $this->pdo->prepare($requete);
         $stmt->execute();
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "backend\\entity\\UserEntity"::class);
         var_dump($result);
         return $result;
     }
 
+    /**
+     * Donne l'id d'un utilisateur par son email
+     * 
+     * @param int $id
+     * @return UserEntity
+     */
     public function getByEmail(string $email): ?UserEntity
     {
         $requete = "CALL GetUseridByEmail(?)";
@@ -109,6 +154,12 @@ class DBUser extends Connexion implements DoubleEntityInterface
         return $result;
     }
 
+    /**
+     * Donne un utilisateur par son id
+     * 
+     * @param int $id
+     * @return UserEntity
+     */
     public function checkUser(string $email, string $password): ?UserEntity
     {
         $requete = "CALL GetConnectedUser(?,?)";
@@ -119,10 +170,21 @@ class DBUser extends Connexion implements DoubleEntityInterface
 
         $stmt->execute();
         
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "backend\\entity\\UserEntity"::class);
         var_dump($result);
         return $result;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     public function getUserByRole(string $role): array
     {
