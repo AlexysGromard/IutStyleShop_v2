@@ -2,33 +2,73 @@
 
 namespace controller;
 
-class DAO{
+use backend\DAO\DAOInterface;
 
-class DAO{
+class DAO
+{
+    private DAOInterface $dao;
 
-    private \backend\DAO\DAOInterface $dao;
-
-    function index(){
-        require "frontend/DAO/DBArticle.php";
+    public function index()
+    {
+        echo "DAO index";
     }
 
-    function index($className, $methodName, $params = array()) {
-        // Créez une instance de la classe DAO
-        // $this->dao = new $className();
+    function call(array $parametre){
+        echo "DAO call";
+
+        // montrer les parametres
+        echo "<br>";
+        echo "DAO parameters: " . $parametre[0] ;
+
+
+        // Vérifiez si la classe existe
+        if (!class_exists($parametre[0])) {
+            echo "<br>";
+            echo "Controller class not found: " . $parametre[0] ;
+        } else {
+            // Créez une instance de la classe spécifiée par $className
+            echo "<br>";
+            echo "ieoifhhfihezhhoih";
+            echo "DAO class created: " . $parametre[0] ;
+        //     $this->dao = new $parametre[0]();
+
+        //     // Verifier que le dao implemente l'interface DAOInterface
+        //     if (!($this->dao instanceof DAOInterface)) {
+        //         echo "<br>";
+        //         echo "DAO class not implement DAOInterface: " . $parametre[0] ;
+        //     }else{
+        //         echo "<br>";
+        //         echo "DAO class implement DAOInterface: " . $parametre[0] ;
+        //     }
+
+        
+        
+
+        // // Vous pouvez ajouter d'autres opérations ici en lien avec l'instance de DAO
+
+        // echo "<br>";
+        // echo "DAO method called: " . $parametre[1] ;
+        // echo "<br>";
+        // echo "DAO method parameters: " . $parametre[2] ;
+        // echo "<br>";
+        // echo "DAO method parameters: " . $parametre[3] ;
+        // echo "<br>";
+        // echo "DAO method parameters: " . $parametre[4] ;
+        }
+
+        echo "<br>";
+        echo "Fin de la classe DAO";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        die();
     
-        
-        // // Vérifiez s'il y a des paramètres provenant du routeur
-        // if (!empty($params)) {
-        //     // Appel de la méthode avec les paramètres provenant du routeur
-        //     $result = call_user_func_array(array($this->dao, $methodName), $params);
-        // } 
-        // // }elif (false == empty($params)) {
-        // //     // Aucun paramètre provenant du routeur, appeler la méthode sans paramètres
-        // //     $result = call_user_func(array($this->dao, $methodName));
-        // // }
-        
-        echo "jbefihbfejzbfjbezbjfkjebfkjeb";
-        //require "frontend/".$className.".php";
     }
+
+
 }
-    
+
+
+
+?>
