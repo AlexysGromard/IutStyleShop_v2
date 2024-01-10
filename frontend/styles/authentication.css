@@ -1,0 +1,214 @@
+/*
+* Nom du fichier : authentication.css
+* Description : Fichier de style pour les pages d'authentification
+*/
+
+
+/* === Header (Auth only) === */
+header{
+    background-color: #FFFFFF;
+}
+.header-top{
+    align-items: center;
+}
+.button.method-change-button{
+    max-width: 132px;
+    color: var(--white);
+    font-weight: 400;
+    font-size: var(--medium);
+}
+
+/* === Main === */
+#main-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 31px;
+    padding: 80px 10px 200px 10px;
+}
+@media screen and (max-width: 768px){
+    #main-section{
+        padding: 40px 10px 200px 10px;
+    }
+}
+
+/* === Page title === */
+#page-title-section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#page-title-section #title{
+    font-size: var(--big);
+    font-weight: 500;
+    color: var(--black);
+}
+
+#page-title-section #subtitle{
+    font-size: var(--medium);
+    color: var(--black);
+    font-weight: 400;
+}
+
+/* === actions container (and childs) === */
+#actions-container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.action-box{
+    background-color: #FFFFFF;
+    padding: 21px 24px;
+    border-radius: 20px;
+}
+.action-box form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form .action-box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+/* === Password recovery & password-header === */
+.link-to-password-recovery{
+    color: var(--red);
+    font-size: var(--small);
+    text-decoration: none;
+}
+.link-to-password-recovery:hover{
+    text-decoration: underline;
+}
+
+#password-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* === separator bar === */
+.separator-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F1F3F4;
+    height: 1px;
+    margin: 22px 0;
+}
+.separator-bar-text{
+    font-size: var(--small);
+    color: #0A0908;
+    background-color: #FFFFFF;
+    padding: 0 8px;
+}
+
+/* === Passkey === */
+.passkey-button{
+    border: 2px solid black;
+    display: flex;
+    min-height: 33px;
+    border-radius: 16px;
+    padding: 0 14px;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    gap: 4px;
+    color: var(--black);
+    font-size: var(--small);
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.button.without-passkey{
+    text-decoration: none;
+    color: var(--white);
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* === change method === */
+.action-box.change-method{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.change-method-text{
+    font-size: var(--medium);
+    color: var(--black);
+}
+.change-method-btn{
+    color: var(--red);
+    font-size: var(--medium);
+    text-decoration: none;
+}
+.change-method-btn:hover{
+    text-decoration: underline;
+}
+/* Mobile */
+@media screen and (max-width: 768px){
+    .change-method-text{
+        font-size: var(--small);
+    }
+    .change-method-btn{
+        font-size: var(--small);
+    }
+}
+
+/* === Confirmation form === */
+.confirmation-input{
+    border: solid 2px #A8ABAE;
+    width: 47px;
+    height: 47px;
+    border-radius: 10px;
+    font-size: var(--big);
+    text-align: center;
+}
+.confirmation-input:focus{
+    border: 2px solid var(--red);
+    outline: none;
+}
+#confirmation-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 379px;
+    margin: 0 auto;
+}
+#confirmation-form-input-box{
+    display: flex;
+    flex-direction: row;
+    gap: 37px;
+}
+
+.confirmation-form-part{
+    display: flex;
+    gap: 15px;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px){
+    #confirmation-form-input-box{
+        justify-content: space-between;
+    }
+    .confirmation-form-part{
+        gap: 5px;
+    }
+}
+
+#btn-resend-code{
+    color: var(--red);
+    font-size: var(--very-small);
+    text-decoration: none;
+    align-self: end;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

@@ -2,7 +2,7 @@
 
 namespace backend\entity;
 
-require "/backend/entity/PanierEntity.php";
+require "backend/entity/PanierEntity.php";
 use \backend\entity\PanierEntity;
 
 /*
@@ -25,7 +25,11 @@ class UserEntity
 	code_postal MEDIUMINT NULL,
 	Complement_adresse VARCHAR2(128) NULL,
     */
+
+    // Utilisateur non identifié
+    private ?bool $cookieAccepted = null;
     
+    // Utilisateur identifié‡
     private int $id;
     private string $email;
     private string $telephone;
@@ -241,6 +245,11 @@ class UserEntity
     public function setComplementAdresse(string $complement_adresse): void 
     {
         $this->complement_adresse = $complement_adresse;
+    }
+
+    public function getCookieAccepted(): ?bool
+    {
+        return $this->cookieAccepted;
     }
 
 

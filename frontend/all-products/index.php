@@ -108,4 +108,5 @@
     <?php include 'frontend/components/footer.php'; ?>
 </body>
 <script src="/frontend/scripts/all-products.js"></script>
+<script src="/frontend/scripts/products.js"></script>
 </html>

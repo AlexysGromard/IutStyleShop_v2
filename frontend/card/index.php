@@ -7,6 +7,7 @@
     <title>Panier - IutStyleShop</title>
     <link rel="stylesheet" href="/frontend/styles/variables.css">
     <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/general2.css">
     <link rel="stylesheet" href="/frontend/styles/carousel.css">
     <link rel="stylesheet" href="/frontend/styles/cart.css">
 </head>
@@ -17,7 +18,7 @@
     <section class="sections-panier">
             <!-- Section title -->
             <div class="section-title">
-                <span class="section-title-name">Meilleures ventes</span>
+                <span class="section-title-name">Votre pannier</span>
                 <span class="section-title-results">3 articles</span>
             </div>
             <div class="articles-payment-box">
@@ -29,7 +30,8 @@
                     <img src="/frontend/assets/icons/poubelle-de-recyclage.png">
                 </div>
             </div> 
-            <div class="payment payment-size">
+
+            <div class="normal_box_payment payment-size">
                 <div class="first-section-payment">
                     <div class="payment-title-text">Montant total de vos produits</div>
                     <div class="payment-text dark-grey">Prix TTC</div>
@@ -44,7 +46,11 @@
                 <div class="third-section-payment">
                     <div class="payment-text">Code promo</div>
                     <div class="boite-code-promo">
-                        <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                        <form action="" method="">
+                            <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                            <button class="button">Valider</button>
+                        </form>
+
                     </div>
                 </div>
                 <div class="line"></div>
