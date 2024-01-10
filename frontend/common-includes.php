@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/frontend/styles/variables.css">
 <link rel="stylesheet" href="/frontend/styles/general.css">
 <link rel="stylesheet" href="/frontend/styles/cookies.css">
+<link rel="stylesheet" href="/frontend/styles/common/form.css">
 
 <!-- favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="/frontend/assets/favicon/apple-touch-icon.png">
@@ -22,3 +23,6 @@
 
 <!-- JS files -->
 <script src="/frontend/scripts/popup.js"></script>
+
+<!-- Call cookies verification -->
+<?php include_once 'backend'.DIRECTORY_SEPARATOR.'cookies.php'; Cookies::verifyCookies() ?>

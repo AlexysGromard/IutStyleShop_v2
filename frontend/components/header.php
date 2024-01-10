@@ -1,21 +1,23 @@
 <header>
     <div class="header-top">
-        <a class="link-to-home" href="/frontend/"><img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo"></a>
-        <label class="search-bar" for="search"><!-- Search bar -->
-            <div>
-                <img alt="Image of loupe" src="/frontend/assets/images/loupe.svg" class="/frontend/image-loupe">
-                <input type="text" id="search" name="search" placeholder="Rechercher un article">
-            </div>
-            <a class="small-size button important-text" id="button-rechercher" href="#">Rechercher</a>
-        </label>
-        <div>
-            <button class="navigation-link-header">
+        <a class="link-to-home" href="/"><img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo"></a>
+        <form class="search-bar-form" action="<?='products/search'?>" method="POST">
+            <label class="search-bar" for="search"><!-- Search bar -->
                 <div>
-                    <span class="navigation-link-header-title">Connexion</span>
-                    <span class="navigation-link-header-desc">Inscription</span>
+                    <img alt="Image of loupe" src="/frontend/assets/images/loupe.svg" class="/frontend/image-loupe">
+                    <input type="text" id="search" name="search" placeholder="Rechercher un article">
+                </div>
+                <input type="submit" class="small-size button important-text" id="button-rechercher" value="Rechercher"/>
+            </label>
+        </form>
+        <div>
+            <a href="/login" class="navigation-link-header">
+                <div>
+                    <span class="navigation-link-header-title"><?php echo isset($_SESSION['user']) ? $_SESSION['user']->getPrenom()." ".$_SESSION["user"]->getNom() : "Connexion";?></span>
+                    <span class="navigation-link-header-desc"><?php echo isset($_SESSION['user']) ? "Espace utilisateur" : "Inscription";?></span>
                 </div>
                 <img alt="Image of user" src="/frontend/assets/images/user.svg">
-            </button>
+            </a>
             <a class="navigation-link-header" href="/card">
                 <div id="shopping-cart-text">
                     <span class="navigation-link-header-title">Panier</span>

@@ -1,0 +1,7 @@
+--Table CodePromo
+CREATE TABLE CodePromo (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    texte VARCHAR(255) NOT NULL UNIQUE,
+    promo TINYINT NOT NULL
+);
+

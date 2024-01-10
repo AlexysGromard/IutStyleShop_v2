@@ -72,6 +72,16 @@
     border-radius:18px;
     background-color: #F1F3F4;
 }
+.boite-code-promo form{
+    display: flex;
+    width: 100%;
+}
+
+.boite-code-promo form button{
+    max-width: 103px;
+    height: 100%;
+    color: var(--white);
+}
 
 .code-promo{
     font-family: 'Roboto';

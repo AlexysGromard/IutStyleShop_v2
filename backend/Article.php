@@ -17,7 +17,6 @@ namespace backend;
 
 
         function __construct(string $nom, string $category, string $genre, string $image, float $notes,int $nbNotation, string $description, string $couleur, bool $disponible, float $prix, int $promo){
-            echo "construction de ".$nom."<br>";
             $this->nom = $nom;
             $this->category = $category;
             $this->genre = $genre;

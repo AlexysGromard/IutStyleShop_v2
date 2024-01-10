@@ -16,17 +16,6 @@ function showCookiesPopup() {
     }
 }
 
-/**
- * Ferme la popup de cookies
- */
-function hideCookiesPopup() {
-    cookiesPopup.classList.remove('active');
-}
-
-for (let key in cookiesPopupBtn) {
-    cookiesPopupBtn[key].addEventListener('click', hideCookiesPopup);
-}
-
 // **** Status popup **** //
 
 /**
@@ -97,4 +86,8 @@ function showLogoutPopup() {
     } catch (error) {
         showErrorPopup('Erreur', "Une erreur est survenue lors de l'affichage du popup de déconnexion.");
     }
+}
+
+function hideLogoutPopup() {
+    logoutPopupOverlay.classList.remove('active');
 }

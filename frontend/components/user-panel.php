@@ -13,13 +13,13 @@ function generateUserPanelComponent(
     $userType = htmlspecialchars($userType, ENT_QUOTES, 'UTF-8');
 
     // ID validation (assuming positive integer IDs)
-    $userId = is_numeric($userId) ? intval($userId) : null; // il est possible de ne pas avoir id ???
+    $userId = is_numeric($userId) ? intval($userId) : null;
 
     // Gender must be "M" or "F"
     $userGender = in_array($userGender, ["M", "F"]) ? $userGender : "Unknown";
 
     // User type must be "admin" or "client"
-    $userType = in_array($userType, ["admin", "client"]) ? $userType : "Unknown"; //il est possible de ne pas savoir ???
+    $userType = in_array($userType, ["admin", "client"]) ? $userType : "Unknown";
 
    
     
@@ -33,10 +33,10 @@ function generateUserPanelComponent(
             "Base de données codes promotionnel" => "/user/admin_space/codes_promotionnel"
         ],
         "client" => [
-            "Mes informations" => "/user/client_space/informations",
-            "Mes commandes" => "/user/client_space/commandes",
-            "Mon adresse" => "/user/client_space/adresse",
-            "Mes paramètres" => "/user/client_space/parametres"
+            "Mes informations" => "/user/dashboard/informations",
+            "Mes commandes" => "/user/dashboard/commandes",
+            "Mon adresse" => "/user/dashboard/adresse",
+            "Mes paramètres" => "/user/dashboard/parametres"
         ]
     ];
     
@@ -46,7 +46,7 @@ function generateUserPanelComponent(
     }
 ?>
 
-<div class="large_box payment-size ">
+<div id="user-panel-container">
     <div id="user-informations">
         <div id="user-picture-container">
             <?php
@@ -54,8 +54,8 @@ function generateUserPanelComponent(
             ?>
             <img src="<?php echo $photoPath; ?>" alt="Photo de profil">
         </div>
-        <span class="Black_police_60" id="user-name"><?php echo $userName; ?></span>
-        <span class="Black_police_40" id="user-id">N° de<?php echo ($userType === "client" ? " client" : " user"); ?> : <?php echo $userId; ?></span>
+        <span id="user-name"><?= $userName; ?></span>
+        <span id="user-id">N° de<?php echo ($userType === "client" ? " client" : " user"); ?> : <?= $userId; ?></span>
     </div>
     <div id="user-actions">
         <!-- Liste des actions -->
@@ -74,7 +74,7 @@ function generateUserPanelComponent(
             <?php endforeach; ?>
         </ul>
         <!-- Deconnexion -->
-        <a class="button" id="logout-button">Déconnexion</a>
+        <button class="button" id="logout-button" onclick="showLogoutPopup()">Déconnexion</button>
     </div>
 </div>
 

@@ -4,12 +4,19 @@ namespace controller;
 
 class user{
 
-    function client_space(array $param){
+    /*
+    * Fonction qui permet d'afficher le dashboard de l'utilisateur
+    * @param La page à afficher
+    */
+    function dashboard(array $param){
+        // Redrection vers la page demandée
         if (count($param) != 1 || !in_array($param[0], array("informations","commandes","adresse","parametres"))){
             echo "Erreur";die();
         }
 
-        $personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
+        session_start();
+        $personne = $_SESSION['user'];
+        //TODO : utiliser session ???
         
         switch ($param[0]) {
             case "informations":
@@ -26,7 +33,7 @@ class user{
         }
         
     
-        require "frontend/userSpace/client.php";
+        require "frontend/dashboard/client.php";
     }
 
 
@@ -87,7 +94,18 @@ class user{
         
     
 
-        require "frontend/userSpace/admin.php";
+        require "frontend/dashboard/admin.php";
+    }
+
+    /*
+    * Fonction qui permet de valider la déconnexion
+    * Elle va supprimer le USER de la session et le rediriger vers la page d'accueil
+    */
+    function logout(){
+        session_start();
+        // Supprimer le USER de la session
+        unset($_SESSION['user']);
+        header("Location: /");
     }
 }
 

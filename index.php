@@ -13,10 +13,11 @@ spl_autoload_register(function($class) {
     if (file_exists($include)){
         require $include;
     }else{
-        echo "<h1>".$path."</h1>";
-        echo '<pre>'.$class.PHP_EOL.$include.PHP_EOL.'not found'.'</pre>';
+        // Erreur 404
+        require "frontend/404.php";
+        die();
     }
-    });
+});
 
 
 $router = new system\Router();

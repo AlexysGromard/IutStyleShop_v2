@@ -1,3 +1,8 @@
+/*
+* Nom du fichier : user.css
+* Description : Fichier de style pour les pages de l'espace utilisateur et admin
+*/
+
 .box_menu_client{
     display: flex;
     flex-direction: column;
@@ -23,13 +28,18 @@
 }
 
 .user_general{
-    margin: 45px 77px 94px 77px;
+    margin: 45px auto 94px auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-width: 1286px;
 }
 
-
+.page-title{
+    font-size: var(--big);
+    font-weight: 500;
+    color: var(--black);
+}
 
 /*informations*/
 
@@ -54,6 +64,7 @@
     display: flex;
     flex-direction: column;
     gap : 20px;
+    max-width: 432px;
 }
 
 
@@ -116,6 +127,7 @@
     border : none;
     background: none;
     align-items: center;
+    cursor: pointer;
 }
 
 .drop_down_button > input{
@@ -187,6 +199,8 @@
 /* === Composant admin-pannel === */
 #user-panel-container{
     max-width: 300px;
+    width: 100%;
+    height: max-content;
     border-radius: 20px;
     padding: 17px;
     background-color: #ffffff;
@@ -221,9 +235,15 @@
 
 #user-name{
     margin-top: 16px;
+    font-size: var(--medium);
+    font-weight: 500;
+    color: var(--black);
 }
 #user-id{
     margin-top: 2px;
+    font-size: var(--very-small);
+    color: var(--black);
+    text-align: center;
 }
 
 /* user actions */

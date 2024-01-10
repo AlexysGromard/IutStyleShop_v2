@@ -37,6 +37,11 @@ header{
 }
 
 /*Start search-bar*/
+.search-bar-form{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
 .search-bar{
     display: flex;
     flex-direction: row;
@@ -44,8 +49,8 @@ header{
     background-color: #F1F3F4;
     border-radius: 20px;
     align-items: center;
-    flex-grow: 1;
     height: fit-content;
+    width: 100%;
 }
 
 .search-bar div:first-child{
@@ -192,6 +197,12 @@ header{
     font-weight: 400;
     font-size: var(--small);
     line-height: 16.41px;
+}
+
+.payment-scearch-text{
+    font-weight: 400;
+    font-size: var(--very-small);
+    color: var(--black);
 }
 
 .text-weight-price{
@@ -679,7 +690,7 @@ footer{
     .navigation-link-header{
         gap: 5px;
     }
-    .search-bar{
+    .search-bar-form{
         order: 3;
     }
     .link-to-home{
