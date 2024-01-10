@@ -7,6 +7,7 @@ class DAO{
     private \backend\DAO\DAOInterface $dao;
 
     function index(){
+        
         require "frontend/DAO/DBArticle.php";
     }
 

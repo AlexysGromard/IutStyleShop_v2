@@ -17,7 +17,7 @@ class Connexion
     public function __construct()
     {
         try{
-            $pdo = /system/SPDO::getInstance(
+            $pdo = \system\SPDO::getInstance(
                 DB_CONFIG["type"].':host='.DB_CONFIG["host"].';port='.DB_CONFIG["port"].';dbname='.DB_CONFIG["dbname"],
                 DB_CONFIG["username"],
                 DB_CONFIG["password"],
