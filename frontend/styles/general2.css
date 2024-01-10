@@ -84,6 +84,7 @@
     width: 100%;
     border: none;
     border-radius: 18px;
+    background: none;
     background-color: var(--light-gray);
 }
 

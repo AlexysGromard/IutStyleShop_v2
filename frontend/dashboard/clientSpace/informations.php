@@ -47,7 +47,7 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="last-name">Nom</label>
-                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval="<?= $personne->nom; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval="<?= $personne->nom; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="first-name">Prénom</label>
@@ -83,9 +83,8 @@
         </div>
     </div>
     <button id="ChangePassword" type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
-
 </form>
 
 
 <script src="/frontend/scripts/clientSpace/pre_fill.js"></script>
-<script src="/frontend/scripts/clientSpace/adresse.js"></script>
+<script src="/frontend/scripts/clientSpace/informations.js"></script>

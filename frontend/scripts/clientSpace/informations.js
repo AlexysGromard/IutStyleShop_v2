@@ -1,7 +1,8 @@
+console.log("helo");
 
-let civility
+
+let civility;
 for (element of document.getElementsByName("civility")){
-    console.log(element.checked)
     if (element.checked){
         civility = element.value;
         break;
@@ -22,6 +23,17 @@ personalInfo.set("first-name", first_name);
 personalInfo.set("mail", mail);
 personalInfo.set("phone", phone);
 
+
+///////////////////////////////////////////////
+
+let currentpasswords = document.getElementById("currentpasswords").value;
+let newpasswords = document.getElementById("newpasswords").value;
+
+
+var changepassword = new Map()
+changepassword.set("currentpasswords", currentpasswords);
+changepassword.set("newpasswords", newpasswords);
+
 function checkedUpdatePersonalInfo(id,value,idbutton){
     var button = document.getElementById(idbutton);
 
@@ -32,15 +44,6 @@ function checkedUpdatePersonalInfo(id,value,idbutton){
         button.classList.add("disabled");
     }
 }
-///////////////////////////////////////////////
-
-let currentpasswords = document.getElementById("currentpasswords").value;
-let newpasswords = document.getElementById("newpasswords").value;
-
-
-var changepassword = new Map()
-personalInfo.set("currentpasswords", currentpasswords);
-personalInfo.set("newpasswords", newpasswords);
 
 
 function checkedUpdateChangePassword(id,value,idbutton){
@@ -53,3 +56,5 @@ function checkedUpdateChangePassword(id,value,idbutton){
         button.classList.add("disabled");
     }
 }
+
+console.log("fin");

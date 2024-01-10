@@ -1,3 +1,5 @@
+console.log("loead")
+
 //start
 for (element of document.getElementsByClassName("sidebar")){
     var val = element.getAttribute("initval");
@@ -12,3 +14,5 @@ for (element of document.getElementsByClassName("sidebar")){
         element.value = val;
     }
 }
+
+console.log("loead")
