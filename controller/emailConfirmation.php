@@ -26,7 +26,8 @@ class emailConfirmation {
             require "frontend/authentication/email-confirmation.php";
 
             // Send code
-            $this->sendCode();
+            // $this->sendCodeViaSMTP();
+            $this->sendCodeIUT();
         } else {
             header("Location: /register");
             exit();
@@ -40,7 +41,13 @@ class emailConfirmation {
         return mt_rand(100000, 999999);
     }
 
-    function sendCode() {
+    function sendCodeIUT(){
+        $confirmationCode = 000000;
+        // Stockage dans la session
+        $_SESSION['confirmationCode'] = $confirmationCode;
+    }
+
+    function sendCodeViaSMTP() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
