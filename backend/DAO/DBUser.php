@@ -18,7 +18,7 @@ class DBUser extends Connexion implements UserInterface
 
     public function getall()
     {
-        $requete = "CALL GetUserInfo()";
+        $requete = "CALL GetUserInfoAll()";
         $stmt = $this->pdo->prepare($requete);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -41,4 +41,8 @@ class DBUser extends Connexion implements UserInterface
     public function getUserByGenre(string $genre): array
     {
     }
+
+
+
+
 }
