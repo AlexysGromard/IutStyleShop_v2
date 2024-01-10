@@ -47,7 +47,12 @@ function goToNextInput(e) {
 function onKeyDown(e) {
     var key = e.which;
 
+    // Si la touche est un chiffre ou la touche tab, on laisse faire
     if (key === 9 || (key >= 48 && key <= 57)) {
+        return true;
+    }
+    // Si la touche est un nombre du pavé numérique, on laisse faire
+    if (key >= 96 && key <= 105) {
         return true;
     }
 
