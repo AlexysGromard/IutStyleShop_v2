@@ -6,7 +6,7 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="adresse">Adresse</label>
-                <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse" initval="<?= $personne->adresse; ?>">
+                <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse" initval="<?= $personne->adresse; ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonadress')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="code">Code postal</label>
@@ -16,11 +16,11 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="complement_adresse">Complément d'adresse</label>
-                <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse" initval="<?= $personne->complement_adresse; ?>">
+                <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse" initval="<?= $personne->complement_adresse; ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonadress')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="ville">Ville</label>
-                <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville" initval="<?= $personne->ville; ?>">
+                <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville" initval="<?= $personne->ville; ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonadress')">
             </div>
         </div>
     </div>

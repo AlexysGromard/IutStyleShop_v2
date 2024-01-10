@@ -23,6 +23,13 @@ personalInfo.set("first-name", first_name);
 personalInfo.set("mail", mail);
 personalInfo.set("phone", phone);
 
+var personalInfoModif = new Map();
+personalInfoModif.set("civility", false);
+personalInfoModif.set("last-name", false);
+personalInfoModif.set("first-name", false);
+personalInfoModif.set("mail", false);
+personalInfoModif.set("phone", false);
+
 
 ///////////////////////////////////////////////
 
@@ -34,11 +41,29 @@ var changepassword = new Map()
 changepassword.set("currentpasswords", currentpasswords);
 changepassword.set("newpasswords", newpasswords);
 
+var changepasswordModif = new Map()
+changepasswordModif.set("currentpasswords", false);
+changepasswordModif.set("newpasswords", false);
+
 function checkedUpdatePersonalInfo(id,value,idbutton){
     var button = document.getElementById(idbutton);
 
     var oldvalue = personalInfo.get(id);
     if (value != oldvalue){
+        personalInfoModif.set(id,true)
+    }else{
+        personalInfoModif.set(id,false)
+    }
+
+    var thereismodif = false
+    for (var valeur of personalInfoModif){
+        if (valeur[1] == true){
+            thereismodif = true
+            break;
+        }
+    }
+
+    if (thereismodif){
         button.classList.remove("disabled");
     }else{
         button.classList.add("disabled");
@@ -47,10 +72,26 @@ function checkedUpdatePersonalInfo(id,value,idbutton){
 
 
 function checkedUpdateChangePassword(id,value,idbutton){
+
+
     var button = document.getElementById(idbutton);
 
     var oldvalue = changepassword.get(id);
-    if (value != oldvalue){
+    if (valeur[1] != oldvalue){
+        changepasswordModif.set(id,true)
+    }else{
+        changepasswordModif.set(id,false)
+    }
+
+    var thereismodif = false
+    for (var valeur of changepasswordModif){
+        if (valeur[1] == true){
+            thereismodif = true
+            break;
+        }
+    }
+
+    if (thereismodif){
         button.classList.remove("disabled");
     }else{
         button.classList.add("disabled");
