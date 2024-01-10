@@ -28,7 +28,7 @@ class UserEntity
     
     private int $id;
     private string $email;
-    private string $password;
+    private string $telephone;
     private string $nom;
     private string $prenom;
     private string $genre;
@@ -38,25 +38,22 @@ class UserEntity
     private int $code_postal;
     private string $complement_adresse;
 
-    //
-    public PanierEntity $panier;
-
 
     public function __construct(int $id,
                                 string $email,
-                                string $password,
+                                string $telephone,
                                 string $nom,
                                 string $prenom,
                                 string $genre,
                                 string $role,
                                 string $adresse,
                                 string $ville,
-                                string $complement_adresse,
-                                PanierEntity $panier)
+                                string $complement_adresse
+                                )
     {
         $this->id = $id;
         $this->setEmail($email);
-        $this->setPassword($password);
+        $this->setTelephone($telephone);
         $this->setNom($nom);
         $this->setPrenom($prenom);
         $this->setGenre($genre);
@@ -64,11 +61,6 @@ class UserEntity
         $this->setAdresse($adresse);
         $this->setVille($ville);
         $this->setComplementAdresse($complement_adresse);
-        $this->panier = $panier;
-
-
-
-
     }
 
     /*
@@ -96,10 +88,11 @@ class UserEntity
     /*
     * @return string
     */
-    public function getPassword(): string 
+    public function getTelephone(): string
     {
-        return $this->password;
+        return $this->telephone;
     }
+
 
     /*
     * @return string
@@ -178,12 +171,12 @@ class UserEntity
         $this->email = $email;
     }
 
-        /*
-    * @param string $password
+    /*
+    * @param string $telephone
     */
-    public function setPassword(string $password): void 
+    public function setTelephone(string $telephone): void
     {
-        $this->password = $password;
+        $this->telephone = $telephone;
     }
 
     /*
