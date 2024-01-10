@@ -2,12 +2,19 @@
 
 namespace controller;
 
+<<<<<<< HEAD
 use backend\DAO\DAOInterface;
+=======
+//use \backend\DAO\DBArticle;
+
+class DAO{
+>>>>>>> refs/remotes/origin/DAO
 
 class DAO
 {
     private DAOInterface $dao;
 
+<<<<<<< HEAD
     public function index()
     {
         echo "DAO index";
@@ -40,6 +47,46 @@ class DAO
         //         echo "<br>";
         //         echo "DAO class implement DAOInterface: " . $parametre[0] ;
         //     }
+=======
+    function index(){
+        
+        require "frontend/DAO/DBArticle.php";
+    }
+
+    function DAOArticle(){
+               
+        require "frontend/DAO/DBArticle.php";
+        $this->dao = new \backend\DAO\DBArticle();
+        
+        var_dump($this->dao->getById(3));
+        
+
+        
+    }
+
+    function call(array $params){
+        echo "DAO Call";
+        echo "<br>";
+
+        echo "<br>";
+
+        
+        
+        $res =  "\backend\DAO\\" . $params[0];
+        $this->dao = new $res();
+        var_dump($this);
+
+        echo "<br>";
+        echo "DAO class created : " . $params[0];
+        echo "<br>";
+
+        call_user_func([$this->dao, $params[1]]);
+        echo "<br>";
+        echo "use methode : " . $params[1];
+    
+        require "frontend/DAO/". $params[0] .".php";
+    }
+>>>>>>> refs/remotes/origin/DAO
 
         
         
