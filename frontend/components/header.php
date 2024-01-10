@@ -1,7 +1,7 @@
 <header>
     <div class="header-top">
         <a class="link-to-home" href="/"><img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo"></a>
-        <form class="search-bar-form" action="<?='products/search'?>" method="POST">
+        <form class="search-bar-form" action="<?='/products/search'?>" method="POST">
             <label class="search-bar" for="search"><!-- Search bar -->
                 <div>
                     <img alt="Image of loupe" src="/frontend/assets/images/loupe.svg" class="/frontend/image-loupe">

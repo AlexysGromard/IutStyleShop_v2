@@ -36,7 +36,7 @@
                     <div class="input-box">
                         <div id="password-header">
                             <label class="input-label" for="password">Mot de passe</label>
-                            <a class="link-to-password-recovery" href="/frontend/authentication/password-recovery.php">Mot de passe oublié ?</a>
+                            <button class="link-to-password-recovery" onclick="showErrorPopup('Fonction non disponible', 'Cette fonctionnalité n\'est pas encore disponible.')">Mot de passe oublié ?</button>
                         </div>
                         <input required class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
                         <span class="input-error-message <?php echo (isset($_SESSION['errors']["password"]) && $_SESSION['errors']["password"]) ? "active" : ""; ?>">Mot de passe invalide</span>

@@ -82,6 +82,10 @@ form .action-box{
     color: var(--red);
     font-size: var(--small);
     text-decoration: none;
+    /* For button */
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 .link-to-password-recovery:hover{
     text-decoration: underline;
