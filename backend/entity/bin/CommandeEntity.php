@@ -3,7 +3,7 @@
 namespace backend\entity;
 
 /*  @Entity @Table(name="commande") */
-class ComandeEntity
+class CommandeEntity
 {
 
     /*

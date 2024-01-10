@@ -5,7 +5,7 @@ namespace backend\entity;
 /*
 * @Entity @Table(name="ArticleComande")
 */
-class ArticleComandeEntity
+class ArticleCommandeEntity
 {
     /*
     Table SQL Article
