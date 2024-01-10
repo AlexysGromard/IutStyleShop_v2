@@ -14,14 +14,11 @@ class DAO{
     }
 
     function DAOArticle(){
-        echo "AzAAA";
-        $this->dao = new \backend\DAO\DBArticle();
-        var_dump($this->dao);
-        echo "AzAA2A";
-        var_dump($this->dao);
-        $this->dao->getall();
-        echo "AAAA";
+               
         require "frontend/DAO/DBArticle.php";
+        $this->dao = new \backend\DAO\DBArticle();
+        
+        var_dump($this->dao->getById(3));
         
 
         
