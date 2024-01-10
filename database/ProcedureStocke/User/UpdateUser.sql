@@ -2,9 +2,8 @@ DELIMITER //
 
 -- Procédure pour mettre à jour les informations d'un utilisateur
     CREATE OR REPLACE PROCEDURE UpdateUser(
-        p_id INT,
         p_email VARCHAR(128),
-        p_password VARCHAR(64),
+        p_telephone VARCHAR(10),
         p_nom VARCHAR(64),
         p_prenom VARCHAR(64),
         p_genre VARCHAR(16),
@@ -16,7 +15,7 @@ DELIMITER //
     BEGIN
         -- Logique pour mettre à jour les informations d'un utilisateur dans la table User
         UPDATE User
-        SET email = p_email, password = p_password, nom = p_nom, prenom = p_prenom
+        SET email = p_email, telephone = p_telephone, nom = p_nom, prenom = p_prenom
         , genre = p_genre, address = p_address, ville = p_ville, code_postal = p_code_postal
         , complement_adresse = p_complement_adresse
         WHERE id = p_id;
