@@ -9,9 +9,14 @@ class login {
     );
 
     function index(){
-        require "frontend/authentication/login.php";
-        
-        unset($_SESSION['errors']);
+        session_start();
+        if (isset($_SESSION['user'])){
+            header("Location: /user/dashboard/informations");
+        } else {
+            require "frontend/authentication/login.php";
+
+            unset($_SESSION['errors']);
+        }
     }
 
     /*

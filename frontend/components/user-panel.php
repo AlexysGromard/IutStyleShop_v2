@@ -33,10 +33,10 @@ function generateUserPanelComponent(
             "Base de codes promotionnel" => "#"
         ],
         "client" => [
-            "Mes informations" => "/user/user_space/informations",
-            "Mes commandes" => "/user/user_space/commandes",
-            "Mon adresse" => "/user/user_space/adresse",
-            "Mes paramètres" => "/user/user_space/parametres"
+            "Mes informations" => "/user/dashboard/informations",
+            "Mes commandes" => "/user/dashboard/commandes",
+            "Mon adresse" => "/user/dashboard/adresse",
+            "Mes paramètres" => "/user/dashboard/parametres"
         ]
     ];
     
@@ -74,7 +74,7 @@ function generateUserPanelComponent(
             <?php endforeach; ?>
         </ul>
         <!-- Deconnexion -->
-        <a class="button" id="logout-button">Déconnexion</a>
+        <button class="button" id="logout-button" onclick="showLogoutPopup()">Déconnexion</button>
     </div>
 </div>
 

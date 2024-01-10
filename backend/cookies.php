@@ -2,7 +2,9 @@
     class Cookies {
         public static function verifyCookies() {
             // Vérfication si un cookie "cookieAccept" existe
-            session_start();
+            if (session_status() == PHP_SESSION_NONE){
+                session_start();
+            }
             if(!isset($_SESSION['cookieAccept'])) {
                 // Si non, on affiche la popup
                 echo "<script>showCookiesPopup()</script>";

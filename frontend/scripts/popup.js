@@ -87,3 +87,7 @@ function showLogoutPopup() {
         showErrorPopup('Erreur', "Une erreur est survenue lors de l'affichage du popup de déconnexion.");
     }
 }
+
+function hideLogoutPopup() {
+    logoutPopupOverlay.classList.remove('active');
+}

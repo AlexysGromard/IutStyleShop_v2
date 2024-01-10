@@ -135,6 +135,8 @@ class emailConfirmation {
         unset($_SESSION['firstname']);
         unset($_SESSION['email']);
         unset($_SESSION['confirmationCode']);
-        // TODO : Envoyer l'utilisateur vers la page de connexion
+        
+        // Renvoyer vers le dashboard
+        header("Location: /user/dashboard/informations");
     }
 }
