@@ -2,6 +2,8 @@
 
 namespace backend\DAO;
 
+use Exception;
+
 require_once 'backend/config/config.php'; //TODO : A corriger avec MVC
 
 /**
@@ -12,7 +14,7 @@ require_once 'backend/config/config.php'; //TODO : A corriger avec MVC
 class Connexion
 {
     # attribut de connexion
-    private \PDO $pdo;
+    protected \PDO $pdo;
 
     public function __construct()
     {
@@ -32,6 +34,7 @@ class Connexion
             $this->pdo= $pdoinstance->getConnexion();
             
         } catch (\PDOException $e) {
+            echo $e;
             echo "<script>showErrorPopup('Erreur de connexion','Une erreur est survenue lors de la connexion à la base de données.')</script>";
             die();
         }
