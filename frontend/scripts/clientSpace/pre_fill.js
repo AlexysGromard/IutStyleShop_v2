@@ -6,9 +6,12 @@ for (element of document.getElementsByClassName("sidebar")){
     }
 }
 
-for (element of document.getElementsByClassName("sidebar")){
+/*
+for (element of document.getElementsByClassName("radioButton")){
+
     var val = element.getAttribute("initval");
     if (val != null){
         element.value = val;
     }
 }
+*/
