@@ -2,6 +2,9 @@
 
 namespace backend\DAO;
 
+use \backend\entity\ArticleEntity;
+
+
 Interface ArticleInterface extends DAOInterface
 {
     /**

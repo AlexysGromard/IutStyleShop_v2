@@ -16,21 +16,29 @@ class Connexion
 
     public function __construct()
     {
+        
         try{
-            $pdo = \system\SPDO::getInstance(
+            
+            $pdoinstance = \system\SPDO::getInstance(
                 DB_CONFIG["type"].':host='.DB_CONFIG["host"].';port='.DB_CONFIG["port"].';dbname='.DB_CONFIG["dbname"],
                 DB_CONFIG["username"],
                 DB_CONFIG["password"],
                 [
-                    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+                    // \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
                     \PDO::ATTR_TIMEOUT => 3600,
                 ]
-                )->getConnexion();
-            return $pdo;
+                );
+            echo "testtt";
+            $this->pdo= $pdoinstance->getConnexion();
+            
         } catch (\PDOException $e) {
+            echo $e;
+            throw new Exception('Division par zéro.');
             echo "<script>showErrorPopup('Erreur de connexion','Une erreur est survenue lors de la connexion à la base de données.')</script>";
             die();
         }
+
+        echo "testtt";
     }
 }
 ?>
