@@ -28,16 +28,16 @@
             <!-- right -->
             <div class="user_right_box">
                 <?php if ($actionSelect == "Mes informations") :?>
-                    <?php require "frontend/userSpace/clientSpace/informations.php";?>
+                    <?php require "frontend/dashboard/clientSpace/informations.php";?>
 
                 <?php elseif ($actionSelect == "Mes commandes") :?>
-                    <?php require "frontend/userSpace/clientSpace/commandes.php";?>
+                    <?php require "frontend/dashboard/clientSpace/commandes.php";?>
 
                 <?php elseif ($actionSelect == "Mon adresse") :?>
-                    <?php require "frontend/userSpace/clientSpace/adresse.php";?>
+                    <?php require "frontend/dashboard/clientSpace/adresse.php";?>
 
                 <?php elseif ($actionSelect == "Mes paramètres") :?>
-                    <?php require "frontend/userSpace/clientSpace/parametres.php";?>
+                    <?php require "frontend/dashboard/clientSpace/parametres.php";?>
 
                 <?php endif ?>
             </div>
@@ -47,6 +47,4 @@
     <?php include 'frontend/components/footer.php'; ?>
 
 </body>
-<script src="/frontend/scripts/clientSpace.js"></script>
-
 </html>

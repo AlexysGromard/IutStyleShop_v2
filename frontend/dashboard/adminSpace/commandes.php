@@ -24,8 +24,7 @@
                     <td><a href="xx" class="Red_police_50"><?= $listvalues["Statut"] ?></a></td>
                     <td class="Black_police_40"><?= $listvalues["Prix"] ?></td>
                     <td class=action_space>
-                        <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
-                        <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
+                        <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

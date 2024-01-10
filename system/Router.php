@@ -47,7 +47,12 @@ class Router
             $class = "\controller\\".$controller;
             
             $controllerinstance = new $class();
-            $controllerinstance->$controllerMethod($params);
+            if (method_exists($controllerinstance,$controllerMethod)){
+                $controllerinstance->$controllerMethod($params);
+            }else{
+                require "frontend/404.php";die();
+            }
+            
        
     }
 }

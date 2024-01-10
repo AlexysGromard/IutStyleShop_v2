@@ -43,7 +43,7 @@ class user{
         //todo
 
         if (count($param) < 1 || !in_array($param[0], array("utilisateurs","commandes","articles","avis","codes_promotionnel"))){
-            echo "Erreur";die();
+            require "frontend/404.php";die();
         }
 
         $personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
@@ -89,9 +89,18 @@ class user{
             }else if ($param[1] == "nouvelArticle"){
                 $article = "nouvelArticle";
             }
-    
         }
-        
+
+        //si codes promo
+        $codePromo = null;
+        if (isset($param[1])){
+            if (is_numeric($param[1])){
+                //mettre un code promo
+                //$codePromo =
+            }else if ($param[1] == "nouveauCodePromotionnel"){
+                $codePromo = "nouveauCodePromotionnel";
+            }
+        }
     
 
         require "frontend/dashboard/admin.php";

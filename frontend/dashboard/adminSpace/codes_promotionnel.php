@@ -1,7 +1,8 @@
+<?php if ($codePromo==null) :?>
 <div class="large_box">
     <div class="title_space">
         <span class="Black_police_65">Base de données codes promotionnel</span>
-        <a href="" class="White_police_40 small-size button">Ajouter un code</a>
+        <a href="/user/admin_space/codes_promotionnel/nouveauCodePromotionnel" class="White_police_40 small-size button">Ajouter un code</a>
     </div>
 
     <table class="table_admin">
@@ -30,3 +31,18 @@
         </tbody>
     </table>
 </div>
+<?php elseif ($codePromo=="nouveauCodePromotionnel"): ?>
+    <form class="large_box" action="">
+        <span class="Black_police_65">Code promotionnel N°xxxx - xxxxxxxxxxxx</span>
+
+        <div class="large_inputText_space">
+            <label for="article-name" class="Black_police_55">Code promotionnel</label>
+            <input id="Code promotionnel" placeholder="Mon nom de code" type="text" class="sidebar">
+        </div>  
+        <div class="large_inputText_space">
+            <label for="article-name" class="Black_police_55">Nom de l'article</label>
+            <input id="Code promotionnel" placeholder="Nom de l'article" type="text" class="sidebar">
+        </div>
+        <button type="submit" class="medium-size button basic-text button_check">Ajouter code promotionnel</button>
+    </form>
+<?php endif; ?>

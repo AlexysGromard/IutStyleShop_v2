@@ -47,17 +47,17 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="last-name">Nom</label>
-                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval=<?= $personne->nom; ?> oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval="<?= $personne->nom; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="first-name">Prénom</label>
-                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" initval=<?= $personne->prenom; ?> oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
+                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" initval="<?= $personne->prenom; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
             </div>
         </div>
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="mail">Adresse mail</label>
-                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" initval=<?= $personne->mail; ?> oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" initval="<?= $personne->mail; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="phone">Numéro de téléphone</label>
@@ -75,13 +75,17 @@
     <div class="input_password_space">
         <div class="inputText_space">
             <label class="Black_police_55" for="currentpasswords">Mot de passe actuel</label>
-            <input class="sidebar" type="password" placeholder="**************" id="currentpasswords" name="currentpasswords" minlength="8" required>
+            <input class="sidebar" type="password" placeholder="**************" id="currentpasswords" name="currentpasswords" minlength="8" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
         </div>
         <div class="inputText_space">
             <label class="Black_police_55" for="newpasswords">Nouveau mot de passe</label>
-            <input class="sidebar" type="password" placeholder="**************" id="newpasswords" name="newpasswords" minlength="8" required>
+            <input class="sidebar" type="password" placeholder="**************" id="newpasswords" name="newpasswords" minlength="8" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
         </div>
     </div>
-    <button type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
+    <button id="ChangePassword" type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
 
 </form>
+
+
+<script src="/frontend/scripts/clientSpace/pre_fill.js"></script>
+<script src="/frontend/scripts/clientSpace/adresse.js"></script>
