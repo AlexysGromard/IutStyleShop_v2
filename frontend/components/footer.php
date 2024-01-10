@@ -5,7 +5,7 @@
         <h3 class="footer-box-title">Plan du site</h3>
         <div class="footer-box">
             <ul>
-                <li><a href="/">Accueil</a></li>
+                <li><a href="#">Accueil</a></li>
                 <li><a href="/frontend/all-products/">Tous les articles</a></li>
                 <li><a href="/frontend/all-products/t-shirt/">T-Shirt</a></li>
                 <li><a href="/frontend/all-products/sweatshirt/">Sweat-shirt</a></li>
@@ -13,8 +13,8 @@
             <ul>
                 <li><a href="/frontend/all-products/sportswear/">Tenue de sport</a></li>
                 <li><a href="/frontend/all-products/accessories/">Accessoires</a></li>
-                <li><a href="/login">Connexion</a></li>
-                <li><a href="/register">Inscription</a></li>
+                <li><a href="#">Connexion</a></li>
+                <li><a href="#">Inscription</a></li>
             </ul>
         </div>
     </div>
@@ -23,8 +23,8 @@
         <h3 class="footer-box-title">Crédits</h3>
         <div class="footer-box">
             <ul>
-                <li><a href="/legal">Mentions légales</a></li>
-                <li><a href="/legal">Crédits et aspects légaux</a></li>
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Crédits et aspects légaux</a></li>
                 <li><a href="#">Créateurs</a></li>
             </ul>
         </div>
@@ -36,8 +36,7 @@
             <div id="payment-methods-images">
                 <img src="/frontend/assets/icons/visa.svg" alt="Visa logo">
                 <img src="/frontend/assets/icons/mastercard.svg" alt="Mastercard logo">
-                <img src="/frontend/assets/icons/card.svg" alt="CB logo"> 
-                <img src="/frontend/assets/icons/bitcoin.png" alt="BTC logo"> 
+                <img src="/frontend/assets/icons/card.svg" alt="CB logo">    
             </div>
         </div>
     </div>

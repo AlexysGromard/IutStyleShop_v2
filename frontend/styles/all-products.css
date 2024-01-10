@@ -6,9 +6,7 @@ main{
     justify-content: space-between;
     gap: 54px;
     min-height: 56.3vh;
-    justify-content: center;
 }
-
 
 /* sort-order (Select/otpion) */
 #sort-order{
@@ -85,20 +83,20 @@ main{
     display: flex;
     flex-direction: column;
 }
-
-.sliders_control {
+  
+  .sliders_control {
     position: relative;
-}
-
-.form_control {
+  }
+  
+  .form_control {
     position: relative;
     display: flex;
     justify-content: space-between;
     font-size: 24px;
     color: #635a5a;
-}
-
-input[type=range]::-webkit-slider-thumb {
+  }
+  
+  input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     pointer-events: all;
     width: 16px;
@@ -107,30 +105,13 @@ input[type=range]::-webkit-slider-thumb {
     border-radius: 50%;
     cursor: pointer;
     transition: filter 0.2s;
-    border: none;
-}
-/* For mozila */
-input[type=range]::-moz-range-thumb {
-    -webkit-appearance: none;
-    pointer-events: all;
-    width: 16px;
-    height: 16px;
-    background-color: var(--red);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: filter 0.2s;
-    border: none;
-}
-input[type=range]::-webkit-slider-thumb:hover {
+  }
+  input[type=range]::-webkit-slider-thumb:hover {
     filter: brightness(0.8);
-}
-/* For mozila */
-input[type=range]::-moz-range-thumb:hover {
-    filter: brightness(0.8);
-}
+  }
 
 
-input[type="range"] {
+  input[type="range"] {
     -webkit-appearance: none; 
     appearance: none;
     height: 5px;
@@ -139,13 +120,13 @@ input[type="range"] {
     background-color: #FFC1C1;
     pointer-events: none;
     border-radius: 3px;
-}
-
-#fromSlider {
+  }
+  
+  #fromSlider {
     height: 0;
     z-index: 1;
     margin-top: 3px;
-}
+  }
 
 /* range-values */
 #range-values{
@@ -207,7 +188,6 @@ input[type="range"] {
   font-size: var(--small);
   color: var(--dark-grey);
   cursor: pointer;
-  user-select: none;
 }
 
 #product-color input[type="checkbox"]{
@@ -223,13 +203,16 @@ input[type="range"] {
     border: 4px solid transparent;
     margin-bottom: 1px;
 }
-.product-color-checked{
+#product-color li:has(input[type="checkbox"]){
+    transition: 0.2s background-color, 0.2s border;
+}
+#product-color li:has(input[type="checkbox"]:checked){
     background-color: var(--red);
     border: 4px solid var(--red);
-    color: var(--white);   
+    color: var(--white);
 }
-.product-color-checked label{
-    color: var(--white) !important;
+#product-color li:has(input[type="checkbox"]:checked) label{
+    color: var(--white);
 }
 
 
@@ -255,7 +238,7 @@ input#black{
     /* Main */
     main{
         flex-direction: column-reverse;
-        margin: 0 auto 107px auto;
+        margin: 39px auto 107px auto;
         padding: 0 25px;
         max-width: 1124px;
         gap: 0;
