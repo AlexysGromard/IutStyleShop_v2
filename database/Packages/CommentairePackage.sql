@@ -1,4 +1,4 @@
-
+DELIMITER //
 CREATE OR REPLACE PACKAGE CommentairePackage AS
 
     -- Procédure pour ajouter un nouveau commentaire
@@ -16,7 +16,7 @@ CREATE OR REPLACE PACKAGE CommentairePackage AS
     FUNCTION GetCommentaires(p_id_article INT) RETURN SYS_REFCURSOR;
 
 END CommentairePackages;
-
+//
 
 
 CREATE OR REPLACE PACKAGE BODY CommentairePackages AS
@@ -57,4 +57,5 @@ CREATE OR REPLACE PACKAGE BODY CommentairePackages AS
     END GetCommentaires;
 
 END CommentairePackages;
-
+//
+DELIMITER;

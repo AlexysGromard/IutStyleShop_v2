@@ -1,5 +1,5 @@
 --Table Commentaire
-CREATE TABLE Commentaire (
+CREATE OR REPLACE  TABLE Commentaire (
 	ID_User INT NOT NULL, 
 	ID_Article INT NOT NULL,
 	note FLOAT NOT NULL,

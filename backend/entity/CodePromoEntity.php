@@ -10,42 +10,56 @@ class CodePromoEntity
     /*
     Table SQL CodePromo
 
-	ID_User INT PRIMARY KEY NOT NULL, 
-	id_Article INT PRIMARY KEY NOT NULL,
-	taille VARCHAR(4) NOT NULL, --ne peut qu'omporté que des valeur choisie et max : xxxl
-	quantite TINYINT NOT NULL ,  -- ne peut pas etre a 0 ou >100
-	FOREIGN KEY (ID_User) REFERENCES User(id),
-	FOREIGN KEY (id_Article) REFERENCES Article (id)
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    texte VARCHAR(255) NOT NULL UNIQUE,
+    promo TINYINT NOT NULL
     */
 
 
     private int $id;
     private string $code;
-    private float $promo;
+    private int $promo;
     
-    public function __construct(int $id,string $code,float $promo) {
+    public function __construct(int $id,string $code,int $promo) {
         $this->id = $id;
         $this->setCode($code);
         $this->setPromo($promo);
     }
 
+    /* Getters & Setters */
+
+    /*
+    * @return int
+    */
     function getId(): int {
         return $this->id;
     }
 
+    /*
+    * @return string
+    */
     function getCode(): string{
         return $this->code;
     }
 
-    function getPromo(): string{
+    /*
+    * @return int
+    */
+    function getPromo(): int{
         return $this->promo;
     }
 
+    /*
+    * @param string $code
+    */
     function setCode(string $code){
         return $this->code = $code;
     }
 
-    function setPromo(float $promo){
+    /*
+    * @param int $promo
+    */
+    function setPromo(int $promo){
         return $this->promo = $promo;
     }
 }

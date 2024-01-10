@@ -19,20 +19,18 @@ class ArticleComandeEntity
     FOREIGN KEY (id_Article) REFERENCES Article (id)
     */
 
-    private int $id;
-    private ArticleEntity $article;
+
+    private int $id_article;
     private string $taille;
     private float $prix_unitaire;
     private int $quantite;
 
 
-    public function __construct(int $id,
-                                ArticleEntity $article,
+    public function __construct(int $id_article,
                                 string $taille,
                                 float $prix_unitaire,
                                 int $quantite) 
     {
-        $this->id = $id;
         $this->setArticle($article);
         $this->setTaille($taille);
         $this->setPrixUnitaire($prix_unitaire);
@@ -41,20 +39,13 @@ class ArticleComandeEntity
 
     /* Getters & Setters */
 
-    /*
-    * @return int
-    */
-    public function getIdCommande(): int
-    {
-        return $this->id;
-    }
 
     /*
     * @return int
     */
-    public function getArticle(): ArticleEntity
+    public function getIdArticle(): int
     {
-        return $this->article;
+        return $this->id_article;
     }
 
     /*
@@ -83,11 +74,11 @@ class ArticleComandeEntity
 
 
     /*
-    * @param ArticleEntity $id_article
+    * @param int $id_article
     */
-    public function setArticle(ArticleEntity $article): void
+    public function setIdArticle(int $id_article): void
     {
-        $this->$article = $article;
+        $this->id_article = $id_article;
     }
 
     /*

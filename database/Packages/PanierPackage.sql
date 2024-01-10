@@ -1,4 +1,4 @@
-
+DELIMITER //
 
 CREATE OR REPLACE PACKAGE PanierPackage AS
 
@@ -25,7 +25,7 @@ CREATE OR REPLACE PACKAGE PanierPackage AS
     FUNCTION GetContenuPanier(p_id_user INT) RETURN SYS_REFCURSOR;
 
 END PanierPackage;
-
+//
 
 CREATE OR REPLACE PACKAGE BODY PanierPackage AS
 
@@ -79,6 +79,6 @@ CREATE OR REPLACE PACKAGE BODY PanierPackage AS
     END GetContenuPanier;
 
 END PanierPackage;
+//
 
-
-
+DELIMITER;

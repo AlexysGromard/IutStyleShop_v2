@@ -32,6 +32,7 @@ class UserEntity
     // Utilisateur identifié‡
     private int $id;
     private string $email;
+    private string $telephone;
     private string $nom;
     private string $prenom;
     private string $genre;
@@ -41,30 +42,22 @@ class UserEntity
     private int $code_postal;
     private string $complement_adresse;
 
-    public PanierEntity $panier;
 
-
-    public function __construct()
-    {
-        // Si l'utilisateur n'a pas de cookie, ouvrir pop-up de cookie
-        $this->cookieAccepted = isset($_COOKIE['cookie']) ? $_COOKIE['cookie'] : null;
-        if ($this->cookieAccepted == null) {
-            $this->askForCookies();
-        }
-    }
-
-    public function askForCookies()
-    {
-        echo "<script>showCookiesPopup()</script>";
-    }
-
-    /*
-    * Créer un utilisateur identifié
-    */
-    public function createIdentifiedUser(int $id, string $email, string $nom, string $prenom, string $genre,string $role,string $adresse, string $ville,string $complement_adresse,PanierEntity $panier)
+    public function __construct(int $id,
+                                string $email,
+                                string $telephone,
+                                string $nom,
+                                string $prenom,
+                                string $genre,
+                                string $role,
+                                string $adresse,
+                                string $ville,
+                                string $complement_adresse
+                                )
     {
         $this->id = $id;
         $this->setEmail($email);
+        $this->setTelephone($telephone);
         $this->setNom($nom);
         $this->setPrenom($prenom);
         $this->setGenre($genre);
@@ -72,9 +65,11 @@ class UserEntity
         $this->setAdresse($adresse);
         $this->setVille($ville);
         $this->setComplementAdresse($complement_adresse);
-        $this->panier = $panier;
-
-        // Sauvegarder l'utilisateur dans la session
+        // Si l'utilisateur n'a pas de cookie, ouvrir pop-up de cookie
+        $this->cookieAccepted = isset($_COOKIE['cookie']) ? $_COOKIE['cookie'] : null;
+        if ($this->cookieAccepted == null) {
+            $this->askForCookies();
+        }
         $this->saveUserSession();
     }
 
@@ -88,6 +83,11 @@ class UserEntity
             session_start();
         }
         $_SESSION['user'] = $this;
+    }
+
+    public function askForCookies()
+    {
+        echo "<script>showCookiesPopup()</script>";
     }
 
     /*
@@ -111,6 +111,15 @@ class UserEntity
     {
         return $this->email;
     }
+
+    /*
+    * @return string
+    */
+    public function getTelephone(): string
+    {
+        return $this->telephone;
+    }
+
 
     /*
     * @return string
@@ -187,6 +196,14 @@ class UserEntity
     public function setEmail(string $email): void 
     {
         $this->email = $email;
+    }
+
+    /*
+    * @param string $telephone
+    */
+    public function setTelephone(string $telephone): void
+    {
+        $this->telephone = $telephone;
     }
 
     /*

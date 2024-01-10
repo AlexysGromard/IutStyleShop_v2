@@ -2,10 +2,7 @@
 
 namespace backend\entity;
 
-/*
-* @Entity @Table(name="ArticleComande")
-*/
-class ArticleComandeEntity
+class PanierArticleEntity
 {
     /*
     Table SQL Article
@@ -19,21 +16,22 @@ class ArticleComandeEntity
     FOREIGN KEY (id_Article) REFERENCES Article (id)
     */
 
-    private int $id_commande;
+
     private int $id_article;
     private string $taille;
-    private float $prix_unitaire;
     private int $quantite;
 
-    /* Getters & Setters */
-
-    /*
-    * @return int
-    */
-    public function getIdCommande(): int
+    function __construct(int $id_article,
+                         string $taille,
+                         int $quantite)
     {
-        return $this->id_commande;
+        $this->setIdArticle($id_article);
+        $this->setTaille($taille);
+        $this->setQuantite($quantite);
     }
+
+
+    /* Getters & Setters */
 
     /*
     * @return int
@@ -54,25 +52,9 @@ class ArticleComandeEntity
     /*
     * @return float
     */
-    public function getPrixUnitaire(): float
-    {
-        return $this->prix_unitaire;
-    }
-
-    /*
-    * @return int
-    */
     public function getQuantite(): int
     {
         return $this->quantite;
-    }
-
-    /*
-    * @param int $id_commande
-    */
-    public function setIdCommande(int $id_commande): void
-    {
-        $this->id_commande = $id_commande;
     }
 
     /*
@@ -92,15 +74,7 @@ class ArticleComandeEntity
     }
 
     /*
-    * @param float $prix_unitaire
-    */
-    public function setPrixUnitaire(float $prix_unitaire): void
-    {
-        $this->prix_unitaire = $prix_unitaire;
-    }
-
-    /*
-    * @param int $quantite
+    * @param float $quantite
     */
     public function setQuantite(int $quantite): void
     {
@@ -108,5 +82,3 @@ class ArticleComandeEntity
     }
 
 }
-
-?>

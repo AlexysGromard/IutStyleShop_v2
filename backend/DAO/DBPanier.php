@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBPanier extends Connection implements DAOInterface
+class DBPanier extends Connexion implements DAOInterface
 {
     public function add(PanierEntity $entity)
     {   
