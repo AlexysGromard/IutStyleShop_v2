@@ -18,6 +18,12 @@ class DBUser extends Connexion implements UserInterface
 
     public function getall()
     {
+        $requete = "CALL GetUserInfo()";
+        $stmt = $this->pdo->prepare($requete);
+        $stmt->execute();
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        var_dump($result);
+        return $result;
     }
 
     public function getByEmail(string $email): ?UserEntity
