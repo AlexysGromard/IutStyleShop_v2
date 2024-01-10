@@ -26,11 +26,11 @@ function generateUserPanelComponent(
     // Actions list
     $actions = [
         "admin" => [
-            "Base de données utilisateurs" => "#",
-            "Base de données commandes" => "#",
-            "Base de données articles " => "#",
-            "Base de données des avis" => "#",
-            "Base de codes promotionnel" => "#"
+            "Base de données utilisateurs" => "/user/admin_space/utilisateurs",
+            "Base de données commandes" => "/user/admin_space/commandes",
+            "Base de données articles" => "/user/admin_space/articles",
+            "Base de données avis" => "/user/admin_space/avis",
+            "Base de données codes promotionnel" => "/user/admin_space/codes_promotionnel"
         ],
         "client" => [
             "Mes informations" => "/user/dashboard/informations",
@@ -54,8 +54,8 @@ function generateUserPanelComponent(
             ?>
             <img src="<?php echo $photoPath; ?>" alt="Photo de profil">
         </div>
-        <span id="user-name"><?php echo $userName; ?></span>
-        <span id="user-id">N° de<?php echo ($userType === "client" ? " client" : " user"); ?> : <?php echo $userId; ?></span>
+        <span id="user-name"><?= $userName; ?></span>
+        <span id="user-id">N° de<?php echo ($userType === "client" ? " client" : " user"); ?> : <?= $userId; ?></span>
     </div>
     <div id="user-actions">
         <!-- Liste des actions -->

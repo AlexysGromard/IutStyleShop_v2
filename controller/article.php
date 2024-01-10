@@ -17,7 +17,6 @@ class article{
         $articleActual = $p1;
         require "frontend/article/index.php";
     }
-
 }
 
 ?>

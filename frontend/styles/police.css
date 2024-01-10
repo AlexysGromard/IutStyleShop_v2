@@ -79,6 +79,18 @@ span, label, p{ /*pour vérifier si des élément n'on pas été modifier*/
 
 /***White***/
 
+.White_police_35{
+    color: #FFF;
+
+    /* Regular12 */
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
 .White_police_40{
     color: var(--white, #F6F7F9);
     font-family: Roboto;
@@ -121,6 +133,15 @@ span, label, p{ /*pour vérifier si des élément n'on pas été modifier*/
 
 
 /***Red***/
+.Red_police_50{
+    color: var(--red);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 
 .Red_police_55{
     color: var(--red);
@@ -131,4 +152,6 @@ span, label, p{ /*pour vérifier si des élément n'on pas été modifier*/
     font-weight: 400;
     line-height: normal;
 }
+
+
 
