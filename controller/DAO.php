@@ -43,7 +43,13 @@ class DAO{
         echo "DAO class created : " . $params[0];
         echo "<br>";
         echo "<br>";
-        call_user_func([$this->dao, $params[1]]);
+        if (isset($params[3])){
+            call_user_func([$this->dao, $params[1]]);
+        } else {
+            $arguments[] = $params[3]
+            //call_user_func([$this->dao, $params[1]]);
+        }
+
         echo "<br>";
         echo "use methode : " . $params[1];
     
