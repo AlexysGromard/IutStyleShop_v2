@@ -137,6 +137,10 @@ class emailConfirmation {
 
         // Récupération de l'utilisateur dans la base de données
         $user = $DAOUser->getById($DAOUser->getByEmail($_SESSION['email']));
+        if ($user == null) {
+            echo "<script>showErrorPopup('Erreur lors de la création de l\'utilisateur','Une erreur est survenue lors de la création de l\'utilisateur.')</script>";
+            exit();
+        }
 
         // Stocker l'utilisateur dans la session
         $user->saveUserSession();
