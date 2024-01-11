@@ -2,55 +2,11 @@
 
 namespace backend\DAO;
 
-class DBCommande extends Connexion// implements DAOInterface
+class DBCommande extends Connexion
 {
-    public function add($entity)
-    {
-
-    }
-
-    public function update($entity)
-    {
-    }
-
-    public function delete($id)
-    {
-    }
-
-    public function getall()
-    {
-    }
 
 
 
-
-    /*
-    public static function getById($commande): ?CommandeEntity
-    {
-        try {
-
-            /////article dans commande
-            $requete = "CALL GetCommande(?)";
-            $stmt = self::$pdo->prepare($requete);
-            // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->id, \PDO::PARAM_INT);
-
-            $stmt->execute();
-            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-            $commande = array();
-            foreach ($result as $article ){
-
-
-                $commande[] = new \backend\entity\CommandeEntity($article["id_Article"],$article["taille"],$article["prix unitaire"],$article["quantite"]);
-            }
-            
-            
-        }catch (\PDOException $e ){
-            // Gère les erreurs de la base de données
-            echo "Erreur : " . $e->getMessage();
-        }
-    }*/
 
     public static function addCommande($user){
         //TODO

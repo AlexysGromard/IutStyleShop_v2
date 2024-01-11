@@ -2,67 +2,99 @@
 
 namespace backend\DAO;
 
-use \backend\entity\ArticleEntity;  
-
-
 class DBArticle extends Connexion implements ArticleInterface
 {
+    /**
+     * Ajoute un article
+     * 
+     * @param ArticleEntity $entity
+     * @return void
+     */
     public function add($entity)
     {   
+        $sql = "INSERT INTO article (nom, description, prix, promo, disponibilite, categorie, genre, couleur, taille, image) VALUES (:nom, :description, :prix, :promo, :disponibilite, :categorie, :genre, :couleur, :taille, :image)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'nom' => $entity->getNom(),
+            'description' => $entity->getDescription(),
+            'prix' => $entity->getPrix(),
+            'promo' => $entity->getPromo(),
+            'disponibilite' => $entity->getDisponibilite(),
+            'categorie' => $entity->getCategorie(),
+            'genre' => $entity->getGenre(),
+            'couleur' => $entity->getCouleur(),
+            'taille' => $entity->getTaille(),
+            'image' => $entity->getImage()
+        ]);
     }
 
+    /**
+     * Update une articles
+     * 
+     * @param ArticleEntity $entity
+     * @return void
+     */
     public function update($entity)
     {
     }
 
+
+    /**
+     * Supprime un article
+     * 
+     * @param int $id
+     * @return void
+     */
     public function delete($id)
     {
     }
 
-    public function getall():array
+    /**
+     * Donne tous les articles
+     * 
+     * @return ArticleEntity[]
+     */
+    public function getall()
     {
-        
-
-        return array();
-
     }
 
+    /**
+     * Donne un article
+     * 
+     * @param int $id
+     * @return ArticleEntity|null
+     */
     public function getById(int $id): ?ArticleEntity
     {
-        try {
-            $requete = "CALL GetArticleInfo(?, @p_article, @p_image, @p_accessoire_or_vetement)";
-            $stmt = $this->pdo->prepare($requete);
-            // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $id, \PDO::PARAM_INT);
-
-            // Lie les variables de sortie
-            $stmt->bindParam('@p_article', $p_article, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 255);
-            $stmt->bindParam('@p_image', $p_image, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 255);
-            $stmt->bindParam('@p_accessoire_or_vetement', $p_accessoire_or_vetement, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 255);
-
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            return $result;
-        }catch (\PDOException $e ){
-            // Gère les erreurs de la base de données
-            echo "Erreur : " . $e->getMessage();
-        }
-        
     }
 
+    /**
+     * Donne les articles d'une categorie
+     * 
+     * @param string $categorie
+     * @return ArticleEntity[]
+     */
     public function getArticleByCategorie(string $categorie): array
     {
-        return array();
     }
 
+    /**
+     * Donne les articles disponibles
+     * 
+     * @param string $genre
+     * @return ArticleEntity[]
+     */
     public function getArticleByDisponibilite(bool $disponibilite): array
     {
-        return array();
-
     }
 
+    /**
+     * Donne les articles par rapport à des conditions
+     * 
+     * @param bool $promo
+     * @return ArticleEntity[]
+     */
     public function getArticleByCondition(string $categorie, string $genre, string $couleur, array $prix, bool $promo, bool $disponibilite): array
     {
-        return array();
-
     }
 }

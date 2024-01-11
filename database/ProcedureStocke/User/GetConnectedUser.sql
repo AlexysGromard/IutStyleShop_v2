@@ -7,6 +7,6 @@ DELIMITER //
     )
     BEGIN
         -- récupérer les informations d'un utilisateur avec l'email spécifié et le password
-        SELECT * FROM User WHERE email = p_email AND password = PASSWORD(p_password);
+        SELECT id, email, telephone, nom, prenom, genre, role, adresse, ville, code_postal, Complement_adresse FROM User WHERE email = p_email AND password = PASSWORD(p_password);
     END //
 DELIMITER ;
