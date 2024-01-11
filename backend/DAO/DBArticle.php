@@ -26,12 +26,12 @@ class DBArticle extends Connexion implements DAOInterface
      * 
      * @return ?VetementEntityEntity
      */
-    public function addVetement($nom,$categorie,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
+    public static function addVetement($nom,$categorie,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
     {   
         if (count($quantite)==5 ){
 
             $sql = "call InsertArticleVetement(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            $stmt = $this->pdo->prepare($sql);
+            $stmt = self::$pdo->prepare($sql);
             $stmt->bindParam(1,$nom,\PDO::PARAM_STR);
             $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
             $stmt->bindParam(3,$genre,\PDO::PARAM_STR);
@@ -55,12 +55,12 @@ class DBArticle extends Connexion implements DAOInterface
             if ($id != null){
                 foreach ($images as $img){
                 $sql = "call InsertImage(?,?)";
-                $stmt = $this->pdo->prepare($sql);
+                $stmt = self::$pdo->prepare($sql);
                 $stmt->bindParam(1,$id);
                 $stmt->bindParam(2,$img);
                 $stmt->execute();
                 }
-                return $this->getById($id);
+                return self::getById($id);
             }
             
             
@@ -115,7 +115,7 @@ class DBArticle extends Connexion implements DAOInterface
             $stmt->bindParam(2,$img);
             $stmt->execute();
             }
-            return self::$pdo->getById($id);
+            return self::getById($id);
         }
         return null;
             
@@ -174,7 +174,7 @@ class DBArticle extends Connexion implements DAOInterface
 
 
             $requete = "CALL GetImageArticle(?)";
-            $stmt = self::$pdo>prepare($requete);
+            $stmt = self::$pdo->prepare($requete);
             $stmt->bindParam(1,$id);
             $stmt->execute();
             $imagesArticle = $stmt->fetchAll(\PDO::FETCH_ASSOC);
