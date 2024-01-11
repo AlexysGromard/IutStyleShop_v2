@@ -75,34 +75,6 @@ class DBPanier extends Connexion// implements DAOInterface
         }
     }
 
-    /*
-    public static function getall()
-    {
-        try {
-            $requete = "CALL GetAllArticlePanier()";
-            $stmt = self::$pdo->prepare($requete);
-
-            $stmt->execute();
-            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-            $articles = array();
-            foreach ($result as $article ){
-                $articles[] = new \backend\entity\PanierArticleEntity($article["id_Article"],$article["taille"],$article["quantite"]);
-            }
-            return new \backend\entity\PanierEntity($articles);
-            
-            
-        }catch (\PDOException $e ){
-            // Gère les erreurs de la base de données
-            echo "Erreur : " . $e->getMessage();
-        }
-    }
-
-    public static function getById(int $id): ?\backend\entity\PanierEntity
-    {
-        
-    }*/
-
 
     /**
      * Donne le panier d'un utilisateur
