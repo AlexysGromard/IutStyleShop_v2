@@ -23,15 +23,16 @@ DELIMITER //
         DECLARE last_id_2 INT;
         SET @last_id = 0;
         SET @last_id_2 = 0;
-        -- SELECT MAX(Article.id) FROM Article;
-        -- INSERT INTO Article (nom, category, genre, couleur, description,votant,notes, prix, promo, disponible) VALUES (p_nom, p_category, p_genre, p_couleur, p_description,0,0.0, p_prix, p_promo, p_disponible);
-        -- SELECT MAX(id) INTO @last_id_2 FROM Article;
-        -- IF last_id_2 >= last_id + 2 THEN
-        --     SIGNAL SQLSTATE '45251' SET MESSAGE_TEXT = 'Deux accessoires ont été ajouté en même temps !';
-        -- ELSE
-        --     INSERT INTO Accessoire (id_Article, quantite) VALUES (last_id_2, quantite);
-        -- END IF;
-        -- SELECT id from Article WHERE id = last_id_2;
-
-        END //
+        SELECT MAX(id) INTO @last_id FROM Article;
+        INSERT INTO Article (nom, category, genre, couleur, description,votant,notes, prix, promo, disponible) VALUES (p_nom, p_category, p_genre, p_couleur, p_description,0,0.0, p_prix, p_promo, p_disponible);
+        -- INSERT INTO Article (nom, category, genre, couleur, description,votant,notes, prix, promo, disponible) VALUES ("p_nom", "p_category", "M", "Red", "p_description",0,0.0, 10, 2, 1);
+        SELECT MAX(id) INTO @last_id_2 FROM Article;
+        IF @last_id_2 >= @last_id + 2 THEN
+            SIGNAL SQLSTATE '45151' SET MESSAGE_TEXT = 'Deux articles ont été ajouté en même temps !';
+        ELSE
+            INSERT INTO Accessoire (id_Article, quantite) VALUES (last_id_2, quantite);
+        SELECT @last_id_2;
+        
+        END IF;
+    END //
 DELIMITER ;
