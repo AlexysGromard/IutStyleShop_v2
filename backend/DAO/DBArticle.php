@@ -2,7 +2,9 @@
 
 namespace backend\DAO;
 
-class DBArticle extends Connexion implements DAOInterface
+use \backend\entity\ArticleEntity;
+
+class DBArticle extends Connexion implements ArticleInterface
 {
     /**
      * Ajoute un article
@@ -56,6 +58,11 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getall()
     {
+        $requete = "CALL GetAllArticle()";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
     }
 
     /**
@@ -66,6 +73,50 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getById(int $id): ?ArticleEntity
     {
+        try {
+            $requete = "CALL GetArticleInfo(?)";
+            $stmt = self::$pdo->prepare($requete);
+            $stmt->bindParam(1,$id);
+            $stmt->execute();
+            $valeurArticle = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+
+            $requete = "CALL GetImageArticle(?)";
+            $stmt = self::$pdo>prepare($requete);
+            $stmt->bindParam(1,$id);
+            $stmt->execute();
+            $imagesArticle = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $lsLiens = array();
+            foreach($imagesArticle as $img) { 
+
+                $lsLiens[]= $img["lien"] ;
+             } 
+
+            $requete = "CALL GetQuantiteAccessoireOrVetement(?)";
+            $stmt = self::$pdo->prepare($requete);
+            $stmt->bindParam(1,$id);
+            $stmt->execute();
+            $lsQuantite = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $quantite = "";
+            if ( count($lsQuantite[0])==1){
+                $quantite= strval($lsQuantite[0]["quantite"]) ;
+            }else{
+                foreach($lsQuantite[0] as $val) {
+                    $quantite.= strval($val).";";
+                } 
+            }            
+            $article = ArticleEntity::CreateArticle($id,$valeurArticle["nom"],$valeurArticle["category"],$valeurArticle["genre"],$valeurArticle["couleur"],$valeurArticle["description"],$valeurArticle["votant"],$valeurArticle["notes"],$valeurArticle["prix"],$valeurArticle["promo"],$valeurArticle["disponible"],$quantite,$lsLiens);
+
+            return $article;
+
+        }catch (\PDOException $e ){
+            // Gère les erreurs de la base de données
+            echo "Erreur : " . $e->getMessage();
+        }
+        return null;
+
+
+        
     }
 
     /**
