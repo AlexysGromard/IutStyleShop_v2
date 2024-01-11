@@ -15,12 +15,12 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach( $array_avis as $element) : ?>
-            <?php $listvalues= $element->getArrayOfImportantAttribut()?>
+            <?php foreach( $array_code_promo as $code) : ?>
             <tr>
-                <td><a href="xx" class="Red_police_50"><?= $listvalues["N°"] ?></a></td>
-                <td class="Black_police_40"><?= $listvalues["Code promotionnel"] ?></td>
-                <td class="Black_police_40"><?= $listvalues["Réduction (en %)"] ?></td>
+                
+                <td><a href="xx" class="Red_police_50"><?= $code->getId(); ?></a></td>
+                <td class="Black_police_40"><?= $code->getCode(); ?></td>
+                <td class="Black_police_40"><?= $code->getPromo()."%"; ?></td>
                 <td class=action_space>
                     <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
                     <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
@@ -45,4 +45,6 @@
         </div>
         <button type="submit" class="medium-size button basic-text button_check">Ajouter code promotionnel</button>
     </form>
+<?php else:?>
+    <span><?=gettype($codePromo)?></span>
 <?php endif; ?>

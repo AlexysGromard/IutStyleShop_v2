@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBCodePromo extends Connexion implements EntityInterface
+class DBCodePromo extends Connexion
 {
 
     /**
@@ -11,14 +11,14 @@ class DBCodePromo extends Connexion implements EntityInterface
      * @param CodePromoEntity $entity
      * @return void
      */
-    public function add($entity)
+    public function add($code,$promo)
     {
         $requete = "CALL InsertCodePromo(?,?)";
 
         $stmt = $this->pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->code, \PDO::PARAM_STR);
-        $stmt->bindParam(2, $entity->promo, \PDO::PARAM_INT);
+        $stmt->bindParam(1, $code, \PDO::PARAM_STR);
+        $stmt->bindParam(2, $promo, \PDO::PARAM_INT);
 
 
         $stmt->execute();
@@ -70,12 +70,16 @@ class DBCodePromo extends Connexion implements EntityInterface
         $requete = "CALL GetAllCodePromo()";
 
         $stmt = $this->pdo->prepare($requete);
-
+        
         $stmt->execute();
 
-        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "backend\\entity\\CodePromoEntity"::class);
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $codes = [];
+        foreach ($result as $code){
+            $codes[] = new \backend\entity\CodePromoEntity($code["id"],$code["texte"],$code["promo"]);
+        }
+        return $codes;
         
-        return $result;
     }
 
     /**
@@ -84,7 +88,7 @@ class DBCodePromo extends Connexion implements EntityInterface
      * @param int $id
      * @return CodePromoEntity|null
      */
-    public function getById(int $id): ?CodePromoEntity
+    public function getById(int $id): ?\backend\entity\CodePromoEntity
     {
         $requete = "CALL GetCodePromoById(?)";
 
@@ -94,9 +98,12 @@ class DBCodePromo extends Connexion implements EntityInterface
 
         $stmt->execute();
 
-        $result = $stmt->fetch(\PDO::FETCH_CLASS, "backend\\entity\\CodePromoEntity"::class);
-
-        return $result;
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        if (count($result) == 0){
+            return null;
+        }
+        $code = $result[0];
+        return new \backend\entity\CodePromoEntity($code["id"],$code["texte"],$code["promo"]);
     }
 
 }
