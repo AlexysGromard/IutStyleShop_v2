@@ -19,7 +19,7 @@ class DBCommande extends Connexion
      * @param int $id
      * @return array
      */
-    public static function getAllCommandeByUser($user): array
+    public static function getAll($user): array
     {
         try {
             

@@ -2,26 +2,33 @@
 
 namespace backend\DAO;
 
+use \backend\entity\CodePromoEntity;
 class DBCodePromo extends Connexion implements DAOInterface
 {
 
     /**
      * Ajoute un code promo
      * 
-     * @param CodePromoEntity $entity
-     * @return void
+     * @param string $code
+     * @param int $promo
+     * @return CodePromoEntity
      */
-    public static function add($entity)
+    public static function add(string $code,int $promo): CodePromoEntity
     {
+        
         $requete = "CALL InsertCodePromo(?,?)";
-
+        
         $stmt = self::$pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->code, \PDO::PARAM_STR);
-        $stmt->bindParam(2, $entity->promo, \PDO::PARAM_INT);
+        $stmt->bindParam(1, $code, \PDO::PARAM_STR);
+        $stmt->bindParam(2, $promo, \PDO::PARAM_INT);
 
-
+        
         $stmt->execute();
+
+        
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return new CodePromoEntity($rows[0]['id'], $code, $promo);
     }
 
     /**
