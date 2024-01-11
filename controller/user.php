@@ -19,6 +19,12 @@ class user{
         session_start();
         $DAOUser = new \backend\DAO\DBUser();
         $id = $_SESSION['user']->getId();
+
+        // Vérifier que l'utilisateur existe dans la base de données
+        if ($DAOUser->getById($id) == null || $_SESSION['user']->getEmail() != $DAOUser->getById($id)->getEmail()){
+            // Décconnecter l'utilisateur
+            $this->logout();
+        }
         
         $personne = $DAOUser->getById($id);
         
@@ -171,6 +177,45 @@ class user{
 
         // Redirection vers la page d'informations
         header("Location: /user/dashboard/informations");
+    }
+
+    /*
+    * Fonction qui permet de mettre à jour l'adresse de l'utilisateur
+    * Elle va récupérer les informations du formulaire et les mettre à jour dans la base de données
+    */
+    function updateUserAddress(){
+        $address = $_POST['address'];
+        $code = $_POST['code'];
+        $additional_address = $_POST['additional-address'];
+        $city = $_POST['city'];
+
+        // Echaper les données
+        $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
+        $code = htmlspecialchars($code, ENT_QUOTES, 'UTF-8');
+        if ($code == "" || !ctype_digit($code)){
+            $code = null;
+        } else {
+            $code = intval($code);
+        }
+        $additional_address = htmlspecialchars($additional_address, ENT_QUOTES, 'UTF-8');
+        $city = htmlspecialchars($city, ENT_QUOTES, 'UTF-8');
+
+        // Récupérer l'id de l'utilisateur
+        session_start();
+        $id = $_SESSION['user']->getId();
+
+        // Mettre à jour les informations de l'utilisateur dans variables de session
+        $_SESSION['user']->setAdresse($address);
+        $_SESSION['user']->setCodePostal($code);
+        $_SESSION['user']->setComplementAdresse($additional_address);
+        $_SESSION['user']->setVille($city);
+
+        // Mettre à jour les informations de l'utilisateur dans la base de données
+        $DAOUser = new \backend\DAO\DBUser();
+        $DAOUser->update($_SESSION['user']);
+
+        // Redirection vers la page d'adresse
+        header("Location: /user/dashboard/adresse");
     }
 }
 
