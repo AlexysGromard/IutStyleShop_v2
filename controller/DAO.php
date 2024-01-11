@@ -43,15 +43,19 @@ class DAO{
         echo "DAO class created : " . $params[0];
         echo "<br>";
         echo "<br>";
-        if (isset($params[3])){
+        if (empty($params[2])){
             call_user_func([$this->dao, $params[1]]);
-        } else {
-            $arguments[] = $params[3];
-            //call_user_func([$this->dao, $params[1]]);
-        }
 
         echo "<br>";
         echo "use methode : " . $params[1];
+        } else {
+            $arguments[] = $params[2];
+
+        echo "<br>";
+        echo "use methode : " . $params[2];
+            //call_user_func([$this->dao, $params[1]]);
+        }
+
     
         require "frontend/DAO/". $params[0] .".php";
     }

@@ -129,9 +129,35 @@ class DBUser extends Connexion implements DoubleEntityInterface
         $requete = "CALL GetUserInfoAll()";
         $stmt = $this->pdo->prepare($requete);
         $stmt->execute();
-        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "backend\\entity\\UserEntity"::class);
-        var_dump($result);
-        return $result;
+        
+        // Récupérer la liste complète d'utilisateurs en utilisant le mode associatif
+        $usersData = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+        // Convertir les données associatives en objets UserEntity
+        $userEntities = [];
+        foreach ($usersData as $userData) {
+            $userEntity = new \backend\entity\UserEntity(
+                $userData['id'],
+                $userData['email'],
+                $userData['telephone'],
+                $userData['nom'],
+                $userData['prenom'],
+                $userData['genre'],
+                $userData['role'],
+                $userData['adresse'],
+                $userData['ville'],
+                $userData['code_postal'],
+                $userData['Complement_adresse']
+            );
+
+    
+            // Assuming $userEntities is an array of UserEntity objects
+            $userEntities[] = $userEntity;
+
+        }
+    
+        var_dump($userEntities);
+        return $userEntities;
     }
 
     /**
