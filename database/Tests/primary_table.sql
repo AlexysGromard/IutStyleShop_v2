@@ -50,6 +50,12 @@ VALUES
 (9,738753,0,4978789,3,4532);
 
 
+-- Exemple d'insertion dans la table AccesoirImagese
+INSERT INTO Image (lien, id_Article)
+VALUES 
+("ImageTest1",1),
+("ImageTest2",2),
+("ImageTest3",3);
 
 
 

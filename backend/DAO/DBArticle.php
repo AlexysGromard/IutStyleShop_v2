@@ -2,8 +2,7 @@
 
 namespace backend\DAO;
 
-use \backend\entity\ArticleEntity;  
-
+use \backend\entity\ArticleEntity;
 
 class DBArticle extends Connexion implements ArticleInterface
 {
@@ -21,31 +20,58 @@ class DBArticle extends Connexion implements ArticleInterface
 
     public function getall():array
     {
-        
-
-        return array();
+        $requete = "CALL GetAllArticle()";
+        $stmt = $this->pdo->prepare($requete);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     }
 
     public function getById(int $id): ?ArticleEntity
     {
         try {
-            $requete = "CALL GetArticleInfo(?, @p_article, @p_image, @p_accessoire_or_vetement)";
+            $requete = "CALL GetArticleInfo(?)";
             $stmt = $this->pdo->prepare($requete);
-            // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $id, \PDO::PARAM_INT);
+            $stmt->bindParam(1,$id);
+            $stmt->execute();
+            $valeurArticle = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-            // Lie les variables de sortie
-            $stmt->bindParam('@p_article', $p_article, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 255);
-            $stmt->bindParam('@p_image', $p_image, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 255);
-            $stmt->bindParam('@p_accessoire_or_vetement', $p_accessoire_or_vetement, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 255);
 
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            return $result;
+            $requete = "CALL GetImageArticle(?)";
+            $stmt = $this->pdo->prepare($requete);
+            $stmt->bindParam(1,$id);
+            $stmt->execute();
+            $imagesArticle = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $lsLiens = array();
+            foreach($imagesArticle as $img) { 
+
+                $lsLiens[]= $img["lien"] ;
+             } 
+
+            $requete = "CALL GetQuantiteAccessoireOrVetement(?)";
+            $stmt = $this->pdo->prepare($requete);
+            $stmt->bindParam(1,$id);
+            $stmt->execute();
+            $lsQuantite = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $quantite = "";
+            if ( count($lsQuantite[0])==1){
+                $quantite= strval($lsQuantite[0]["quantite"]) ;
+            }else{
+                foreach($lsQuantite[0] as $val) {
+                    $quantite.= strval($val).";";
+                } 
+            }            
+            $article = ArticleEntity::CreateArticle($id,$valeurArticle["nom"],$valeurArticle["category"],$valeurArticle["genre"],$valeurArticle["couleur"],$valeurArticle["description"],$valeurArticle["votant"],$valeurArticle["notes"],$valeurArticle["prix"],$valeurArticle["promo"],$valeurArticle["disponible"],$quantite,$lsLiens);
+
+            return $article;
+
         }catch (\PDOException $e ){
             // Gère les erreurs de la base de données
             echo "Erreur : " . $e->getMessage();
         }
+        return null;
+
+
         
     }
 

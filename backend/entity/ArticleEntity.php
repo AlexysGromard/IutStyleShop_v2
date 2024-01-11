@@ -46,16 +46,23 @@ class ArticleEntity
                                     float $prix,
                                     int $promo,
                                     bool $disponible,
-                                    array $images,
-                                    $type) : ArticleEntity
+                                    string $quantite,
+                                    array $images
+                                    ) : ArticleEntity
     {
         $newArticle = null;
-        if ($type=="Accessoire"){
-            
-            $newArticle = new AccessoireEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
-        }elseif ($type=="Accessoire"){
-
-            $newArticle = new VetementEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$quantite,$images);
+        if (strtolower($category)=="accessoire"){
+            $newArticle = new AccessoireEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,intval($quantite),$images);
+        }else{
+            $lsQuantite = explode(";", $quantite);
+            $arrayQuantite = array();
+            // Affichage des éléments du tableau résultant
+            foreach ($lsQuantite as $element) {
+                if ($element != ""){
+                    $arrayQuantite[] = intval($element);
+                }
+            }
+            $newArticle = new VetementEntity($id, $nom, $category, $genre ,$couleur ,$description ,$votant ,$notes,$prix,$promo,$disponible,$arrayQuantite,$images);
         }
 
         return $newArticle;

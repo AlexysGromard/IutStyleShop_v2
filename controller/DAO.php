@@ -17,7 +17,8 @@ class DAO{
         require "frontend/DAO/DBArticle.php";
         $this->dao = new \backend\DAO\DBArticle();
         
-        var_dump($this->dao->getById(3));
+        $article = $this->dao->getById(8);
+        var_dump($article->getQuantite());
         
 
         
