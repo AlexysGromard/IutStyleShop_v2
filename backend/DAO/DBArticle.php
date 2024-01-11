@@ -104,15 +104,20 @@ class DBArticle extends Connexion implements DAOInterface
 
         $stmt->execute();
 
-        $id = $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
-        foreach ($images as $img){
+        $id = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $id = $id[0]["@last_id_2"];
+
+        if ($id != null){
+            foreach ($images as $img){
             $sql = "call InsertImage(?,?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(1,$id);
             $stmt->bindParam(2,$img);
             $stmt->execute();
+            }
+            return $this->getById($id);
         }
-        return $this->getById($id);
+        return null;
             
         
     }
