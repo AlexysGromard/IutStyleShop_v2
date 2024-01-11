@@ -1,6 +1,8 @@
 <?php
 namespace controller;
 
+include "backend/DAO/DBUser.php";
+
 class login {
 
     public $errors = array(
@@ -58,7 +60,17 @@ class login {
             exit();
         }
 
-        // TODO : Vérifier qu'il est dans la base de données.
+        // Vérifier qu'il existe dans la base de données
+        $user = new \backend\DAO\DBUser();
+        $user = $user->checkUser($email, $password);
+
+        // Si il n'existe pas
+        if (empty($user)) {
+            echo "Utilisateur non trouvé";
+        } else {
+            echo "Utilisateur trouvé";
+        }
+
         // TODO : Si oui, le connecter et le rediriger vers la page client/admin
         // TODO : Supprimer les données de la session
     }
