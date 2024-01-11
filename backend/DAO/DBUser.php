@@ -173,7 +173,7 @@ class DBUser extends Connexion implements DoubleEntityInterface
         $stmt = $this->pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
-
+        
         $stmt->execute();
         
         $usersData = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -197,7 +197,6 @@ class DBUser extends Connexion implements DoubleEntityInterface
             $userEntities[] = $userEntity;
 
         }
-
         return $userEntities ? $userEntities[0] : null;
     }
 

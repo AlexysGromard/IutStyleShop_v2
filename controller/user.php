@@ -15,9 +15,10 @@ class user{
         }
 
         session_start();
-        $personne = $_SESSION['user'];
-        var_dump($personne);
-        //TODO : utiliser session ???
+        $DAOUser = new \backend\DAO\DBUser();
+        $id = $_SESSION['user']->getId();
+        
+        $personne = $DAOUser->getById($id);
         
         switch ($param[0]) {
             case "informations":
@@ -44,10 +45,16 @@ class user{
         ////
         
         session_start();
-        $personne = $_SESSION['user'];
-        var_dump($personne);
+        $DAOUser = new \backend\DAO\DBUser();
+        $id = $_SESSION['user']->getId();
 
-        if ($personne->role!="admin"){
+        $personne = $DAOUser->getById($id);
+
+        echo "<pre>";
+        var_dump($personne);
+        echo "</pre>";
+
+        if ($personne->getRole()!="admin"){
             require "frontend/404.php";die();
         }
 
