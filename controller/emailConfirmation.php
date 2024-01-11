@@ -6,6 +6,9 @@ require_once 'backend/library/PHPMailer-6.9.1/src/PHPMailer.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/Exception.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/SMTP.php';
 
+include "backend/DAO/DBUser.php";
+include "backend/entity/UserEntity.php";
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -117,24 +120,26 @@ class emailConfirmation {
             exit();
         }
 
-        // Création de l'utilisateur
-        $user = new \backend\entity\UserEntity();
-        $user->createIdentifiedUser(
-            0,
+        // Création de l'utilisateur dans la base de données
+        $DAOUser = new \backend\DAO\DBUser();
+        $DAOUser->add(
             $_SESSION['email'],
+            null,
+            $_SESSION['password'],
             $_SESSION['lastname'],
             $_SESSION['firstname'],
             $_SESSION['civility'],
-            "client",
-            "",
-            "",
-            "",
-            new \backend\entity\PanierEntity(
-                array(),
-                array(),
-                array()
-            )
+            null,
+            null,
+            null,
+            null
         );
+
+        // Récupération de l'utilisateur dans la base de données
+        $user = $DAOUser->getById($DAOUser->getByEmail($_SESSION['email']));
+
+        // Stocker l'utilisateur dans la session
+        $user->saveUserSession();
 
         // Supprimer les données de la session
         unset($_SESSION['civility']);
