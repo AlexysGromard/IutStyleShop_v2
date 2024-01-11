@@ -61,18 +61,23 @@ class login {
         }
 
         // Vérifier qu'il existe dans la base de données
-        $user = new \backend\DAO\DBUser();
-        $user = $user->checkUser($email, $password);
+        $DAOUser = new \backend\DAO\DBUser();
+        $user = $DAOUser->checkUser($email, $password);
 
         // Si il n'existe pas
         if (empty($user)) {
-            echo "Utilisateur non trouvé";
+            // Indiquer erreur mot de passe
+            $this->errors['password'] = true;
+            $_SESSION['errors'] = $this->errors;
+            // Rediriger vers la page de connexion
+            header("Location: /login");
         } else {
-            echo "Utilisateur trouvé";
+            // Si il existe
+            // Stocker l'utilisateur dans la session
+            $user->saveUserSession();
+            // Rediriger vers la page d'accueil
+            header("Location: /user/dashboard/informations");
         }
-
-        // TODO : Si oui, le connecter et le rediriger vers la page client/admin
-        // TODO : Supprimer les données de la session
     }
 
 }
