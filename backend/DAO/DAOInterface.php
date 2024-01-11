@@ -5,6 +5,6 @@ namespace backend\DAO;
 Interface DAOInterface
 {
     public function update($entity);
-    public function delete($id);
+    public function delete($entity);
     public function getall();
 } 

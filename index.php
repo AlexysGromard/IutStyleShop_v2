@@ -9,7 +9,7 @@ spl_autoload_register(function($class) {
     
     $include = HOME."..".DIRECTORY_SEPARATOR.$path.'.php';
     
-    echo "REQUIRE : ".$include."<br>";
+    //echo "REQUIRE : ".$include."<br>";
     if (file_exists($include)){
         require $include;
     }else{
