@@ -21,7 +21,7 @@ class DAO{
         var_dump($article->getQuantite());
         
 
-        
+         
     }
 
     function call(array $params){
@@ -47,17 +47,19 @@ class DAO{
         echo "<br>";
         echo "use methode : " . $params[1];
         } else {
-            $arguments = [$params[2]];
+            // $arguments = [$params[2]];
 
-            echo "<br>";
-            echo "use methode : " . $params[2];
-            $this->dao->getById(1);
-            call_user_func([$this->dao, $params[1]],$arguments[0]);
-            
+            // echo "<br>";
+            // echo "use methode : " . $params[2];
+            // $this->dao->getById(1);
+            // call_user_func([$this->dao, $params[1]],$arguments[0]);
+
+            $this->dao->add($params[2],$params[3]);
+               
         }
 
     
-        require "frontend/DAO/". $params[0] .".php";
+        //require "frontend/DAO/". $params[0] .".php";
     }
 
     function entity($className, $methodName, $params = array()){

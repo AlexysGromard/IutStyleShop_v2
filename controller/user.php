@@ -114,6 +114,7 @@ class user{
                     if (is_numeric($param[1])){
                         
                         //mettre un code promo
+                        
                         $codePromo = $DAOCodePromo->getById(intval($param[1]));
                         if ($codePromo == null){
                             require "frontend/404.php";die();
