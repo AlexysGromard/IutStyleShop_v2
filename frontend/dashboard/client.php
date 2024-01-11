@@ -22,7 +22,7 @@
         <div class = "user_general_element_box">
             <!-- left -->
             <?php include "frontend/components/user-panel.php" ?>
-            <?php generateUserPanelComponent($actionSelect, $personne->nom." ".$personne->prenom, $personne->id, $personne->genre, "client"); ?>
+            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "client"); ?>
 
 
             <!-- right -->
