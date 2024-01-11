@@ -61,8 +61,8 @@ class login {
         }
 
         // Vérifier qu'il existe dans la base de données
-        $user = new \backend\DAO\DBUser();
-        $user = $user->checkUser($email, $password);
+        $DAOUser = new \backend\DAO\DBUser();
+        $user = $DAOUser->checkUser($email, $password);
 
         // Si il n'existe pas
         if (empty($user)) {
