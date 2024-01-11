@@ -13,10 +13,10 @@ class DBPanier extends Connexion// implements DAOInterface
             $stmt = self::$pdo->prepare($requete);
 
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
-            $stmt->bindParam(2, $panierArticle->id_article, \PDO::PARAM_INT);
-            $stmt->bindParam(3, $panierArticle->taille, \PDO::PARAM_STR);
-            $stmt->bindParam(4, $panierArticle->quantite, \PDO::PARAM_INT);
+            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
+            $stmt->bindParam(2, $panierArticle->getId(), \PDO::PARAM_INT);
+            $stmt->bindParam(3, $panierArticle->getTaille(), \PDO::PARAM_STR);
+            $stmt->bindParam(4, $panierArticle->getQuantite(), \PDO::PARAM_INT);
             $stmt->execute();
         }catch (\PDOException $e ){
             // Gère les erreurs de la base de données
@@ -32,10 +32,10 @@ class DBPanier extends Connexion// implements DAOInterface
             $stmt = self::$pdo->prepare($requete);
 
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
-            $stmt->bindParam(2, $panierArticle->id, \PDO::PARAM_INT);
-            $stmt->bindParam(3, $panierArticle->taille, \PDO::PARAM_INT);
-            $stmt->bindParam(4, $panierArticle->taille, \PDO::PARAM_INT);
+            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
+            $stmt->bindParam(2, $panierArticle->getId(), \PDO::PARAM_INT);
+            $stmt->bindParam(3, $panierArticle->getTaille(), \PDO::PARAM_INT);
+            $stmt->bindParam(4, $panierArticle->getQuantite(), \PDO::PARAM_INT);
             $stmt->execute();
         }catch (\PDOException $e ){
             // Gère les erreurs de la base de données
@@ -50,7 +50,7 @@ class DBPanier extends Connexion// implements DAOInterface
             $stmt = self::$pdo->prepare($requete);
 
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
+            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
 
             $stmt->execute();
         }catch (\PDOException $e ){
@@ -66,8 +66,8 @@ class DBPanier extends Connexion// implements DAOInterface
             $stmt = self::$pdo->prepare($requete);
             
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
-            $stmt->bindParam(2, $panierArticle->id, \PDO::PARAM_INT);
+            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
+            $stmt->bindParam(2, $panierArticle->getId(), \PDO::PARAM_INT);
             $stmt->execute();
         }catch (\PDOException $e ){
             // Gère les erreurs de la base de données
@@ -88,7 +88,7 @@ class DBPanier extends Connexion// implements DAOInterface
             $requete = "CALL GetArticlePanier(?)";
             $stmt = self::$pdo->prepare($requete);
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->id, \PDO::PARAM_INT);
+            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
 
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
