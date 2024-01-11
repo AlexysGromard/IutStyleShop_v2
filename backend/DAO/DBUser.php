@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBUser extends Connexion implements DoubleEntityInterface
+class DBUser extends Connexion implements DAOInterface
 {
     /**
      * Ajoute un utilisateur
@@ -11,11 +11,11 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param string $element
      * @return void
      */
-    public function add($entity, $element)
+    public static function add($entity, $element)
     { 
         $requete = "CALL InsertUser(?,?,?,?,?,?,?,?,?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::pdo->prepare($requete);
 
 
         $stmt->bindParam(1, $entity->mail, \PDO::PARAM_STR);
@@ -38,13 +38,13 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param UserEntity $entity
      * @return void
      */
-    public function update($entity)
+    public static function update($entity)
     {
 
 
         $requete = "CALL UpdateUser(?,?,?,?,?,?,?,?,?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::pdo->prepare($requete);
 
         $stmt->bindParam(1, $entity->mail, \PDO::PARAM_STR);
         $stmt->bindParam(2, $entity->telephone, \PDO::PARAM_STR);
@@ -70,11 +70,11 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param string $role
      * @return void
      */
-    public function updaterole($id, $role)
+    public static function updaterole($id, $role)
     {
         $requete = "CALL UpdateUserRole(?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
         $stmt->bindParam(2, $role, \PDO::PARAM_STR);
@@ -89,11 +89,11 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param string $password
      * @return void
      */
-    public function updatepassword($id, $password)
+    public static function updatepassword($id, $password)
     {
         $requete = "CALL UpdateUserPassword(?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
         $stmt->bindParam(2, $password, \PDO::PARAM_STR);
@@ -107,11 +107,11 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param UserEntity $entity
      * @return void
      */
-    public function delete($entity)
+    public static function delete($entity)
     {
         $requete = "CALL DeleteUser(?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
 
@@ -124,10 +124,10 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param int $id
      * @return UserEntity
      */
-    public function getall()
+    public static function getall()
     {
         $requete = "CALL GetUserInfoAll()";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
         $stmt->execute();
         
         // Récupérer la liste complète d'utilisateurs en utilisant le mode associatif
@@ -167,10 +167,10 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param int $id
      * @return UserEntity|null
      */
-    function getById(int $id): ?\backend\entity\UserEntity
+    public static function getById(int $id): ?\backend\entity\UserEntity
     {
         $requete = "CALL GetUserInfo(?)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
 
@@ -209,10 +209,10 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param int $id
      * @return UserEntity
      */
-    public function getByEmail(string $email): ?int
+    public static function getByEmail(string $email): ?int
     {
         $requete = "CALL GetUseridByEmail(?)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR);
 
@@ -232,10 +232,10 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param int $id
      * @return UserEntity
      */
-    public function checkUser(string $email, string $password): ?\backend\entity\UserEntity
+    public static function checkUser(string $email, string $password): ?\backend\entity\UserEntity
     {
         $requete = "CALL GetConnectedUser(?,?)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR);
         $stmt->bindParam(2, $password, \PDO::PARAM_STR);

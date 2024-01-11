@@ -2,15 +2,100 @@
 
 namespace backend\DAO;
 
-class DBCommande extends Connexion
+use \backend\entity\CommandeEntity;
+use \backend\entity\ArticleComandeEntity;
+
+class DBCommande extends Connexion implements DAOInterface
 {
 
 
 
+    /**
+     * Ajoute tout le panier dans une commande pour un utilisateur
+     * 
+     * @param  CommandeEntity $entity
+     */
+    public static function add($user,$codepromo){
+        $requete = "CALL InsertCommande(?,?)";
+        $stmt = self::$pdo->prepare($requete);
 
-    public static function addCommande($user){
-        //TODO
+        $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
+        $stmt->bindParam(2, $codepromo->getId(), \PDO::PARAM_INT);
+
+        $stmt->execute();
     }
+
+    /**
+     * update une commande
+     * 
+     * @param  CommandeEntity $entity
+     */
+    public static function update($entity)
+    {
+        $requete = "CALL DeleteCommande(?)";
+        $stmt = self::$pdo->prepare($requete);
+
+        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+        $stmt->bindParam(2, $entity->getStatut(), \PDO::PARAM_INT);
+
+        $stmt->execute();
+
+    }
+
+
+    /**
+     * Supprimme une commande
+     * 
+     * @param  CommandeEntity $entity
+     */
+    public static function delete($entity)
+    {
+        $requete = "CALL DeleteCommande(?)";
+        $stmt = self::$pdo->prepare($requete);
+
+        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
+    /**
+     * donne toutes les commandes
+     * 
+     * @return  CommandeEntity|null 
+     */
+    public static function getall()
+    {
+
+            /////article dans commande
+            $requete = "CALL GetAllCommande()";
+            $stmt = self::$pdo->prepare($requete);
+
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            $commandes = array();
+            foreach ($result as $commande ){
+
+                $requete2 = "CALL GetAllArticleOfCommande(?)";
+                $stmt2 = self::$pdo->prepare($requete2);
+                $stmt2->bindParam(1, $commande["id"], \PDO::PARAM_INT);
+
+                $stmt2->execute();
+
+                $result2 = $stmt2->fetchAll(\PDO::FETCH_ASSOC);
+                $listArticle = array();
+
+                foreach  ($result2 as $article){
+                    $listArticle[] = new ArticleComandeEntity($article["id_Article"],$article["taille"],$article["prix_unitaire"],$article["quantite"]);
+                }
+
+                $commandes[] = new CommandeEntity($commande["id"],$listArticle,$commande["date"],$commande["status"],$commande["price"]);
+            }
+
+            return $commandes;
+    }
+
 
 
     /**
@@ -19,7 +104,7 @@ class DBCommande extends Connexion
      * @param int $id
      * @return array
      */
-    public static function getAllCommandeByUser($user): array
+    public static function getCommande($user): array
     {
         try {
             
@@ -28,7 +113,7 @@ class DBCommande extends Connexion
             $requete = "CALL GetCommande(?)";
             $stmt = self::$pdo->prepare($requete);
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->id, \PDO::PARAM_INT);
+            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
 
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -45,10 +130,10 @@ class DBCommande extends Connexion
                 $result2 = $stmt2->fetchAll(\PDO::FETCH_ASSOC);
                 $listArticle = array();
                 foreach  ($result2 as $article){
-                    $listArticle[] = new \backend\entity\ArticleComandeEntity($article["id_Article"],$article["taille"],$article["prix_unitaire"],$article["quantite"]);
+                    $listArticle[] = new ArticleComandeEntity($article["id_Article"],$article["taille"],$article["prix_unitaire"],$article["quantite"]);
                 }
 
-                $commandes[] = new \backend\entity\CommandeEntity($commande["id"],$listArticle,$commande["date"],$commande["status"],$commande["price"]);
+                $commandes[] = new CommandeEntity($commande["id"],$listArticle,$commande["date"],$commande["status"],$commande["price"]);
             }
 
             return $commandes;
@@ -59,6 +144,7 @@ class DBCommande extends Connexion
             echo "Erreur : " . $e->getMessage();
         }
     }
+
 
 
     /**

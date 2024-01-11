@@ -1,7 +1,5 @@
 DELIMITER //
 
-
-
 -- Procédure pour insérer un nouvel article
     CREATE OR REPLACE PROCEDURE InsertArticleVetement(
         p_nom VARCHAR(128),

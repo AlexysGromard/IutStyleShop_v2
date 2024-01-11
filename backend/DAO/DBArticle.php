@@ -87,11 +87,11 @@ class DBArticle extends Connexion implements DAOInterface
      * 
      * @return ?VetementEntityEntity
      */
-    public function addAccessoire($nom,$categorie,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
+    public static function addAccessoire($nom,$categorie,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
     {   
         
         $sql = "call InsertArticleAccessoire(?,?,?,?,?,?,?,?,?)";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = self::$pdo->prepare($sql);
         $stmt->bindParam(1,$nom);
         $stmt->bindParam(2,$categorie);
         $stmt->bindParam(3,$genre);
@@ -110,12 +110,12 @@ class DBArticle extends Connexion implements DAOInterface
         if ($id != null){
             foreach ($images as $img){
             $sql = "call InsertImage(?,?)";
-            $stmt = $this->pdo->prepare($sql);
+            $stmt = self::$pdo->prepare($sql);
             $stmt->bindParam(1,$id);
             $stmt->bindParam(2,$img);
             $stmt->execute();
             }
-            return $this->getById($id);
+            return self::$pdo->getById($id);
         }
         return null;
             
@@ -128,7 +128,7 @@ class DBArticle extends Connexion implements DAOInterface
      * @param ArticleEntity $entity
      * @return void
      */
-    public function update($entity)
+    public static function update($entity)
     {
     }
 
@@ -139,7 +139,7 @@ class DBArticle extends Connexion implements DAOInterface
      * @param int $id
      * @return void
      */
-    public function delete($id)
+    public static function delete($id)
     {
     }
 
@@ -148,10 +148,10 @@ class DBArticle extends Connexion implements DAOInterface
      * 
      * @return ArticleEntity[]
      */
-    public function getall()
+    public static function getall()
     {
         $requete = "CALL GetAllArticle()";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -163,18 +163,18 @@ class DBArticle extends Connexion implements DAOInterface
      * @param int $id
      * @return ArticleEntity|null
      */
-    public function getById(int $id): ?ArticleEntity
+    public static function getById(int $id): ?ArticleEntity
     {
         try {
             $requete = "CALL GetArticleInfo(?)";
-            $stmt = $this->pdo->prepare($requete);
+            $stmt = self::$pdo->prepare($requete);
             $stmt->bindParam(1,$id);
             $stmt->execute();
             $valeurArticle = $stmt->fetch(\PDO::FETCH_ASSOC);
 
 
             $requete = "CALL GetImageArticle(?)";
-            $stmt = $this->pdo->prepare($requete);
+            $stmt = self::$pdo>prepare($requete);
             $stmt->bindParam(1,$id);
             $stmt->execute();
             $imagesArticle = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -185,7 +185,7 @@ class DBArticle extends Connexion implements DAOInterface
              } 
 
             $requete = "CALL GetQuantiteAccessoireOrVetement(?)";
-            $stmt = $this->pdo->prepare($requete);
+            $stmt = self::$pdo->prepare($requete);
             $stmt->bindParam(1,$id);
             $stmt->execute();
             $lsQuantite = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -217,7 +217,7 @@ class DBArticle extends Connexion implements DAOInterface
      * @param string $categorie
      * @return ArticleEntity[]
      */
-    public function getArticleByCategorie(string $categorie): array
+    public static function getArticleByCategorie(string $categorie): array
     {
     }
 
@@ -227,7 +227,7 @@ class DBArticle extends Connexion implements DAOInterface
      * @param string $genre
      * @return ArticleEntity[]
      */
-    public function getArticleByDisponibilite(bool $disponibilite): array
+    public static function getArticleByDisponibilite(bool $disponibilite): array
     {
     }
 
@@ -237,7 +237,7 @@ class DBArticle extends Connexion implements DAOInterface
      * @param bool $promo
      * @return ArticleEntity[]
      */
-    public function getArticleByCondition(string $categorie, string $genre, string $couleur, array $prix, bool $promo, bool $disponibilite): array
+    public static function getArticleByCondition(string $categorie, string $genre, string $couleur, array $prix, bool $promo, bool $disponibilite): array
     {
     }
 }

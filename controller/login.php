@@ -1,6 +1,8 @@
 <?php
 namespace controller;
 
+include "backend/DAO/DBUser.php";
+
 class login {
 
     public $errors = array(
@@ -58,9 +60,24 @@ class login {
             exit();
         }
 
-        // TODO : Vérifier qu'il est dans la base de données.
-        // TODO : Si oui, le connecter et le rediriger vers la page client/admin
-        // TODO : Supprimer les données de la session
+        // Vérifier qu'il existe dans la base de données
+        $DAOUser = new \backend\DAO\DBUser();
+        $user = $DAOUser->checkUser($email, $password);
+
+        // Si il n'existe pas
+        if (empty($user)) {
+            // Indiquer erreur mot de passe
+            $this->errors['password'] = true;
+            $_SESSION['errors'] = $this->errors;
+            // Rediriger vers la page de connexion
+            header("Location: /login");
+        } else {
+            // Si il existe
+            // Stocker l'utilisateur dans la session
+            $user->saveUserSession();
+            // Rediriger vers la page d'accueil
+            header("Location: /user/dashboard/informations");
+        }
     }
 
 }

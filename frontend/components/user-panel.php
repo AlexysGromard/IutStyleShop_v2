@@ -9,6 +9,9 @@ function generateUserPanelComponent(
     // Escape output data
     $userName = htmlspecialchars($userName, ENT_QUOTES, 'UTF-8');
     $userId = htmlspecialchars($userId, ENT_QUOTES, 'UTF-8');
+    if (!isset($userGender)){
+        $userGender = "N";
+    }
     $userGender = htmlspecialchars($userGender, ENT_QUOTES, 'UTF-8');
     $userType = htmlspecialchars($userType, ENT_QUOTES, 'UTF-8');
 
@@ -16,7 +19,7 @@ function generateUserPanelComponent(
     $userId = is_numeric($userId) ? intval($userId) : null;
 
     // Gender must be "M" or "F"
-    $userGender = in_array($userGender, ["M", "F"]) ? $userGender : "Unknown";
+    $userGender = in_array($userGender, ["M", "F", "N"]) ? $userGender : "Unknown";
 
     // User type must be "admin" or "client"
     $userType = in_array($userType, ["admin", "client"]) ? $userType : "Unknown";
@@ -50,7 +53,11 @@ function generateUserPanelComponent(
     <div id="user-informations">
         <div id="user-picture-container">
             <?php
-                $photoPath = ($userGender === "M") ? "/frontend/assets/icons/user-man.png" : "/frontend/assets/icons/user-woman.png";
+                if ($userGender === "N") {
+                    $photoPath = "/frontend/assets/icons/artichoke.png";
+                } else {
+                    $photoPath = ($userGender === "M") ? "/frontend/assets/icons/user-man.png" : "/frontend/assets/icons/user-woman.png";
+                }
             ?>
             <img src="<?php echo $photoPath; ?>" alt="Photo de profil">
         </div>

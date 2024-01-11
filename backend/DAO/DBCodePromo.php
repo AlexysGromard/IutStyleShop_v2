@@ -2,26 +2,33 @@
 
 namespace backend\DAO;
 
-class DBCodePromo extends Connexion implements EntityInterface
+use \backend\entity\CodePromoEntity;
+class DBCodePromo extends Connexion implements DAOInterface
 {
 
     /**
      * Ajoute un code promo
      * 
-     * @param CodePromoEntity $entity
-     * @return void
+     * @param string $code
+     * @param int $promo
+     * @return CodePromoEntity
      */
-    public function add($entity)
+    public static function add(string $code,int $promo): CodePromoEntity
     {
+        
         $requete = "CALL InsertCodePromo(?,?)";
+        
+        $stmt = self::$pdo->prepare($requete);
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt->bindParam(1, $code, \PDO::PARAM_STR);
+        $stmt->bindParam(2, $promo, \PDO::PARAM_INT);
 
-        $stmt->bindParam(1, $entity->code, \PDO::PARAM_STR);
-        $stmt->bindParam(2, $entity->promo, \PDO::PARAM_INT);
-
-
+        
         $stmt->execute();
+
+        
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return new CodePromoEntity($rows[0]['id'], $code, $promo);
     }
 
     /**
@@ -30,11 +37,11 @@ class DBCodePromo extends Connexion implements EntityInterface
      * @param CodePromoEntity $entity
      * @return void
      */
-    public function update($entity)
+    public static function update($entity)
     {
         $requete = "CALL UpdateCodePromo(?,?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
         $stmt->bindParam(2, $entity->code, \PDO::PARAM_STR);
@@ -49,11 +56,11 @@ class DBCodePromo extends Connexion implements EntityInterface
      * @param int $id
      * @return void
      */
-    public function delete($entity)
+    public static function delete($entity)
     {
-        $requete = "CALL DeleteCodePromo(?)";
+        $requete = "CALL DeleteCodePromo(?)"; 
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
 
@@ -65,17 +72,24 @@ class DBCodePromo extends Connexion implements EntityInterface
      * 
      * @return CodePromoEntity[]
      */
-    public function getall()
+    public static function getall() : array
     {
         $requete = "CALL GetAllCodePromo()";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->execute();
 
-        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "backend\\entity\\CodePromoEntity"::class);
-        
-        return $result;
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        $codePromoEntities = [];
+            
+        foreach ($rows as $row) {
+            $codePromoEntity = new \backend\entity\CodePromoEntity($row['id'], $row['texte'], $row['promo']);
+            $codePromoEntities[] = $codePromoEntity;
+        }
+
+        return $codePromoEntities; 
     }
 
     /**
@@ -84,19 +98,29 @@ class DBCodePromo extends Connexion implements EntityInterface
      * @param int $id
      * @return CodePromoEntity|null
      */
-    public function getById(int $id): ?CodePromoEntity
+    public static function getById(int $id): ?CodePromoEntity
     {
         $requete = "CALL GetCodePromoById(?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
 
         $stmt->execute();
 
-        $result = $stmt->fetch(\PDO::FETCH_CLASS, "backend\\entity\\CodePromoEntity"::class);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        return $result;
+        var_dump($row);
+
+        if ($row === false) {
+            // Aucun résultat trouvé
+            return null;
+        }
+
+        
+        
+        // Créez une instance de CodePromoEntity en utilisant les données de la ligne
+        return new \backend\entity\CodePromoEntity($row['id'],$row['texte'],$row['promo']);
     }
 
 }
