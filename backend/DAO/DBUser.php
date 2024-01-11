@@ -266,30 +266,6 @@ class DBUser extends Connexion implements DoubleEntityInterface
 
         return $userEntities ? $userEntities[0] : null;
     }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public function getUserByRole(string $role): array
-    {
-    }
-
-    public function getUserByGenre(string $genre): array
-    {
-    }
-
-
-
-
-
+    
 
 }
