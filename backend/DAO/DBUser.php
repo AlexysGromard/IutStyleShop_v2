@@ -155,18 +155,61 @@ class DBUser extends Connexion implements DoubleEntityInterface
             $userEntities[] = $userEntity;
 
         }
-    
-        var_dump($userEntities);
+
         return $userEntities;
     }
+
+
 
     /**
      * Donne l'id d'un utilisateur par son email
      * 
      * @param int $id
+     * @return UserEntity|null
+     */
+    function getById(int $id): ?\backend\entity\UserEntity
+    {
+        $requete = "CALL GetUserInfo(?)";
+        $stmt = $this->pdo->prepare($requete);
+
+        $stmt->bindParam(1, $id, \PDO::PARAM_INT);
+
+        $stmt->execute();
+        
+        $usersData = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+
+        $userEntities = [];
+        foreach ($usersData as $userData) {
+            $userEntity = new \backend\entity\UserEntity(
+                $userData['id'],
+                $userData['email'],
+                $userData['telephone'],
+                $userData['nom'],
+                $userData['prenom'],
+                $userData['genre'],
+                $userData['role'],
+                $userData['adresse'],
+                $userData['ville'],
+                $userData['code_postal'],
+                $userData['Complement_adresse']
+            );
+            $userEntities[] = $userEntity;
+
+        }
+
+        return $userEntities ? $userEntities[0] : null;
+    }
+
+
+
+     /**
+     * Donne l'id d'un utilisateur par son email
+     * 
+     * @param int $id
      * @return UserEntity
      */
-    public function getByEmail(string $email): ?UserEntity
+    public function getByEmail(string $email): ?int
     {
         $requete = "CALL GetUseridByEmail(?)";
         $stmt = $this->pdo->prepare($requete);
@@ -176,8 +219,11 @@ class DBUser extends Connexion implements DoubleEntityInterface
         $stmt->execute();
         
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        var_dump($result);
-        return $result;
+        
+
+
+
+        return $result ? $result[0] : null;
     }
 
     /**
@@ -186,7 +232,7 @@ class DBUser extends Connexion implements DoubleEntityInterface
      * @param int $id
      * @return UserEntity
      */
-    public function checkUser(string $email, string $password): ?UserEntity
+    public function checkUser(string $email, string $password): ?\backend\entity\UserEntity
     {
         $requete = "CALL GetConnectedUser(?,?)";
         $stmt = $this->pdo->prepare($requete);
@@ -196,9 +242,30 @@ class DBUser extends Connexion implements DoubleEntityInterface
 
         $stmt->execute();
         
-        $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "backend\\entity\\UserEntity"::class);
-        var_dump($result);
-        return $result;
+        $usersData = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+
+        $userEntities = [];
+        foreach ($usersData as $userData) {
+            $userEntity = new \backend\entity\UserEntity(
+                $userData['id'],
+                $userData['email'],
+                $userData['telephone'],
+                $userData['nom'],
+                $userData['prenom'],
+                $userData['genre'],
+                $userData['role'],
+                $userData['adresse'],
+                $userData['ville'],
+                $userData['code_postal'],
+                $userData['Complement_adresse']
+            );
+            $userEntities[] = $userEntity;
+
+        }
+
+        return $userEntities ? $userEntities[0] : null;
+    }
     }
 
 

@@ -49,11 +49,13 @@ class DAO{
         echo "<br>";
         echo "use methode : " . $params[1];
         } else {
-            $arguments[] = $params[2];
+            $arguments = [$params[2]];
 
-        echo "<br>";
-        echo "use methode : " . $params[2];
-            //call_user_func([$this->dao, $params[1]]);
+            echo "<br>";
+            echo "use methode : " . $params[2];
+            $this->dao->getById(1);
+            call_user_func([$this->dao, $params[1]],$arguments[0]);
+            
         }
 
     
