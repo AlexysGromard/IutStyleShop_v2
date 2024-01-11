@@ -8,7 +8,7 @@
             <label for="civility-woman" class="radio_button_space">
                 <?php
                     $input = '<input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->genre=='F' ) {
+                    if ($personne->getGenre()=='F' ) {
                         $input.= 'checked ';
                     }
                     $input.= '/> ';
@@ -20,7 +20,7 @@
             <label for="civility-man" class="radio_button_space">
                 <?php
                     $input = '<input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->genre=='M' ) {
+                    if ($personne->getGenre()=='M' ) {
                         $input.= 'checked ';
                     }
                     $input.= '/> ';
@@ -32,7 +32,7 @@
             <label for="civility-none" class="radio_button_space">
                 <?php
                     $input = '<input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->genre!='M' && $personne->genre!='F' ) {
+                    if ($personne->getGenre()!='M' && $personne->getGenre()!='F' ) {
                         $input.= 'checked ';
                     }
                     $input.= '/> ';
@@ -47,21 +47,21 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="last-name">Nom</label>
-                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval="<?= $personne->nom; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
+                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval="<?= $personne->getNom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="first-name">Prénom</label>
-                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" initval="<?= $personne->prenom; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
+                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" initval="<?= $personne->getPrenom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
             </div>
         </div>
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="mail">Adresse mail</label>
-                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" initval="<?= $personne->mail; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" initval="<?= $personne->getEmail(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="phone">Numéro de téléphone</label>
-                <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel" initval="<?= $personne->telephone; ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel" initval="<?= $personne->getTelephone(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
         </div>
     </div>
