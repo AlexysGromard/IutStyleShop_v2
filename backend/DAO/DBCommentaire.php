@@ -2,10 +2,10 @@
 
 namespace backend\DAO;
 
-class DBCommantaire extends Connexion  implements DAOInterface 
+class DBCommentaire extends Connexion  implements EntityInterface 
 {
 
-    public function add(CommantaireEntity $entity)
+    public function add($entity)
     {
         $requete = "call CommantairePackage.InsertCommentaire(:idArticle, :idUser, :note, :commentaire)";
         $stmt = $this->pdo->prepare($requete);
@@ -17,7 +17,7 @@ class DBCommantaire extends Connexion  implements DAOInterface
         ]);
     }
 
-    public function update(CommantaireEntity $entity)
+    public function update($entity)
     {
         $requete = "call CommantairePackage.UpdateCommentaire(:id, :idArticle, :idUser, :note, :commentaire)";
         $stmt = $this->pdo->prepare($requete);
@@ -42,15 +42,15 @@ class DBCommantaire extends Connexion  implements DAOInterface
     {
     }
 
-    public function getById(int $id): ?CommantaireEntity
+    public function getById(int $id): ?\backend\entity\CommentaireEntity
     {
     }
 
-    public function getCommantaireByArticle(int $id): array
+    public function getCommentaireByArticle(int $id): array
     {
     }
 
-    public function getCommantaireByUser(int $id): array
+    public function getCommentaireByUser(int $id): array
     {
     }
 

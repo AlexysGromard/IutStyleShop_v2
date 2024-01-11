@@ -2,46 +2,77 @@
 
 namespace backend\DAO;
 
-class DBPanier extends Connexion implements DAOInterface
+use Override;
+
+class DBPanier extends Connexion// implements DAOInterface
 {
-    public function add(PanierEntity $entity)
+    public static function add($panierArticle,$user) //\backend\entity\PanierEntity 
     {   
-        $requete = "call PanierPackage.InsertPanier(:idArticle, :idUser, :taille, :quantite)";
-        $stmt = $this->pdo->prepare($requete);
-        $stmt->execute([
-            'idArticle' => $entity->getIdArticle(),
-            'idUser' => $entity->getIdUser(),
-            'taille' => $entity->getTaille(),
-            'quantite' => $entity->getQuantite()
-        ]);
+        try {
+            $requete = "CALL InsertPanier(?,?,?,?)";
+            $stmt = self::$pdo->prepare($requete);
+
+            // Lie les paramètres d'entrée
+            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
+            $stmt->bindParam(2, $panierArticle->id_article, \PDO::PARAM_INT);
+            $stmt->bindParam(3, $panierArticle->taille, \PDO::PARAM_STR);
+            $stmt->bindParam(4, $panierArticle->quantite, \PDO::PARAM_INT);
+            $stmt->execute();
+        }catch (\PDOException $e ){
+            // Gère les erreurs de la base de données
+            echo "Erreur : " . $e->getMessage();
+        }
 
     }
 
-    public function update($entity)
+    public static function update($panierArticle,$user)
     {
-        // $requete = "call PanierPackage.UpdatePanier(:id, :idArticle, :idUser, :taille, :quantite)";
+        try {
+            $requete = "CALL UpdateArticlePanier(?,?,?,?)";
+            $stmt = self::$pdo->prepare($requete);
+
+            // Lie les paramètres d'entrée
+            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
+            $stmt->bindParam(2, $panierArticle->id, \PDO::PARAM_INT);
+            $stmt->bindParam(3, $panierArticle->taille, \PDO::PARAM_INT);
+            $stmt->bindParam(4, $panierArticle->taille, \PDO::PARAM_INT);
+            $stmt->execute();
+        }catch (\PDOException $e ){
+            // Gère les erreurs de la base de données
+            echo "Erreur : " . $e->getMessage();
+        }
     }
 
-    public function delete($id)
+    public static function delete($user)
     {
+        try {
+            $requete = "CALL DeleteAllPanier(?)";
+            $stmt = self::$pdo->prepare($requete);
+
+            // Lie les paramètres d'entrée
+            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
+
+            $stmt->execute();
+        }catch (\PDOException $e ){
+            // Gère les erreurs de la base de données
+            echo "Erreur : " . $e->getMessage();
+        }
     }
 
-    public function deleteArticle($id)
+    public static function deleteArticle($panierArticle,$user)
     {
-        $requete = "call PanierPackage.DeleteOneArticlePanier(:iduser, :idarticle)";
-        $stmt = $this->pdo->prepare($requete);
-        $stmt->execute([
-            'iduser' => $_SESSION['id'],
-            'idarticle' => $id
-        ]);
-    }
-
-    public function getall()
-    {
-    }
-
-    public function getById(int $id): ?PanierEntity
-    {
+        try {
+            $requete = "CALL DeleteArticlePanier(?,?)";
+            $stmt = self::$pdo->prepare($requete);
+            
+            // Lie les paramètres d'entrée
+            $stmt->bindParam(1, $user->id_, \PDO::PARAM_INT);
+            $stmt->bindParam(2, $panierArticle->id, \PDO::PARAM_INT);
+            $stmt->execute();
+        }catch (\PDOException $e ){
+            // Gère les erreurs de la base de données
+            echo "Erreur : " . $e->getMessage();
+        }
     }
 
 
@@ -51,8 +82,28 @@ class DBPanier extends Connexion implements DAOInterface
      * @param int $id
      * @return array
      */
-    public function getPanierByUser(int $id): array
+    static public function getPanierByUser($user): \backend\entity\PanierEntity
     {
+        try {
+            $requete = "CALL GetArticlePanier(?)";
+            $stmt = self::$pdo->prepare($requete);
+            // Lie les paramètres d'entrée
+            $stmt->bindParam(1, $user->id, \PDO::PARAM_INT);
+
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            $articles = array();
+            foreach ($result as $article ){
+                $articles[] = new \backend\entity\PanierArticleEntity($article["id_Article"],$article["taille"],$article["quantite"]);
+            }
+            return new \backend\entity\PanierEntity($articles);
+            
+            
+        }catch (\PDOException $e ){
+            // Gère les erreurs de la base de données
+            echo "Erreur : " . $e->getMessage();
+        }
     }
 
 

@@ -11,6 +11,43 @@ user='root'
 host='localhost'
 database='DB_IutStyleShop'
 
+
+
+
+# Service
+# Service à vérifier
+Service="mariadb"
+
+# Obtenez l'état actuel du service
+Status=$(sudo service "$Service" status | grep -o "is running")
+
+if [ "$Status" == "is running" ]; then
+    echo -e "\e[32m $Service est déjà actif. * $Service is running"
+
+else
+    echo -e "\e[33m $Service n'est pas actif. KO"
+
+    sudo service "$Service" start
+
+    # Obtenez l'état actuel du service
+    Status=$(sudo service "$Service" status | grep -o "is running")
+
+    if [ "$Status" == "is running" ]; then
+        echo -e "\e[32m $Service est bien lancé"
+    else
+        echo -e "\e[31m $Service ne s'est pas lancé. KO"
+    fi
+fi
+
+
+
+
+
+
+
+
+
+
 # Database
 echo -e ""
 echo -e " \e[35m Exécution des fichiers Database : "
@@ -111,33 +148,6 @@ find "$dossier" -type f -name "*.sql" | while read -r fichier; do
     echo "\e[34m* \e[0m $fichier \e[31m"
     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
 done
-
-
-#Tests
-echo -e ""
-echo -e "\e[35m Exécution des fichiers Tests : "
-dossier="Tests"
-# ProcedureStocker/
-# ├── Article
-# ├── CodePromo
-# │   ├── DeleteCodePromo.sql
-# │   ├── GetAllCodePromo.sql
-# │   ├── GetCodePromo.sql
-# │   ├── InsertCodePromo.sql
-# │   └── UpdateCodePromo.sql
-# ├── Commande
-# ├── Commentaire
-# ├── Panier
-# │   ├── DeleteAllPanier.sql
-# │   ├── DeleteArticlePanier.sql
-# │   └── InsertPanier.sql
-# └── User
-
-find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-    echo -e "    \e[34m * \e[0m $fichier \e[31m"
-    sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
-done
-
 
 
 # Trigger
