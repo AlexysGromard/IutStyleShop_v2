@@ -147,6 +147,13 @@ class user{
         $mail = $_POST['email'];
         $tel = $_POST['tel'];
 
+        // Echaper les données
+        $civilite = htmlspecialchars($civilite, ENT_QUOTES, 'UTF-8');
+        $nom = htmlspecialchars($nom, ENT_QUOTES, 'UTF-8');
+        $prenom = htmlspecialchars($prenom, ENT_QUOTES, 'UTF-8');
+        $mail = htmlspecialchars($mail, ENT_QUOTES, 'UTF-8');
+        $tel = htmlspecialchars($tel, ENT_QUOTES, 'UTF-8');
+
         // Récupérer l'id de l'utilisateur
         session_start();
         $id = $_SESSION['user']->getId();
