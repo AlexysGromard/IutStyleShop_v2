@@ -2,6 +2,8 @@
 
 namespace backend\entity;
 
+use PDO;
+
 class PanierArticleEntity
 {
     /*
@@ -80,5 +82,10 @@ class PanierArticleEntity
     {
         $this->quantite = $quantite;
     }
+
+    /*
+    public function getArticle(): ArticleEntity{
+        //TODO
+    }*/
 
 }

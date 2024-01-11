@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBCommentaire extends Connexion  implements DAOInterface 
+class DBCommentaire extends Connexion  implements EntityInterface 
 {
 
     public function add($entity)

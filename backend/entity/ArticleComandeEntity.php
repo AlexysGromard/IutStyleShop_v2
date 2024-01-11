@@ -31,7 +31,7 @@ class ArticleComandeEntity
                                 float $prix_unitaire,
                                 int $quantite) 
     {
-        $this->setArticle($article);
+        $this->setIdArticle($id_article);
         $this->setTaille($taille);
         $this->setPrixUnitaire($prix_unitaire);
         $this->setQuantite($quantite);

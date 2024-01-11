@@ -4,11 +4,11 @@
 -- Exemple d'insertion dans la table User
 INSERT INTO User (email,telephone, password, nom, prenom,genre,role, adresse, ville, code_postal, Complement_adresse)
 VALUES 
-('michel.rotel@gmail.com',"0265358367", '1234', 'rotel', 'michel','M', 'client', '6 Av. de l Industrie', 'Argentan', 61200, NULL),
-('Pierre.Delacour@gmail.com',"0782663921", 'J!aime', 'Delacour', 'Pierre','M', 'client', '12 Rue Marie Bascou', 'Lacaune', 81230, NULL),
-('Externe.alexandre@outlook.com',"0692114867", 'password', 'Externe', 'alexandre','M', 'client', '6 Rue Neuve', 'Savy-Berlette,', 62690,NULL),
-('flo@example.com',"0446294421", 'floflo', NULL, 'flo','M', 'client', NULL, NULL,NULL, NULL),
-('inconnue@example.com',"0912375578", 'cheeh', NULL, NULL,'None', 'client', NULL, NULL, NULL, NULL);
+('michel.rotel@gmail.com',"0265358367", PASSWORD('1234'), 'rotel', 'michel','M', 'client', '6 Av. de l Industrie', 'Argentan', 61200, NULL),
+('Pierre.Delacour@gmail.com',"0782663921", PASSWORD('J!aime'), 'Delacour', 'Pierre','M', 'client', '12 Rue Marie Bascou', 'Lacaune', 81230, NULL),
+('Externe.alexandre@outlook.com',"0692114867", PASSWORD('password'), 'Externe', 'alexandre','M', 'client', '6 Rue Neuve', 'Savy-Berlette,', 62690,NULL),
+('flo@example.com',"0446294421", PASSWORD('floflo'), NULL, 'flo','M', 'client', NULL, NULL,NULL, NULL),
+('inconnue@example.com',"0912375578", PASSWORD('cheeh'), NULL, NULL,'None', 'client', NULL, NULL, NULL, NULL);
 
 
 
