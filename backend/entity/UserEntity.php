@@ -27,32 +27,33 @@ class UserEntity
     */
 
     // Utilisateur non identifié
-    private ?bool $cookieAccepted = null;
+   // private ?bool $cookieAccepted = null;
     
     // Utilisateur identifié‡
     private int $id;
     private string $email;
-    private string $telephone;
-    private string $nom;
-    private string $prenom;
-    private string $genre;
-    private string $role;
-    private string $adresse;
-    private string $ville;
-    private int $code_postal;
-    private string $complement_adresse;
+    private ?string $telephone;
+    private ?string $nom;
+    private ?string $prenom;
+    private ?string $genre;
+    private ?string $role;
+    private ?string $adresse;
+    private ?string $ville;
+    private ?int $code_postal;
+    private ?string $complement_adresse;
 
 
     public function __construct(int $id,
                                 string $email,
-                                string $telephone,
-                                string $nom,
-                                string $prenom,
-                                string $genre,
-                                string $role,
-                                string $adresse,
-                                string $ville,
-                                string $complement_adresse
+                                ?string  $telephone,
+                                ?string $nom,
+                                ?string  $prenom,
+                                ?string  $genre,
+                                ?string  $role,
+                                ?string  $adresse,
+                                ?string  $ville,
+                                ?int $code_postal,
+                                ?string  $complement_adresse
                                 )
     {
         $this->id = $id;
@@ -64,13 +65,14 @@ class UserEntity
         $this->setRole($role);
         $this->setAdresse($adresse);
         $this->setVille($ville);
+        $this->setCodePostal($code_postal);
         $this->setComplementAdresse($complement_adresse);
         // Si l'utilisateur n'a pas de cookie, ouvrir pop-up de cookie
-        $this->cookieAccepted = isset($_COOKIE['cookie']) ? $_COOKIE['cookie'] : null;
-        if ($this->cookieAccepted == null) {
-            $this->askForCookies();
-        }
-        $this->saveUserSession();
+        // $this->cookieAccepted = isset($_COOKIE['cookie']) ? $_COOKIE['cookie'] : null;
+        // if ($this->cookieAccepted == null) {
+        //     $this->askForCookies();
+        // }
+        // $this->saveUserSession();
     }
 
     /*
@@ -115,7 +117,7 @@ class UserEntity
     /*
     * @return string
     */
-    public function getTelephone(): string
+    public function getTelephone(): ?string 
     {
         return $this->telephone;
     }
@@ -124,7 +126,7 @@ class UserEntity
     /*
     * @return string
     */
-    public function getNom(): string 
+    public function getNom(): ?string  
     {
         return $this->nom;
     }
@@ -132,7 +134,7 @@ class UserEntity
     /*
     * @return string
     */
-    public function getPrenom(): string 
+    public function getPrenom(): ?string  
     {
         return $this->prenom;
     }
@@ -140,7 +142,7 @@ class UserEntity
         /*
     * @return string
     */
-    public function getGenre(): string 
+    public function getGenre(): ?string  
     {
         return $this->genre;
     }
@@ -148,7 +150,7 @@ class UserEntity
         /*
     * @return string
     */
-    public function getRole(): string 
+    public function getRole(): ?string  
     {
         return $this->role;
     }
@@ -156,7 +158,7 @@ class UserEntity
         /*
     * @return string
     */
-    public function getAdresse(): string 
+    public function getAdresse(): ?string 
     {
         return $this->adresse;
     }
@@ -164,7 +166,7 @@ class UserEntity
         /*
     * @return string
     */
-    public function getVille(): string 
+    public function getVille(): ?string  
     {
         return $this->ville;
     }
@@ -172,7 +174,7 @@ class UserEntity
         /*
     * @return int
     */
-    public function getCodePostal(): int 
+    public function getCodePostal(): ?int 
     {
         return $this->code_postal;
     }
@@ -180,7 +182,7 @@ class UserEntity
     /*
     * @return string
     */
-    public function getComplementAdresse(): string 
+    public function getComplementAdresse(): ?string 
     {
         return $this->complement_adresse;
     }
@@ -201,7 +203,7 @@ class UserEntity
     /*
     * @param string $telephone
     */
-    public function setTelephone(string $telephone): void
+    public function setTelephone(?string $telephone): void
     {
         $this->telephone = $telephone;
     }
@@ -209,7 +211,7 @@ class UserEntity
     /*
     * @param string $nom
     */
-    public function setNom(string $nom): void 
+    public function setNom(?string $nom): void 
     {
         $this->nom = $nom;
     }
@@ -217,7 +219,7 @@ class UserEntity
     /*
     * @param string $prenom
     */
-    public function setPrenom(string $prenom): void 
+    public function setPrenom(?string $prenom): void 
     {
         $this->prenom = $prenom;
     }
@@ -225,7 +227,7 @@ class UserEntity
     /*
     * @param string $genre
     */
-    public function setGenre(string $genre): void 
+    public function setGenre(?string $genre): void 
     {
         $this->genre = $genre;
     }
@@ -233,7 +235,7 @@ class UserEntity
     /*
     * @param string $role
     */
-    public function setRole(string $role): void 
+    public function setRole(?string $role): void 
     {
         $this->role = $role;
     }
@@ -241,7 +243,7 @@ class UserEntity
     /*
     * @param string $adresse
     */
-    public function setAdresse(string $adresse): void 
+    public function setAdresse(?string $adresse): void 
     {
         $this->adresse = $adresse;
     }
@@ -249,7 +251,7 @@ class UserEntity
     /*
     * @param string $ville
     */
-    public function setVille(string $ville): void 
+    public function setVille(?string $ville): void 
     {
         $this->ville = $ville;
     }
@@ -257,7 +259,7 @@ class UserEntity
         /*
     * @param int $code_postal
     */
-    public function setCodePostal(int $code_postal): void 
+    public function setCodePostal(?int $code_postal): void 
     {
         $this->code_postal = $code_postal;
     }
@@ -265,7 +267,7 @@ class UserEntity
     /*
     * @param string $complement_adresse
     */
-    public function setComplementAdresse(string $complement_adresse): void 
+    public function setComplementAdresse(?string $complement_adresse): void 
     {
         $this->complement_adresse = $complement_adresse;
     }

@@ -7,7 +7,7 @@
             }
             if(!isset($_SESSION['cookieAccept'])) {
                 // Si non, on affiche la popup
-                echo "<script>showCookiesPopup()</script>";
+               // echo "<script>showCookiesPopup()</script>";
             }
         }
         public static function acceptCookies() {
