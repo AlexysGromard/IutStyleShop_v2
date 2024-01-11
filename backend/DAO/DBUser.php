@@ -112,10 +112,11 @@ class DBUser extends Connexion implements DAOInterface
         $requete = "CALL DeleteUser(?)";
 
         $stmt = self::$pdo->prepare($requete);
-
-        $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
+        
+        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
 
         $stmt->execute();
+        var_dump($entity);
     }
 
     /**

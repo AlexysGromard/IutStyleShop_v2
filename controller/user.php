@@ -134,6 +134,36 @@ class user{
         require "frontend/dashboard/admin.php";
     }
 
+    function delUser(array $param){
+        session_start();
+        $DAOUser = new \backend\DAO\DBUser();
+        $id = $_SESSION['user']->getId();
+
+        $personne = $DAOUser->getById($id);
+
+        if ($personne->getRole()!="admin"){
+            require "frontend/404.php";die();
+        }
+        
+        if (count($param) != 1 || !is_numeric($param[0])){
+            require "frontend/404.php";die();
+        }
+        
+
+        
+        $usertodel = $DAOUser->getById($param[0]);
+        
+        if ($usertodel != null){
+            
+            $DAOUser->delete($usertodel);
+            var_dump($usertodel);
+        }
+        
+        
+        header("Location: /user/admin_space/utilisateurs");
+
+    }
+
     /*
     * Fonction qui permet de valider la déconnexion
     * Elle va supprimer le USER de la session et le rediriger vers la page d'accueil

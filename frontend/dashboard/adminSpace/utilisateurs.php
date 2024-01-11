@@ -22,7 +22,7 @@
                 <td class="Black_police_40"><?= $user->getPrenom() ?></td>
                 <td class="Black_police_40"><?= $user->getAdresse() ?></td>
                 <td class=action_space>
-                    <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
+                    <a href="/user/delUser/<?=$user->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
                 </td>
             </tr>
             <?php endforeach; ?>
