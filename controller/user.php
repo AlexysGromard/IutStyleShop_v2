@@ -1,6 +1,8 @@
 <?php
 namespace controller;
 
+include_once "backend/DAO/DBUser.php";
+
 
 class user{
 
@@ -132,6 +134,36 @@ class user{
         // Supprimer le USER de la session
         unset($_SESSION['user']);
         header("Location: /");
+    }
+
+    /*
+    * Fonction qui permet de mettre à jour les informations de l'utilisateur
+    * Elle va récupérer les informations du formulaire et les mettre à jour dans la base de données
+    */
+    function updateUserInformations(){
+        $civilite = $_POST['civility'];
+        $nom = $_POST['lastname'];
+        $prenom = $_POST['firstname'];
+        $mail = $_POST['email'];
+        $tel = $_POST['tel'];
+
+        // Récupérer l'id de l'utilisateur
+        session_start();
+        $id = $_SESSION['user']->getId();
+
+        // Mettre à jour les informations de l'utilisateur dans variables de session
+        $_SESSION['user']->setGenre($civilite);
+        $_SESSION['user']->setNom($nom);
+        $_SESSION['user']->setPrenom($prenom);
+        $_SESSION['user']->setEmail($mail);
+        $_SESSION['user']->setTelephone($tel);
+
+        // Mettre à jour les informations de l'utilisateur dans la base de données
+        $DAOUser = new \backend\DAO\DBUser();
+        $DAOUser->update($_SESSION['user']);
+
+        // Redirection vers la page d'informations
+        header("Location: /user/dashboard/informations");
     }
 }
 

@@ -1,25 +1,13 @@
 <!-- information personnel -->
-<form class="large_box" action="xx">
+<form class="large_box" action="/user/updateUserInformations" method="POST">
                         
     <span class="Black_police_65">Informations personnelles</span>
     <div class="civility_choice_space">
         <span class="Black_police_55" >Civilité</span>
         <div>
-            <label for="civility-woman" class="radio_button_space">
-                <?php
-                    $input = '<input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->getGenre()=='F' ) {
-                        $input.= 'checked ';
-                    }
-                    $input.= '/> ';
-                    echo $input;
-
-                    ?>
-                <span class="Black_police_40" >Femme</span>
-            </label>
             <label for="civility-man" class="radio_button_space">
                 <?php
-                    $input = '<input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
+                    $input = '<input class="radioButton" type="radio" value="M" id="civility-man" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
                     if ($personne->getGenre()=='M' ) {
                         $input.= 'checked ';
                     }
@@ -29,9 +17,21 @@
                 ?>
                 <span class="Black_police_40"  >Homme</span>
             </label>
+            <label for="civility-woman" class="radio_button_space">
+                <?php
+                    $input = '<input class="radioButton" type="radio" value="W" id="civility-woman" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
+                    if ($personne->getGenre()=='F' ) {
+                        $input.= 'checked ';
+                    }
+                    $input.= '/> ';
+                    echo $input;
+
+                    ?>
+                <span class="Black_police_40" >Femme</span>
+            </label>
             <label for="civility-none" class="radio_button_space">
                 <?php
-                    $input = '<input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
+                    $input = '<input class="radioButton" type="radio" value="N" id="civility-none" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
                     if ($personne->getGenre()!='M' && $personne->getGenre()!='F' ) {
                         $input.= 'checked ';
                     }
@@ -47,17 +47,17 @@
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="last-name">Nom</label>
-                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval="<?= $personne->getNom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
+                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="lastname" initval="<?= $personne->getNom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="first-name">Prénom</label>
-                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" initval="<?= $personne->getPrenom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
+                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="firstname" initval="<?= $personne->getPrenom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
             </div>
         </div>
         <div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="mail">Adresse mail</label>
-                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" initval="<?= $personne->getEmail(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="email" initval="<?= $personne->getEmail(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="phone">Numéro de téléphone</label>

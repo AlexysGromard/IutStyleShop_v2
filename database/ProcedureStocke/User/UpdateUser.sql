@@ -10,13 +10,14 @@ DELIMITER //
         p_address VARCHAR(256),
         p_ville VARCHAR(128),
         p_code_postal MEDIUMINT,
-        p_complement_adresse VARCHAR(64)
+        p_complement_adresse VARCHAR(64),
+        p_id INT
     )
     BEGIN
         -- Logique pour mettre à jour les informations d'un utilisateur dans la table User
         UPDATE User
         SET email = p_email, telephone = p_telephone, nom = p_nom, prenom = p_prenom
-        , genre = p_genre, address = p_address, ville = p_ville, code_postal = p_code_postal
+        , genre = p_genre, adresse = p_address, ville = p_ville, code_postal = p_code_postal
         , complement_adresse = p_complement_adresse
         WHERE id = p_id;
     END //

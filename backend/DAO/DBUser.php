@@ -40,28 +40,35 @@ class DBUser extends Connexion
      */
     public function update($entity)
     {
-
-
+        $email = $entity->getEmail();
+        $telephone = $entity->getTelephone();
+        $nom = $entity->getNom();
+        $prenom = $entity->getPrenom();
+        $genre = $entity->getGenre();
+        $adresse = $entity->getAdresse();
+        $ville = $entity->getVille();
+        $codePostal = $entity->getCodePostal();
+        $complementAdresse = $entity->getComplementAdresse();
+        $id = $entity->getId();
+    
         $requete = "CALL UpdateUser(?,?,?,?,?,?,?,?,?,?)";
-
+    
         $stmt = $this->pdo->prepare($requete);
-
-        $stmt->bindParam(1, $entity->mail, \PDO::PARAM_STR); // Mail
-        $stmt->bindParam(2, $entity->telephone, \PDO::PARAM_STR); // Téléphone
-        $stmt->bindParam(3, $entity->nom, \PDO::PARAM_STR); // Nom
-        $stmt->bindParam(4, $entity->prenom, \PDO::PARAM_STR); // Prénom
-        $stmt->bindParam(5, $entity->genre, \PDO::PARAM_STR); // Genre
-        $stmt->bindParam(6, $entity->address, \PDO::PARAM_STR); // Adresse
-        $stmt->bindParam(7, $entity->ville, \PDO::PARAM_STR); // Ville
-        $stmt->bindParam(8, $entity->code_postal, \PDO::PARAM_INT); // Code postal
-        $stmt->bindParam(9, $entity->complement_adresse, \PDO::PARAM_STR); // Complément d'adresse
-        $stmt->bindParam(10, $entity->id, \PDO::PARAM_INT); // Id
-
+    
+        $stmt->bindParam(1, $email, \PDO::PARAM_STR);
+        $stmt->bindParam(2, $telephone, \PDO::PARAM_STR);
+        $stmt->bindParam(3, $nom, \PDO::PARAM_STR);
+        $stmt->bindParam(4, $prenom, \PDO::PARAM_STR);
+        $stmt->bindParam(5, $genre, \PDO::PARAM_STR);
+        $stmt->bindParam(6, $adresse, \PDO::PARAM_STR);
+        $stmt->bindParam(7, $ville, \PDO::PARAM_STR);
+        $stmt->bindParam(8, $codePostal, \PDO::PARAM_INT);
+        $stmt->bindParam(9, $complementAdresse, \PDO::PARAM_STR);
+        $stmt->bindParam(10, $id, \PDO::PARAM_INT);
 
         $stmt->execute();
-
-
     }
+
 
     /**
      * Update le role d'un utilisateur
