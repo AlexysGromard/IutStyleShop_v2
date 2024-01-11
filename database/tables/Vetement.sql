@@ -5,5 +5,5 @@ CREATE OR REPLACE TABLE Vetement (
     quantiteM  INT NOT NULL,
     quantiteL  INT NOT NULL,
     quantiteXL  INT NOT NULL,
-    FOREIGN KEY (id_Article) REFERENCES Article (id)
+    FOREIGN KEY (id_Article) REFERENCES Article(id)
 )

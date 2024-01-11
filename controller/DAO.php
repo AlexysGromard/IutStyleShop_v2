@@ -2,6 +2,8 @@
 
 namespace controller;
 
+use backend\entity\ArticleEntity;
+
 //use \backend\DAO\DBArticle;
 
 class DAO{
@@ -14,11 +16,9 @@ class DAO{
     }
 
     function DAOArticle(){
-        echo "AzAAA";
         $this->dao = new \backend\DAO\DBArticle();
-        
-        $article = $this->dao->getById(8);
-        var_dump($article->getQuantite());
+        $article = $this->dao->addVetement("Baobab","t-shirt","M","bleue","enorme baobab bleue",210,10,true,array(5,6,3,2,8),array("Test.png","test2.png"));
+        var_dump($article);
         
 
         
