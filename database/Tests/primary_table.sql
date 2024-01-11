@@ -7,8 +7,8 @@ VALUES
 ('michel.rotel@gmail.com', '0265358367', SHA2('1234', 256), 'rotel', 'michel', 'M', 'client', '6 Av. de l Industrie', 'Argentan', 61200, NULL),
 ('Pierre.Delacour@gmail.com', '0782663921', SHA2('J!aime', 256), 'Delacour', 'Pierre', 'M', 'client', '12 Rue Marie Bascou', 'Lacaune', 81230, NULL),
 ('Externe.alexandre@outlook.com', '0692114867', SHA2('password', 256), 'Externe', 'alexandre', 'M', 'client', '6 Rue Neuve', 'Savy-Berlette,', 62690, NULL),
-('flo@example.com', '0446294421', SHA2('floflo', 256), NULL, 'flo', 'M', 'client', NULL, NULL, NULL, NULL),
-('inconnue@example.com', '0912375578', SHA2('cheeh', 256), NULL, NULL, 'None', 'client', NULL, NULL, NULL, NULL);
+('flo@example.com', '0446294421', SHA2('floflo', 256), 'mar', 'flo', 'M', 'client', '3 aller de villbon', 'Nantes', '3', '303'),
+('inconnue@example.com', '0912375578', SHA2('cheeh', 256), 'connu', 'in', 'None', 'client', '5 rue des inconnu', 'inconu Land', '0', '');
 
 
 
