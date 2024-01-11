@@ -32,7 +32,8 @@ class DAO{
 
         
         
-        $res =  "\backend\DAO\\" . $params[0];
+        $res =  "\backend\DAO\\".$params[0];
+        echo "DAO Call";
         $this->dao = new $res();
         var_dump($this);
 

@@ -16,6 +16,7 @@ class user{
 
         session_start();
         $personne = $_SESSION['user'];
+        var_dump($personne);
         //TODO : utiliser session ???
         
         switch ($param[0]) {
@@ -40,13 +41,22 @@ class user{
     function admin_space(array $param){
 
         //vérifier que c'est bien un admin
-        //todo
+        ////
+        
+        session_start();
+        $personne = $_SESSION['user'];
+        var_dump($personne);
+
+        if ($personne->role!="admin"){
+            require "frontend/404.php";die();
+        }
+
 
         if (count($param) < 1 || !in_array($param[0], array("utilisateurs","commandes","articles","avis","codes_promotionnel"))){
             require "frontend/404.php";die();
         }
 
-        $personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
+        //$personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
         
         switch ($param[0]) {
             case "utilisateurs":
