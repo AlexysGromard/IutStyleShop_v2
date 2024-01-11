@@ -18,8 +18,8 @@ class CommentaireEntity
 	FOREIGN KEY (ID_Article) REFERENCES Article(id)
     */
 
-    private UserEntity $user;
-    private ArticleEntity $article;
+    private int $id;
+
     private float $note;
     private string $commentaire;
 

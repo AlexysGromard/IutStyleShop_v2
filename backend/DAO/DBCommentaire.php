@@ -8,7 +8,7 @@ class DBCommentaire extends Connexion  implements EntityInterface
     public function add($entity)
     {
         $requete = "call CommantairePackage.InsertCommentaire(:idArticle, :idUser, :note, :commentaire)";
-        $stmt = self::pdo->prepare($requete);
+        $stmt = self::      pdo->prepare($requete);
         $stmt->execute([
             'idArticle' => $entity->getIdArticle(),
             'idUser' => $entity->getIdUser(),
