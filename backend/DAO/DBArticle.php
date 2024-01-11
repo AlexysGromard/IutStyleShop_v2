@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBArticle extends Connexion implements ArticleInterface
+class DBArticle extends Connexion implements DAOInterface
 {
     /**
      * Ajoute un article
@@ -10,10 +10,10 @@ class DBArticle extends Connexion implements ArticleInterface
      * @param ArticleEntity $entity
      * @return void
      */
-    public function add($entity)
+    public static function add($entity)
     {   
         $sql = "INSERT INTO article (nom, description, prix, promo, disponibilite, categorie, genre, couleur, taille, image) VALUES (:nom, :description, :prix, :promo, :disponibilite, :categorie, :genre, :couleur, :taille, :image)";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = self::$pdo->prepare($sql);
         $stmt->execute([
             'nom' => $entity->getNom(),
             'description' => $entity->getDescription(),
@@ -34,7 +34,7 @@ class DBArticle extends Connexion implements ArticleInterface
      * @param ArticleEntity $entity
      * @return void
      */
-    public function update($entity)
+    public static function update($entity)
     {
     }
 
@@ -45,7 +45,7 @@ class DBArticle extends Connexion implements ArticleInterface
      * @param int $id
      * @return void
      */
-    public function delete($id)
+    public static function delete($id)
     {
     }
 
@@ -54,7 +54,7 @@ class DBArticle extends Connexion implements ArticleInterface
      * 
      * @return ArticleEntity[]
      */
-    public function getall()
+    public static function getall()
     {
     }
 
@@ -64,7 +64,7 @@ class DBArticle extends Connexion implements ArticleInterface
      * @param int $id
      * @return ArticleEntity|null
      */
-    public function getById(int $id): ?ArticleEntity
+    public static function getById(int $id): ?ArticleEntity
     {
     }
 
@@ -74,7 +74,7 @@ class DBArticle extends Connexion implements ArticleInterface
      * @param string $categorie
      * @return ArticleEntity[]
      */
-    public function getArticleByCategorie(string $categorie): array
+    public static function getArticleByCategorie(string $categorie): array
     {
     }
 
@@ -84,7 +84,7 @@ class DBArticle extends Connexion implements ArticleInterface
      * @param string $genre
      * @return ArticleEntity[]
      */
-    public function getArticleByDisponibilite(bool $disponibilite): array
+    public static function getArticleByDisponibilite(bool $disponibilite): array
     {
     }
 
@@ -94,7 +94,7 @@ class DBArticle extends Connexion implements ArticleInterface
      * @param bool $promo
      * @return ArticleEntity[]
      */
-    public function getArticleByCondition(string $categorie, string $genre, string $couleur, array $prix, bool $promo, bool $disponibilite): array
+    public static function getArticleByCondition(string $categorie, string $genre, string $couleur, array $prix, bool $promo, bool $disponibilite): array
     {
     }
 }

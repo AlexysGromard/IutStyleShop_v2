@@ -24,7 +24,7 @@ class DAO{
         require "frontend/DAO/DBArticle.php";
         
 
-        
+         
     }
 
     function call(array $params){
@@ -55,11 +55,11 @@ class DAO{
             echo "use methode : " . $params[2];
             $this->dao->getById(1);
             call_user_func([$this->dao, $params[1]],$arguments[0]);
-            
+               
         }
 
     
-        require "frontend/DAO/". $params[0] .".php";
+        //require "frontend/DAO/". $params[0] .".php";
     }
 
     function entity($className, $methodName, $params = array()){
