@@ -20,7 +20,7 @@
             <label for="civility-woman" class="radio_button_space">
                 <?php
                     $input = '<input class="radioButton" type="radio" value="W" id="civility-woman" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->getGenre()=='F' ) {
+                    if ($personne->getGenre()=='W' ) {
                         $input.= 'checked ';
                     }
                     $input.= '/> ';
@@ -32,7 +32,7 @@
             <label for="civility-none" class="radio_button_space">
                 <?php
                     $input = '<input class="radioButton" type="radio" value="N" id="civility-none" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->getGenre()!='M' && $personne->getGenre()!='F' ) {
+                    if ($personne->getGenre()=='N') {
                         $input.= 'checked ';
                     }
                     $input.= '/> ';
