@@ -30,7 +30,7 @@ DELIMITER //
         IF @last_id_2 >= @last_id + 2 THEN
             SIGNAL SQLSTATE '45151' SET MESSAGE_TEXT = 'Deux articles ont été ajouté en même temps !';
         ELSE
-            INSERT INTO Accessoire (id_Article, quantite) VALUES (last_id_2, quantite);
+            INSERT INTO Accessoire (id_Article, quantite) VALUES (@last_id_2, p_quantite);
         SELECT @last_id_2;
         
         END IF;

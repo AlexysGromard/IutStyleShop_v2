@@ -31,7 +31,7 @@ class Connexion
                     \PDO::ATTR_TIMEOUT => 3600,
                 ]
                 );
-            echo "testtt";
+
             self::$pdo = $pdoinstance->getConnexion();
             
         } catch (\PDOException $e) {
@@ -40,7 +40,6 @@ class Connexion
             die();
         }
 
-        echo "testtt";
     }
 }
 ?>

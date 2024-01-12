@@ -4,7 +4,7 @@ namespace backend\DAO;
 
 use \backend\entity\ArticleEntity;
 use \backend\entity\AccessoireEntity;
-use \backend\entity\VetementEntityEntity;
+use \backend\entity\VetementEntity;
 
 
 
@@ -40,11 +40,11 @@ class DBArticle extends Connexion implements DAOInterface
             $stmt->bindParam(6,$prix);
             $stmt->bindParam(7,$promo);
             $stmt->bindParam(8,$disponible,\PDO::PARAM_BOOL);
-            $stmt->bindParam(9,intval($quantite[0]),\PDO::PARAM_INT);
-            $stmt->bindParam(10,intval($quantite[1]),\PDO::PARAM_INT);
-            $stmt->bindParam(11,intval($quantite[2]),\PDO::PARAM_INT);
-            $stmt->bindParam(12,intval($quantite[3]),\PDO::PARAM_INT);
-            $stmt->bindParam(13,intval($quantite[4]),\PDO::PARAM_INT);
+            $stmt->bindParam(9,$quantite[0],\PDO::PARAM_INT);
+            $stmt->bindParam(10,$quantite[1],\PDO::PARAM_INT);
+            $stmt->bindParam(11,$quantite[2],\PDO::PARAM_INT);
+            $stmt->bindParam(12,$quantite[3],\PDO::PARAM_INT);
+            $stmt->bindParam(13,$quantite[4],\PDO::PARAM_INT);
             $stmt->execute();
             $id = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             var_dump($id);
@@ -75,7 +75,6 @@ class DBArticle extends Connexion implements DAOInterface
      * Ajoute un accessoire
      * 
      * @param string $nom
-     * @param string $categorie
      * @param string $genre
      * @param string $couleur
      * @param string $description
@@ -87,9 +86,9 @@ class DBArticle extends Connexion implements DAOInterface
      * 
      * @return ?VetementEntityEntity
      */
-    public static function addAccessoire($nom,$categorie,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
+    public static function addAccessoire($nom,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
     {   
-        
+        $categorie = "accessoire";
         $sql = "call InsertArticleAccessoire(?,?,?,?,?,?,?,?,?)";
         $stmt = self::$pdo->prepare($sql);
         $stmt->bindParam(1,$nom);
@@ -100,7 +99,7 @@ class DBArticle extends Connexion implements DAOInterface
         $stmt->bindParam(6,$prix);
         $stmt->bindParam(7,$promo);
         $stmt->bindParam(8,$disponible);
-        $stmt->bindParam(9,intval($quantite));
+        $stmt->bindParam(9,$quantite,\PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -125,11 +124,74 @@ class DBArticle extends Connexion implements DAOInterface
     /**
      * Update une articles
      * 
-     * @param ArticleEntity $entity
+     * @param ArticleEntity $article
      * @return void
      */
-    public static function update($entity)
+    public static function update($article)
     {
+
+        if ($article instanceof AccessoireEntity){
+            $id =$article->getId();
+            $nom=$article->getNom();
+            $genre=$article->getGenre();
+            $couleur =$article->getCouleur();
+            $description =$article->getDescription();
+            $prix =$article->getPrix();
+            $promo=$article->getPromo();
+            $disponibilite =$article->getDisponible();
+            $quantite=$article->getQuantite();
+
+            $sql = "call UpdateArticleAccessoire(?,?,?,?,?,?,?,?,?)";
+            $stmt = self::$pdo->prepare($sql);
+            $stmt->bindParam(1,$id);
+            $stmt->bindParam(2,$nom);
+            $stmt->bindParam(3,$genre);
+            $stmt->bindParam(4,$couleur);
+            $stmt->bindParam(5,$description);
+            $stmt->bindParam(6,$prix);
+            $stmt->bindParam(7,$promo);
+            $stmt->bindParam(8,$disponibilite);
+            $stmt->bindParam(9,$quantite,\PDO::PARAM_INT);
+
+            $stmt->execute();
+        }else if ($article instanceof VetementEntity){
+            $id =$article->getId();
+            $nom=$article->getNom();
+            $categorie=$article->getCategory();
+            $genre=$article->getGenre();
+            $couleur =$article->getCouleur();
+            $description =$article->getDescription();
+            $prix =$article->getPrix();
+            $promo=$article->getPromo();
+            $disponibilite =$article->getDisponible();
+            $quantiteXS=$article->getQuantiteXS();
+            $quantiteS=$article->getQuantiteS();
+            $quantiteM=$article->getQuantiteM();
+            $quantiteL=$article->getQuantiteL();
+            $quantiteXL=$article->getQuantiteXL();
+
+
+
+            $sql = "call UpdateArticleVetement(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $stmt = self::$pdo->prepare($sql);
+            $stmt->bindParam(1,$id);
+            $stmt->bindParam(2,$nom);
+            $stmt->bindParam(3,$categorie);
+            $stmt->bindParam(4,$genre);
+            $stmt->bindParam(5,$couleur);
+            $stmt->bindParam(6,$description);
+            $stmt->bindParam(7,$prix);
+            $stmt->bindParam(8,$promo);
+            $stmt->bindParam(9,$disponibilite);
+            $stmt->bindParam(10,$quantiteXS(),\PDO::PARAM_INT);
+            $stmt->bindParam(11,$quantiteS(),\PDO::PARAM_INT);
+            $stmt->bindParam(12,$quantiteM(),\PDO::PARAM_INT);
+            $stmt->bindParam(13,$quantiteL(),\PDO::PARAM_INT);
+            $stmt->bindParam(14,$quantiteXL(),\PDO::PARAM_INT);
+
+            $stmt->execute();
+        }
+        
     }
 
 
@@ -224,10 +286,66 @@ class DBArticle extends Connexion implements DAOInterface
     /**
      * Donne les articles disponibles
      * 
-     * @param string $genre
+     * @param bool $disponibilite
      * @return ArticleEntity[]
      */
     public static function getArticleByDisponibilite(bool $disponibilite): array
+    {
+    }
+
+    /**
+     * Donne les articles genre
+     * 
+     * @param string $genre
+     * @return ArticleEntity[]
+     */
+    public static function getArticleByGenre(string $genre): array
+    {
+    }
+
+    /**
+     * Donne les articles disponibles
+     * 
+     * @param string $couleur
+     * @return ArticleEntity[]
+     */
+    public static function getArticleByCouleur(string $couleur): array
+    {
+    }
+
+    /**
+     * Donne les articles disponibles
+     * 
+     * @param array $prix
+     * @return ArticleEntity[]
+     * 
+     * $prix possède 2 valeurs : un prix minimum et un prix maximum
+     */
+    public static function getArticleByPrix(array $prix): array
+    {
+        if (count($prix) == 2){
+            $prixmin = $prix[0];
+            $prixmax = $prix[1];
+
+            $requete = "CALL GetArticleByPrix(?,?)";
+            $stmt = self::$pdo->prepare($requete);
+            $stmt->bindParam(1,$prixmin);
+            $stmt->bindParam(2,$prixmax);
+
+            $stmt->execute();
+            $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $articles;
+        }
+        return array();
+    }
+
+    /**
+     * Donne les articles disponibles
+     * 
+     * @param bool $promo
+     * @return ArticleEntity[]
+     */
+    public static function getArticleByPromo(array $promo): array
     {
     }
 
