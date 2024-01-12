@@ -1,6 +1,3 @@
-console.log("helo");
-
-
 let civility;
 for (element of document.getElementsByName("civility")){
     if (element.checked){
@@ -63,6 +60,16 @@ function checkedUpdatePersonalInfo(id,value,idbutton){
         }
     }
 
+    // Si phone et modifié mais que sa taille est inférieure à 10
+    if (id == "phone" && value.length < 10){
+        thereismodif = false;
+    }
+
+    // Si mail et modifié mais que ne correspond pas à un mail
+    if (id == "mail" && !value.includes("@") && !value.includes(".")){
+        thereismodif = false;
+    }
+
     if (thereismodif){
         button.classList.remove("disabled");
     }else{
@@ -98,4 +105,13 @@ function checkedUpdateChangePassword(id,value,idbutton){
     }
 }
 
-console.log("fin");
+/**
+ * Vérification de la validité du téléphone
+ */
+document.getElementById("phone").addEventListener("input", function(e) {
+    // Si taille supérieure à 10 ou contient pas que des chiffres
+    if (e.target.value.length > 10 || /[^0-9]/.test(e.target.value)) {
+        // On remplace le contenu par celui-ci
+        e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
+    }
+});

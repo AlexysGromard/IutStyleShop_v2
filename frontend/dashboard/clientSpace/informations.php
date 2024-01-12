@@ -61,7 +61,7 @@
             </div>
             <div class="inputText_space">
                 <label class="Black_police_55" for="phone">Numéro de téléphone</label>
-                <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel" initval="<?= $personne->getTelephone(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <input class="sidebar" type="tel" placeholder="06 00 00 00 00" id="phone" name="tel" initval="<?= $personne->getTelephone();?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
             </div>
         </div>
     </div>
