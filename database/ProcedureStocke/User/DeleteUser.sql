@@ -5,7 +5,11 @@ CREATE OR REPLACE PROCEDURE DeleteUser(
     p_id INT
     )
     BEGIN
+    IF p_id != 1 THEN
         -- Logique pour supprimer un utilisateur de la table User
         DELETE FROM User WHERE id = p_id;
+    END IF;
+        
+        
     END //
 DELIMITER ;

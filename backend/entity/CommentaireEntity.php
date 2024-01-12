@@ -41,13 +41,13 @@ class CommentaireEntity
         return $this->user;
     }
 
-    /*
-    * @return int
-    */
-    public function getArticle(): ArticleEntity
-    {
-        return $this->article;
-    }
+    // /*
+    // * @return int
+    // */
+    // public function getArticle(): ArticleEntity
+    // {
+    //     return $this->article;
+    // }
 
     /*
     * @return float
