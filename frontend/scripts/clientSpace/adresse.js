@@ -12,10 +12,10 @@ myAdresse.set("complement_adresse", complement_adresse);
 myAdresse.set("ville", ville);
 
 myAdresseModif = new Map()
-myAdresse.set("adresse", false);
-myAdresse.set("code", false);
-myAdresse.set("complement_adresse", false);
-myAdresse.set("ville", false);
+myAdresseModif.set("adresse", false);
+myAdresseModif.set("code", false);
+myAdresseModif.set("complement_adresse", false);
+myAdresseModif.set("ville", false);
 
 
 function checkedUpdateAdresse(id,value,idbutton){
@@ -25,7 +25,7 @@ function checkedUpdateAdresse(id,value,idbutton){
     if (value != oldvalue){
         myAdresseModif.set(id,true)
     }else{
-        myAdresseModif.set(id,true)
+        myAdresseModif.set(id,false)
     }
 
     var thereismodif = false

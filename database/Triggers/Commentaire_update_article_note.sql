@@ -36,14 +36,18 @@ UPDATE Article
         FROM Commentaire
         WHERE Commentaire.id_Article = OLD.id_Article
     );
-    --TODO
-    -- UPDATE Article
-    -- SET Article.notes = (
-    --     SELECT AVG(Commentaire.note)
-    --     FROM Commentaire
-    --     WHERE Commentaire.id_Article = OLD.id_Article
-    -- )
-    -- WHERE Article.id = OLD.id_Article;
+    
+    UPDATE Article
+    SET Article.notes = (
+        SELECT AVG(Commentaire.note)
+        FROM Commentaire
+        WHERE Commentaire.id_Article = OLD.id_Article
+    )
+    WHERE Article.id = OLD.id_Article and null not in (
+        SELECT AVG(Commentaire.note)
+        FROM Commentaire
+        WHERE Commentaire.id_Article = OLD.id_Article
+    );
 END;
 //
 DELIMITER ;

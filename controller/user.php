@@ -147,6 +147,8 @@ class user{
         
         if (count($param) != 1 || !is_numeric($param[0])){
             require "frontend/404.php";die();
+        }else if ($param[0] == 1){
+            header("Location: /user/admin_space/utilisateurs");die();
         }
         
 
