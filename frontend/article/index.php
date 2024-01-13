@@ -16,7 +16,7 @@
         <section id="article-section">
             <div class="article-page-left">
                 <div class="article-image-box">
-                    <img id=active-image class="article-image" alt="Article" src=<?= $articleActual->image ?> />
+                    <img id=active-image class="article-image" alt="Article" src=<?= $articleActual->getImages()[0] ?> />
                     <!-- Toutes les images du produit -->
                     <div id="product-images">
                         <!-- Images in JS -->
@@ -24,11 +24,11 @@
                 </div>
                 <div class="acticle-info-box">
                     <div>
-                        <span class="acticle-name"><?= $articleActual->nom?></span>
+                        <span class="acticle-name"><?= $articleActual->getNom()?></span>
                         <div class="stars">
                             <!-- placement des étoile -->
                             <?php foreach (array(1,2,3,4,5) as $valeur): ?>
-                            <?php if ($articleActual->notes >= $valeur): ?>
+                            <?php if ($articleActual->getNotes() >= $valeur): ?>
 
                             <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
 
@@ -37,15 +37,15 @@
                             <?php endif ?>
                             <?php endforeach ?>
                         </div>
-                        <span class="small-article-text"><?= $articleActual->nbNotation ?> évaluation(s)</span>
+                        <span class="small-article-text"><?= $articleActual->getVotant()?> évaluation(s)</span>
                     </div>
                     <div class="article-more-info">
                         <div>
-                            <span id="price" class="acticle-prices"><?= $articleActual->prix ?>€</span>
+                            <span id="price" class="acticle-prices"><?= $articleActual->getPrix() ?>€</span>
                             <span class="small-article-text">Tous les prix inclus la TVA.</span>
                         </div>
                         <span class="small-article-text">Votre article sera à récupérer sur votre campus.</span>
-                        <?php if ($articleActual->category != "Accessoire"): ?>
+                        <?php if ($articleActual->getCategory() != "Accessoire"): ?>
                         <div>
                             <span class="small-article-text">Taille:</span>
                             <select class="select-taille" name="taille" id="taille">
@@ -58,7 +58,7 @@
                             </select>
                         </div>
                         <?php endif ?>
-                        <span class="small-article-text article-description"><?= $articleActual->description ?></span>
+                        <span class="small-article-text article-description"><?= $articleActual->getDescription() ?></span>
 
                         <a id="add-card" class="button basic-text">Ajouter au panier</a>
                     </div>
@@ -143,7 +143,7 @@
                         <div id="article-stars">
                             <!-- placement des étoile -->
                             <?php foreach (array(1,2,3,4,5) as $valeur): ?>
-                            <?php if ($articleActual->notes >= $valeur): ?>
+                            <?php if ($articleActual->getNotes() >= $valeur): ?>
 
                             <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
 
@@ -152,7 +152,7 @@
                             <?php endif ?>
                             <?php endforeach ?>
                         </div>
-                        <span id="article-stars-text"><?= $articleActual->notes ?> sur 5</span>
+                        <span id="article-stars-text"><?= $articleActual->getNotes() ?> sur 5</span>
                     </div>
                     <!-- Répartition des étoiles -->
                     <!-- TODO : Implementer la fonction de récupération des étoiles -->
