@@ -24,7 +24,11 @@ function reload_pageName(){
     prixMin = document.getElementById('fromSlider').value;
     prixMax = document.getElementById('toSlider').value;
 
-    link = "/products/filter/"+tshirt.toString()+"/" + sweatshirt.toString()+"/" +sportswear.toString()+"/"+ accessories.toString() + "/"+red+"/"+green+"/"+blue+"/"+white+"/"+black+"/"+prixMin+"/"+prixMax;
+    //Les genres
+    homme = document.getElementById('homme').checked;
+    femme = document.getElementById('femme').checked;
+
+    link = "/products/filter/"+tshirt.toString()+"/" + sweatshirt.toString()+"/" +sportswear.toString()+"/"+ accessories.toString() + "/"+red+"/"+green+"/"+blue+"/"+white+"/"+black+"/"+prixMin+"/"+prixMax+"/"+homme+"/"+femme+"/false/true/true";
     console.log(link)
     
     document.location.href = link

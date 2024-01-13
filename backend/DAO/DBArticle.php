@@ -377,32 +377,74 @@ class DBArticle extends Connexion implements DAOInterface
     /**
      * Donne les articles par rapport à des conditions
      * 
-     * @param string $categorie
-     * @param string $couleur
-     * @param array $prix
+     * @param array $categories  contient les catégories que l'on souhaite retourner
+     * @param array $couleurs    contient les couleurs que l'on souhaite retourner
+     * @param array $prix contient 2 valeurs, [0] le prix min [1] le prix max
+     * @param string $genres "M", "F"
+     * @param bool $promo  Booléen qui permet de savoir si on retourne ou non les article en promotion
+     * @param int $disponibilite 0 => on retourne les non disponible, 1 => on retourne les disponible , 2 => on retourne les deux
+     * 
      * 
      * @return ArticleEntity[]
      */
-    public static function getArticleByCondition(string $categorie, string $couleur, array $prix): array  // futur parameters : string $genre, bool $promo, bool $disponibilite
+    public static function getArticleByCondition(array $categories, array $couleurs, array $prix,string $genres, bool $promo, int $disponibilite): array  
     {
-        
+        $mesArticles = array();
         $prixmin = 0;
         $prixmax = 100;
         if(count($prix)==2){
-            $prixmin = $prix[0];
-            $prixmax = $prix[1];
+            $prixmin = intval($prix[0]);
+            $prixmax = intval($prix[1]);
         }
+        if ($genres==""){
+            $genres = "MF";
+        }
+        foreach($categories as $categorie){
+            foreach($couleurs as $couleur){
+                $disponible = 0;
+                if ( $disponibilite == 1){
+                    $disponible = 1;
+                }else if ( $disponibilite == 2){
+                    $requete = "CALL GetArticleByCondition(?,?,?,?,?,?,?)";
+                    $stmt = self::$pdo->prepare($requete);
+                    $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
+                    $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
+                    $stmt->bindParam(3,$prixmin);
+                    $stmt->bindParam(4,$prixmax);
+                    $stmt->bindParam(5,$genres);    
+                    $stmt->bindParam(6,$promo,\PDO::PARAM_INT);
+                    $stmt->bindParam(7,$disponible);
+
+                    $stmt->execute();
+                    $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                    $mesArticles = array_merge($mesArticles, $articles);
+
+                    $disponible = 1;
+                    //Puis on sort du if et on récupère les disponible
+                }
+                $requete = "CALL GetArticleByCondition(?,?,?,?,?,?,?)";
+                $stmt = self::$pdo->prepare($requete);
+                $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
+                $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
+                $stmt->bindParam(3,$prixmin);
+                $stmt->bindParam(4,$prixmax);
+                $stmt->bindParam(5,$genres);
+                $stmt->bindParam(6,$promo,\PDO::PARAM_INT);
+                $stmt->bindParam(7,$disponible);
+                $stmt->execute();
+                $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $mesArticles = array_merge($mesArticles, $articles);
+
+            }
+
+        }
+        
+
+        return $mesArticles;
+        
            
 
-        $requete = "CALL GetArticleByCondition(?,?,?,?)";
-        $stmt = self::$pdo->prepare($requete);
-        $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
-        $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
-        $stmt->bindParam(3,$prixmin);
-        $stmt->bindParam(4,$prixmax);
-        $stmt->execute();
-        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        return $articles;
+        
 
     }
 }

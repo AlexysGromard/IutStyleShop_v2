@@ -21,18 +21,18 @@ INSERT INTO Article (nom, category,genre, description, votant, notes, prix, coul
 VALUES
   ('T-Shirt Rouge IUT', 't-shirt','M', 'T-Shirt Rouge IUT 100% coton avec logo IUT sur la poitrine. Disponible en taille XS, S, M, L, XL. Cet article fait partie des bestSeller.', 0, 4.5, 19.99, 'red', 0, 1),
   ('Sweat Rouge IUT', 'sweat-short','M', 'Swet Rouge IUT 100% coton avec logo IUT sur la poitrine. Disponible en taille XS, S, M, L, XL. Cet article fait partie des bestSeller. Peut être porté avec un t-shirt rouge IUT.', 0, 4.5, 39.99, 'red', 0, 1),
-  ('MUG Blanc IUT', 'accessoire','M', 'Mug Blanc IUT avec logo. Parfait pour le café du matin. Disponible en blanc. Vous aurez également 0.05€ de remise à la machine à café de l IUT.', 0, 4.5, 14.99, 'white', 0, 1),
-  ('Casquette Noire IUT', 'accessoire','M', 'Casquette Noire IUT avec logo. Vous aurez la classe dans Nantes. Disponible en noir.', 0, 4.5, 16.99, 'black', 0, 1),
-  ('Gourde IUT Blanc', 'accessoire','M', 'Gourde IUT Blanc avec logo. Parfait pour les plus sportifs d entre-nous. Disponible en blanc.', 0, 4.5, 12.99, 'white', 0, 1),
+  ('MUG Blanc IUT', 'accessoire','MF', 'Mug Blanc IUT avec logo. Parfait pour le café du matin. Disponible en blanc. Vous aurez également 0.05€ de remise à la machine à café de l IUT.', 0, 4.5, 14.99, 'white', 0, 1),
+  ('Casquette Noire IUT', 'accessoire','MF', 'Casquette Noire IUT avec logo. Vous aurez la classe dans Nantes. Disponible en noir.', 0, 1.5, 16.99, 'black', 0, 1),
+  ('Gourde IUT Blanc', 'accessoire','MF', 'Gourde IUT Blanc avec logo. Parfait pour les plus sportifs d entre-nous. Disponible en blanc.', 0, 4.5, 12.99, 'white', 0, 1),
   ('Maillot IUT Nike', 'sports-wear', 'M','Profitez de notre collaboration avec Nike pour vous offrir le meilleur des maillots de sport. Disponible en noir.', 0, 4.5, 34.99, 'black', 0, 1),
   ('Maillot blanc IUT pour femme', 'sports-wear', 'F','Mesdames, voici le maillot qu il vous faut pour vos sorties sportives. Profitez en vite ! Disponible en blanc et en noir.', 0, 4.5, 22.99, 'white', 0, 1),
   ('Maillot noir IUT pour femme', 'sports-wear','F', 'Mesdames, voici le maillot qu il vous faut pour vos sorties sportives. Profitez en vite ! Disponible en blanc et en noir.', 0, 4.5, 22.99, 'black', 0, 1),
   ('Maillot blanc IUT pour homme', 'sports-wear','M', 'Messieurs, voici le maillot qu il vous faut pour vos sorties sportives. Profitez en vite ! Disponible en blanc et en noir.', 0, 4.5, 22.99, 'white', 0, 1),
   ('Maillot noir IUT pour homme', 'sports-wear','M', 'Messieurs, voici le maillot qu il vous faut pour vos sorties sportives. Profitez en vite ! Disponible en blanc et en noir.', 0, 4.5, 22.99, 'black', 0, 1),
-  ('Sac de sport IUT noir', 'accessoire','M', 'Portez vos affaires de sport avec style grâce à ce sac de sport IUT. Disponible en noir.', 0, 4.5, 25.75, 'black', 0, 1),
-  ('Stylo IUT rouge', 'accessoire','M', 'Rédigez vos meilleurs DS avec ce stylo IUT. Disponible en rouge.', 0, 4.5, 3.99, 'red', 0, 1),
+  ('Sac de sport IUT noir', 'accessoire','MF', 'Portez vos affaires de sport avec style grâce à ce sac de sport IUT. Disponible en noir.', 0, 3.5, 25.75, 'black', 0, 1),
+  ('Stylo IUT rouge', 'accessoire','MF', 'Rédigez vos meilleurs DS avec ce stylo IUT. Disponible en rouge.', 0, 4.5, 3.99, 'red', 0, 1),
   ('Sweatshirt IUT noir', 'sweat-short','M', 'Super sweat-short IUT noir avec logo. Vous aurez la classe dans Nantes. Disponible en noir, vert et rouge.', 0, 4.5, 39.99, 'black', 0, 1),
-  ('Sweatshirt IUT vert', 'sweat-short','M', 'Changez les codes couleurs avec ce sweat-short IUT vert. Disponible en noir, vert et rouge.', 0, 4.5, 39.99, 'green', 0, 1),
+  ('Sweatshirt IUT vert', 'sweat-short','M', 'Changez les codes couleurs avec ce sweat-short IUT vert. Disponible en noir, vert et rouge.', 0, 2.5, 39.99, 'green', 0, 1),
   ('T-Shirt IUT blanc', 't-shirt','M', 'T-Shirt IUT blanc avec logo. Vous aurez la classe dans Nantes. Disponible en blanc.', 0, 4.5, 19.99, 'white', 0, 1);
 
 -- Exemple d'insertion dans la table AccesoirImages

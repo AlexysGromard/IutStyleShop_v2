@@ -6,8 +6,30 @@ class products{
     function index(){
         $this->dao = new \backend\DAO\DBArticle();
         $mesArticles = $this->dao->getall();
-        $param = array(true,true,true,true,true,true,true,true,true,0,100); 
+        $param = array(true,true,true,true,true,true,true,true,true,0,100,true,true,false,true,true); 
         require "frontend/all-products/index_bd.php";
+    }
+
+    function accessoire(){
+        $param = array("false","false","false","true","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $this->filter($param);
+    }
+    function tshirt(){
+        $param = array("true","false","false","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $this->filter($param);
+    }
+    function sportswear(){
+        $param = array("false","false","true","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $this->filter($param);
+    
+    }
+    function sweatshirt(){
+        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $this->filter($param);
+    }
+    function promotion(){
+        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true"); 
+        $this->filter($param);
     }
 
     /*
@@ -22,27 +44,43 @@ class products{
         8 black (booléen) : Indique si la couleur noire est incluse dans le filtre.
         9 prixMin (chaîne de caractères) : La valeur minimale pour le filtre de prix.
         10 prixMax (chaîne de caractères) : La valeur maximale pour le filtre de prix.
+        11 homme (booléen) : Indique le genre Homme est inclus dans le filtre.
+        12 femme (booléen) : Indique le genre Femme est inclus dans le filtre.
+        13 promo (booléen) : Indique d'afficher seulement les articles en promo.
+        14 disponible (booléen) : Indique d'afficher les articles disponible
+        15 nondisponible (booléen) : Indique d'afficher les articles non disponible
+
+
     */
     function filter($param){
         $this->dao = new \backend\DAO\DBArticle();
-        $mesArticles = array();
-        $longueur = 11;
+        $longueur = 16;
+
+        
         if(count($param)==$longueur){
             $categorie = array("t-shirt","sweat-short","sports-wear","accessoire");
             $couleur = array('red','green','blue','white','black');
+            $categorieChoisi = array();
+            $couleurChoisi = array();
 
             for($i=0; $i<count($categorie);$i++){
                 if($param[$i]=="true"){
-                    for($j=0; $j<5;$j++){
-                        if($param[count($categorie)+$j]=="true"){
-                            $articles = $this->dao->getArticleByCondition($categorie[$i],$couleur[$j],array_slice($param, -2));
-                          
-                            $mesArticles = array_merge($mesArticles, $articles);
-                            
-                        }
-                    }
+                    $categorieChoisi[] = $categorie[$i];
                 }
             }
+            for($j=0; $j<count($couleur);$j++){
+                if($param[count($categorie)+$j]=="true"){
+                    $couleurChoisi[] = $couleur[$j];              
+                }
+            }
+            $genre ="";
+            if ($param[11]=="true"){
+                $genre .= "M";
+            }
+            if ($param[12]=="true"){
+                $genre .= "F";
+            }
+            $mesArticles = $this->dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
             
             require "frontend/all-products/index_bd.php";
 

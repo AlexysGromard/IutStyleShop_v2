@@ -45,11 +45,22 @@
                                     <div class="bas_article">
                                         <div class="medium-important-text product-btn"><?=  $article->getNom();  ?></div>
                                         <div class="stars">
-                                            <img alt="Etoile Jaune" src="">
-                                            <img alt="Etoile Jaune" src="">
-                                            <img alt="Etoile Jaune" src="">
-                                            <img alt="Etoile Jaune" src="">
-                                            <img alt="Etoile Gris" src="">
+                                            <?php
+                                                $nbJauneEtoile = intval($article->getNotes());
+                                                for($i=0;$i<$nbJauneEtoile;$i++){
+                                                ?>
+                                                    <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
+                                                <?php
+                                                } ?>
+
+                                                <?php
+                                                $nbGriseEtoile = 5-$nbJauneEtoile;
+                                                for($i=0;$i<$nbGriseEtoile;$i++){
+                                                ?>
+                                                    <img alt="Etoile Grise" src="/frontend/assets/icons/marquer-comme-star-pas-preferee.svg">
+                                                <?php
+                                                } ?>
+                                            
                                         </div>
                                         <div class="availablity">
                                             <div class="small-text">Disponibilité :</div>
@@ -128,11 +139,11 @@
             <div class="range_container">
                     <ul id="product-color">
                         <li>
-                            <input <?php if($param[4]=="true"){?> checked  <?php } ?> checked type="checkbox" id="red" name="red" value="white">
+                            <input <?php if($param[4]=="true"){?> checked  <?php } ?> checked type="checkbox" id="red" name="red" value="red">
                             <label for="red">Rouge</label>
                         </li>
                         <li>
-                            <input <?php if($param[5]=="true"){?> checked  <?php } ?> type="checkbox" id="green" name="green" value="white">
+                            <input <?php if($param[5]=="true"){?> checked  <?php } ?> type="checkbox" id="green" name="green" value="green">
                             <label for="green">Vert</label>
                         </li>
                         <li>
@@ -146,6 +157,22 @@
                         <li>
                             <input <?php if($param[8]=="true"){?> checked  <?php } ?> type="checkbox" id="black" name="black" value="black">
                             <label for="black">Noir</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Product gender -->
+            <div class="filter-container" id="color-checkbox">
+            <span class="filter-title">genre</span>
+            <div class="range_container">
+                    <ul id="product-gender">
+                        <li>
+                            <input <?php if($param[11]=="true"){?> checked  <?php } ?>  type="checkbox" id="homme" name="Homme" value="M">
+                            <label for="homme">Homme</label>
+                        </li>
+                        <li>
+                            <input <?php if($param[12]=="true"){?> checked  <?php } ?> type="checkbox" id="femme" name="Femme" value="F">
+                            <label for="femme">Femme</label>
                         </li>
                     </ul>
                 </div>
