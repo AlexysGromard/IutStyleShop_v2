@@ -20,7 +20,8 @@ if ($status -eq 'Running') {
 else {
     Write-Host "$service n'est pas actif." -ForegroundColor Yellow
 
-    Start-Service $service
+    
+    Start-Service -Name $service
     Start-Sleep -Seconds 5  # Attendre un moment pour que le service demarre
 
     $status = Get-Service -Name $service | Select-Object -ExpandProperty Status
@@ -42,7 +43,6 @@ Write-Host ""
 Write-Host "Execution des fichiers Database : " -ForegroundColor Magenta
 
 $sqlContent = Get-Content (Join-Path $scriptDirectory "mariadb\database.sql") | Out-String
-write-host $sqlContent
 mysql -h"$p_host" -P"$port" -u"$user" -p"$password" -e"$sqlContent" 
 
 Write-Host "    * $database" -ForegroundColor Yellow
