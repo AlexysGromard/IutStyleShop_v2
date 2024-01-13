@@ -172,16 +172,16 @@ class user{
             "email" => false,
             "tel" => false
         ];
-        if ($nom == "" || !ctype_alpha($nom)){
+        if ($nom == "" || !ctype_alpha($nom) || strlen($nom) > 64){
             $errors["lastname"] = true;
         }
-        if ($prenom == "" || !ctype_alpha($prenom)){
+        if ($prenom == "" || !ctype_alpha($prenom) || strlen($prenom) > 64){
             $errors["firstname"] = true;
         }
-        if ($mail == "" || !filter_var($mail, FILTER_VALIDATE_EMAIL)){
+        if ($mail == "" || !filter_var($mail, FILTER_VALIDATE_EMAIL) || strlen($mail) > 255){
             $errors["email"] = true;
         }
-        if ($tel != "" && !ctype_digit($tel)){
+        if ($tel != "" && !ctype_digit($tel) || strlen($tel) > 10){
             $errors["tel"] = true;
         }
 
@@ -232,6 +232,34 @@ class user{
         session_start();
         $id = $_SESSION['user']->getId();
 
+        // Gérer les erreurs
+        $errors = [
+            "address" => false,
+            "code" => false,
+            "complement" => false,
+            "city" => false
+        ];
+
+        if ($address == "" || strlen($address) > 255){
+            $errors["address"] = true;
+        }
+        if ($code == null || strlen($code) != 5 || !ctype_digit($code)){
+            $errors["code"] = true;
+        }
+        if ($city == "" || strlen($city) > 128){
+            $errors["city"] = true;
+        }
+        if (strlen($additional_address) > 128){
+            $errors["complement"] = true;
+        }
+
+        // Si il y a des erreurs, mettre à jour les variables de session et rediriger vers la page précédente
+        if (in_array(true, $errors)){
+            $_SESSION['errors'] = $errors;
+            header("Location: /user/dashboard/adresse");
+            die();
+        }
+
         // Mettre à jour les informations de l'utilisateur dans variables de session
         $_SESSION['user']->setAdresse($address);
         $_SESSION['user']->setCodePostal($code);
@@ -267,10 +295,10 @@ class user{
 
         $DAOUser = new \backend\DAO\DBUser();
         $user = $DAOUser->getById($id);
-        if ($DAOUser->checkUser($user->getEmail(), $old_password) == null){
+        if ($DAOUser->checkUser($user->getEmail(), $old_password) == null || strlen($old_password) > 255){
             $errors["old_password"] = true;
         }
-        if ($new_password == ""){
+        if ($new_password == "" || strlen($new_password) > 255){
             $errors["new_password"] = true;
         }
 
