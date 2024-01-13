@@ -451,6 +451,7 @@ header{
     font-family: 'Roboto';
     font-weight: 400;
     font-size: var(--small);
+    white-space: nowrap;
 }
 
 .header-down div a img{

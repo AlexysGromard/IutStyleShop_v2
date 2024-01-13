@@ -18,6 +18,10 @@ class user{
 
         session_start();
         $DAOUser = new \backend\DAO\DBUser();
+        if (!isset($_SESSION['user'])){
+            header("Location: /login");
+            die();
+        }
         $id = $_SESSION['user']->getId();
 
         // Vérifier que l'utilisateur existe dans la base de données
