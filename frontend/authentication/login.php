@@ -36,7 +36,7 @@
                     <div class="input-box">
                         <div id="password-header">
                             <label class="input-label" for="password">Mot de passe</label>
-                            <button class="link-to-password-recovery" onclick="showErrorPopup('Fonction non disponible', 'Cette fonctionnalité n\'est pas encore disponible.')">Mot de passe oublié ?</button>
+                            <a class="link-to-password-recovery" id="password-recovery-btn">Mot de passe oublié ?</a>
                         </div>
                         <input required class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
                         <span class="input-error-message <?php echo (isset($_SESSION['errors']["password"]) && $_SESSION['errors']["password"]) ? "active" : ""; ?>">Mot de passe invalide</span>
@@ -49,7 +49,7 @@
                     <span class="separator-bar-text">OU</span>
                 </div>
                 <!-- Passkey -->
-                <a class="passkey-button" href="#"><img src="/frontend/assets/icons/passskey_logo.svg" alt="Passkey logo">Se connecter avec Passkey</a>
+                <a class="passkey-button" id="passkey-btn"><img src="/frontend/assets/icons/passskey_logo.svg" alt="Passkey logo">Se connecter avec Passkey</a>
             </div>
             <div class="action-box change-method">
                 <span class="change-method-text">Vous êtes nouveau sur IutStyleShop ?</span>
@@ -60,4 +60,14 @@
     <!-- Footer -->
     <?php include 'frontend/components/footer.php'; ?>
 </body>
+<script>
+    // Quand password-recovery-btn est cliqué, afficher une popup d'erreur
+    document.getElementById("password-recovery-btn").addEventListener("click", function() {
+        showErrorPopup('Fonction non disponible', 'Cette fonctionnalité n\'est pas encore disponible.')
+    });
+    // Quand passkey-btn est cliqué, afficher une popup d'erreur
+    document.getElementById("passkey-btn").addEventListener("click", function() {
+        showErrorPopup('Fonction non disponible', 'Cette fonctionnalité n\'est pas encore disponible.')
+    });
+</script>
 </html>

@@ -3,7 +3,7 @@
 <!-- CSS files -->
 <link rel="stylesheet" href="/frontend/styles/variables.css">
 <link rel="stylesheet" href="/frontend/styles/general.css">
-<link rel="stylesheet" href="/frontend/styles/cookies.css">
+<link rel="stylesheet" href="/frontend/styles/popup.css">
 <link rel="stylesheet" href="/frontend/styles/common/form.css">
 
 <!-- favicon -->
