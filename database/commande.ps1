@@ -49,7 +49,7 @@ Write-Host "    * $database" -ForegroundColor Yellow
 
 
 
-# Table
+
 # Tables
 Write-Host ""
 Write-Host "Execution des fichiers Tables : " -ForegroundColor Magenta
