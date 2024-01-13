@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour sortir les informations d'un article du panier d'un utilisateur
 CREATE OR REPLACE PROCEDURE GetArticlePanier(
     p_iduser INT
 )

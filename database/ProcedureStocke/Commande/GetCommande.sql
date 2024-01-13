@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour sortir les informations d'une commande d'un utilisateur
 CREATE OR REPLACE  PROCEDURE GetCommande
 (
     p_iduser INT
