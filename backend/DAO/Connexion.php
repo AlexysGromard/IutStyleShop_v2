@@ -14,13 +14,12 @@ require_once 'backend/config/config.php'; //TODO : A corriger avec MVC
 class Connexion
 {
     # attribut de connexion
-    protected \PDO $pdo;
+    static protected \PDO $pdo;
 
     public function __construct()
     {
         
-        try{
-            
+        try{            
             $pdoinstance = \system\SPDO::getInstance(
                 DB_CONFIG["type"].':host='.DB_CONFIG["host"].';port='.DB_CONFIG["port"].';dbname='.DB_CONFIG["dbname"],
                 DB_CONFIG["username"],
@@ -30,7 +29,7 @@ class Connexion
                     \PDO::ATTR_TIMEOUT => 3600,
                 ]
                 );
-            $this->pdo= $pdoinstance->getConnexion();
+            self::$pdo = $pdoinstance->getConnexion();
             
         } catch (\PDOException $e) {
             echo $e;

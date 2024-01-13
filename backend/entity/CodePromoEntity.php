@@ -31,7 +31,7 @@ class CodePromoEntity
     /*
     * @return int
     */
-    function getId(): int {
+    public function getId(): int {
         return $this->id;
     }
 

@@ -6,14 +6,14 @@ BEGIN
     DECLARE votants_count INT;
 
     SET votants_count = (
-        SELECT COUNT(DISTINCT idUtilisateur)
+        SELECT COUNT(DISTINCT ID_User)
         FROM Commentaire
         WHERE Commentaire.id_Article = NEW.id_Article
     );
 
     UPDATE Article
-    SET votants = votants_count
-    WHERE Article.id_Article = NEW.id_Article;
+    SET votant = votants_count
+    WHERE Article.id = NEW.id_Article;
 END;
 //
 CREATE OR REPLACE TRIGGER Commentaire_update_article_votants_d
@@ -23,14 +23,14 @@ BEGIN
     DECLARE votants_count INT;
 
     SET votants_count = (
-        SELECT COUNT(DISTINCT idUtilisateur)
+        SELECT COUNT(DISTINCT ID_User)
         FROM Commentaire
         WHERE Commentaire.id_Article = OLD.id_Article
     );
 
     UPDATE Article
-    SET votants = votants_count
-    WHERE Article.id_Article = OLD.id_Article;
+    SET votant = votants_count
+    WHERE Article.id = OLD.id_Article;
 END;
 //
 DELIMITER ;

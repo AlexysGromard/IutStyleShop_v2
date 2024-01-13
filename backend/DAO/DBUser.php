@@ -15,7 +15,7 @@ class DBUser extends Connexion
     { 
         $requete = "CALL InsertUserClient(?,?,?,?,?,?,?,?,?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::pdo->prepare($requete);
 
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR); // Mail
@@ -38,7 +38,7 @@ class DBUser extends Connexion
      * @param UserEntity $entity
      * @return void
      */
-    public function update($entity)
+    public static function update($entity)
     {
         $email = $entity->getEmail();
         $telephone = $entity->getTelephone();
@@ -77,11 +77,11 @@ class DBUser extends Connexion
      * @param string $role
      * @return void
      */
-    public function updaterole($id, $role)
+    public static function updaterole($id, $role)
     {
         $requete = "CALL UpdateUserRole(?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
         $stmt->bindParam(2, $role, \PDO::PARAM_STR);
@@ -96,11 +96,11 @@ class DBUser extends Connexion
      * @param string $password
      * @return void
      */
-    public function updatepassword($id, $password)
+    public static function updatepassword($id, $password)
     {
         $requete = "CALL UpdatePassword(?,?)";
 
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
         $stmt->bindParam(2, $password, \PDO::PARAM_STR);
@@ -114,15 +114,16 @@ class DBUser extends Connexion
      * @param UserEntity $entity
      * @return void
      */
-    public function delete($entity)
+    public static function delete($entity)
     {
         $requete = "CALL DeleteUser(?)";
 
-        $stmt = $this->pdo->prepare($requete);
-
-        $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
+        $stmt = self::$pdo->prepare($requete);
+        
+        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
 
         $stmt->execute();
+        var_dump($entity);
     }
 
     /**
@@ -131,10 +132,10 @@ class DBUser extends Connexion
      * @param int $id
      * @return UserEntity
      */
-    public function getall()
+    public static function getall()
     {
         $requete = "CALL GetUserInfoAll()";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
         $stmt->execute();
         
         // Récupérer la liste complète d'utilisateurs en utilisant le mode associatif
@@ -174,10 +175,10 @@ class DBUser extends Connexion
      * @param int $id
      * @return UserEntity|null
      */
-    function getById(int $id): ?\backend\entity\UserEntity
+    public static function getById(int $id): ?\backend\entity\UserEntity
     {
         $requete = "CALL GetUserInfo(?)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
         
@@ -215,7 +216,7 @@ class DBUser extends Connexion
      * @param string $email
      * @return ?int
      */
-    public function getByEmail(string $email): ?int
+    public static function getByEmail(string $email): ?int
     {
         $requete = "CALL GetUserId(?)";
         $stmt = $this->pdo->prepare($requete);
@@ -235,10 +236,10 @@ class DBUser extends Connexion
      * @param int $id
      * @return UserEntity
      */
-    public function checkUser(string $email, string $password): ?\backend\entity\UserEntity
+    public static function checkUser(string $email, string $password): ?\backend\entity\UserEntity
     {
         $requete = "CALL GetConnectedUser(?,?)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR);
         $stmt->bindParam(2, $password, \PDO::PARAM_STR);

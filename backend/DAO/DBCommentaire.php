@@ -8,7 +8,7 @@ class DBCommentaire extends Connexion  implements EntityInterface
     public function add($entity)
     {
         $requete = "call CommantairePackage.InsertCommentaire(:idArticle, :idUser, :note, :commentaire)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::pdo->prepare($requete);
         $stmt->execute([
             'idArticle' => $entity->getIdArticle(),
             'idUser' => $entity->getIdUser(),
@@ -20,7 +20,7 @@ class DBCommentaire extends Connexion  implements EntityInterface
     public function update($entity)
     {
         $requete = "call CommantairePackage.UpdateCommentaire(:id, :idArticle, :idUser, :note, :commentaire)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::pdo->prepare($requete);
         $stmt->execute([
             'idArticle' => $entity->getIdArticle(),
             'idUser' => $entity->getIdUser(),
@@ -32,7 +32,7 @@ class DBCommentaire extends Connexion  implements EntityInterface
     public function delete($id)
     {
         $requete = "call CommantairePackage.DeleteCommentaire(:id)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::pdo->prepare($requete);
         $stmt->execute([
             'id' => $id
         ]);

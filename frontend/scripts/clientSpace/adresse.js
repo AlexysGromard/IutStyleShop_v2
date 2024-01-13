@@ -25,7 +25,7 @@ function checkedUpdateAdresse(id,value,idbutton){
     if (value != oldvalue){
         myAdresseModif.set(id,true)
     }else{
-        myAdresseModif.set(id,true)
+        myAdresseModif.set(id,false)
     }
 
     var thereismodif = false
