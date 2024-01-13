@@ -1,4 +1,5 @@
 DELIMITER //
+-- Procédure pour mettre à jour un code promo
 CREATE OR REPLACE PROCEDURE UpdateCodePromo(
     p_id INT,
     p_texte VARCHAR(255),
