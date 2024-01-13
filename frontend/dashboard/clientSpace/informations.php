@@ -1,67 +1,58 @@
 <!-- information personnel -->
 <form class="large_box" action="/user/updateUserInformations" method="POST">
-                        
     <span class="Black_police_65">Informations personnelles</span>
     <div class="civility_choice_space">
-        <span class="Black_police_55" >Civilité</span>
-        <div>
-            <label for="civility-man" class="radio_button_space">
-                <?php
-                    $input = '<input class="radioButton" type="radio" value="M" id="civility-man" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->getGenre()=='M' ) {
-                        $input.= 'checked ';
-                    }
-                    $input.= '/> ';
-                    echo $input;
-
-                ?>
-                <span class="Black_police_40"  >Homme</span>
-            </label>
-            <label for="civility-woman" class="radio_button_space">
-                <?php
-                    $input = '<input class="radioButton" type="radio" value="W" id="civility-woman" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->getGenre()=='W' ) {
-                        $input.= 'checked ';
-                    }
-                    $input.= '/> ';
-                    echo $input;
-
-                    ?>
-                <span class="Black_police_40" >Femme</span>
-            </label>
-            <label for="civility-none" class="radio_button_space">
-                <?php
-                    $input = '<input class="radioButton" type="radio" value="N" id="civility-none" name="civility" onclick="checkedUpdatePersonalInfo(\'civility\',this.value,\'button-civilite\')" ';
-                    if ($personne->getGenre()=='N') {
-                        $input.= 'checked ';
-                    }
-                    $input.= '/> ';
-                    echo $input;
-
-                ?>  
-                <span class="Black_police_40" >Ne souhaite pas se prononcer</span>
-            </label>
+        <!-- Genre -->
+        <div class="input-box">
+            <span class="input-label">Civilité</span>
+            <!-- Input radio -->
+            <div class="input-radio-choices">
+                <!-- Homme -->
+                <div class="input-radio-element">
+                    <input value="M" type="radio" name="civility" id="man" <?php echo $personne->getGenre()=='M'? "checked" : "";?> onclick="checkedUpdatePersonalInfo('civility',this.value,'button-civilite')">
+                    <label class="radio-label" for="man">Homme</label>
+                </div>
+                <!-- Femme -->
+                <div class="input-radio-element">
+                    <input value="W" type="radio" name="civility" id="women" <?php echo $personne->getGenre()=='W' ? "checked" : "";?> onclick="checkedUpdatePersonalInfo('civility',this.value,'button-civilite')">
+                    <label class="radio-label" for="women">Femme</label>
+                </div>
+                <!-- Autre -->
+                <div class="input-radio-element">
+                    <input value="N" type="radio" name="civility" id="other" <?php echo $personne->getGenre()=='N' ? "checked" : "";?> onclick="checkedUpdatePersonalInfo('civility',this.value,'button-civilite')">
+                    <label class="radio-label" for="other">Ne souhaite pas se prononcer</label>
+                </div>
+            </div>
+            <span class="input-error-message <?php echo (isset($_SESSION['errors']["civility"]) && $_SESSION['errors']["civility"]) ? "active" : ""; ?>">Genre incomplet</span>
         </div>
-    </div>              
+    </div>
     <div class="square_of_2">
         <div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="last-name">Nom</label>
-                <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="lastname" initval="<?= $personne->getNom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
+            <!-- Nom -->
+            <div class="input-box">
+                <label class="input-label" for="lastname">Nom</label>
+                <input required class="input-field sidebar" type="text" id="lastname" name="lastname" placeholder="Entrez votre nom" initval="<?= $personne->getNom();?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["lastname"]) && $_SESSION['errors']["lastname"]) ? "active" : ""; ?>">Nom invalide</span>
             </div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="first-name">Prénom</label>
-                <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="firstname" initval="<?= $personne->getPrenom(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')" >
+            <!-- Prénom -->
+            <div class="input-box">
+                <label class="input-label" for="firstname">Prénom</label>
+                <input required class="input-field sidebar" type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom" initval="<?= $personne->getPrenom();?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["firstname"]) && $_SESSION['errors']["firstname"]) ? "active" : ""; ?>">Prénom invalide</span>
             </div>
         </div>
         <div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="mail">Adresse mail</label>
-                <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="email" initval="<?= $personne->getEmail(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+            <!-- Email -->
+            <div class="input-box">
+                <label class="input-label" for="email">Adresse mail</label>
+                <input required class="input-field sidebar" type="email" id="email" name="email" placeholder="Entrez votre adresse mail" initval="<?= $personne->getEmail(); ?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["email"]) && $_SESSION['errors']["email"]) ? "active" : ""; ?>">Adresse mail invalide</span>
             </div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="phone">Numéro de téléphone</label>
-                <input class="sidebar" type="tel" placeholder="06 00 00 00 00" id="phone" name="tel" initval="<?= $personne->getTelephone();?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+            <!-- Téléphone -->
+            <div class="input-box">
+                <label class="input-label" for="phone">Numéro de téléphone</label>
+                <input class="input-field sidebar" type="tel" id="phone" name="tel" placeholder="06 00 00 00 00" initval="<?= $personne->getTelephone();?>" oninput="checkedUpdatePersonalInfo(this.id,this.value,'button-civilite')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["tel"]) && $_SESSION['errors']["tel"]) ? "active" : ""; ?>">Numéro de téléphone invalide</span>
             </div>
         </div>
     </div>
@@ -73,23 +64,30 @@
 <form class="large_box" action="/user/updateUserPassword" method="POST">
     <span class="Black_police_65">Changer de mot de passe</span>
     <div class="input_password_space">
-        <div class="inputText_space">
-            <label class="Black_police_55" for="currentpasswords">Mot de passe actuel</label>
-            <input class="sidebar" type="password" placeholder="**************" id="currentpasswords" name="currentpasswords" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+        <!-- Mot de passe actuel -->
+        <div class="input-box">
+            <label class="input-label" for="currentpasswords">Mot de passe actuel</label>
+            <input required class="input-field sidebar" type="password" id="currentpasswords" name="currentpasswords" placeholder="Entrez votre mot de passe actuel" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+            <span class="input-error-message <?php echo (isset($_SESSION['errors']["old_password"]) && $_SESSION['errors']["old_password"]) ? "active" : ""; ?>">Mot de passe actuel invalide</span>
         </div>
-        <div class="inputText_space">
-            <label class="Black_police_55" for="newpasswords">Nouveau mot de passe</label>
-            <input class="sidebar" type="password" placeholder="**************" id="newpasswords" name="newpasswords" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+        <!-- Nouveau mot de passe -->
+        <div class="input-box">
+            <label class="input-label" for="newpasswords">Nouveau mot de passe</label>
+            <input required class="input-field sidebar" type="password" id="newpasswords" name="newpasswords" placeholder="Entrez votre nouveau mot de passe" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+            <span class="input-error-message <?php echo (isset($_SESSION['errors']["new_password"]) && $_SESSION['errors']["new_password"]) ? "active" : ""; ?>">Nouveau mot de passe invalide</span>
         </div>
     </div>
     <button id="ChangePassword" type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
 </form>
 
 <?php
+    // Popup de succès
     if (isset($_SESSION['popup'])) {
         echo '<script>showSuccessPopup("'.$_SESSION['popup']['title'].'","'.$_SESSION['popup']['message'].'");</script>';
         unset($_SESSION['popup']);
     }
+    // Supprimer les variables de session d'erreur
+    unset($_SESSION['errors']);
 ?>
 
 

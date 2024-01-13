@@ -49,11 +49,11 @@
     gap : 8px ;
 }
 
-.civility_choice_space > div{
+/* .civility_choice_space > div{
     display: flex;
     flex-direction: row;
     gap: 17px;
-}
+} */
 
 
 .button_check{

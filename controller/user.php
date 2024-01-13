@@ -164,6 +164,34 @@ class user{
         session_start();
         $id = $_SESSION['user']->getId();
 
+        // Gérer les erreurs
+        $errors = [
+            "civility" => false,
+            "lastname" => false,
+            "firstname" => false,
+            "email" => false,
+            "tel" => false
+        ];
+        if ($nom == "" || !ctype_alpha($nom)){
+            $errors["lastname"] = true;
+        }
+        if ($prenom == "" || !ctype_alpha($prenom)){
+            $errors["firstname"] = true;
+        }
+        if ($mail == "" || !filter_var($mail, FILTER_VALIDATE_EMAIL)){
+            $errors["email"] = true;
+        }
+        if ($tel != "" && !ctype_digit($tel)){
+            $errors["tel"] = true;
+        }
+
+        // Si il y a des erreurs, mettre à jour les variables de session et rediriger vers la page précédente
+        if (in_array(true, $errors)){
+            $_SESSION['errors'] = $errors;
+            header("Location: /user/dashboard/informations");
+            die();
+        }
+
         // Mettre à jour les informations de l'utilisateur dans variables de session
         $_SESSION['user']->setGenre($civilite);
         $_SESSION['user']->setNom($nom);
@@ -231,12 +259,24 @@ class user{
         session_start();
         $id = $_SESSION['user']->getId();
 
-        // Vérifier que l'ancien mot de passe est correct
+        // Gérer les erreurs
+        $errors = [
+            "old_password" => false,
+            "new_password" => false
+        ];
+
         $DAOUser = new \backend\DAO\DBUser();
         $user = $DAOUser->getById($id);
         if ($DAOUser->checkUser($user->getEmail(), $old_password) == null){
-            // Redirection vers la page précédente avec un message d'erreur
-            // TODO : Ajouter un message d'erreur
+            $errors["old_password"] = true;
+        }
+        if ($new_password == ""){
+            $errors["new_password"] = true;
+        }
+
+        // Si il y a des erreurs, mettre à jour les variables de session et rediriger vers la page précédente
+        if (in_array(true, $errors)){
+            $_SESSION['errors'] = $errors;
             header("Location: /user/dashboard/informations");
             die();
         }
