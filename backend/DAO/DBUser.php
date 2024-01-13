@@ -98,7 +98,7 @@ class DBUser extends Connexion
      */
     public function updatepassword($id, $password)
     {
-        $requete = "CALL UpdateUserPassword(?,?)";
+        $requete = "CALL UpdatePassword(?,?)";
 
         $stmt = $this->pdo->prepare($requete);
 

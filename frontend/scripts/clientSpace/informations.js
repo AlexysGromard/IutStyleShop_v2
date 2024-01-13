@@ -78,7 +78,7 @@ function checkedUpdatePersonalInfo(id,value,idbutton){
 }
 
 
-function checkedUpdateChangePassword(id,value,idbutton){
+function checkedUpdateChangePassword(id,valeur,idbutton){
 
 
     var button = document.getElementById(idbutton);

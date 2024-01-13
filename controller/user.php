@@ -217,6 +217,39 @@ class user{
         // Redirection vers la page d'adresse
         header("Location: /user/dashboard/adresse");
     }
+
+    function updateUserPassword(){
+        // Récupérer les données du formulaire
+        $old_password = $_POST['currentpasswords'];
+        $new_password = $_POST['newpasswords'];
+
+        // Echaper les données
+        $old_password = htmlspecialchars($old_password, ENT_QUOTES, 'UTF-8');
+        $new_password = htmlspecialchars($new_password, ENT_QUOTES, 'UTF-8');
+
+        // Récupérer l'id de l'utilisateur
+        session_start();
+        $id = $_SESSION['user']->getId();
+
+        // Vérifier que l'ancien mot de passe est correct
+        $DAOUser = new \backend\DAO\DBUser();
+        $user = $DAOUser->getById($id);
+        if ($DAOUser->checkUser($user->getEmail(), $old_password) == null){
+            // Redirection vers la page précédente avec un message d'erreur
+            // TODO : Ajouter un message d'erreur
+            header("Location: /user/dashboard/informations");
+            die();
+        }
+
+        // Mettre à jour le mot de passe de l'utilisateur dans la base de données
+        $DAOUser->updatepassword($id, $new_password);
+
+        // Pop-up de confirmation
+        $_SESSION['popup'] = ["title" => "Mot de passe modifié", "message" => "Votre mot de passe a bien été modifié"];
+
+        // Redirection vers la page d'informations
+        header("Location: /user/dashboard/informations");
+    }
 }
 
 ?>

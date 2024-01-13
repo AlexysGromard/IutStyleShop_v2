@@ -70,20 +70,27 @@
 </form>
 
 <!-- modification password -->
-<form class="large_box" action="xx">
+<form class="large_box" action="/user/updateUserPassword" method="POST">
     <span class="Black_police_65">Changer de mot de passe</span>
     <div class="input_password_space">
         <div class="inputText_space">
             <label class="Black_police_55" for="currentpasswords">Mot de passe actuel</label>
-            <input class="sidebar" type="password" placeholder="**************" id="currentpasswords" name="currentpasswords" minlength="8" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+            <input class="sidebar" type="password" placeholder="**************" id="currentpasswords" name="currentpasswords" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
         </div>
         <div class="inputText_space">
             <label class="Black_police_55" for="newpasswords">Nouveau mot de passe</label>
-            <input class="sidebar" type="password" placeholder="**************" id="newpasswords" name="newpasswords" minlength="8" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+            <input class="sidebar" type="password" placeholder="**************" id="newpasswords" name="newpasswords" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
         </div>
     </div>
     <button id="ChangePassword" type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
 </form>
+
+<?php
+    if (isset($_SESSION['popup'])) {
+        echo '<script>showSuccessPopup("'.$_SESSION['popup']['title'].'","'.$_SESSION['popup']['message'].'");</script>';
+        unset($_SESSION['popup']);
+    }
+?>
 
 
 <script src="/frontend/scripts/clientSpace/pre_fill.js"></script>
