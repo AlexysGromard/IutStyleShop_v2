@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBUser extends Connexion implements DAOInterface
+class DBUser extends Connexion
 {
     /**
      * Ajoute un utilisateur
@@ -11,23 +11,23 @@ class DBUser extends Connexion implements DAOInterface
      * @param string $element
      * @return void
      */
-    public static function add($entity, $element)
+    public function add($email, $telephone, $password, $nom, $prenom, $genre, $address, $ville, $code_postal, $complement_adresse)
     { 
-        $requete = "CALL InsertUser(?,?,?,?,?,?,?,?,?,?)";
+        $requete = "CALL InsertUserClient(?,?,?,?,?,?,?,?,?,?)";
 
         $stmt = self::pdo->prepare($requete);
 
 
-        $stmt->bindParam(1, $entity->mail, \PDO::PARAM_STR);
-        $stmt->bindParam(2, $entity->telephone, \PDO::PARAM_STR);
-        $stmt->bindParam(3, $element, \PDO::PARAM_STR);
-        $stmt->bindParam(4, $entity->nom, \PDO::PARAM_STR);
-        $stmt->bindParam(5, $entity->prenom, \PDO::PARAM_STR);
-        $stmt->bindParam(6, $entity->genre, \PDO::PARAM_STR);
-        $stmt->bindParam(7, $entity->address, \PDO::PARAM_STR);
-        $stmt->bindParam(8, $entity->ville, \PDO::PARAM_STR);
-        $stmt->bindParam(9, $entity->code_postal, \PDO::PARAM_INT);
-        $stmt->bindParam(10, $entity->complement_adresse, \PDO::PARAM_STR);
+        $stmt->bindParam(1, $email, \PDO::PARAM_STR); // Mail
+        $stmt->bindParam(2, $telephone, \PDO::PARAM_STR); // Téléphone
+        $stmt->bindParam(3, $password, \PDO::PARAM_STR); // Mot de passe
+        $stmt->bindParam(4, $nom, \PDO::PARAM_STR); // Nom
+        $stmt->bindParam(5, $prenom, \PDO::PARAM_STR); // Prénom
+        $stmt->bindParam(6, $genre, \PDO::PARAM_STR); // Genre
+        $stmt->bindParam(7, $address, \PDO::PARAM_STR); // Adresse
+        $stmt->bindParam(8, $ville, \PDO::PARAM_STR); // Ville
+        $stmt->bindParam(9, $code_postal, \PDO::PARAM_INT); // Code postal
+        $stmt->bindParam(10, $complement_adresse, \PDO::PARAM_STR); // Complément d'adresse
 
         $stmt->execute();
     }
@@ -40,28 +40,35 @@ class DBUser extends Connexion implements DAOInterface
      */
     public static function update($entity)
     {
-
-
+        $email = $entity->getEmail();
+        $telephone = $entity->getTelephone();
+        $nom = $entity->getNom();
+        $prenom = $entity->getPrenom();
+        $genre = $entity->getGenre();
+        $adresse = $entity->getAdresse();
+        $ville = $entity->getVille();
+        $codePostal = $entity->getCodePostal();
+        $complementAdresse = $entity->getComplementAdresse();
+        $id = $entity->getId();
+    
         $requete = "CALL UpdateUser(?,?,?,?,?,?,?,?,?,?)";
-
-        $stmt = self::pdo->prepare($requete);
-
-        $stmt->bindParam(1, $entity->mail, \PDO::PARAM_STR);
-        $stmt->bindParam(2, $entity->telephone, \PDO::PARAM_STR);
-        $stmt->bindParam(3, $entity->nom, \PDO::PARAM_STR);
-        $stmt->bindParam(4, $entity->prenom, \PDO::PARAM_STR);
-        $stmt->bindParam(5, $entity->genre, \PDO::PARAM_STR);
-        $stmt->bindParam(6, $entity->address, \PDO::PARAM_STR);
-        $stmt->bindParam(7, $entity->ville, \PDO::PARAM_STR);
-        $stmt->bindParam(8, $entity->code_postal, \PDO::PARAM_INT);
-        $stmt->bindParam(9, $entity->complement_adresse, \PDO::PARAM_STR);
-        $stmt->bindParam(10, $entity->id, \PDO::PARAM_INT);
-
+    
+        $stmt = self::$pdo->prepare($requete);
+    
+        $stmt->bindParam(1, $email, \PDO::PARAM_STR);
+        $stmt->bindParam(2, $telephone, \PDO::PARAM_STR);
+        $stmt->bindParam(3, $nom, \PDO::PARAM_STR);
+        $stmt->bindParam(4, $prenom, \PDO::PARAM_STR);
+        $stmt->bindParam(5, $genre, \PDO::PARAM_STR);
+        $stmt->bindParam(6, $adresse, \PDO::PARAM_STR);
+        $stmt->bindParam(7, $ville, \PDO::PARAM_STR);
+        $stmt->bindParam(8, $codePostal, \PDO::PARAM_INT);
+        $stmt->bindParam(9, $complementAdresse, \PDO::PARAM_STR);
+        $stmt->bindParam(10, $id, \PDO::PARAM_INT);
 
         $stmt->execute();
-
-
     }
+
 
     /**
      * Update le role d'un utilisateur
@@ -91,7 +98,7 @@ class DBUser extends Connexion implements DAOInterface
      */
     public static function updatepassword($id, $password)
     {
-        $requete = "CALL UpdateUserPassword(?,?)";
+        $requete = "CALL UpdatePassword(?,?)";
 
         $stmt = self::$pdo->prepare($requete);
 
@@ -206,24 +213,21 @@ class DBUser extends Connexion implements DAOInterface
      /**
      * Donne l'id d'un utilisateur par son email
      * 
-     * @param int $id
-     * @return UserEntity
+     * @param string $email
+     * @return ?int
      */
     public static function getByEmail(string $email): ?int
     {
-        $requete = "CALL GetUseridByEmail(?)";
-        $stmt = self::$pdo->prepare($requete);
+        $requete = "CALL GetUserId(?)";
+        $stmt = $this->pdo->prepare($requete);
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR);
-
+ 
         $stmt->execute();
         
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         
-
-
-
-        return $result ? $result[0] : null;
+        return $result ? $result[0]["id"] : null;
     }
 
     /**

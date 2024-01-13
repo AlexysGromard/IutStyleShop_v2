@@ -5,6 +5,6 @@ DELIMITER //
     )
     BEGIN
         -- récupérer l'ID d'un utilisateur avec l'email spécifié
-        SELECT id FROM User WHERE email = p_email;
-    END //
+        SELECT id FROM User WHERE email COLLATE utf8mb4_general_ci = p_email COLLATE utf8mb4_general_ci;
+    END; //
 DELIMITER ;

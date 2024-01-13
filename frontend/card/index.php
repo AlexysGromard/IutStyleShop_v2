@@ -15,7 +15,7 @@
     <!-- Header -->
     <?php include 'frontend/components/header.php'; ?>
     <!-- Section -->
-    <section class="sections-panier">
+    <main class="sections-panier">
             <!-- Section title -->
             <div class="section-title">
                 <span class="section-title-name">Votre pannier</span>
@@ -66,7 +66,7 @@
                 <a class="payment-size button important-text" href="#">Passer la commande</a>
             </div>
         </div>
-    </section>
+    </main>
     <!-- Footer -->
     <?php include 'frontend/components/footer.php'; ?>
 </body>

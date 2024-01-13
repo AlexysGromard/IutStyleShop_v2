@@ -37,6 +37,7 @@ class register {
         $lastname = htmlspecialchars($lastname, ENT_QUOTES, 'UTF-8');
         $firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
         $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+        $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
         
         // Vérification du genre
         if ($civility != "M" && $civility != "W" && $civility != "N") {
@@ -68,6 +69,14 @@ class register {
         } else {
             // Stockage de l'email dans la session
             $_SESSION['email'] = $email;
+        }
+
+        // Vérification du mot de passe
+        if ($password != $passwordConfirmation) {
+            $this->errors['password'] = true;
+        } else {
+            // Stockage du mot de passe dans la session
+            $_SESSION['password'] = $password;
         }
 
         // Si l'un des champs est vide

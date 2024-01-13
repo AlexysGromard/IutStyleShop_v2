@@ -1,6 +1,8 @@
 <?php
 namespace controller;
 
+include_once "backend/DAO/DBUser.php";
+
 
 class user{
 
@@ -16,7 +18,17 @@ class user{
 
         session_start();
         $DAOUser = new \backend\DAO\DBUser();
+        if (!isset($_SESSION['user'])){
+            header("Location: /login");
+            die();
+        }
         $id = $_SESSION['user']->getId();
+
+        // Vérifier que l'utilisateur existe dans la base de données
+        if ($DAOUser::getById($id) == null || $_SESSION['user']->getEmail() != $DAOUser::getById($id)->getEmail()){
+            // Décconnecter l'utilisateur
+            $this->logout();
+        }
         
         $personne = $DAOUser->getById($id);
         
@@ -48,7 +60,7 @@ class user{
         $DAOUser = new \backend\DAO\DBUser();
         $id = $_SESSION['user']->getId();
 
-        $personne = $DAOUser->getById($id);
+        $personne = $DAOUser::getById($id);
 
         if ($personne->getRole()!="admin"){
             require "frontend/404.php";die();
@@ -59,10 +71,12 @@ class user{
             require "frontend/404.php";die();
         }
 
+        //$personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
+        
         switch ($param[0]) {
             case "utilisateurs":
                 $actionSelect = "Base de données utilisateurs";
-                $array_user = $DAOUser->getall();
+                $array_user = $DAOUser::getall();
                 break;
             case "commandes":
                 $actionSelect = "Base de données commandes";
@@ -139,7 +153,7 @@ class user{
         $DAOUser = new \backend\DAO\DBUser();
         $id = $_SESSION['user']->getId();
 
-        $personne = $DAOUser->getById($id);
+        $personne = $DAOUser::getById($id);
 
         if ($personne->getRole()!="admin"){
             require "frontend/404.php";die();
@@ -153,11 +167,11 @@ class user{
         
 
         
-        $usertodel = $DAOUser->getById($param[0]);
+        $usertodel = $DAOUser::getById($param[0]);
         
         if ($usertodel != null){
             
-            $DAOUser->delete($usertodel);
+            $DAOUser::delete($usertodel);
             var_dump($usertodel);
         }
         
@@ -175,6 +189,180 @@ class user{
         // Supprimer le USER de la session
         unset($_SESSION['user']);
         header("Location: /");
+    }
+
+    /*
+    * Fonction qui permet de mettre à jour les informations de l'utilisateur
+    * Elle va récupérer les informations du formulaire et les mettre à jour dans la base de données
+    */
+    function updateUserInformations(){
+        $civilite = $_POST['civility'];
+        $nom = $_POST['lastname'];
+        $prenom = $_POST['firstname'];
+        $mail = $_POST['email'];
+        $tel = $_POST['tel'];
+
+        // Echaper les données
+        $civilite = htmlspecialchars($civilite, ENT_QUOTES, 'UTF-8');
+        $nom = htmlspecialchars($nom, ENT_QUOTES, 'UTF-8');
+        $prenom = htmlspecialchars($prenom, ENT_QUOTES, 'UTF-8');
+        $mail = htmlspecialchars($mail, ENT_QUOTES, 'UTF-8');
+        $tel = htmlspecialchars($tel, ENT_QUOTES, 'UTF-8');
+
+        session_start();
+
+        // Gérer les erreurs
+        $errors = [
+            "civility" => false,
+            "lastname" => false,
+            "firstname" => false,
+            "email" => false,
+            "tel" => false
+        ];
+        if ($nom == "" || !ctype_alpha($nom) || strlen($nom) > 64){
+            $errors["lastname"] = true;
+        }
+        if ($prenom == "" || !ctype_alpha($prenom) || strlen($prenom) > 64){
+            $errors["firstname"] = true;
+        }
+        if ($mail == "" || !filter_var($mail, FILTER_VALIDATE_EMAIL) || strlen($mail) > 255){
+            $errors["email"] = true;
+        }
+        if ($tel != "" && !ctype_digit($tel) || strlen($tel) > 10){
+            $errors["tel"] = true;
+        }
+
+        // Si il y a des erreurs, mettre à jour les variables de session et rediriger vers la page précédente
+        if (in_array(true, $errors)){
+            $_SESSION['errors'] = $errors;
+            header("Location: /user/dashboard/informations");
+            die();
+        }
+
+        // Mettre à jour les informations de l'utilisateur dans variables de session
+        $_SESSION['user']->setGenre($civilite);
+        $_SESSION['user']->setNom($nom);
+        $_SESSION['user']->setPrenom($prenom);
+        $_SESSION['user']->setEmail($mail);
+        $_SESSION['user']->setTelephone($tel);
+
+        // Mettre à jour les informations de l'utilisateur dans la base de données
+        $DAOUser = new \backend\DAO\DBUser();
+        $DAOUser::update($_SESSION['user']);
+
+        // Redirection vers la page d'informations
+        header("Location: /user/dashboard/informations");
+    }
+
+    /*
+    * Fonction qui permet de mettre à jour l'adresse de l'utilisateur
+    * Elle va récupérer les informations du formulaire et les mettre à jour dans la base de données
+    */
+    function updateUserAddress(){
+        $address = $_POST['address'];
+        $code = $_POST['code'];
+        $additional_address = $_POST['additional-address'];
+        $city = $_POST['city'];
+
+        // Echaper les données
+        $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
+        $code = htmlspecialchars($code, ENT_QUOTES, 'UTF-8');
+        if ($code == "" || !ctype_digit($code)){
+            $code = null;
+        } else {
+            $code = intval($code);
+        }
+        $additional_address = htmlspecialchars($additional_address, ENT_QUOTES, 'UTF-8');
+        $city = htmlspecialchars($city, ENT_QUOTES, 'UTF-8');
+
+        session_start();
+
+        // Gérer les erreurs
+        $errors = [
+            "address" => false,
+            "code" => false,
+            "complement" => false,
+            "city" => false
+        ];
+
+        if (strlen($address) > 255){
+            $errors["address"] = true;
+        }
+        // Si il taille du code postal n'est pas égale à 5 mais qu'il n'est pas vide, erreur. Aussi si le code postal n'est pas un nombre, erreur
+        if ((strlen($code) != 5 && strlen($code) != 0) || (!ctype_digit($code) && strlen($code) != 0)){
+            $errors["code"] = true;
+        }
+        if (strlen($city) > 128){
+            $errors["city"] = true;
+        }
+        if (strlen($additional_address) > 128){
+            $errors["complement"] = true;
+        }
+
+        // Si il y a des erreurs, mettre à jour les variables de session et rediriger vers la page précédente
+        if (in_array(true, $errors)){
+            $_SESSION['errors'] = $errors;
+            header("Location: /user/dashboard/adresse");
+            die();
+        }
+
+        // Mettre à jour les informations de l'utilisateur dans variables de session
+        $_SESSION['user']->setAdresse($address);
+        $_SESSION['user']->setCodePostal($code);
+        $_SESSION['user']->setComplementAdresse($additional_address);
+        $_SESSION['user']->setVille($city);
+
+        // Mettre à jour les informations de l'utilisateur dans la base de données
+        $DAOUser = new \backend\DAO\DBUser();
+        $DAOUser::update($_SESSION['user']);
+
+        // Redirection vers la page d'adresse
+        header("Location: /user/dashboard/adresse");
+    }
+
+    function updateUserPassword(){
+        // Récupérer les données du formulaire
+        $old_password = $_POST['currentpasswords'];
+        $new_password = $_POST['newpasswords'];
+
+        // Echaper les données
+        $old_password = htmlspecialchars($old_password, ENT_QUOTES, 'UTF-8');
+        $new_password = htmlspecialchars($new_password, ENT_QUOTES, 'UTF-8');
+
+        // Récupérer l'id de l'utilisateur
+        session_start();
+        $id = $_SESSION['user']->getId();
+
+        // Gérer les erreurs
+        $errors = [
+            "old_password" => false,
+            "new_password" => false
+        ];
+
+        $DAOUser = new \backend\DAO\DBUser();
+        $user = $DAOUser::getById($id);
+        if ($DAOUser::checkUser($user->getEmail(), $old_password) == null || strlen($old_password) > 255){
+            $errors["old_password"] = true;
+        }
+        if ($new_password == "" || strlen($new_password) > 255){
+            $errors["new_password"] = true;
+        }
+
+        // Si il y a des erreurs, mettre à jour les variables de session et rediriger vers la page précédente
+        if (in_array(true, $errors)){
+            $_SESSION['errors'] = $errors;
+            header("Location: /user/dashboard/informations");
+            die();
+        }
+
+        // Mettre à jour le mot de passe de l'utilisateur dans la base de données
+        $DAOUser::updatePassword($id, $new_password);
+
+        // Pop-up de confirmation
+        $_SESSION['popup'] = ["title" => "Mot de passe modifié", "message" => "Votre mot de passe a bien été modifié"];
+
+        // Redirection vers la page d'informations
+        header("Location: /user/dashboard/informations");
     }
 }
 
