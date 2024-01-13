@@ -53,7 +53,7 @@ class DBUser extends Connexion
     
         $requete = "CALL UpdateUser(?,?,?,?,?,?,?,?,?,?)";
     
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
     
         $stmt->bindParam(1, $email, \PDO::PARAM_STR);
         $stmt->bindParam(2, $telephone, \PDO::PARAM_STR);

@@ -21,7 +21,7 @@ class user{
         $id = $_SESSION['user']->getId();
 
         // Vérifier que l'utilisateur existe dans la base de données
-        if ($DAOUser->getById($id) == null || $_SESSION['user']->getEmail() != $DAOUser->getById($id)->getEmail()){
+        if ($DAOUser::getById($id) == null || $_SESSION['user']->getEmail() != $DAOUser::getById($id)->getEmail()){
             // Décconnecter l'utilisateur
             $this->logout();
         }
@@ -56,7 +56,7 @@ class user{
         $DAOUser = new \backend\DAO\DBUser();
         $id = $_SESSION['user']->getId();
 
-        $personne = $DAOUser->getById($id);
+        $personne = $DAOUser::getById($id);
 
         if ($personne->getRole()!="admin"){
             require "frontend/404.php";die();
@@ -72,7 +72,7 @@ class user{
         switch ($param[0]) {
             case "utilisateurs":
                 $actionSelect = "Base de données utilisateurs";
-                $array_user = $DAOUser->getall();
+                $array_user = $DAOUser::getall();
                 break;
             case "commandes":
                 $actionSelect = "Base de données commandes";
@@ -149,7 +149,7 @@ class user{
         $DAOUser = new \backend\DAO\DBUser();
         $id = $_SESSION['user']->getId();
 
-        $personne = $DAOUser->getById($id);
+        $personne = $DAOUser::getById($id);
 
         if ($personne->getRole()!="admin"){
             require "frontend/404.php";die();
@@ -163,11 +163,11 @@ class user{
         
 
         
-        $usertodel = $DAOUser->getById($param[0]);
+        $usertodel = $DAOUser::getById($param[0]);
         
         if ($usertodel != null){
             
-            $DAOUser->delete($usertodel);
+            $DAOUser::delete($usertodel);
             var_dump($usertodel);
         }
         
@@ -244,7 +244,7 @@ class user{
 
         // Mettre à jour les informations de l'utilisateur dans la base de données
         $DAOUser = new \backend\DAO\DBUser();
-        $DAOUser->update($_SESSION['user']);
+        $DAOUser::update($_SESSION['user']);
 
         // Redirection vers la page d'informations
         header("Location: /user/dashboard/informations");
@@ -310,7 +310,7 @@ class user{
 
         // Mettre à jour les informations de l'utilisateur dans la base de données
         $DAOUser = new \backend\DAO\DBUser();
-        $DAOUser->update($_SESSION['user']);
+        $DAOUser::update($_SESSION['user']);
 
         // Redirection vers la page d'adresse
         header("Location: /user/dashboard/adresse");
@@ -336,8 +336,8 @@ class user{
         ];
 
         $DAOUser = new \backend\DAO\DBUser();
-        $user = $DAOUser->getById($id);
-        if ($DAOUser->checkUser($user->getEmail(), $old_password) == null || strlen($old_password) > 255){
+        $user = $DAOUser::getById($id);
+        if ($DAOUser::checkUser($user->getEmail(), $old_password) == null || strlen($old_password) > 255){
             $errors["old_password"] = true;
         }
         if ($new_password == "" || strlen($new_password) > 255){
@@ -352,7 +352,7 @@ class user{
         }
 
         // Mettre à jour le mot de passe de l'utilisateur dans la base de données
-        $DAOUser->updatepassword($id, $new_password);
+        $DAOUser::updatePassword($id, $new_password);
 
         // Pop-up de confirmation
         $_SESSION['popup'] = ["title" => "Mot de passe modifié", "message" => "Votre mot de passe a bien été modifié"];
