@@ -160,9 +160,7 @@ class user{
         $mail = htmlspecialchars($mail, ENT_QUOTES, 'UTF-8');
         $tel = htmlspecialchars($tel, ENT_QUOTES, 'UTF-8');
 
-        // Récupérer l'id de l'utilisateur
         session_start();
-        $id = $_SESSION['user']->getId();
 
         // Gérer les erreurs
         $errors = [
@@ -228,9 +226,7 @@ class user{
         $additional_address = htmlspecialchars($additional_address, ENT_QUOTES, 'UTF-8');
         $city = htmlspecialchars($city, ENT_QUOTES, 'UTF-8');
 
-        // Récupérer l'id de l'utilisateur
         session_start();
-        $id = $_SESSION['user']->getId();
 
         // Gérer les erreurs
         $errors = [
@@ -240,13 +236,14 @@ class user{
             "city" => false
         ];
 
-        if ($address == "" || strlen($address) > 255){
+        if (strlen($address) > 255){
             $errors["address"] = true;
         }
-        if ($code == null || strlen($code) != 5 || !ctype_digit($code)){
+        // Si il taille du code postal n'est pas égale à 5 mais qu'il n'est pas vide, erreur. Aussi si le code postal n'est pas un nombre, erreur
+        if ((strlen($code) != 5 && strlen($code) != 0) || (!ctype_digit($code) && strlen($code) != 0)){
             $errors["code"] = true;
         }
-        if ($city == "" || strlen($city) > 128){
+        if (strlen($city) > 128){
             $errors["city"] = true;
         }
         if (strlen($additional_address) > 128){
