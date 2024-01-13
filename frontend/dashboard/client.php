@@ -20,7 +20,7 @@
         <span class="Black_police_70"> Espace utilisateur</span>
         <div class = "user_general_element_box">
             <!-- left -->
-            <?php include "frontend/components/user-panel.php" ?>
+            <?php include "controller/components.php"?>
             <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "client"); ?>
 
 
