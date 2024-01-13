@@ -9,13 +9,3 @@ DELIMITER //
         SELECT * FROM Article WHERE id = p_id ;
     END //
 DELIMITER ;
-
--- -- Logique pour récupérer les informations de l'article avec l'ID spécifié
---         SELECT * FROM Article WHERE id = p_id INTO p_article;
---         SELECT * FROM Image WHERE ID_article = p_id INTO p_image;
---         IF (SELECT category FROM Article WHERE id = p_id) = 'accessoire' THEN
---             SELECT * FROM Accessoire WHERE ID_article = p_id INTO p_accessoire_or_vetement;
---         ELSE
---             SELECT * FROM Vetement WHERE ID_article = p_id INTO p_accessoire_or_vetement;
---         END IF;
---     END //

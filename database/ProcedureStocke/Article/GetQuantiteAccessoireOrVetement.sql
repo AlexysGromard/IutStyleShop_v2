@@ -1,5 +1,5 @@
 DELIMITER //
--- Procédure pour récupérer les informations d'un article
+-- Procédure pour récupérer les quantités d'un article
     CREATE OR REPLACE PROCEDURE GetQuantiteAccessoireOrVetement(p_id INT)
     BEGIN
         
