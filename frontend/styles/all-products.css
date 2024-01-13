@@ -162,20 +162,20 @@ input[type="range"] {
 }
 
 /* product-type */
-#product-type li{
+#product-type li,#product-gender li{
     list-style: none;
     margin-bottom: 9px;
     display: flex;
     align-items: center;
 }
-#product-type label{
+#product-type label,#product-gender label{
   margin-left: 9px;
   font-size: var(--small);
   color: var(--dark-grey);
   cursor: pointer;
 }
 
-#product-type input[type="checkbox"]{
+#product-type input[type="checkbox"],#product-gender input[type="checkbox"]{
     -webkit-appearance: none;
     appearance: none;
     width: 22px;
@@ -186,7 +186,7 @@ input[type="range"] {
     border: 1px solid var(--dark-grey);
     transition: 0.2s background-color, 0.2s border;
 }
-#product-type input[type="checkbox"]:checked{
+#product-type input[type="checkbox"]:checked,#product-gender input[type="checkbox"]:checked{
     background-color: var(--red);
     border: 1px solid var(--red);
     background-image: url("../assets/icons/checkbox-cross.svg");
