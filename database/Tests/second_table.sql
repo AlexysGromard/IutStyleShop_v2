@@ -122,6 +122,6 @@ SET prix = (SELECT SUM(prix_Unitaire * quantite) FROM ArticleCommande WHERE Arti
 --Update de la table Article pour ajouter le bon nombre de votant et la bonne note
 UPDATE Article
 SET votant = (SELECT COUNT(note) FROM Commentaire WHERE Commentaire.id_Article = Article.id),
-notes = (SELECT AVG(note) FROM Commentaire WHERE Commentaire.id_Article = Article.id);
+notes = (SELECT COALESCE(AVG(note),0.0) FROM Commentaire WHERE Commentaire.id_Article = Article.id);
 
 

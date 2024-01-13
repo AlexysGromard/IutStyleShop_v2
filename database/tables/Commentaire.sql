@@ -8,3 +8,5 @@ CREATE OR REPLACE  TABLE Commentaire (
 	FOREIGN KEY (ID_User) REFERENCES User(id),
 	FOREIGN KEY (ID_Article) REFERENCES Article(id)
 );
+
+ALTER TABLE Commentaire MODIFY commentaire VARCHAR(512) CHARACTER SET utf8;
