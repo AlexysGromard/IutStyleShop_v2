@@ -273,6 +273,9 @@ class DBArticle extends Connexion implements DAOInterface
         
     }
 
+    
+
+
     /**
      * Donne les articles d'une categorie
      * 
@@ -281,6 +284,12 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByCategorie(string $categorie): array
     {
+        $requete = "CALL GetArticleByCategorie(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$categorie);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
     }
 
     /**
@@ -291,6 +300,8 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByDisponibilite(bool $disponibilite): array
     {
+        return array();
+
     }
 
     /**
@@ -301,6 +312,8 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByGenre(string $genre): array
     {
+        return array();
+
     }
 
     /**
@@ -311,6 +324,16 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByCouleur(string $couleur): array
     {
+
+        $requete = "CALL GetArticleByCouleur(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$couleur);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
+        
+        
+
     }
 
     /**
@@ -347,15 +370,39 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByPromo(array $promo): array
     {
+        return array();
+
     }
 
     /**
      * Donne les articles par rapport à des conditions
      * 
-     * @param bool $promo
+     * @param string $categorie
+     * @param string $couleur
+     * @param array $prix
+     * 
      * @return ArticleEntity[]
      */
-    public static function getArticleByCondition(string $categorie, string $genre, string $couleur, array $prix, bool $promo, bool $disponibilite): array
+    public static function getArticleByCondition(string $categorie, string $couleur, array $prix): array  // futur parameters : string $genre, bool $promo, bool $disponibilite
     {
+        
+        $prixmin = 0;
+        $prixmax = 100;
+        if(count($prix)==2){
+            $prixmin = $prix[0];
+            $prixmax = $prix[1];
+        }
+           
+
+        $requete = "CALL GetArticleByCondition(?,?,?,?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
+        $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
+        $stmt->bindParam(3,$prixmin);
+        $stmt->bindParam(4,$prixmax);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
+
     }
 }
