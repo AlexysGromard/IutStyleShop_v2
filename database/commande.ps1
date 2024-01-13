@@ -56,8 +56,6 @@ Write-Host "Execution des fichiers Tables : " -ForegroundColor Magenta
 $tables = @("User.sql", "Article.sql", "Image.sql", "Accesoire.sql", "Vetement.sql", "Panier.sql", "Commentaire.sql", "Commande.sql", "ArticleCommande.sql", "CodePromo.sql")
 
 foreach ($table in $tables) {
-    Write-Host "$database" -ForegroundColor Yellow
-    Write-Host "Exécution du fichier $table" -ForegroundColor Cyan
     $sqlContent = Get-Content (Join-Path $scriptDirectory "tables\$table") | Out-String
 
 
