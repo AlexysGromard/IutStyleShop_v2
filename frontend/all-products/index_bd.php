@@ -40,7 +40,7 @@
                             }
 
                             ?>
-                                <div id="" class="boite_article"> 
+                                <div data-id="<?=$article->getId();?>" id="" class="boite_article"> 
                                     <img class="image" src="<?= $image ?>" alt='<?=  $article->getNom();  ?>'>
                                     <div class="bas_article">
                                         <div class="medium-important-text product-btn"><?=  $article->getNom();  ?></div>
@@ -186,5 +186,7 @@
 </body>
 <script src="/frontend/scripts/products.js"></script>
 <script src="/frontend/scripts/all-products-BD.js"></script>
+<script src="/frontend/scripts/clickOnProduct.js"></script>
+
 
 </html>
