@@ -35,13 +35,24 @@ function compterCaracteres() {
     * Fonction qui permet de mettre le nombre d'etoiles en fonction de la note
 */
 function mettreEtoiles() {
-    var note = document.getElementById("note").value;
+    var note = document.querySelector('input[name="note"]:checked').value;
     console.log("Note:", note);
-    var etoiles = "";
+
     for (var i = 0; i < note; i++) {
-        etoiles += "<img src='images/etoile.png' alt='etoile' class='etoile'>";
+        console.log("Note:",  "etoile" + i )
+        var imageId = "etoile" + i;
+        document.getElementById(imageId).src = "frontend/assets/icons/marquer-comme-star-preferee.svg";
+        console.log("Image:", document.getElementById(imageId));
     }
-    document.getElementById("etoiles").innerHTML = etoiles;
+
+    // Réinitialise les images non sélectionnées
+    for (var j = parseInt(note) ; j < 5; j++) {
+        console.log("Note:",  "etoile" + j )
+        imageId = "etoile" + j;
+        document.getElementById(imageId).src = "frontend/assets/icons/marquer-comme-star-pas-preferee.svg";
+    }
+
+    
 }
 
 

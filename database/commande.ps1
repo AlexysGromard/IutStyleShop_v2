@@ -3,8 +3,8 @@
 $scriptDirectory = $PSScriptRoot
 
 # Variables
-$password = 'root'
-$user = 'root'
+$password = 'sql'
+$user = 'sql'
 $p_host = 'localhost'
 $port = 3306
 $database = 'DB_IutStyleShop'

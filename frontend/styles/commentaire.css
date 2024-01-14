@@ -1,0 +1,160 @@
+/*Main container*/
+
+#commentaire-main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    height: max-content;
+    margin : 45px 70px 45px 70px;
+}
+
+
+
+
+.commentaire-block{
+    max-width: 100%;
+    height: max-content;
+}
+
+.commentaire-contenaire{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    height: max-content;
+}
+
+/* ARTICLE */
+
+
+
+.article-image{
+
+}
+
+.article-info{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.article-info-part{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+
+
+.article-grow3 {
+    flex-grow: 6; /* Première partie prend 3 parts */
+}
+
+.article-grow9 {
+flex-grow: 18; /* Troisième partie prend 9 parts */
+}
+
+.article-grow1 {
+flex-grow: 1; /* Quatrième partie prend 1 part */
+}
+
+
+/* FORMULAIRE COMMENTAIRE */
+
+
+
+input[type="radio"] {
+    display: none;
+}
+
+
+input[type="radio"] + label {
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+
+/* Styliser l'étiquette lorsqu'elle est cochée */
+input[type="radio"]:checked + label img {
+    /* Style pour l'état "coché" */
+    /*border: 2px solid #e2e2e2; /* Exemple de bordure pour indiquer l'état "coché" */
+}
+
+
+
+
+.form-commentaire{
+    background-color: white;
+    padding: 24px;
+    border-radius: 10px;
+    
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+textarea{
+    background: #F1F3F4;
+    width: 100%;
+    border: none;
+    height: 100px;
+    border-radius: 20px;
+    flex-shrink: 0;
+
+    padding: 15px 12px;
+
+    max-width: 100%;
+
+
+}
+.commentaire-button{
+    cursor: pointer;
+    width: 116px;
+    height: 33px;
+    flex-shrink: 0;
+}
+
+.commentaire-button-wite{
+    background-color: white;
+    border: 2px solid var(--red);
+
+    color: var(--red);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+
+.button-part{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+
+
+/* MEDIA QUERIES */
+
+
+@media screen and (max-width: 768px) {
+    #commentaire-main{
+        margin : 45px 10px 45px 10px;
+        min-width: 300px;
+    }
+
+    .article-info-part{
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    
+}
