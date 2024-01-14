@@ -1,8 +1,8 @@
 <?php
     const DB_CONFIG = array(
         "dbname" => "DB_IutStyleShop",
-        "username" => "root",
-        "password" => "root",
+        "username" => "sql",
+        "password" => "sql",
         "host" => "localhost",
         "type" => "mysql",
         "port" => "3306" 
