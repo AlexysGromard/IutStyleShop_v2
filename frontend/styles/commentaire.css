@@ -30,7 +30,7 @@
 
 
 .article-image{
-
+    width: max-content;
 }
 
 .article-info{
@@ -74,16 +74,6 @@ input[type="radio"] + label {
     cursor: pointer;
 
 }
-
-
-/* Styliser l'étiquette lorsqu'elle est cochée */
-input[type="radio"]:checked + label img {
-    /* Style pour l'état "coché" */
-    /*border: 2px solid #e2e2e2; /* Exemple de bordure pour indiquer l'état "coché" */
-}
-
-
-
 
 .form-commentaire{
     background-color: white;
