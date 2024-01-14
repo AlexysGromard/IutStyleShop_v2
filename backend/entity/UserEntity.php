@@ -53,7 +53,7 @@ class UserEntity
                                 ?string  $adresse,
                                 ?string  $ville,
                                 ?int $code_postal,
-                                ?string  $complement_adresse
+                                ?string  $complement_adresse,
                                 )
     {
         $this->id = $id;
@@ -185,6 +185,11 @@ class UserEntity
     public function getComplementAdresse(): ?string 
     {
         return $this->complement_adresse;
+    }
+
+    public function getAllCommande(): array{
+        $DAOCommande = new \backend\DAO\DBCommande();
+        return $DAOCommande->getAllByIdUser($this->id);
     }
 
     // public function setId(int $id): void 

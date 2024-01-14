@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour modifier un article du panier
 CREATE OR REPLACE PROCEDURE UpdateArticlePanier(
     p_id INT,
     p_id_utilisateur INT,

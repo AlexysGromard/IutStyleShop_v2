@@ -45,10 +45,9 @@ class DBCodePromo extends Connexion implements DAOInterface
 
         $stmt = self::$pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
-        $stmt->bindParam(2, $entity->code, \PDO::PARAM_STR);
-        $stmt->bindParam(3, $entity->promo, \PDO::PARAM_INT);
-
+        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+        $stmt->bindParam(2, $entity->getCode(), \PDO::PARAM_STR);
+        $stmt->bindParam(3, $entity->getPromo(), \PDO::PARAM_INT);
         $stmt->execute();
     }
 
@@ -64,7 +63,8 @@ class DBCodePromo extends Connexion implements DAOInterface
 
         $stmt = self::$pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->id, \PDO::PARAM_INT);
+        $id = $entity->getId();
+        $stmt->bindParam(1,$id , \PDO::PARAM_INT);
 
         $stmt->execute();
     }

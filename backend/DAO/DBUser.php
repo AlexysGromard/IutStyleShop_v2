@@ -117,7 +117,6 @@ class DBUser extends Connexion implements DAOInterface
         $stmt->bindParam(1, $id, \PDO::PARAM_INT);
 
         $stmt->execute();
-        var_dump($entity);
     }
 
     /**
@@ -267,6 +266,19 @@ class DBUser extends Connexion implements DAOInterface
 
         return $userEntities ? $userEntities[0] : null;
     }
+
+    /*
+    public function getCommandeOfAllUser(){
+        $users = self::getall();
+
+        $DAOCommande = new DBUser;
+
+        $commandes = []
+        foreach ($users as $user){
+            $commandesUser = DBCommande::getCommandeByIdUser()
+        }
+    }
+    */
     
 
 }

@@ -2,6 +2,8 @@
 
 namespace controller;
 
+use backend\entity\ArticleEntity;
+
 //use \backend\DAO\DBArticle;
 
 class DAO{
@@ -11,17 +13,25 @@ class DAO{
     function index(){
         
         require "frontend/DAO/DBArticle.php";
+        $this->dao = new \backend\DAO\DBArticle();
+
     }
 
     function DAOArticle(){
-        echo "AzAAA";
         $this->dao = new \backend\DAO\DBArticle();
-        
-        $article = $this->dao->getById(8);
-        var_dump($article->getQuantite());
-        
+        echo "heho";
+        $article = $this->dao->addAccessoire("Baobab","M","bleue","enorme baobab bleue",210,10,true,5,array("Test.png","test2.png"));//array(5,6,3,2,8)
+        var_dump($article);
+        $article->setNom("Pull Bleu");
+        $this->dao->update($article);
+    }
 
-         
+    function getArticles(){
+        $this->dao = new \backend\DAO\DBArticle();
+        foreach($this->dao->getArticleByPrix(array(0,18)) as $article){
+            echo "<h1>".$article["nom"]." :</h1>".$article["prix"];
+        }
+    
     }
 
     function call(array $params){

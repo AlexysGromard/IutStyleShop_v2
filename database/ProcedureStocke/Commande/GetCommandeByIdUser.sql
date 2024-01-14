@@ -1,6 +1,6 @@
 DELIMITER //
-
-CREATE OR REPLACE  PROCEDURE GetCommande
+-- Procédure pour sortir les informations d'une commande d'un utilisateur
+CREATE OR REPLACE  PROCEDURE GetCommandeByIdUser
 (
     p_iduser INT
 )

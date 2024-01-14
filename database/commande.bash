@@ -12,7 +12,7 @@ host='localhost'
 database='DB_IutStyleShop'
 
 
-
+echo "start"
 
 # Service
 # Service à vérifier

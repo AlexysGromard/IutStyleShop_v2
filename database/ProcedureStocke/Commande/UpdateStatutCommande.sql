@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour mettre à jour un statut de commande
 CREATE OR REPLACE  PROCEDURE UpdateStatutCommande(
     p_id INT,
     p_statut VARCHAR(255)
@@ -10,3 +10,4 @@ BEGIN
     SET statut = p_statut
     WHERE id = p_id;
 END //
+DELIMITER ;

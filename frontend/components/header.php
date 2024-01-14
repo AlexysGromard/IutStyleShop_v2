@@ -35,24 +35,24 @@
                     <span>Tous les produits</span>
                 </a>
                 <img src="/frontend/assets/images/Header-Image/line.svg" alt="horizontal-line" class="horizontal-line">
-                <a href="/products/filter/t-shirt/">
+                <a href="/products/tshirt">
                     <img src="/frontend/assets/images/Header-Image/t-shirt.svg" alt="t-shirt">
                     <span>T-Shirt</span>
                 </a>
-                <a href="/products/filter/sweat-shirt/">
+                <a href="/products/sweatshirt">
                     <img src="/frontend/assets/images/Header-Image/sweatshirt.svg" alt="sweatshirt">
                     <span>Sweat-shirt </span>
                 </a>
-                <a href="/products/filter/sportswear/">
+                <a href="/products/sportswear">
                     <img src="/frontend/assets/images/Header-Image/jogger-pants.svg" alt="jogger-pants">
                     <span>Tenue de sport</span>
                 </a>
-                <a href="/products/filter/accessories/">
+                <a href="/products/accessoire">
                     <img src="/frontend/assets/images/Header-Image/accessories.svg" alt="accessories">
                     <span>Accessoires</span>
                 </a>
             </div>
-            <a class="small-size button basic-text" href="#">Promotions</a>
+            <a class="small-size button basic-text" href="/products/promotion">Promotions</a>
         </div>
     </div>
 </header>

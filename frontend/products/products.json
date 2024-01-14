@@ -19,7 +19,7 @@
         "couleur": "red",
         "images": ["image1.png", "image2.png"],
         "note": 4.5,
-        "disponibilite": true
+        "disponibilite": true 
       },{
         "nom": "MUG Blanc IUT",
         "category" : "accessories",

@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour supprimer tous les articles du panier d'un utilisateur
 CREATE OR REPLACE  PROCEDURE DeleteAllPanier(
     p_iduser INT
 )

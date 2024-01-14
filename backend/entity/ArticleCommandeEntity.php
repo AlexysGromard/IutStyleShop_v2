@@ -5,7 +5,7 @@ namespace backend\entity;
 /*
 * @Entity @Table(name="ArticleComande")
 */
-class ArticleComandeEntity
+class ArticleCommandeEntity
 {
     /*
     Table SQL Article
@@ -21,13 +21,13 @@ class ArticleComandeEntity
 
 
     private int $id_article;
-    private string $taille;
+    private ?string $taille;
     private float $prix_unitaire;
     private int $quantite;
 
 
     public function __construct(int $id_article,
-                                string $taille,
+                                ?string $taille,
                                 float $prix_unitaire,
                                 int $quantite) 
     {
@@ -84,7 +84,7 @@ class ArticleComandeEntity
     /*
     * @param string $taille
     */
-    public function setTaille(string $taille): void
+    public function setTaille(?string $taille): void
     {
         $this->taille = $taille;
     }

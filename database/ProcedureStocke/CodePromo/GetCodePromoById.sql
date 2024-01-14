@@ -1,4 +1,5 @@
 DELIMITER //
+-- Procédure pour récupérer les informations d'un code promo
 CREATE OR REPLACE  PROCEDURE GetCodePromoById(p_id INT)
 BEGIN
     -- Logique pour récupérer les informations d'un code promo

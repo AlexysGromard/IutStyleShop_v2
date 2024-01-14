@@ -18,18 +18,15 @@ class CommentaireEntity
 	FOREIGN KEY (ID_Article) REFERENCES Article(id)
     */
 
-    private UserEntity $user;
-    private ArticleEntity $article;
+    private int $id_user;
     private float $note;
     private string $commentaire;
 
-    function __construct(UserEntity $user,
-                        ArticleEntity $article,
+    function __construct(int $id_user,
                         float $note,
                         string $commentaire)
     {
-        $this->$user = $user;
-        $this->$article = $article;
+        $this->id_user = $id_user;
         $this->setNote($note);
         $this->setCommentaire($commentaire);
     }
@@ -44,13 +41,13 @@ class CommentaireEntity
         return $this->user;
     }
 
-    /*
-    * @return int
-    */
-    public function getArticle(): ArticleEntity
-    {
-        return $this->article;
-    }
+    // /*
+    // * @return int
+    // */
+    // public function getArticle(): ArticleEntity
+    // {
+    //     return $this->article;
+    // }
 
     /*
     * @return float
