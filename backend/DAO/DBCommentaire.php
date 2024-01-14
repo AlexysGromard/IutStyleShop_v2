@@ -16,7 +16,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
      * @param CommentaireEntity $name
      * @param int $id_article
      */
-    public function add(CommentaireEntity $entity,int $id_article)
+    public static function add(CommentaireEntity $entity,int $id_article)
     {
         $requete = "call InsertCommentaire(?, ?, ?, ?)";
         $stmt = self::pdo->prepare($requete);
@@ -29,7 +29,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
         $stmt->execute();
     }
 
-    public function update($entity)
+    public static function update($entity)
     {
         // $requete = "call UpdateCommentaire(:id, :idArticle, :idUser, :note, :commentaire)";
         // $stmt = self::pdo->prepare($requete);
@@ -47,7 +47,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
      * @param CommentaireEntity $entity
      * @param int $id_article
      */
-    public function delete($entity, $id_article)
+    public static function delete($entity)//, $id_article
     {
         $requete = "DeleteCommentaire(?,?)";
         $stmt = self::pdo->prepare($requete);
@@ -59,7 +59,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
 
     }
 
-    public function getall() : array
+    public static function getall() : array
     {
         $requete = "CALL GetCommentaires()";
         $stmt = self::$pdo->prepare($requete);
@@ -82,7 +82,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
         return  $array_commentaire;
     }
 
-    public function getById(int $id): ?CommentaireEntity
+    public static function getById(int $id): ?CommentaireEntity
     {
 
     }
@@ -92,7 +92,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
      * 
      * @param  $name
      */
-    public function getCommentaireByArticle(ArticleEntity $entity): array
+    public static function getCommentaireByArticle(ArticleEntity $entity): array
     {
         
         $requete = "CALL GetCommentairesByArticle(?)";

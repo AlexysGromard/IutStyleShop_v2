@@ -47,10 +47,8 @@ class DBArticle extends Connexion implements DAOInterface
             $stmt->bindParam(13,$quantite[4],\PDO::PARAM_INT);
             $stmt->execute();
             $id = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            var_dump($id);
 
             $id = $id[0]["@last_id_2"];
-            var_dump($id);
 
             if ($id != null){
                 foreach ($images as $img){
@@ -260,7 +258,6 @@ class DBArticle extends Connexion implements DAOInterface
                 } 
             }            
             $article = ArticleEntity::CreateArticle($id,$valeurArticle["nom"],$valeurArticle["category"],$valeurArticle["genre"],$valeurArticle["couleur"],$valeurArticle["description"],$valeurArticle["votant"],$valeurArticle["notes"],$valeurArticle["prix"],$valeurArticle["promo"],$valeurArticle["disponible"],$quantite,$lsLiens);
-
             return $article;
 
         }catch (\PDOException $e ){
@@ -290,6 +287,36 @@ class DBArticle extends Connexion implements DAOInterface
         $stmt->execute();
         $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $articles;
+    }
+
+    public static function getArticleByCategorieAndGenre(string $categorie, string $genre){
+        try {
+            $requete = "CALL GetArticleByCategorieAndGenre(?,?)";
+            $stmt = self::$pdo->prepare($requete);
+            $stmt->bindParam(1, $categorie);
+            $stmt->bindParam(2, $genre);
+
+            $stmt->execute();
+            $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $mesArticles = array();
+            $i=0;
+            // foreach ($articles as $article) {
+            //     $i++;
+            //     echo '<h1>'.$i.'</h1>';
+            //     $art = self::getById(intval($article["id"]));
+
+            //     if ($art) {
+            //         $mesArticles[] = $art;
+            //     }
+            // }
+
+            return $articles;
+        } catch (\PDOException $e) {
+            // Gère les erreurs de la base de données de manière plus robuste
+            // Tu pourrais lever une exception ou loguer l'erreur
+            throw new \PDOException("Erreur dans la récupération des articles par catégorie et genre : " . $e->getMessage());
+        }
+    
     }
 
     /**

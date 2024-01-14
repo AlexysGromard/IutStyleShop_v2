@@ -40,7 +40,7 @@ function generateArticleComponent(
     $price = htmlspecialchars($price, ENT_QUOTES, 'UTF-8');
     ?>
 
-    <div class="boite_article">
+    <div data-id="<?=$id?>" class="boite_article">
         <!-- Image de l'article -->
         <a href="<?= $id?>">
             <img class="image" src="<?= $imageSrc ?>" alt="<?= $title ?> image">
