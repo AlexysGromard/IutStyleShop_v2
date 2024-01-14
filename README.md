@@ -2,12 +2,12 @@
 Le projet IutStyleShop est un projet de SEA du 3ème semestre de BUT Informatique. Il s'agit d'un site de e-commerce codé en PHP et utilisant une base de données MySQL (MariaDB). Ce projet a été réalisé par 4 étudiants.
 
 ## Sommaire
-- [Installation](#⚙️Installation)
-- [Licence](#📄Licence)
-- [Documentation](#📑Documentation)
-- [Auteurs](#👥Auteurs)
+- [Installation](#Installation)
+- [Licence](#Licence)
+- [Documentation](#Documentation)
+- [Auteurs](#Auteurs)
 
-## ⚙️Installation
+## Installation
 Pour installer le projet, il faut tout d'abord cloner le projet sur votre machine. Pour cela, il faut utiliser la commande suivante :
 ```bash
 git clone https://gitlab.univ-nantes.fr/pub/but/but2/sae3.real.01_developpement_d_une_application/groupe01/eq_01_05_gromard-alexys_jouault-lancelot_levy-bryan_martel-floran.git
@@ -26,17 +26,17 @@ php -S localhost:8080
 ```
 Vous pourrez ensuite accéder au site à l'adresse suivante : `localhost:8080/`
 
-## 📄Licence
+## Licence
 Le projet est sous licence ... (à définir). Pour plus d'informations, veuillez consulter le fichier `LICENSE`.
 
-## 📑Documentation
+## Documentation
 Voici la liste des documents disponibles pour le projet :
 - [suivi.pdf](/docs/suivi.md) : Document de suivi du projet
 - [analyse.pdf](/docs/analyse.md) : Document d'analyse du projet (R303)
 - [management.pdf](/docs/management.md) : Document de management du projet (R310)
 - [qualite_developpement.pdf](/docs/qualite_developpement.md) : Document de qualité du développement du projet (R302)
 
-## 👥Auteurs
+## Auteurs
 - [Alexys Gromard](https://github.com/AlexysGromard)
 - [Lancelot Jouault](https://github.com/IIXIVII)
 - [Bryan Levy](https://gitlab.univ-nantes.fr/E224508F)
