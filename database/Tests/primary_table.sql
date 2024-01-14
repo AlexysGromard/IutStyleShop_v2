@@ -12,9 +12,6 @@ VALUES
 
 
 
-
-
-
 -- Exemple d'insertion dans la table Article avec les catégories spécifiques
 -- Insertion des données dans la table Article
 INSERT INTO Article (nom, category,genre, description, votant, notes, prix, couleur, promo, disponible)
@@ -34,6 +31,7 @@ VALUES
   ('Sweatshirt IUT noir', 'sweat-short','M', 'Super sweat-short IUT noir avec logo. Vous aurez la classe dans Nantes. Disponible en noir, vert et rouge.', 0, 4.5, 39.99, 'black', 0, 1),
   ('Sweatshirt IUT vert', 'sweat-short','M', 'Changez les codes couleurs avec ce sweat-short IUT vert. Disponible en noir, vert et rouge.', 0, 2.5, 39.99, 'green', 0, 1),
   ('T-Shirt IUT blanc', 't-shirt','M', 'T-Shirt IUT blanc avec logo. Vous aurez la classe dans Nantes. Disponible en blanc.', 0, 4.5, 19.99, 'white', 0, 1);
+
 
 -- Exemple d'insertion dans la table AccesoirImages
 INSERT INTO Image (lien, id_Article)
@@ -80,10 +78,3 @@ VALUES
   (13, 30, 60, 90, 60, 30),      -- Sweatshirt IUT noir
   (14, 30, 60, 90, 60, 30),      -- Sweatshirt IUT vert
   (15, 50, 100, 150, 100, 50);   -- T-Shirt IUT blanc
-
-
-
-
-
-
-

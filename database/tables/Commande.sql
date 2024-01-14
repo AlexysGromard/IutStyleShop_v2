@@ -7,3 +7,5 @@ CREATE OR REPLACE TABLE Commande(
     prix FLOAT NULL,	 -- ne peut pas etre negatif
 FOREIGN KEY (id_user) REFERENCES User(id)
 );
+
+ALTER TABLE Commande MODIFY statut VARCHAR(16) CHARACTER SET utf8;

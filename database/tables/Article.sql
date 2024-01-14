@@ -7,8 +7,10 @@ CREATE OR REPLACE TABLE Article (
 	couleur VARCHAR(32) NOT NULL,
 	description VARCHAR(256) NULL,
 	votant INT NOT NULL,
-	notes	FLOAT NOT NULL, 
+	notes FLOAT NOT NULL, 
 	prix FLOAT NOT NULL,-- ne peut pas etre negatif
 	promo TINYINT NOT NULL,  -- ne peut pas etre < 0 ou >100
 	disponible BOOLEAN NOT NULL
 );
+
+ALTER TABLE Article MODIFY description VARCHAR(256) CHARACTER SET utf8;
