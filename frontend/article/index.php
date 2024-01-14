@@ -166,6 +166,8 @@
                             <span class="distribution-stars-line-value-text">2%</span>
                         </div>
                     </div>
+                    <a  class="button basic-text">Ajouter un commentaire</a>
+
                 </div>
                 <!-- Right part -->
                 <div id="comments-right-part">
