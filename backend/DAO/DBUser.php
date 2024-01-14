@@ -113,7 +113,8 @@ class DBUser extends Connexion implements DAOInterface
 
         $stmt = self::$pdo->prepare($requete);
         
-        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+        $id = $entity->getId();
+        $stmt->bindParam(1, $id, \PDO::PARAM_INT);
 
         $stmt->execute();
         var_dump($entity);
