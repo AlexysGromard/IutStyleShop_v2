@@ -12,7 +12,7 @@ VALUES
 ('FloranNinja :)',45);
 
 -- Exemple d'insertion dans la table Commentaire (note entre 1 et 5)(idArticle entre 1 et 10)(idUser entre 1 et 5)
-INSERT INTO Commentaire ( ID_User, id_Article, note, commentaire)
+INSERT INTO Commentaire ( ID_User, ID_Article, note, commentaire)
 VALUES
 (1,1,5,'Super produit'),
 (2,2,4,'Bon produit'),
