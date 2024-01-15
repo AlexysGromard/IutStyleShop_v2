@@ -20,7 +20,14 @@ class card{
         };
 
         // Code promotionnel
-        $codePromo = 10; // 0-100
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(isset($_SESSION["codePromo"])){
+            $codePromo = $_SESSION["codePromo"];
+        } else {
+            $codePromo = 0;
+        }
         require "frontend/card/index.php";
     }
 
@@ -62,6 +69,32 @@ class card{
             $panier = $this->getUserCard();
             $panier->removePanierArticle($articleDelete);
             $_SESSION["panier"] = $panier; 
+        }
+
+        header("Location: /card");
+    }
+
+    function addPromoCode(){
+        $codePromo = $_POST["code"];
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $DAOCodePromo = new \backend\DAO\DBCodePromo();
+        $codePromoList = $DAOCodePromo::getall();
+
+        foreach ($codePromoList as $code) {
+            if($code->getCode() == $codePromo){
+                $_SESSION["codePromo"] = $code->getPromo();
+                header("Location: /card");
+                exit();
+            }
+        }
+
+        // Si codepromo vide : Supprimer code promo actuel
+        if(empty($codePromo) && isset($_SESSION["codePromo"])){
+            unset($_SESSION["codePromo"]);
         }
 
         header("Location: /card");

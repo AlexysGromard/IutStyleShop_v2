@@ -64,7 +64,7 @@
                 <div class="third-section-payment">
                     <div class="payment-text">Code promo</div>
                     <div class="boite-code-promo">
-                        <form action="" method="">
+                        <form action="/card/addPromoCode" method="POST">
                             <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
                             <button class="button">Valider</button>
                         </form>
