@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panier - IutStyleShop</title>
-    <link rel="stylesheet" href="/frontend/styles/variables.css">
-    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <?php include 'frontend/common-includes.php'?>
     <link rel="stylesheet" href="/frontend/styles/general2.css">
     <link rel="stylesheet" href="/frontend/styles/carousel.css">
     <link rel="stylesheet" href="/frontend/styles/cart.css">
@@ -19,7 +18,7 @@
             <!-- Section title -->
             <div class="section-title">
                 <span class="section-title-name">Votre pannier</span>
-                <span class="section-title-results">3 articles</span>
+                <span class="section-title-results"> <?php echo count($panier->getPanierArticles()); ?> article<?= count($panier->getPanierArticles()) > 1 ? "s" : "" ?></span>
             </div>
             <div class="articles-payment-box">
             <div id="all-articles" class="all-articles big-size">
@@ -29,6 +28,25 @@
                     <div class="produits-type-small-text">Sous-total</div>
                     <img src="/frontend/assets/icons/poubelle-de-recyclage.png">
                 </div>
+                <!-- Articles du panier -->
+                <?php
+                    include_once 'controller/components.php';
+
+                    foreach ($panier->getPanierArticles() as $article) {
+                        // Récupérer l'article avec l'id
+                        generateCartItemComponent(
+                            $articlePanier[$article->getIdArticle()]->getNom(),
+                            $article->getTaille(),
+                            true,
+                            $article->getQuantite(),
+                            $articlePanier[$article->getIdArticle()]->getPrix(),
+                            $articlePanier[$article->getIdArticle()]->getCouleur(),
+                            $articlePanier[$article->getIdArticle()]->getImages()[0],
+                            [$article->getIdArticle(), $article->getTaille(), $article->getQuantite()]
+                        );
+                    };
+                
+                ?>
             </div> 
 
             <div class="normal_box_payment payment-size">
@@ -38,9 +56,9 @@
                 </div>
                 <div class="line"></div>
                 <div class="second-section-payment">
-                    <div class="text-espace"><div class="payment-text grey">Sous-total</div><div id="st" class="payment-text text-weight-price">0,00€</div></div>
-                    <div class="text-espace"><div class="payment-text grey">Taxes</div><div id="taxes" class="payment-text text-weight-price">0,00€</div></div>
-                    <div class="text-espace"><div class="payment-text grey">Code promotionnel</div><div class="payment-text text-weight-price">0,00€</div></div>
+                    <div class="text-espace"><div class="payment-text grey">Sous-total</div><div id="st" class="payment-text text-weight-price"><?php echo $panier->getPrixTotal(); ?>€</div></div>
+                    <div class="text-espace"><div class="payment-text grey">Taxes</div><div id="taxes" class="payment-text text-weight-price"><?php echo round($panier->getPrixTotal() * 0.2, 2); ?>€</div></div>
+                    <div class="text-espace"><div class="payment-text grey">Code promotionnel</div><div class="payment-text text-weight-price"><?= (isset($codePromo) && $codePromo != 0 )? "-".round($panier->getPrixTotal() * $codePromo / 100, 2) : "0"; ?>€</div></div>
                 </div>
                 <div class="line"></div>
                 <div class="third-section-payment">
@@ -60,7 +78,7 @@
                             <div class="payment-text">Prix total</div>
                             <div class="payment-scearch-text">Ce prix inclus les remises</div>
                         </div>
-                        <div class="price">0,00€</div>
+                        <div class="price"><?= (isset($codePromo) && $codePromo != 0 )? round($panier->getPrixTotal() - $panier->getPrixTotal() * $codePromo / 100, 2) : $panier->getPrixTotal(); ?>€</div>
                     </div>
                 </div>
                 <a class="payment-size button important-text" href="#">Passer la commande</a>
@@ -70,5 +88,4 @@
     <!-- Footer -->
     <?php include 'frontend/components/footer.php'; ?>
 </body>
-<script src="/frontend/scripts/all-products.js"></script>
 </html>

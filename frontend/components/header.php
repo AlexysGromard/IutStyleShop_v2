@@ -21,7 +21,7 @@
             <a class="navigation-link-header" href="/card">
                 <div id="shopping-cart-text">
                     <span class="navigation-link-header-title">Panier</span>
-                    <span class="navigation-link-header-desc">0 articles</span>
+                    <span class="navigation-link-header-desc"><?= isset($_SESSION["panier"]) ? count($_SESSION["panier"]->getPanierArticles()) : "0" ?> article<?= isset($_SESSION["panier"]) && count($_SESSION["panier"]->getPanierArticles()) > 1 ? "s" : "" ?></span>
                 </div>
                 <img alt="Image of shopping cart" src="/frontend/assets/images/Header-Image/panier.svg">
             </a>

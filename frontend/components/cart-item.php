@@ -1,6 +1,6 @@
 <div class="article_rectangle big-size">
     <div class="image_article_panier small-size">
-        <img class="image_article_panier small-size" src="../products/<?php echo $articleImage; ?>">
+        <img class="image_article_panier small-size" src="<?php echo $articleImage; ?>">
     </div>
     <div class="informations-article">
         <div class="dispo_rect_article">
@@ -19,8 +19,8 @@
                 <?php } ?>
             </select>
             <div class="price2"><?php echo number_format($articlePrice, 2, ',', ' '); ?>€</div>
-            <a href="#">
-                <img src="../assets/icons/cross.svg" class="cross clickable">
+            <a href="/card/removeArticleFromCard/<?=$panierArticleEntity[0]."/".$panierArticleEntity[1]."/".$panierArticleEntity[2]?>">
+                <img src="/frontend/assets/icons/cross.svg" class="cross clickable">
             </a>
         </div>
     </div>

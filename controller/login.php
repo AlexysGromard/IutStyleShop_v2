@@ -13,7 +13,6 @@ class login {
     function index(){
         session_start();
         if (isset($_SESSION['user'])){
-            // TODO : Vérifier si l'utilisateur est conforme
             header("Location: /user/dashboard/informations");
         } else {
             // Générer un jeton CSRF

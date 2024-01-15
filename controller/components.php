@@ -54,7 +54,8 @@ function generateCartItemComponent(
     $articleQuantity = 0,
     $articlePrice = 0,
     $articleColor = "Unknown",
-    $articleImage = "Unknown"
+    $articleImage = "Unknown",
+    $panierArticleEntity = [null, null, null]
 ) {
     // Quantity must be number >= 0 and <= 99 
     if (!is_numeric($articleQuantity) || $articleQuantity < 0) {
