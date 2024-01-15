@@ -130,7 +130,7 @@
                 </div>
             </div>
             <!-- Product gender -->
-            <div class="filter-container" id="color-checkbox">
+            <div class="filter-container" id="gender-checkbox">
             <span class="filter-title">genre</span>
             <div class="range_container">
                     <ul id="product-gender">
@@ -153,7 +153,6 @@
     <?php include 'frontend/components/footer.php'; ?>
 </body>
 <script src="/frontend/scripts/products.js"></script>
-<script src="/frontend/scripts/all-products-BD.js"></script>
 <script src="/frontend/scripts/clickOnProduct.js"></script>
 
 

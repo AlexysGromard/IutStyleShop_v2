@@ -447,6 +447,10 @@
 
     /* Commentaires */
 
+    #comments-left{
+        max-width: 100%;
+    }
+
     #comments-box{
         flex-direction: column;
     }
