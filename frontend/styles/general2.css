@@ -68,6 +68,10 @@
     background: var(--red);
 }
 
+.radioButton:not(:checked), .radioButton_reverse:not(:checked) {
+    background: #ffffff;
+}
+
 .radioButton_reverse{
     background-color: white
 }
