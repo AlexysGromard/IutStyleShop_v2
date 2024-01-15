@@ -31,7 +31,9 @@
             <section id="products-section">
                 <!-- ALL PRODUCTS -->
                 <?php
-                    include 'frontend/components/article-card.php';
+                    include_once 'controller/components.php';
+                    use controller;
+
 
                     if (isset($mesArticles)){
                         foreach($mesArticles as $article){
@@ -105,7 +107,7 @@
             <div class="range_container">
                     <ul id="product-color">
                         <li>
-                            <input <?php if($param[4]=="true"){?> checked  <?php } ?> checked type="checkbox" id="red" name="red" value="red">
+                            <input <?php if($param[4]=="true"){?> checked  <?php } ?> type="checkbox" id="red" name="red" value="red">
                             <label for="red">Rouge</label>
                         </li>
                         <li>

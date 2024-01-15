@@ -81,7 +81,8 @@
             </div>
             <div id="recommendations-articles-box">
                 <?php
-                    include 'frontend/components/article-card.php';
+                    include_once 'controller/components.php';
+                    use controller;
                     
                     foreach($articlesSimilaire as $article){
                         $img = ""; 
@@ -151,31 +152,31 @@
                             <div class="distribution-stars-line">
                                 <span class="distribution-stars-line-title">5 étoiles</span>
                                 <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[4]?>%;" class="distribution-stars-line-value"></div></div>
-                                <span class="distribution-stars-line-value-text"><?=$widthNotes[4]?>%</span>
+                                <span class="distribution-stars-line-value-text"><?=intval($widthNotes[4])?>%</span>
                             </div>
                             <!-- 4 étoiles -->
                             <div class="distribution-stars-line">
                                 <span class="distribution-stars-line-title">4 étoiles</span>
                                 <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[3]?>%;" class="distribution-stars-line-value"></div></div>
-                                <span class="distribution-stars-line-value-text"><?=$widthNotes[3]?>%</span>
+                                <span class="distribution-stars-line-value-text"><?=intval($widthNotes[3])?>%</span>
                             </div>
                             <!-- 3 étoiles -->
                             <div class="distribution-stars-line">
                                 <span class="distribution-stars-line-title">3 étoiles</span>
                                 <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[2]?>%;" class="distribution-stars-line-value"></div></div>
-                                <span class="distribution-stars-line-value-text"><?=$widthNotes[2]?>%</span>
+                                <span class="distribution-stars-line-value-text"><?=intval($widthNotes[2])?>%</span>
                             </div>
                             <!-- 2 étoiles -->
                             <div class="distribution-stars-line">
                                 <span class="distribution-stars-line-title">2 étoiles</span>
                                 <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[1]?>%;" class="distribution-stars-line-value"></div></div>
-                                <span class="distribution-stars-line-value-text"><?=$widthNotes[1]?>%</span>
+                                <span class="distribution-stars-line-value-text"><?=intval($widthNotes[1])?>%</span>
                             </div>
                             <!-- 1 étoile -->
                             <div class="distribution-stars-line">
                                 <span class="distribution-stars-line-title">1 étoile</span>
                                 <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[0]?>%;" class="distribution-stars-line-value"></div></div>
-                                <span class="distribution-stars-line-value-text"><?=$widthNotes[0]?>%</span>
+                                <span class="distribution-stars-line-value-text"><?=intval($widthNotes[0])?>%</span>
                             </div>
 
                         

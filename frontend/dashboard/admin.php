@@ -26,7 +26,7 @@
 
             <!-- left -->
             <?php include "controller/components.php"?>
-            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "admin"); ?>
+            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "admin",$personne->getRole()); ?>
 
 
             <!-- right -->

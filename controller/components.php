@@ -86,7 +86,8 @@ function generateUserPanelComponent(
     $userName = "Unknown",
     $userId = 0,
     $userGender = "Unknown",
-    $userType = "Unknown"
+    $userType = "Unknown",
+    $userRole = "client"
 ) {
     // Escape output data
     $userName = htmlspecialchars($userName, ENT_QUOTES, 'UTF-8');
@@ -105,6 +106,8 @@ function generateUserPanelComponent(
 
     // User type must be "admin" or "client"
     $userType = in_array($userType, ["admin", "client"]) ? $userType : "Unknown";
+
+    $userRole = in_array($userRole, ["admin", "client"]) ? $userRole : "Unknown";
 
     // Actions list
     $actions = [

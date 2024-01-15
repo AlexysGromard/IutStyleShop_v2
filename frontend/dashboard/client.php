@@ -21,7 +21,7 @@
         <div class = "user_general_element_box">
             <!-- left -->
             <?php include "controller/components.php"?>
-            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "client"); ?>
+            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "client",$personne->getRole()); ?>
 
 
             <!-- right -->

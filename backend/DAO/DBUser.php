@@ -2,7 +2,7 @@
 
 namespace backend\DAO;
 
-class DBUser extends Connexion
+class DBUser extends Connexion implements DAOInterface
 {
     /**
      * Ajoute un utilisateur
@@ -11,7 +11,7 @@ class DBUser extends Connexion
      * @param string $element
      * @return void
      */
-    public function add($email, $telephone, $password, $nom, $prenom, $genre, $address, $ville, $code_postal, $complement_adresse)
+    public static function add($email, $telephone, $password, $nom, $prenom, $genre, $address, $ville, $code_postal, $complement_adresse)
     { 
         $requete = "CALL InsertUserClient(?,?,?,?,?,?,?,?,?,?)";
 
