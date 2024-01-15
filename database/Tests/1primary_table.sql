@@ -16,9 +16,9 @@ VALUES
 -- Insertion des données dans la table Article
 INSERT INTO Article (nom, category,genre, description, votant, notes, prix, couleur, promo, disponible)
 VALUES
-  ('T-Shirt Rouge IUT', 't-shirt','M', 'T-Shirt Rouge IUT 100% coton avec logo IUT sur la poitrine. Disponible en taille XS, S, M, L, XL. Cet article fait partie des bestSeller.', 0, 4.5, 19.99, 'red', 0, 1),
-  ('Sweat Rouge IUT', 'sweat-short','M', 'Swet Rouge IUT 100% coton avec logo IUT sur la poitrine. Disponible en taille XS, S, M, L, XL. Cet article fait partie des bestSeller. Peut être porté avec un t-shirt rouge IUT.', 0, 4.5, 39.99, 'red', 0, 1),
-  ('MUG Blanc IUT', 'accessoire','MF', 'Mug Blanc IUT avec logo. Parfait pour le café du matin. Disponible en blanc. Vous aurez également 0.05€ de remise à la machine à café de l IUT.', 0, 4.5, 14.99, 'white', 0, 1),
+  ('T-Shirt Rouge IUT', 't-shirt','M', 'T-Shirt Rouge IUT 100% coton avec logo IUT sur la poitrine. Disponible en taille XS, S, M, L, XL. Cet article fait partie des bestSeller.', 0, 4.5, 19.99, 'red', 20, 1),
+  ('Sweat Rouge IUT', 'sweat-short','M', 'Swet Rouge IUT 100% coton avec logo IUT sur la poitrine. Disponible en taille XS, S, M, L, XL. Cet article fait partie des bestSeller. Peut être porté avec un t-shirt rouge IUT.', 0, 4.5, 39.99, 'red', 30, 1),
+  ('MUG Blanc IUT', 'accessoire','MF', 'Mug Blanc IUT avec logo. Parfait pour le café du matin. Disponible en blanc. Vous aurez également 0.05€ de remise à la machine à café de l IUT.', 0, 4.5, 14.99, 'white', 10, 1),
   ('Casquette Noire IUT', 'accessoire','MF', 'Casquette Noire IUT avec logo. Vous aurez la classe dans Nantes. Disponible en noir.', 0, 1.5, 16.99, 'black', 0, 1),
   ('Gourde IUT Blanc', 'accessoire','MF', 'Gourde IUT Blanc avec logo. Parfait pour les plus sportifs d entre-nous. Disponible en blanc.', 0, 4.5, 12.99, 'white', 0, 1),
   ('Maillot IUT Nike', 'sports-wear', 'M','Profitez de notre collaboration avec Nike pour vous offrir le meilleur des maillots de sport. Disponible en noir.', 0, 4.5, 34.99, 'black', 0, 1),

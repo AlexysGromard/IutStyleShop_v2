@@ -193,6 +193,7 @@ class DBArticle extends Connexion implements DAOInterface
     }
 
 
+
     /**
      * Supprime un article
      * 
@@ -201,6 +202,11 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function delete($id)
     {
+        $sql = "call DeleteImage(?)";
+        $stmt = self::$pdo->prepare($sql);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+
     }
 
     /**
