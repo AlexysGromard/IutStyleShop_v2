@@ -13,12 +13,32 @@ class login {
     function index(){
         session_start();
         if (isset($_SESSION['user'])){
+            // TODO : Vérifier si l'utilisateur est conforme
             header("Location: /user/dashboard/informations");
         } else {
+            // Générer un jeton CSRF
+            $csrfToken = $this->genererTokenCSRF();
+
             require "frontend/authentication/login.php";
 
             unset($_SESSION['errors']);
         }
+    }
+
+    /*
+    * Cette fonction permet de générer un jeton CSRF
+    */
+    function genererTokenCSRF() {
+        $token = bin2hex(random_bytes(32)); // Générer un jeton aléatoire
+        $_SESSION['csrf_token'] = $token; // Stocker le jeton dans la session
+        return $token;
+    }
+
+    /*
+    * Cette fonction permet de vérifier si le jeton CSRF est valide
+    */
+    function verifierTokenCSRF($token) {
+        return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
     }
 
     /*
@@ -30,6 +50,13 @@ class login {
         // Récupération des données
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $tokenDuFormulaire = $_POST['csrf_token'];
+
+        if (!$this->verifierTokenCSRF($tokenDuFormulaire)) {
+            // Le jeton CSRF n'est pas valide, traitement de l'erreur ou rejet de la requête
+            header("Location: /login");
+            exit();
+        }
 
         // Echapement des caractères spéciaux
         $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
