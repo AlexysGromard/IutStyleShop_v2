@@ -2,8 +2,6 @@
 
 namespace backend\entity;
 
-require "backend/entity/PanierEntity.php";
-
 /*
 * @Entity @Table(name="user")
 */
