@@ -183,8 +183,8 @@
                         </div>
                         
                     </div>
-                
-                    <a  class="button basic-text" href="/commentaire/form/<?=$id?>">Ajouter un commentaire</a>
+                    <a  class="button basic-text" href="/commentaire/form/<?=$articleActual->getId()?>">Ajouter un commentaire</a>
+
                 </div>
                 <!-- Right part -->
                 <div id="comments-right-part">

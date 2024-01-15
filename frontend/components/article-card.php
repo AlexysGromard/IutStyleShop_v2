@@ -9,8 +9,8 @@ function generateArticleComponent(
     $title = "unknown",
     $starCount = 0,
     $availability = false,
-    $promotion = "0",
-    $price = "0,00",
+    $promotion = 0,
+    $price = 0.0,
 ) {
     // ID validation (assuming positive integer IDs)
     $id = is_numeric($id) ? intval($id) : null;

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Des Credits </title>
-    <link rel="stylesheet" href="../styles/variables.css">
-    <link rel="stylesheet" href="../styles/general.css">
-    <link rel="stylesheet" href="../styles/credit.css">
+    <link rel="stylesheet" href="/frontend/styles/variables.css">
+    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/credit.css">
 
 </head>
 <body>
-<?php include '../components/header.php'; ?>
+<?php include 'frontend/components/header.php'; ?>
     <main>
         <p class="section-title-name">Créateurs</p>
         <p class="section-title-results">4 personnes</p>
@@ -103,7 +103,7 @@
         </div>
     </main>
     
-    <?php include '../components/footer.php'; ?>
+    <?php include 'frontend/components/footer.php'; ?>
 
 </body>
 </html>

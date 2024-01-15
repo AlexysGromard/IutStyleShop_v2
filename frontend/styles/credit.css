@@ -4,6 +4,11 @@
 }
 .link-part>a{
     min-height: 54px;
+    min-width: 54px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
 }
 .link-part>a>img{
     width: 48px;

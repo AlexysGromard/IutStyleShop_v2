@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Header -->
-    <?php include 'components/header.php'; ?>
+    <?php include 'frontend/components/header.php'; ?>
     <!-- Carrousel -->
     <section id="carousel-section">
         <div class="carousel">
@@ -62,7 +62,7 @@
         </div> 
     </section>
     <!-- Footer -->
-    <?php include 'components/footer.php'; ?>
+    <?php include 'frontend/components/footer.php'; ?>
 </body>
 <script src="/frontend/scripts/carousel.js"></script>
 <script src="/frontend/scripts/clickOnProduct.js"></script>
