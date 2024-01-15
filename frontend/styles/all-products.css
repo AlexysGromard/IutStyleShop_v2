@@ -250,6 +250,10 @@ input#black{
     background-color: #000000;
 }
 
+#button-validate{
+    margin-bottom: 27px;
+}
+
 /* Mobile */
 @media screen and (max-width: 768px) {
     /* Main */

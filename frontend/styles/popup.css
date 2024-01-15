@@ -103,7 +103,7 @@
 /* =============== */
 
 .status-popup.success{
-    background-color: rgba(120, 188, 97, 0.3);
+background-color: #D1E6CC;
     color: var(--green);
 }
 
@@ -112,7 +112,7 @@
 /* =============== */
 
 .status-popup.error{
-    background-color: rgba(239, 35, 60, 0.3);
+    background-color: #F5B8C1;
     color: var(--red);
 }
 

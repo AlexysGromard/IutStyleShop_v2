@@ -13,6 +13,20 @@ body{
     background-color: var(--background);
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+body > *{
+    width: 100%;
+}
+
+main {
+    flex: 1; 
+}
+
+footer{
+    flex-shrink: 0;
 }
 
 /* Colors */
@@ -437,6 +451,7 @@ header{
     font-family: 'Roboto';
     font-weight: 400;
     font-size: var(--small);
+    white-space: nowrap;
 }
 
 .header-down div a img{
@@ -573,11 +588,17 @@ header{
 footer{
     padding: 30px 74px;
     background-color: var(--black);
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#footer-container{
+    width: 100%;
+    max-width: 1659px;
+    gap: 90px;
     display: flex;
     color: var(--white);
-    width: 100%;
-    bottom: 0;
-    gap: 4.69%;
 }
 #footer-logo{
     align-self: baseline;
@@ -655,9 +676,11 @@ footer{
     background: var(--radio-checked-color);
 }
 /* max-width: 1005px Footer */
-@media screen and (max-width: 1005px) {
+@media screen and (max-width: 1110px) {
     footer{
         padding: 30px 5%;
+    }
+    #footer-container{
         gap: 0;
         justify-content: space-between;
     }
@@ -715,7 +738,7 @@ footer{
         font-size: var(--very-small);
     }
     /* Footer */
-    footer{
+    #footer-container{
         gap: 25px;
         flex-wrap: wrap;
         justify-content: flex-start;

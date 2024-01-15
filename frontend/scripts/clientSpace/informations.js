@@ -1,6 +1,3 @@
-console.log("helo");
-
-
 let civility;
 for (element of document.getElementsByName("civility")){
     if (element.checked){
@@ -10,24 +7,24 @@ for (element of document.getElementsByName("civility")){
 }
 
  
-let last_name = document.getElementById("last-name").value;
-let first_name = document.getElementById("first-name").value;
-let mail = document.getElementById("mail").value;
+let last_name = document.getElementById("lastname").value;
+let first_name = document.getElementById("firstname").value;
+let mail = document.getElementById("email").value;
 let phone = document.getElementById("phone").value;
 
 
 var personalInfo = new Map();
 personalInfo.set("civility", civility);
-personalInfo.set("last-name", last_name);
-personalInfo.set("first-name", first_name);
-personalInfo.set("mail", mail);
+personalInfo.set("lastname", last_name);
+personalInfo.set("firstname", first_name);
+personalInfo.set("email", mail);
 personalInfo.set("phone", phone);
 
 var personalInfoModif = new Map();
 personalInfoModif.set("civility", false);
-personalInfoModif.set("last-name", false);
-personalInfoModif.set("first-name", false);
-personalInfoModif.set("mail", false);
+personalInfoModif.set("lastname", false);
+personalInfoModif.set("firstname", false);
+personalInfoModif.set("email", false);
 personalInfoModif.set("phone", false);
 
 
@@ -63,6 +60,16 @@ function checkedUpdatePersonalInfo(id,value,idbutton){
         }
     }
 
+    // Si phone et modifié mais que sa taille est inférieure à 10
+    if (id == "phone" && value.length < 10 && value.length > 0){
+        thereismodif = false;
+    }
+
+    // Si mail et modifié mais que ne correspond pas à un mail
+    if (id == "mail" && !value.includes("@") && !value.includes(".")){
+        thereismodif = false;
+    }
+
     if (thereismodif){
         button.classList.remove("disabled");
     }else{
@@ -71,7 +78,7 @@ function checkedUpdatePersonalInfo(id,value,idbutton){
 }
 
 
-function checkedUpdateChangePassword(id,value,idbutton){
+function checkedUpdateChangePassword(id,valeur,idbutton){
 
 
     var button = document.getElementById(idbutton);
@@ -98,4 +105,13 @@ function checkedUpdateChangePassword(id,value,idbutton){
     }
 }
 
-console.log("fin");
+/**
+ * Vérification de la validité du téléphone
+ */
+document.getElementById("phone").addEventListener("input", function(e) {
+    // Si taille supérieure à 10 ou contient pas que des chiffres
+    if (e.target.value.length > 10 || /[^0-9]/.test(e.target.value)) {
+        // On remplace le contenu par celui-ci
+        e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
+    }
+});

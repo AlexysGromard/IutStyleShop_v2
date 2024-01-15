@@ -36,9 +36,9 @@ class CommentaireEntity
     /*  
     * @return int
     */
-    public function getUser(): UserEntity
+    public function getUser(): int
     {
-        return $this->user;
+        return $this->id_user;
     }
 
     // /*

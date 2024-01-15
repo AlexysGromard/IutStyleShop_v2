@@ -3,8 +3,8 @@
 $scriptDirectory = $PSScriptRoot
 
 # Variables
-$password = 'root'
-$user = 'root'
+$password = 'sql'
+$user = 'sql'
 $p_host = 'localhost'
 $port = 3306
 $database = 'DB_IutStyleShop'
@@ -49,7 +49,7 @@ Write-Host "    * $database" -ForegroundColor Yellow
 
 
 
-# Table
+
 # Tables
 Write-Host ""
 Write-Host "Execution des fichiers Tables : " -ForegroundColor Magenta

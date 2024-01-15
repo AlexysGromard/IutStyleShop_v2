@@ -1,54 +1,3 @@
-<?php
-function generateUserPanelComponent(
-    $actionsSelect,
-    $userName = "Unknown",
-    $userId = 0,
-    $userGender = "Unknown",
-    $userType = "Unknown"
-) {
-    // Escape output data
-    $userName = htmlspecialchars($userName, ENT_QUOTES, 'UTF-8');
-    $userId = htmlspecialchars($userId, ENT_QUOTES, 'UTF-8');
-    if (!isset($userGender)){
-        $userGender = "N";
-    }
-    $userGender = htmlspecialchars($userGender, ENT_QUOTES, 'UTF-8');
-    $userType = htmlspecialchars($userType, ENT_QUOTES, 'UTF-8');
-
-    // ID validation (assuming positive integer IDs)
-    $userId = is_numeric($userId) ? intval($userId) : null;
-
-    // Gender must be "M" or "F"
-    $userGender = in_array($userGender, ["M", "F", "N"]) ? $userGender : "Unknown";
-
-    // User type must be "admin" or "client"
-    $userType = in_array($userType, ["admin", "client"]) ? $userType : "Unknown";
-
-   
-    
-    // Actions list
-    $actions = [
-        "admin" => [
-            "Base de données utilisateurs" => "/user/admin_space/utilisateurs",
-            "Base de données commandes" => "/user/admin_space/commandes",
-            "Base de données articles" => "/user/admin_space/articles",
-            "Base de données avis" => "/user/admin_space/avis",
-            "Base de données codes promotionnel" => "/user/admin_space/codes_promotionnel"
-        ],
-        "client" => [
-            "Mes informations" => "/user/dashboard/informations",
-            "Mes commandes" => "/user/dashboard/commandes",
-            "Mon adresse" => "/user/dashboard/adresse",
-            "Mes paramètres" => "/user/dashboard/parametres"
-        ]
-    ];
-    
-    //action selected
-    if (!(($userType == "admin" && in_array($actionsSelect,array_keys($actions["admin"]))) || ($userType == "client" && in_array($actionsSelect,array_keys($actions["client"]))))){
-        echo "ERREUR".$userType;
-    }
-?>
-
 <div id="user-panel-container">
     <div id="user-informations">
         <div id="user-picture-container">
@@ -84,7 +33,3 @@ function generateUserPanelComponent(
         <button class="button" id="logout-button" onclick="showLogoutPopup()">Déconnexion</button>
     </div>
 </div>
-
-<?php
-}
-?>

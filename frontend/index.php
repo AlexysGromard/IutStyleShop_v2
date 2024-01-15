@@ -33,14 +33,15 @@
                 <span class="section-title-results">3 articles</span>
             </div>
             <!-- Btn 'All products' -->
-            <a class="header-products-btn" href="/frontend/all-products/">
+            <a class="header-products-btn" href="/products">
                 Afficher tous les articles
                 <img src="/frontend/assets/icons/grid.png" alt="Grid">
             </a>
         </div>
         <div id="products">
             <?php
-                include 'components/article-card.php';
+                include_once 'controller/components.php';
+                use controller;
 
                 generateArticleComponent(
                     $id = null,

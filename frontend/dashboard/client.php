@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Espace utilisateur - IutStyleShop</title>
     <?php include 'frontend/common-includes.php'?>
     <link rel="stylesheet" href="/frontend/styles/general2.css">
@@ -20,7 +20,7 @@
         <span class="Black_police_70"> Espace utilisateur</span>
         <div class = "user_general_element_box">
             <!-- left -->
-            <?php include "frontend/components/user-panel.php" ?>
+            <?php include "controller/components.php"?>
             <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "client"); ?>
 
 

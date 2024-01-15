@@ -126,7 +126,7 @@ done
 
 #Tests
 echo ""
-echo "\e[35m Exécution des fichiers Tests : "
+echo -e "\e[35m Exécution des fichiers Tests : "
 dossier="Tests"
 # ProcedureStocker/
 # ├── Article
@@ -145,7 +145,7 @@ dossier="Tests"
 # └── User
 
 find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-    echo "\e[34m* \e[0m $fichier \e[31m"
+    echo -e"\e[34m* \e[0m $fichier \e[31m"
     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
 done
 
