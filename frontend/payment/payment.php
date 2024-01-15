@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paiement - IutStyleShop</title>
-    <link rel="stylesheet" href="/frontend/styles/variables.css">
-    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <?php include 'frontend/common-includes.php'?>
     <link rel="stylesheet" href="/frontend/styles/general2.css">
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
     <link rel="stylesheet" href="/frontend/styles/police.css">
@@ -198,9 +197,26 @@
             </div>
             <div class="line"></div>
             <div class="second-section-payment">
-                <div class="text-espace"><span class="Gray_police_45">Sous-total</span><span id="st" class="Black_police_50">0.00€</span></div>
-                <div class="text-espace"><span class="Gray_police_45">Taxes</span><span id="taxes" class="Black_police_50">0.00€</span></div>
-                <div class="text-espace"><span class="Gray_police_45">Code promotionnel</span><span class="Black_police_50">0,00€</span></div>
+            <div class="text-espace">
+                <div class="payment-text grey">Sous-total</div>
+                    <div id="st" class="payment-text text-weight-price">
+                        <?php echo number_format($panier->getPrixTotal(), 2); ?>€
+                    </div>
+                </div>
+
+                <div class="text-espace">
+                    <span class="Gray_police_45">Taxes</span>
+                    <span id="taxes" class="Black_police_50">
+                        <?php echo number_format($panier->getPrixTotal() * 0.2, 2); ?>€
+                    </span>
+                </div>
+
+                <div class="text-espace">
+                    <span class="Gray_police_45">Code promotionnel <?= isset($codePromo) && $codePromo->getPromo() != 0 ? " : ".$codePromo->getCode() : "";?></span>
+                    <span class="Black_police_50">
+                        <?= (isset($codePromo) && $codePromo->getPromo() != 0 )? "-".number_format($panier->getPrixTotal() * $codePromo->getPromo() / 100, 2) : "0"; ?>€
+                    </span>
+                </div>
             </div>
             <div class="line"></div>
             <div class="third-section-payment">
@@ -216,13 +232,10 @@
                         <span class="Black_police_45">Prix total</span>
                         <span class="Gray_police_40">Ce prix inclus les remises</span>
                     </div>
-                    <span class="Black_police_75">0.00€</span>
+                    <span class="Black_police_75"><?= (isset($codePromo) && $codePromo->getPromo() != 0 )? number_format($panier->getPrixTotal() - $panier->getPrixTotal() * $codePromo->getPromo() / 100, 2) : number_format($panier->getPrixTotal(), 2); ?>€</span>
                 </div>
             </div>
-            
         </div>
-        
-        
 </main>
 
 <?php include 'frontend/components/footer.php'; ?>

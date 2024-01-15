@@ -101,6 +101,25 @@ class card{
         header("Location: /card");
     }
 
+    function payment(){
+        $personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
+        
+        // Récupérer le panier de l'utilisateur
+        $panier = $this->getUserCard();
+        // Récupérer le code promo
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(isset($_SESSION["codePromo"])){
+            $codePromo = $_SESSION["codePromo"];
+        } else {
+            $codePromo = null;
+        }
+
+
+        require "frontend/payment/payment.php";
+    }
+
 }
 
 ?>
