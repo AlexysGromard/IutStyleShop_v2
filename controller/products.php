@@ -11,24 +11,24 @@ class products{
     }
 
     function accessoire(){
-        $param = array("false","false","false","true","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("false","false","false","true","true","true","true","true","true",0,100,"true","true","false","true","true",""); 
         $this->filter($param);
     }
     function tshirt(){
-        $param = array("true","false","false","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("true","false","false","false","true","true","true","true","true",0,100,"true","true","false","true","true",""); 
         $this->filter($param);
     }
     function sportswear(){
-        $param = array("false","false","true","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("false","false","true","false","true","true","true","true","true",0,100,"true","true","false","true","true",""); 
         $this->filter($param);
     
     }
     function sweatshirt(){
-        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true",""); 
         $this->filter($param);
     }
     function promotion(){
-        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true"); 
+        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true",""); 
         $this->filter($param);
     }
 
@@ -49,12 +49,13 @@ class products{
         13 promo (booléen) : Indique d'afficher seulement les articles en promo.
         14 disponible (booléen) : Indique d'afficher les articles disponible
         15 nondisponible (booléen) : Indique d'afficher les articles non disponible
+        16 motsderecherche (string) : indique la recherche effectuer
 
 
     */
     function filter($param){
         $this->dao = new \backend\DAO\DBArticle();
-        $longueur = 16;
+        $longueur = 17;
 
         
         if(count($param)==$longueur){
@@ -81,12 +82,38 @@ class products{
                 $genre .= "F";
             }
             $mesArticles = $this->dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
-            
+            //todo : filiterbyname()
             require "frontend/all-products/index_bd.php";
 
         }else{
-            require "frontend/all-products/index.php";
+            //require "frontend/all-products/index.php";
+            require "frontend/404.php";
         }
+    }
+
+    private function filiterbyname($search,$articles){ //TODO : doit retourner les articles
+        // Récupérer tous les articles
+        $products = getProductNames();
+
+        // Limite de coeefficient de ressemblance
+        $limiteCoefficientRessemblance = 0.25;
+
+        // Calculer les coefficients de ressemblance pour chaque produit
+        $coefficients = array();
+        foreach ($products as $product) {
+            $coefficient = calculerCoefficientRessemblance($query, $product);
+            $coefficients[$product] = $coefficient;
+        }
+
+        // Trier les résultats en fonction des coefficients de ressemblance (du plus grand au plus petit)
+        arsort($coefficients);
+
+        // Supprimer les résultats dont le coefficient de ressemblance est inférieur à la limite
+        $coefficients = array_filter($coefficients, function($coefficient) use ($limiteCoefficientRessemblance) {
+            return $coefficient >= $limiteCoefficientRessemblance;
+        });
+
+        return $coefficients;
     }
 
     function search(){
@@ -104,8 +131,12 @@ class products{
         require "backend/search.php";
         $results = search($search);
 
+        echo"<pre>";
+        var_dump($results); 
+        echo"</pre>";
+
         // Rediriger vers la page des produits
-        require "frontend/all-products/index.php";
+        require "frontend/all-products/index_bd.php";
     }
 
 }
