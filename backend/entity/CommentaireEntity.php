@@ -22,11 +22,11 @@ class CommentaireEntity
     private float $note;
     private string $commentaire;
 
-    function __construct(UserEntity $user,
+    function __construct(int $user,
                         float $note,
                         string $commentaire)
     {
-        $this->id_user = $this->user;
+        $this->id_user = $user;
         $this->setNote($note);
         $this->setCommentaire($commentaire);
     }
@@ -36,9 +36,9 @@ class CommentaireEntity
     /*  
     * @return int
     */
-    public function getUser(): UserEntity
+    public function getUser(): int
     {
-        return $this->user;
+        return $this->id_user;
     }
 
     // /*

@@ -145,7 +145,7 @@ dossier="Tests"
 # └── User
 
 find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-    echo -e"\e[34m* \e[0m $fichier \e[31m"
+    echo -e "\e[34m* \e[0m $fichier \e[31m"
     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
 done
 
