@@ -225,7 +225,7 @@
 #recommendations-articles-box{
     padding: 16px 0;
     display: flex;
-    justify-content: space-between;
+    gap:38px;
     overflow: scroll;
 }
 

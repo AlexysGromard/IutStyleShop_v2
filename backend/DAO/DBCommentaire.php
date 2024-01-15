@@ -103,18 +103,17 @@ class DBCommentaire extends Connexion  implements DAOInterface
         $stmt->execute();
 
         $resultats = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
         $array_commentaire = array() ;
         // Parcourir les résultats et créer des objets Commentaire
         foreach ($resultats as $resultat) {
-            $commentaire = new Commentaire(
+            $commentaire = new CommentaireEntity(
                 $resultat['ID_User'],
                 $resultat['note'],
                 $resultat['commentaire']
             );
-            
             $array_commentaire[] = $commentaire;
         }
+
         return  $array_commentaire;
     }
 

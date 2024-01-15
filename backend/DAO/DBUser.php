@@ -159,6 +159,22 @@ class DBUser extends Connexion implements DAOInterface
         return $userEntities;
     }
 
+    /**
+     * Donne le nom et prenom d'un utilisateur par son id
+     * 
+     * @param int $id
+     * @return string|null
+     */
+    public static function getNomPrenomById(int $id): ?array{
+        $requete = "CALL GetUserNomPrenom(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $names = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $names;
+
+    }
 
 
     /**

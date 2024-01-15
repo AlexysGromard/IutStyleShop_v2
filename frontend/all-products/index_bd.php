@@ -32,8 +32,7 @@
                 <!-- ALL PRODUCTS -->
                 <?php
                     if (isset($mesArticles)){
-                        foreach($mesArticles as $product){
-                            $article =  $this->dao->getById($product["id"]);
+                        foreach($mesArticles as $article){
                             $image = "";
                             if ( count($article->getImages())>0){
                                 $image = $article->getImages()[0];
