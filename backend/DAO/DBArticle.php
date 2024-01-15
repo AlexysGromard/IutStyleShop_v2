@@ -552,7 +552,7 @@ class DBArticle extends Connexion implements DAOInterface
     }
 
 
-    private static function getArticleByConditionRequest($couleur,$categorie,$prixmin,$prixmax,$genres,$promo,$disponible):array{
+    private static function getArticleByConditionRequest($categorie,$couleur,$prixmin,$prixmax,$genres,$promo,$disponible):array{
         $requete = "CALL GetArticleByCondition(?,?,?,?,?,?,?)";
         $stmt = self::$pdo->prepare($requete);
         $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
@@ -613,7 +613,6 @@ class DBArticle extends Connexion implements DAOInterface
 
         }
         
-
         $lsArticles = array();
         foreach($mesArticles as $valeurArticle){
             $id = $valeurArticle["id"];
