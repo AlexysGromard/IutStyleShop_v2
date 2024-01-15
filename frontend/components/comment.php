@@ -37,7 +37,10 @@ function generateCommentComponent(
                     <?php } ?>
                 </ul>
             </div>
+            <?php 
+            if(strlen($commentText)>0){?>
             <p class="comment-text"><?php echo $commentText; ?></p>
+            <?php } ?>
         </div>
     </div>
 <?php 

@@ -32,6 +32,12 @@ class accueil{
         require "frontend/index.php";
     }
 
+    function createurs(){
+        require "frontend/credits/credit.php";
+
+
+    }
+
 }
 
 ?>

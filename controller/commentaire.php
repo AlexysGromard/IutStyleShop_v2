@@ -23,6 +23,7 @@ class commentaire{
      */
     function form(array $id_article)
     {
+        var_dump($id_article);
         $this->dao = new \backend\DAO\DBArticle();
 
 
