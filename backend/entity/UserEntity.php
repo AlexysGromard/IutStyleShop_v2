@@ -2,9 +2,6 @@
 
 namespace backend\entity;
 
-require "backend/entity/PanierEntity.php";
-use \backend\entity\PanierEntity;
-
 /*
 * @Entity @Table(name="user")
 */
@@ -272,11 +269,16 @@ class UserEntity
         $this->complement_adresse = $complement_adresse;
     }
 
-    public function getCookieAccepted(): ?bool
+    /*
+    * Cette fonction retourne le panier de l'utilisateur
+    * @return PanierEntity
+    */
+    public function getPanier(): \backend\entity\PanierEntity
     {
-        return $this->cookieAccepted;
+        // Appeler la fonction getPanierByUser de DBPanier
+        $DAOPanier = new \backend\DAO\DBPanier();
+        return $DAOPanier->getPanierByUser($this);
     }
-
 
 
 }

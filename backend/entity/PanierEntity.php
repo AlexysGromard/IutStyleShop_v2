@@ -6,7 +6,7 @@ namespace backend\entity;
 class PanierEntity
 {
     /* 
-    *@var ArticleCommandeEntity[]
+    *@var PanierArticleEntity[]
     */
     private array $panierArticles; //ArticleComandeEntity
 
@@ -18,7 +18,7 @@ class PanierEntity
     /* Getters & Setters */
 
     /**
-     * @return ArticleCommandeEntity[]
+     * @return PanierArticleEntity[]
      */
     public function getPanierArticles(): array
     {
@@ -26,7 +26,7 @@ class PanierEntity
     }
 
     /**
-     * @param ArticleCommandeEntity[] $panierArticles
+     * @param PanierArticleEntity[] $panierArticles
      */
     public function setPanierArticles(array $panierArticles): void
     {
@@ -34,16 +34,16 @@ class PanierEntity
     }
 
     /**
-     * @param ArticleCommandeEntity $panierArticle
+     * @param PanierArticleEntity $panierArticle
      */
-    public function addPanierArticle(ArticleCommandeEntity $panierArticle): void
+    public function addPanierArticle(PanierArticleEntity $panierArticle): void
     {
         $this->panierArticles[] = $panierArticle;
     }
     /**
-     * @param ArticleCommandeEntity $panierArticle
+     * @param PanierArticleEntity $panierArticle
      */
-    public function removePanierArticle(ArticleCommandeEntity $panierArticle): void
+    public function removePanierArticle(PanierArticleEntity $panierArticle): void
     {
         $index = array_search($panierArticle, $this->panierArticles);
         if ($index !== false) {
@@ -51,8 +51,16 @@ class PanierEntity
         }
     }
 
-   
-    
+    public function getPrixTotal(): float
+    {
+        $prixTotal = 0;
+        foreach ($this->panierArticles as $panierArticle) {
+            $article = \backend\dao\DBArticle::getById($panierArticle->getIdArticle());
+            $prixTotal += $article->getPrix() * $panierArticle->getQuantite();
+        }
+        return $prixTotal;
+    }
+
 }
 
 ?>

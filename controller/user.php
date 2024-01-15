@@ -189,6 +189,10 @@ class user{
         session_start();
         // Supprimer le USER de la session
         unset($_SESSION['user']);
+        // Supprimer le panier de la session
+        if (isset($_SESSION['panier'])){
+            unset($_SESSION['panier']);
+        }
         header("Location: /");
     }
 
