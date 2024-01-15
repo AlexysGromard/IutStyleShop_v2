@@ -230,8 +230,37 @@
 }
 
 #recommendations-articles-box .boite_article{
-    margin: 0 10px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    max-width: 292px;
+    width: 100%;
+    flex-direction: column;
 }
+
+#recommendations-articles-box .boite_article .img{
+        
+    height: 292px;
+    background: #D9D9D9;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    object-fit: contain;
+    transition: padding 0.2s;
+}
+
+#recommendations-articles-box .boite_article .bas_article {
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 14px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+
 /* Supprimer margin pour le premier et le dernier article */
 #recommendations-articles-box .boite_article:first-child{
     margin-left: 0;

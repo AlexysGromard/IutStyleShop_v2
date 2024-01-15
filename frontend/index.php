@@ -41,36 +41,23 @@
         <div id="products">
             <?php
                 include 'components/article-card.php';
-
-                generateArticleComponent(
-                    $id = null,
-                    $imageSrc = "/frontend/products/sweatshirt_iut_rouge/image1.png",
-                    $title = "Sweat Rouge IUT",
-                    $starCount = 4,
-                    $availability = false,
-                    $promotion = "0",
-                    $price = "39.99",
-                );
-
-                generateArticleComponent(
-                    $id = null,
-                    $imageSrc = "/frontend/products/mug_iut/image1.png",
-                    $title = "MUG Blanc IUT",
-                    $starCount = 4,
-                    $availability = false,
-                    $promotion = "0",
-                    $price = "14.99",
-                );
-
-                generateArticleComponent(
-                    $id = null,
-                    $imageSrc = "/frontend/products/tshirt_iut_rouge/image1.png",
-                    $title = "T-Shirt Rouge IUT",
-                    $starCount = 4,
-                    $availability = false,
-                    $promotion = "0",
-                    $price = "19.99",
-                );
+                foreach($bestArticles as $article){
+                    $img = ""; 
+                    if (count($article->getImages())>=1){
+                        $img = $article->getImages()[0];
+                    }
+                    generateArticleComponent(
+                        $id = $article->getId(),
+                        $imageSrc = $img,
+                        $title = $article->getNom(),
+                        $starCount = intval($article->getNotes()),
+                        $availability = $article->getDisponible(),
+                        $promotion = $article->getPromo(),
+                        $price = $article->getPrix()
+                    );
+                    
+                }
+                
             ?>
         </div> 
     </section>
@@ -78,4 +65,6 @@
     <?php include 'components/footer.php'; ?>
 </body>
 <script src="/frontend/scripts/carousel.js"></script>
+<script src="/frontend/scripts/clickOnProduct.js"></script>
+
 </html>

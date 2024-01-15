@@ -551,6 +551,29 @@ class DBArticle extends Connexion implements DAOInterface
 
     }
 
+    private static function getAllArticleByNoteRequest(): array{
+        $requete = "CALL GetAllArticleByNote()";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
+    }
+    public static function getAllArticleByNote(): array{
+        
+        $articles = self::getAllArticleByNoteRequest();
+        $lsArticles = array();
+        foreach($articles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+             
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+            
+            $lsArticles[] = $article;
+        }
+        return $lsArticles;
+    }
+
 
     private static function getArticleByConditionRequest($categorie,$couleur,$prixmin,$prixmax,$genres,$promo,$disponible):array{
         $requete = "CALL GetArticleByCondition(?,?,?,?,?,?,?)";
