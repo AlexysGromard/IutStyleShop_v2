@@ -75,6 +75,9 @@ class card{
     function addPromoCode(){
         $codePromo = $_POST["code"];
 
+        // Echaper les données
+        $codePromo = htmlspecialchars($codePromo, ENT_QUOTES, 'UTF-8');
+
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
