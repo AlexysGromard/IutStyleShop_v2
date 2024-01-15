@@ -3,6 +3,8 @@ namespace controller;
 
 class accueil{
 
+    private $dao;
+
     function index(){
         session_start();
         // Supprimer les variables de session
