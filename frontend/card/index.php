@@ -58,7 +58,7 @@
                 <div class="second-section-payment">
                     <div class="text-espace"><div class="payment-text grey">Sous-total</div><div id="st" class="payment-text text-weight-price"><?php echo $panier->getPrixTotal(); ?>€</div></div>
                     <div class="text-espace"><div class="payment-text grey">Taxes</div><div id="taxes" class="payment-text text-weight-price"><?php echo round($panier->getPrixTotal() * 0.2, 2); ?>€</div></div>
-                    <div class="text-espace"><div class="payment-text grey">Code promotionnel</div><div class="payment-text text-weight-price"><?= (isset($codePromo) && $codePromo != 0 )? "-".round($panier->getPrixTotal() * $codePromo / 100, 2) : "0"; ?>€</div></div>
+                    <div class="text-espace"><div class="payment-text grey">Code promotionnel <?= isset($codePromo) && $codePromo->getPromo() != 0 ? " : ".$codePromo->getCode() : "";?></div><div class="payment-text text-weight-price"><?= (isset($codePromo) && $codePromo->getPromo() != 0 )? "-".round($panier->getPrixTotal() * $codePromo->getPromo() / 100, 2) : "0"; ?>€</div></div>
                 </div>
                 <div class="line"></div>
                 <div class="third-section-payment">
@@ -78,7 +78,7 @@
                             <div class="payment-text">Prix total</div>
                             <div class="payment-scearch-text">Ce prix inclus les remises</div>
                         </div>
-                        <div class="price"><?= (isset($codePromo) && $codePromo != 0 )? round($panier->getPrixTotal() - $panier->getPrixTotal() * $codePromo / 100, 2) : $panier->getPrixTotal(); ?>€</div>
+                        <div class="price"><?= (isset($codePromo) && $codePromo->getPromo() != 0 )? round($panier->getPrixTotal() - $panier->getPrixTotal() * $codePromo->getPromo() / 100, 2) : $panier->getPrixTotal(); ?>€</div>
                     </div>
                 </div>
                 <a class="payment-size button important-text" href="#">Passer la commande</a>

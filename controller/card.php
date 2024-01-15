@@ -25,9 +25,7 @@ class card{
         }
         if(isset($_SESSION["codePromo"])){
             $codePromo = $_SESSION["codePromo"];
-        } else {
-            $codePromo = 0;
-        }
+        } 
         require "frontend/card/index.php";
     }
 
@@ -86,7 +84,7 @@ class card{
 
         foreach ($codePromoList as $code) {
             if($code->getCode() == $codePromo){
-                $_SESSION["codePromo"] = $code->getPromo();
+                $_SESSION["codePromo"] = $code;
                 header("Location: /card");
                 exit();
             }
