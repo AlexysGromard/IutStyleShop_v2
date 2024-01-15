@@ -36,6 +36,13 @@
     margin: 0 auto;
 }
 
+#dashboard-title{
+    font-size: var(--big);
+    font-weight: 500;
+    color: var(--black);
+
+}
+
 .page-title{
     font-size: var(--big);
     font-weight: 500;

@@ -20,7 +20,7 @@
         
 
     <main class="admin_general">
-        <span class="Black_police_70"> Espace Administrateur</span>
+        <span id="dashboard-title"> Espace Administrateur</span>
 
         <div class = "admin_general_element_box">
 
