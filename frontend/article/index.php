@@ -191,7 +191,8 @@
                 <div id="comments-right-part">
                     <!-- Commentaires -->
                     <!-- TODO : Implementer la fonction de récupération des commentaires -->
-                    <?php include_once 'frontend/components/comment.php'; 
+                    <?php 
+                     
                     $i=0;
                     foreach($comments as $comment){
                        // if (!empty($comment->getCommentaire())){
