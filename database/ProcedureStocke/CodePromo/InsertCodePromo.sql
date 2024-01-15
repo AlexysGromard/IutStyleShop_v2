@@ -1,4 +1,5 @@
 DELIMITER //
+-- Procédure pour insérer un nouveau code promo
 CREATE OR REPLACE PROCEDURE InsertCodePromo(
     p_texte VARCHAR(255),
     p_promo TINYINT

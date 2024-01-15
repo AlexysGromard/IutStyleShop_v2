@@ -1,5 +1,5 @@
 DELIMITER //
-
+--  Procédure pour sortir les informations d'une commande
 CREATE OR REPLACE  PROCEDURE GetAllArticleOfCommande
 (
     p_idcommande INT

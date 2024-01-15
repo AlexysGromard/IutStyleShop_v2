@@ -2,7 +2,7 @@ DELIMITER //
 
 
 
--- Procédure pour supprimer une image
+-- Procédure pour donner tout les articles
     CREATE OR REPLACE PROCEDURE GetAllArticle()
     BEGIN
         SELECT * FROM Article;

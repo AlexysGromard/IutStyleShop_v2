@@ -1,5 +1,5 @@
 DELIMITER // 
-
+-- Procédure pour donner tout les utilisateurs
 CREATE OR REPLACE PROCEDURE GetUserInfoAll()
         BEGIN
         -- récupérer les informations d'un utilisateur avec l'ID spécifié

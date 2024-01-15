@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour ajouter un article au panier
 CREATE OR REPLACE PROCEDURE InsertPanier(
     p_id INT,
     p_id_utilisateur INT,

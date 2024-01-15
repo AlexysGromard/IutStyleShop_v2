@@ -12,7 +12,7 @@ VALUES
 ('FloranNinja :)',45);
 
 -- Exemple d'insertion dans la table Commentaire (note entre 1 et 5)(idArticle entre 1 et 10)(idUser entre 1 et 5)
-INSERT INTO Commentaire ( ID_User, id_Article, note, commentaire)
+INSERT INTO Commentaire ( ID_User, ID_Article, note, commentaire)
 VALUES
 (1,1,5,'Super produit'),
 (2,2,4,'Bon produit'),
@@ -122,6 +122,6 @@ SET prix = (SELECT SUM(prix_Unitaire * quantite) FROM ArticleCommande WHERE Arti
 --Update de la table Article pour ajouter le bon nombre de votant et la bonne note
 UPDATE Article
 SET votant = (SELECT COUNT(note) FROM Commentaire WHERE Commentaire.id_Article = Article.id),
-notes = (SELECT AVG(note) FROM Commentaire WHERE Commentaire.id_Article = Article.id);
+notes = (SELECT COALESCE(AVG(note),0.0) FROM Commentaire WHERE Commentaire.id_Article = Article.id);
 
 

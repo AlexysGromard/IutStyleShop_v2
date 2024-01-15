@@ -21,13 +21,20 @@ DELIMITER //
         -- Utilisez l'auto-incrémenté pour obtenir l'ID 
         -- Ajoutez des validations si nécessaire
         -- (Vérification de la plage de promo, etc.)
-        SET @last_id = LAST_INSERT_ID() ;
-        INSERT INTO Article (nom, category, genre, couleur, description, prix, promo, disponible) VALUES (p_nom, p_category, p_genre, p_couleur, p_description, p_prix, p_promo, p_disponible);
-        SET @last_id_2 = LAST_INSERT_ID() ;       
-        IF last_id_2 >= last_id + 2 THEN
+        DECLARE last_id INT;
+        DECLARE last_id_2 INT;
+        SET @last_id = 0;
+        SET @last_id_2 = 0;
+        SELECT MAX(id) INTO @last_id FROM Article;
+        INSERT INTO Article (nom, category, genre, couleur, description,votant,notes, prix, promo, disponible) VALUES (p_nom, p_category, p_genre, p_couleur, p_description,0,0.0, p_prix, p_promo, p_disponible);
+        -- INSERT INTO Article (nom, category, genre, couleur, description,votant,notes, prix, promo, disponible) VALUES ("p_nom", "p_category", "M", "Red", "p_description",0,0.0, 10, 2, 1);
+        SELECT MAX(id) INTO @last_id_2 FROM Article;
+        IF @last_id_2 >= @last_id + 2 THEN
             SIGNAL SQLSTATE '45151' SET MESSAGE_TEXT = 'Deux articles ont été ajouté en même temps !';
         ELSE
-            INSERT INTO Vetement (idArticle, quantiteXS, quantiteS ,quantiteM ,quantiteL, quantiteXL) VALUES (last_id_2, p_quantiteXS, p_quantiteS ,p_quantiteM ,p_quantiteL,p_quantiteXL);
+            INSERT INTO Vetement VALUES (@last_id_2, p_quantiteXS, p_quantiteS ,p_quantiteM ,p_quantiteL,p_quantiteXL);
+            SELECT @last_id_2;
+        
         END IF;
     END //
 DELIMITER ;

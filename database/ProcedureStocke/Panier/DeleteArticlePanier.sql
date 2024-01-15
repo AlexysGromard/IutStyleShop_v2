@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour supprimer un article du panier 
 CREATE OR REPLACE PROCEDURE DeleteArticlePanier(
     p_iduser INT,
     p_idArticle INT

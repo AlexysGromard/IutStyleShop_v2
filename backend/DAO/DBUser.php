@@ -119,7 +119,6 @@ class DBUser extends Connexion
         $requete = "CALL DeleteUser(?)";
 
         $stmt = self::$pdo->prepare($requete);
-        
         $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
 
         $stmt->execute();

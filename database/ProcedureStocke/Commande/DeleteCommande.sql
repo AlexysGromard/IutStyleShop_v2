@@ -1,5 +1,5 @@
 DELIMITER //
-
+-- Procédure pour supprimer une commande
 CREATE OR REPLACE  PROCEDURE DeleteCommande(
     p_id INT
 )

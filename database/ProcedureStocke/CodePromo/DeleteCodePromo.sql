@@ -1,4 +1,5 @@
 DELIMITER //
+-- Procédure pour supprimer un code promo
 CREATE OR REPLACE  PROCEDURE DeleteCodePromo(p_id INT)
 BEGIN
     -- Logique pour supprimer un code promo de la table CodePromo
