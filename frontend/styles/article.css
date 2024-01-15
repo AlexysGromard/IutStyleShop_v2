@@ -282,6 +282,15 @@
     gap: 16px;
 }
 
+#comments-left{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 313px;
+    height: max-content;
+    gap:16px;
+}
+
 /* Left part */
 #comments-left-part{
     background-color: #FFFFFF;

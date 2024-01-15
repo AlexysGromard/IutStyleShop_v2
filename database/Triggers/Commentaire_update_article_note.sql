@@ -4,12 +4,12 @@ AFTER INSERT ON Commentaire
 FOR EACH ROW
 BEGIN
     UPDATE Article
-    SET note = (
+    SET Article.notes = (
         SELECT AVG(Commentaire.note)
         FROM Commentaire
         WHERE Commentaire.id_Article = NEW.id_Article
     )
-    WHERE Article.id_Article = NEW.id_Article;
+    WHERE Article.id = NEW.id_Article;
 END;
 //
 CREATE OR REPLACE TRIGGER Commentaire_update_article_note_u
@@ -22,7 +22,7 @@ BEGIN
         FROM Commentaire
         WHERE Commentaire.id_Article = NEW.id_Article
     )
-    WHERE Article.id_Article = NEW.id_Article;
+    WHERE Article.id = NEW.id_Article;
 END;
 //
 CREATE OR REPLACE TRIGGER Commentaire_update_article_note_d
@@ -30,12 +30,12 @@ AFTER DELETE ON Commentaire
 FOR EACH ROW
 BEGIN
     UPDATE Article
-    SET note = (
+    SET Article.notes = (
         SELECT AVG(Commentaire.note)
         FROM Commentaire
         WHERE Commentaire.id_Article = OLD.id_Article
     )
-    WHERE Article.id_Article = OLD.id_Article;
+    WHERE Article.id = OLD.id_Article;
 END;
 //
 DELIMITER ;
