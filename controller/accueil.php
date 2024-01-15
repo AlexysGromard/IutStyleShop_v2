@@ -21,6 +21,14 @@ class accueil{
         // Fermer la session
         session_write_close();
 
+        $this->dao = new \backend\DAO\DBArticle();
+        $bestArticles = $this->dao::getAllArticleByNote();
+        if(count($bestArticles)>3){
+            $bestArticles = array_slice($bestArticles, 0, 3);
+
+        }
+
+
         require "frontend/index.php";
     }
 

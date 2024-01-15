@@ -6,11 +6,6 @@ class products{
     function index(){
         $this->dao = new \backend\DAO\DBArticle();
         $mesArticles = $this->dao->getall();
-        foreach($mesArticles as $art){
-            if ($art == null){
-                echo "<h1> OUIIIII </h1>";
-            }
-        }
         $param = array(true,true,true,true,true,true,true,true,true,0,100,true,true,false,true,true); 
         require "frontend/all-products/index_bd.php";
     }
