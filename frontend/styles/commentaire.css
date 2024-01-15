@@ -3,36 +3,28 @@
 #commentaire-main{
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    /*max-width: 100%;*/
+    gap: 31px;
     height: max-content;
-    margin : 45px 70px 45px 70px;
-    /*align-items: center;*/
-    
+    max-width: 1286px;
+    padding: 45px 10px;
+    margin: 0 auto;
 }
 
-.commantaire-title{
-    
-}
-
-
-
-.commentaire-block{
-    /*max-width: 100%;
-    height: max-content;*/
+#note-section-title{
+    font-size: var(--big);
+    font-weight: 500;
+    color: var(--black);
 }
 
 .commentaire-contenaire{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    
-    
-    /*margin-left: 160px;*/
-    /*height: max-content;*/
+    width: 100%;
     justify-content: center;
     align-items: center;
-
+    max-width: 965px;
+    margin: 0 auto;
 }
 
 /* ARTICLE */
@@ -97,29 +89,25 @@ input[type="radio"] + label {
     flex-direction: column;
     gap: 15px;
 
-    width: -moz-available;
-    max-width: 965px;
+    width: 100%;
 }
-    
-
 
 textarea{
     background: #F1F3F4;
     max-width: 100%;
-    min-width: max-content;
+    min-width: 100%;
     width: 918px; 
+    max-height: 200px;
     height: 200px;
     min-height: 44px;
     border: none;
     border-radius: 20px;
     flex-shrink: 0;
-
     padding: 15px 12px;
-
-
-
-
+    outline: none;
+    font-size: var(--small) !important;
 }
+
 .commentaire-button{
     cursor: pointer;
     width: 116px;
@@ -155,18 +143,19 @@ textarea{
 
 
 @media screen and (max-width: 768px) {
+
     #commentaire-main{
-        margin : 45px 10px 45px 10px;
-        min-width: 300px;
+        padding: 27px 15px;
     }
 
     .article-info-part{
         flex-direction: column;
         gap: 10px;
+        text-align: center;
     }
 
     .article-image{
-        max-width: 300px;
+        max-width: 150px;
         align-items: center;
     }
 
@@ -174,9 +163,10 @@ textarea{
         display: flex;
         flex-direction: column;
         gap: 20px;
-        max-width: 965px;
-        margin-left: 15px;
-        height: max-content;
+    }
+    .button-part{
+        margin-top: 15px;
     }
     
 }
+
