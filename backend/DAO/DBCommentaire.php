@@ -7,7 +7,7 @@ use \backend\entity\CommentaireEntity;
 use \backend\entity\ArticleEntity;
 use \backend\entity\UserEntity;
 
-class DBCommentaire extends Connexion  implements DAOInterface 
+class DBCommentaire extends Connexion//  implements DAOInterface 
 {
 
     /**
@@ -18,10 +18,10 @@ class DBCommentaire extends Connexion  implements DAOInterface
      */
     public static function add(CommentaireEntity $entity,int $id_article)
     {
-        $requete = "call InsertCommentaire(?, ?, ?, ?)";
-        $stmt = self::pdo->prepare($requete);
+        $requete = "CALL InsertCommentaire(?, ?, ?, ?)";
+        $stmt = self::$pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+        $stmt->bindParam(1, $entity->getUser(), \PDO::PARAM_INT);
         $stmt->bindParam(2, $id_article, \PDO::PARAM_INT);
         $stmt->bindParam(3, $entity->getNote(), \PDO::PARAM_INT);
         $stmt->bindParam(4, $entity->getCommentaire(), \PDO::PARAM_INT);
@@ -47,13 +47,15 @@ class DBCommentaire extends Connexion  implements DAOInterface
      * @param CommentaireEntity $entity
      * @param int $id_article
      */
-    public static function delete($entity)//, $id_article
+    public static function delete($entity,$article)//, $id_article
     {
-        $requete = "DeleteCommentaire(?,?)";
-        $stmt = self::pdo->prepare($requete);
+        $requete = "CALL DeleteCommentaire(?,?)";
+        $stmt = self::$pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
-        $stmt->bindParam(2, $id_article, \PDO::PARAM_INT);
+        $idUser = $entity->getUser();
+        $idArticle = $article->getId();
+        $stmt->bindParam(1, $idUser , \PDO::PARAM_INT);
+        $stmt->bindParam(2, $idArticle, \PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -71,7 +73,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
         $array_commentaire = array() ;
         // Parcourir les résultats et créer des objets Commentaire
         foreach ($resultats as $resultat) {
-            $commentaire = new Commentaire(
+            $commentaire = new CommentaireEntity(
                 $resultat['ID_User'],
                 $resultat['note'],
                 $resultat['commentaire']
@@ -82,10 +84,31 @@ class DBCommentaire extends Connexion  implements DAOInterface
         return  $array_commentaire;
     }
 
-    public static function getById(int $id): ?CommentaireEntity
-    {
+    public static function getById(int $id_user, int $id_article): ?CommentaireEntity{
+        $requete = "CALL GetCommentairesByIds(?,?)";
+        $stmt = self::$pdo->prepare($requete);
 
+        $stmt->bindParam(1,$id_user,\PDO::PARAM_INT);
+        $stmt->bindParam(2,$id_article,\PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $resultats = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        if (count($resultats) != 1){
+            return null;
+        }
+
+        $commentaire = new CommentaireEntity(
+            $resultats[0]['ID_User'],
+            $resultats[0]['note'],
+            $resultats[0]['commentaire']
+        );
+            
+        
+        return  $commentaire;
     }
+    
 
     /**
      * Donne les commentaires d'un article

@@ -19,7 +19,8 @@
                 <td class="Black_police_40"><?= $elementArticle->getId(); ?></td>
                 <td class="Black_police_40"><?= $com->getNote(); ?></td>
                 <td class=action_space>
-                    <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
+                    <a href="/user/xx"><img src="/frontend/assets/icons/oeil-ouvert.png" alt="oeil ouvert"></a>
+                    <a href="/user/delCommentaire/<?=$com->getUser() ?>/<?=$elementArticle->getId() ?>"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
                 </td>
             </tr>
             <?php endforeach; ?>

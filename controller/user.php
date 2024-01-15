@@ -206,14 +206,17 @@ class user{
         }
         
         $DAOCommentaire = new \backend\DAO\DBCommentaire();
-        $commentaireToDel = $DAOCommentaire->getById($param[0]);
+        $commentaireToDel = $DAOCommentaire->getById($param[0],$param[1]);
+        $DAOArticle = new \backend\DAO\DBArticle();
+        $article = $DAOArticle->getById($param[1]);
+
         echo "<pre>";
         var_dump($commentaireToDel);
         echo "</pre>";
         
-        if ($commentaireToDel != null){
+        if ($commentaireToDel != null && $article != null){
             
-            $DAOCommentaire->delete($commentaireToDel);
+            $DAOCommentaire->delete($commentaireToDel,$article);
             
         }
         

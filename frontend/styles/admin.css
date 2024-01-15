@@ -1,3 +1,7 @@
+body > * {
+    width: auto;
+}
+
 .admin_general{
     margin: 45px 77px 94px 77px;
     display: flex;
@@ -48,6 +52,13 @@
 
 .table_admin a{
     text-decoration: none;
+    align-items: center;
+    display: flex;
+}
+
+.table_admin a img{
+    width: 16px;
+    height: 16px
 }
 
 .table_admin .Red_police_50:hover{

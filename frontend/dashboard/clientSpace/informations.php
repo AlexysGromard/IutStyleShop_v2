@@ -67,13 +67,13 @@
         <!-- Mot de passe actuel -->
         <div class="input-box">
             <label class="input-label" for="currentpasswords">Mot de passe actuel</label>
-            <input required class="input-field sidebar" type="password" id="currentpasswords" name="currentpasswords" placeholder="Entrez votre mot de passe actuel" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+            <input required class="input-field sidebar" type="password" id="currentpasswords" name="currentpasswords" placeholder="Entrez votre mot de passe actuel" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
             <span class="input-error-message <?php echo (isset($_SESSION['errors']["old_password"]) && $_SESSION['errors']["old_password"]) ? "active" : ""; ?>">Mot de passe actuel invalide</span>
         </div>
         <!-- Nouveau mot de passe -->
         <div class="input-box">
             <label class="input-label" for="newpasswords">Nouveau mot de passe</label>
-            <input required class="input-field sidebar" type="password" id="newpasswords" name="newpasswords" placeholder="Entrez votre nouveau mot de passe" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
+            <input required class="input-field sidebar" type="password" id="newpasswords" name="newpasswords" placeholder="Entrez votre nouveau mot de passe" initval="" oninput="checkedUpdateChangePassword(this.id,this.value,'ChangePassword')" required>
             <span class="input-error-message <?php echo (isset($_SESSION['errors']["new_password"]) && $_SESSION['errors']["new_password"]) ? "active" : ""; ?>">Nouveau mot de passe invalide</span>
         </div>
     </div>

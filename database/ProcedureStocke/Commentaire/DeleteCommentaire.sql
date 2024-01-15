@@ -2,7 +2,7 @@ DELIMITER //
 
 -- Procédure pour supprimer un commentaire
 CREATE OR REPLACE PROCEDURE DeleteCommentaire(
-    p_id INT,
+    p_id_user INT,
     p_id_article INT
     ) 
 BEGIN
