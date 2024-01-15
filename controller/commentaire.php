@@ -17,7 +17,12 @@ class commentaire{
 
     }
 
-    function addCommentaire(){
+    /**
+     * Cette fonction permet d'ajouter un commentaire
+     *
+     * @param int $id_article
+     */
+    function addCommentaire(int $id_article){
 
         
 
@@ -26,9 +31,8 @@ class commentaire{
         
             $this->dao = new \backend\DAO\DBCommentaire();
 
-            $this->dao::add($commentaire, $_POST['id_article']);
+            $this->dao::add($commentaire,$id_article);
 
-            Location('Location: /article/visuel/'.$_POST['id_article']);
         
         
         }
@@ -36,7 +40,8 @@ class commentaire{
 
 
 
-        Location('Location: /article/visuel/'.$_POST['id_article']);
+        Location('Location: /article/visuel/'.$id_article);
+        die();
     }
 
 }

@@ -27,40 +27,40 @@
                 <div class="commentaire-block article-info-part">
 
                     <div class="article-image article-grow1">
-                        <img src=<? /*Todo*/ ?> alt="produit">
+                        <img src="<? $article->getImages()[0] ?>" alt="produit">
                     </div>
                 
                     <div class="commentaire-block article-info article-grow9">
 
-                        <p class="Black_police_60">Nom du produit</p>
+                        <p class="Black_police_60"><? $article->getNom() ?></p>
 
                         <div class="commentaire-block article-info-part ">
                             <div class="article-grow3">
-                                <p class="Black_police_40">Category: <? /*Todo*/ ?></p>
-                                <p class="Black_police_40">Taille  : <? /*Todo*/ ?></p>
-                                <p class="Black_police_40">Couleur : <? /*Todo*/ ?></p>
+                                <p class="Black_police_40">Category: <? $article->getCategory() ?></p>
+                                <p class="Black_police_40">Taille  : <?  ?></p>
+                                <p class="Black_police_40">Couleur : <? $article->getCouleur() ?></p>
                             </div>
                             <div class="article-grow3" style="width: min-content;">
                                 <p class="Black_police_40">Notation:</p>
                                 <div style = "min-width: max-content;">
                                     <?php
                                     for ($i = 0; $i < 5; $i++) {
-                                        if ($i < 3)
+                                        if ($i < $article->getNotes())
                                             echo '<img src="frontend/assets/icons/marquer-comme-star-preferee.svg" alt="etoile">';
                                         else
                                             echo '<img src="frontend/assets/icons/marquer-comme-star-pas-preferee.svg" alt="etoile">';
                                     }
                                     ?>
                                 </div>
-                                <p class="Black_police_40"><? /*Todo*/ ?> évaluations</p>
+                                <p class="Black_police_40"><? $article->getVotant() ?> évaluations</p>
                             </div>
                             <div class="article-grow9">
                                 <p class="Black_police_40">Description:</p>
-                                <p class="Black_police_40" style="min-width: 300px;"><? /*Todo*/ ?>1111</p>
+                                <p class="Black_police_40" style="min-width: 300px;"><? $article->getDescription() ?></p>
                             </div>
                             <div class="article-grow1">
                                 <p class="Black_police_40">Prix unitaire:</p>
-                                <p class="Black_police_60"><? /*Todo*/ ?>1111</p>
+                                <p class="Black_police_60"><? $article->getPrix() ?></p>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
             </div>
 
 
-            <form action="/commentaire/addCommentaire" method="post" class="form-commentaire">
+            <form action="/commentaire/addCommentaire/<? $article->getId() ?>" method="post" class="form-commentaire">
                 <div class="commentaire-block">
                     <p class="Black_police_60">Votre note</p>
                 </div>
