@@ -31,59 +31,25 @@
             <section id="products-section">
                 <!-- ALL PRODUCTS -->
                 <?php
+                    include 'frontend/components/article-card.php';
+
                     if (isset($mesArticles)){
-                        foreach($mesArticles as $product){
-                            $article =  $this->dao->getById($product["id"]);
-                            $image = "";
-                            if ( count($article->getImages())>0){
-                                $image = $article->getImages()[0];
+                        foreach($mesArticles as $article){
+                            $img = ""; 
+                            if (count($article->getImages())>=1){
+                                $img = $article->getImages()[0];
                             }
-
-                            ?>
-                                <div data-id="<?=$article->getId();?>" id="" class="boite_article"> 
-                                    <img class="image" src="<?= $image ?>" alt='<?=  $article->getNom();  ?>'>
-                                    <div class="bas_article">
-                                        <div class="medium-important-text product-btn"><?=  $article->getNom();  ?></div>
-                                        <div class="stars">
-                                            <?php
-                                                $nbJauneEtoile = intval($article->getNotes());
-                                                for($i=0;$i<$nbJauneEtoile;$i++){
-                                                ?>
-                                                    <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
-                                                <?php
-                                                } ?>
-
-                                                <?php
-                                                $nbGriseEtoile = 5-$nbJauneEtoile;
-                                                for($i=0;$i<$nbGriseEtoile;$i++){
-                                                ?>
-                                                    <img alt="Etoile Grise" src="/frontend/assets/icons/marquer-comme-star-pas-preferee.svg">
-                                                <?php
-                                                } ?>
-                                            
-                                        </div>
-                                        <div class="availablity">
-                                            <div class="small-text">Disponibilité :</div>
-                                            <?php
-                                            if($article->getDisponible()){
-                                                ?>
-                                            <div class="small-text green">En stock</div>
-                                            <?php
-                                            }else{
-                                                ?>
-                                            <div class="small-text red">Plus disponible</div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="price-btn">
-                                            <div class="price"><?= $article->getPrix(); ?>€</div>
-                                            <a class="button medium-size basic-text btn-add-card">Ajouter au panier</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
-                            }
+                            generateArticleComponent(
+                                $id = $article->getId(),
+                                $imageSrc = $img,
+                                $title = $article->getNom(),
+                                $starCount = intval($article->getNotes()),
+                                $availability = $article->getDisponible(),
+                                $promotion = $article->getPromo(),
+                                $price = $article->getPrix()
+                            );
+                        
+                        }
                     }
                     ?>
                     

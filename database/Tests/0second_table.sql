@@ -19,11 +19,11 @@ VALUES
 (3,3,3,'Moyen produit'),
 (4,4,2,'Mauvais produit'),
 (5,5,1,'Très mauvais produit'),
-(1,6,5,'Super produit'),
-(2,7,4,'Bon produit'),
-(3,8,3,'Moyen produit'),
-(4,9,2,'Mauvais produit'),
-(5,10,1,'Très mauvais produit');
+(1,5,5,'Super produit'),
+(2,4,4,'Bon produit'),
+(3,1,3,'Moyen produit'),
+(4,2,2,'Mauvais produit'),
+(5,3,1,'Très mauvais produit');
 
 -- Exemple d'insertion dans la table ArticleCommande (idUser entre 1 et 5)(idArticle entre 1 et 10)(taille si id idArticle == 5,8,10 alors taille =NUll ou bien xl l m s xs)(quantite de l'article lors de la commande)
 INSERT INTO Panier ( ID_User, id_Article, taille, quantite)

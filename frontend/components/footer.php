@@ -25,7 +25,7 @@
             <div class="footer-box">
                 <ul>
                     <li><a href="/legal">Mentions légales</a></li>
-                    <li><a href="#">Créateurs</a></li>
+                    <li><a href="/accueil/createurs">Créateurs</a></li>
                 </ul>
             </div>
         </div>

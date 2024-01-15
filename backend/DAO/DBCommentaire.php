@@ -13,20 +13,28 @@ class DBCommentaire extends Connexion  implements DAOInterface
     /**
      * Ajoute un commentaire dans la base
      * 
-     * @param CommentaireEntity $name
+     * @param CommentaireEntity $entity
      * @param int $id_article
      */
     public static function add(CommentaireEntity $entity,int $id_article)
     {
-        $requete = "call InsertCommentaire(?, ?, ?, ?)";
-        $stmt = self::pdo->prepare($requete);
+        try {
+            $requete = "call InsertCommentaire(?, ?, ?, ?)";
+            $stmt = self::$pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
-        $stmt->bindParam(2, $id_article, \PDO::PARAM_INT);
-        $stmt->bindParam(3, $entity->getNote(), \PDO::PARAM_INT);
-        $stmt->bindParam(4, $entity->getCommentaire(), \PDO::PARAM_INT);
+            $stmt->bindParam(1, $entity->getUser(), \PDO::PARAM_INT);
+            $stmt->bindParam(2, $id_article, \PDO::PARAM_INT);
+            $stmt->bindParam(3, floatval($entity->getNote()));
+            $stmt->bindParam(4, $entity->getCommentaire(), \PDO::PARAM_STR);
 
-        $stmt->execute();
+            var_dump($entity);
+            var_dump($id_article);
+
+            $stmt->execute();
+          }  catch (\PDOException $e) {
+                // Gérer les erreurs ici, par exemple, loguer l'erreur ou retourner un message d'erreur.
+                echo "Erreur d'exécution de la requête : " . $e->getMessage();
+            }
     }
 
     public static function update($entity)
@@ -50,7 +58,7 @@ class DBCommentaire extends Connexion  implements DAOInterface
     public static function delete($entity)//, $id_article
     {
         $requete = "DeleteCommentaire(?,?)";
-        $stmt = self::pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
         $stmt->bindParam(2, $id_article, \PDO::PARAM_INT);
@@ -103,18 +111,17 @@ class DBCommentaire extends Connexion  implements DAOInterface
         $stmt->execute();
 
         $resultats = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
         $array_commentaire = array() ;
         // Parcourir les résultats et créer des objets Commentaire
         foreach ($resultats as $resultat) {
-            $commentaire = new Commentaire(
+            $commentaire = new CommentaireEntity(
                 $resultat['ID_User'],
                 $resultat['note'],
                 $resultat['commentaire']
             );
-            
             $array_commentaire[] = $commentaire;
         }
+
         return  $array_commentaire;
     }
 

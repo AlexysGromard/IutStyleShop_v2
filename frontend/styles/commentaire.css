@@ -4,25 +4,35 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 100%;
+    /*max-width: 100%;*/
     height: max-content;
     margin : 45px 70px 45px 70px;
+    /*align-items: center;*/
+    
+}
+
+.commantaire-title{
+    
 }
 
 
 
-
 .commentaire-block{
-    max-width: 100%;
-    height: max-content;
+    /*max-width: 100%;
+    height: max-content;*/
 }
 
 .commentaire-contenaire{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 100%;
-    height: max-content;
+    
+    
+    /*margin-left: 160px;*/
+    /*height: max-content;*/
+    justify-content: center;
+    align-items: center;
+
 }
 
 /* ARTICLE */
@@ -30,7 +40,7 @@
 
 
 .article-image{
-    width: max-content;
+    max-width: 100px;
 }
 
 .article-info{
@@ -43,6 +53,7 @@
     display: flex;
     flex-direction: row;
     gap: 5px;
+    align-items: center;
 }
 
 
@@ -81,23 +92,31 @@ input[type="radio"] + label {
     border-radius: 10px;
     
     height: max-content;
+
     display: flex;
     flex-direction: column;
     gap: 15px;
-    
+
+    width: -moz-available;
+    max-width: 965px;
 }
+    
+
 
 textarea{
     background: #F1F3F4;
-    width: 100%;
+    max-width: 100%;
+    min-width: max-content;
+    width: 918px; 
+    height: 200px;
+    min-height: 44px;
     border: none;
-    height: 100px;
     border-radius: 20px;
     flex-shrink: 0;
 
     padding: 15px 12px;
 
-    max-width: 100%;
+
 
 
 }
@@ -143,8 +162,21 @@ textarea{
 
     .article-info-part{
         flex-direction: column;
-        gap: 5px;
+        gap: 10px;
     }
 
+    .article-image{
+        max-width: 300px;
+        align-items: center;
+    }
+
+    .commentaire-contenaire{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 965px;
+        margin-left: 15px;
+        height: max-content;
+    }
     
 }

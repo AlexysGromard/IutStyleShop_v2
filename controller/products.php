@@ -62,6 +62,10 @@ class products{
             $couleur = array('red','green','blue','white','black');
             $categorieChoisi = array();
             $couleurChoisi = array();
+            $promo = false;
+            if($param[13]=="true"){
+                $promo = true;
+            }
 
             for($i=0; $i<count($categorie);$i++){
                 if($param[$i]=="true"){
@@ -80,8 +84,7 @@ class products{
             if ($param[12]=="true"){
                 $genre .= "F";
             }
-            $mesArticles = $this->dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
-            
+            $mesArticles = $this->dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,$promo,2);
             require "frontend/all-products/index_bd.php";
 
         }else{
