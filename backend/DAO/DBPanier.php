@@ -99,7 +99,7 @@ class DBPanier extends Connexion// implements DAOInterface
 
             $articles = array();
             foreach ($result as $article ){
-                $articles[] = new \backend\entity\PanierArticleEntity($article["id_Article"],$article["taille"],$article["quantite"]);
+                $articles[] = new \backend\entity\PanierArticleEntity($article["ID_Article"],$article["taille"],$article["quantite"]);
             }
             return new \backend\entity\PanierEntity($articles);
             
