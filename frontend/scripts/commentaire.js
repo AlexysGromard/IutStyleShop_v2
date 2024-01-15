@@ -16,7 +16,7 @@ function compterCaracteres() {
     var textarea = document.getElementById("commentaire");
     var nombreCaracteres = textarea.value.length;
 
-    console.log("Nombre de caractères:", nombreCaracteres);
+    /*console.log("Nombre de caractères:", nombreCaracteres);*/
 
     if (nombreCaracteres > 500) {
         textarea.style.color = "red";
@@ -31,7 +31,17 @@ function compterCaracteres() {
     }
   
 
-/*
+
+
+
+
+
+
+
+
+
+
+    /*
     * Fonction qui permet de mettre le nombre d'etoiles en fonction de la note
 */
 function mettreEtoiles() {
@@ -39,17 +49,14 @@ function mettreEtoiles() {
     console.log("Note:", note);
 
     for (var i = 0; i < note; i++) {
-        console.log("Note:",  "etoile" + i )
         var imageId = "etoile" + i;
-        document.getElementById(imageId).src = "frontend/assets/icons/marquer-comme-star-preferee.svg";
-        console.log("Image:", document.getElementById(imageId));
+        document.getElementById(imageId).src = "/frontend/assets/icons/marquer-comme-star-preferee.svg";
     }
 
     // Réinitialise les images non sélectionnées
     for (var j = parseInt(note) ; j < 5; j++) {
-        console.log("Note:",  "etoile" + j )
         imageId = "etoile" + j;
-        document.getElementById(imageId).src = "frontend/assets/icons/marquer-comme-star-pas-preferee.svg";
+        document.getElementById(imageId).src = "/frontend/assets/icons/marquer-comme-star-pas-preferee.svg";
     }
 
     

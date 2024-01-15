@@ -13,8 +13,26 @@ class commentaire{
      * Cette fonction permet d'afficher le formulaire pour ajouter un commentaire
      */
     function index(){
-        require "frontend/commentaire/commentaire.php";
+        
 
+    }
+    /**
+     * charge le formulaire pour un commentaire
+     * 
+     * @param int $id_article
+     */
+    function form(array $id_article)
+    {
+        $this->dao = new \backend\DAO\DBArticle();
+
+
+        $article = $this->dao->getById($id_article[0]);
+
+        if ($article == null) {
+            header("Location: /article/visuel/'.$id_article");
+        }
+
+        require "frontend/commentaire/commentaire.php";
     }
 
     /**
