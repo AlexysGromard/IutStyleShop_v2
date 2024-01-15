@@ -84,21 +84,19 @@
                     include 'frontend/components/article-card.php';
                     
                     foreach($articlesSimilaire as $article){
-                        if($article instanceof ArticleEntity){
-                            $img = ""; 
-                            if (count($article->getImages())>=1){
-                                $img = $article->getImages()[0];
-                            }
-                            generateArticleComponent(
-                            $id = $article->getId(),
-                            $imageSrc = $img,
-                            $title = $article->getNom(),
-                            $starCount = intval($article->getNotes()),
-                            $availability = $article->getDisponible(),
-                            $promotion = $article->getPromo(),
-                            $price = $article->getPrix()
-                        );
+                        $img = ""; 
+                        if (count($article->getImages())>=1){
+                            $img = $article->getImages()[0];
                         }
+                        generateArticleComponent(
+                        $id = $article->getId(),
+                        $imageSrc = $img,
+                        $title = $article->getNom(),
+                        $starCount = intval($article->getNotes()),
+                        $availability = $article->getDisponible(),
+                        $promotion = $article->getPromo(),
+                        $price = $article->getPrix()
+                    );
                         
                     }
                 
@@ -109,7 +107,7 @@
         <section id="comments-section">
             <div id="comments-title-box">
                 <span class="section-title-name">Commentaires</span>
-                <span class="section-title-results">4 commentaires</span>
+                <span class="section-title-results"><?= count($comments)?> commentaires</span>
             </div>
             <div id="comments-box">
                 <!-- Left part -->
@@ -120,7 +118,18 @@
                     <div id="article-stars-box">
                         <div id="article-stars">
                             <!-- placement des étoile -->
-                            <?php foreach (array(1,2,3,4,5) as $valeur): ?>
+                            <?php 
+                            $notes = array(0,0,0,0,0);
+                            foreach($comments as $comment){
+                                $notes[intval($comment->getNote())-1] += 1  ;
+                            }
+                            $widthNotes = array(0,0,0,0,0);
+                            for($i=0;$i<5;$i++){
+                                if(count($comments)>0){
+                                    $widthNotes[$i] = ($notes[$i]*100)/count($comments);
+                                }
+                            }
+                            foreach (array(1,2,3,4,5) as $valeur): ?>
                             <?php if ($articleActual->getNotes() >= $valeur): ?>
 
                             <img alt="Etoile Jaune" src="/frontend/assets/icons/marquer-comme-star-preferee.svg">
@@ -138,35 +147,35 @@
                         <!-- 5 étoiles -->
                         <div class="distribution-stars-line">
                             <span class="distribution-stars-line-title">5 étoiles</span>
-                            <div class="distribution-stars-line-container"><div style="width: 70%;" class="distribution-stars-line-value"></div></div>
-                            <span class="distribution-stars-line-value-text">70%</span>
+                            <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[4]?>%;" class="distribution-stars-line-value"></div></div>
+                            <span class="distribution-stars-line-value-text"><?=$widthNotes[4]?>%</span>
                         </div>
                         <!-- 4 étoiles -->
                         <div class="distribution-stars-line">
                             <span class="distribution-stars-line-title">4 étoiles</span>
-                            <div class="distribution-stars-line-container"><div style="width: 20%;" class="distribution-stars-line-value"></div></div>
-                            <span class="distribution-stars-line-value-text">20%</span>
+                            <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[3]?>%;" class="distribution-stars-line-value"></div></div>
+                            <span class="distribution-stars-line-value-text"><?=$widthNotes[3]?>%</span>
                         </div>
                         <!-- 3 étoiles -->
                         <div class="distribution-stars-line">
                             <span class="distribution-stars-line-title">3 étoiles</span>
-                            <div class="distribution-stars-line-container"><div style="width: 5%;" class="distribution-stars-line-value"></div></div>
-                            <span class="distribution-stars-line-value-text">5%</span>
+                            <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[2]?>%;" class="distribution-stars-line-value"></div></div>
+                            <span class="distribution-stars-line-value-text"><?=$widthNotes[2]?>%</span>
                         </div>
                         <!-- 2 étoiles -->
                         <div class="distribution-stars-line">
                             <span class="distribution-stars-line-title">2 étoiles</span>
-                            <div class="distribution-stars-line-container"><div style="width: 3%;" class="distribution-stars-line-value"></div></div>
-                            <span class="distribution-stars-line-value-text">3%</span>
+                            <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[1]?>%;" class="distribution-stars-line-value"></div></div>
+                            <span class="distribution-stars-line-value-text"><?=$widthNotes[1]?>%</span>
                         </div>
                         <!-- 1 étoile -->
                         <div class="distribution-stars-line">
                             <span class="distribution-stars-line-title">1 étoile</span>
-                            <div class="distribution-stars-line-container"><div style="width: 2%;" class="distribution-stars-line-value"></div></div>
-                            <span class="distribution-stars-line-value-text">2%</span>
+                            <div class="distribution-stars-line-container"><div style="width: <?=$widthNotes[0]?>%;" class="distribution-stars-line-value"></div></div>
+                            <span class="distribution-stars-line-value-text"><?=$widthNotes[0]?>%</span>
                         </div>
                     </div>
-                    <a  class="button basic-text">Ajouter un commentaire</a>
+                    <a  class="button basic-text" href="/commentaire/form/<?=$id?>">Ajouter un commentaire</a>
 
                 </div>
                 <!-- Right part -->
@@ -174,24 +183,16 @@
                     <!-- Commentaires -->
                     <!-- TODO : Implementer la fonction de récupération des commentaires -->
                     <?php include_once 'frontend/components/comment.php'; 
+                    $i=0;
+                    foreach($comments as $comment){
+                        generateCommentComponent(
+                            $name = $userCommentNames[$i]["nom"]." ".$userCommentNames[$i]["prenom"],
+                            $rating = $comment->getNote(),
+                            $commentText = $comment->getCommentaire(),
+                        );
+                        $i++;
+                    }
                     
-                    generateCommentComponent(
-                        $name = "Jean",
-                        $rating = 4,
-                        $commentText = "Super article, je recommande !",
-                    );
-
-                    generateCommentComponent(
-                        $name = "Jean",
-                        $rating = 4,
-                        $commentText = "Super article, je recommande !",
-                    );
-
-                    generateCommentComponent(
-                        $name = "Jean",
-                        $rating = 4,
-                        $commentText = "Super article, je recommande !",
-                    );
                 
                     ?>
                 </div>

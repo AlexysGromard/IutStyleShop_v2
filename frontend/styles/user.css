@@ -3,6 +3,10 @@
 * Description : Fichier de style pour les pages de l'espace utilisateur et admin
 */
 
+body > * {
+    width: auto;
+}
+
 .box_menu_client{
     display: flex;
     flex-direction: column;

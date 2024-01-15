@@ -92,29 +92,28 @@ class DBCommentaire extends Connexion  implements DAOInterface
      * 
      * @param  $name
      */
-    public static function getCommentaireByArticle(ArticleEntity $entity): array
+    public static function getCommentaireByIdArticle(int $id_article): array
     {
         
         $requete = "CALL GetCommentairesByArticle(?)";
         $stmt = self::$pdo->prepare($requete);
 
         // Lie les paramètres d'entrée
-        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+        $stmt->bindParam(1, $id_article, \PDO::PARAM_INT);
         $stmt->execute();
 
         $resultats = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
         $array_commentaire = array() ;
         // Parcourir les résultats et créer des objets Commentaire
         foreach ($resultats as $resultat) {
-            $commentaire = new Commentaire(
+            $commentaire = new CommentaireEntity(
                 $resultat['ID_User'],
                 $resultat['note'],
                 $resultat['commentaire']
             );
-            
             $array_commentaire[] = $commentaire;
         }
+
         return  $array_commentaire;
     }
 

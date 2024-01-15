@@ -201,6 +201,7 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function delete($id)
     {
+        
     }
 
     /**
@@ -210,46 +211,71 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getall()
     {
-        $requete = "CALL GetAllArticle()";
-        $stmt = self::$pdo->prepare($requete);
-        $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $articles = self::getallRequest();
+        $lsArticles = array();
+        
+        foreach($articles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+                       
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
 
-    }
-    private static function getrequestGetAllArticle(){
-        $requete = "CALL GetAllArticle()";
-        $stmt = self::$pdo->prepare($requete);
-        $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    private static function getrequestGetImageOfArticle($id_article){
-        $requete = "CALL GetImageArticle(?)";
-        $stmt = self::$pdo->prepare($requete);
-        $stmt->bindParam(1,$id_article);
-        $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-
-
-    public static function getall2()
-    {
-        $res = self::getrequestGetAllArticle();
-
-        $articles = [];
-        foreach ($res as $element){
-            $res2 = self::getrequestGetImageOfArticle();
-            $image = [];
-            foreach ($res2 as $images){
-                $image[] = $res2["lien"];
-            }
-
-            $articles[] = new \backend\entity\ArticleEntity($element["id"],$element["nom"],$element["category"],$element["genre"],$element["couleur"],$element["description"],$element["votant"],$element["notes"],$element["prix"],$element["promo"],$element["disponible"],$image);
+            $lsArticles[] = $article;
         }
+        return $lsArticles;
 
     }
+    // private static function getrequestGetAllArticle(){
+    //     $requete = "CALL GetAllArticle()";
+    //     $stmt = self::$pdo->prepare($requete);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    // }
 
+    // private static function getrequestGetImageOfArticle($id_article){
+    //     $requete = "CALL GetImageArticle(?)";
+    //     $stmt = self::$pdo->prepare($requete);
+    //     $stmt->bindParam(1,$id_article);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    // }
+
+
+
+    // public static function getall2()
+    // {
+    //     $res = self::getrequestGetAllArticle();
+
+    //     $articles = [];
+    //     foreach ($res as $element){
+    //         $res2 = self::getrequestGetImageOfArticle();
+    //         $image = [];
+    //         foreach ($res2 as $images){
+    //             $image[] = $res2["lien"];
+    //         }
+
+    //         $articles[] = new \backend\entity\ArticleEntity($element["id"],$element["nom"],$element["category"],$element["genre"],$element["couleur"],$element["description"],$element["votant"],$element["notes"],$element["prix"],$element["promo"],$element["disponible"],$image);
+    //     }
+
+    // }
+
+    private static function getallRequest():array{
+        $requete = "CALL GetAllArticle()";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
+    }
+
+    private static function getByIdRequest(int $id):array{
+        $requete = "CALL GetArticleInfo(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+    }
     /**
      * Donne un article
      * 
@@ -259,38 +285,16 @@ class DBArticle extends Connexion implements DAOInterface
     public static function getById(int $id): ?ArticleEntity
     {
         try {
-            $requete = "CALL GetArticleInfo(?)";
-            $stmt = self::$pdo->prepare($requete);
-            $stmt->bindParam(1,$id);
-            $stmt->execute();
-            $valeurArticle = $stmt->fetch(\PDO::FETCH_ASSOC);
+            
+            $valeurArticle = self::getByIdRequest($id)[0];
+            if(!$valeurArticle){
+                return null;
+            }
 
-
-            $requete = "CALL GetImageArticle(?)";
-            $stmt = self::$pdo->prepare($requete);
-            $stmt->bindParam(1,$id);
-            $stmt->execute();
-            $imagesArticle = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            $lsLiens = array();
-            foreach($imagesArticle as $img) { 
-
-                $lsLiens[]= $img["lien"] ;
-             } 
-
-            $requete = "CALL GetQuantiteAccessoireOrVetement(?)";
-            $stmt = self::$pdo->prepare($requete);
-            $stmt->bindParam(1,$id);
-            $stmt->execute();
-            $lsQuantite = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            $quantite = "";
-            if ( count($lsQuantite[0])==1){
-                $quantite= strval($lsQuantite[0]["quantite"]) ;
-            }else{
-                foreach($lsQuantite[0] as $val) {
-                    $quantite.= strval($val).";";
-                } 
-            }            
-            $article = ArticleEntity::CreateArticle($id,$valeurArticle["nom"],$valeurArticle["category"],$valeurArticle["genre"],$valeurArticle["couleur"],$valeurArticle["description"],$valeurArticle["votant"],$valeurArticle["notes"],$valeurArticle["prix"],$valeurArticle["promo"],$valeurArticle["disponible"],$quantite,$lsLiens);
+            
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
             return $article;
 
         }catch (\PDOException $e ){
@@ -303,9 +307,47 @@ class DBArticle extends Connexion implements DAOInterface
         
     }
 
+    public static function getImagesArticleById($id):array{
+        $requete = "CALL GetImageArticle(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $imagesArticle = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $lsLiens = array();
+        foreach($imagesArticle as $img) { 
+
+            $lsLiens[]= $img["lien"] ;
+        } 
+        return $lsLiens;
+    }
+
+    public static function getQuantiteArticleById($id):string{
+        $requete = "CALL GetQuantiteAccessoireOrVetement(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $lsQuantite = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $quantite = "";
+        if ( count($lsQuantite[0])==1){
+            $quantite= strval($lsQuantite[0]["quantite"]) ;
+        }else{
+            foreach($lsQuantite[0] as $val) {
+                $quantite.= strval($val).";";
+            } 
+        } 
+        return $quantite;
+    }
+
     
 
-
+    private static function getArticleByCategorieRequest(string $categorie):array{
+        $requete = "CALL GetArticleByCategorie(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$categorie);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+    }
     /**
      * Donne les articles d'une categorie
      * 
@@ -314,9 +356,28 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByCategorie(string $categorie): array
     {
-        $requete = "CALL GetArticleByCategorie(?)";
+        $articles = self::getArticleByCategorieRequest($categorie);
+        $lsArticles = array();
+        foreach($articles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+                       
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+            
+            $lsArticles[] = $article;
+        }
+        return $lsArticles;
+    }
+
+    
+
+    private static function getArticleByCategorieAndGenreRequest(string $categorie, string $genre):array{
+        $requete = "CALL GetArticleByCategorieAndGenre(?,?)";
         $stmt = self::$pdo->prepare($requete);
-        $stmt->bindParam(1,$categorie);
+        $stmt->bindParam(1, $categorie);
+        $stmt->bindParam(2, $genre);
+
         $stmt->execute();
         $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $articles;
@@ -324,32 +385,35 @@ class DBArticle extends Connexion implements DAOInterface
 
     public static function getArticleByCategorieAndGenre(string $categorie, string $genre){
         try {
-            $requete = "CALL GetArticleByCategorieAndGenre(?,?)";
-            $stmt = self::$pdo->prepare($requete);
-            $stmt->bindParam(1, $categorie);
-            $stmt->bindParam(2, $genre);
-
-            $stmt->execute();
-            $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            $mesArticles = array();
-            $i=0;
-            // foreach ($articles as $article) {
-            //     $i++;
-            //     echo '<h1>'.$i.'</h1>';
-            //     $art = self::getById(intval($article["id"]));
-
-            //     if ($art) {
-            //         $mesArticles[] = $art;
-            //     }
-            // }
-
-            return $articles;
+            $articles = self::getArticleByCategorieAndGenreRequest($categorie,$genre);
+            $lsArticles = array();
+            foreach($articles as $valeurArticle){
+                $id = $valeurArticle["id"];
+                $lsLiens = self::getImagesArticleById($id);
+                $quantite = self::getQuantiteArticleById($id);
+                        
+                $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+                
+                $lsArticles[] = $article;
+            }
+            return $lsArticles;
         } catch (\PDOException $e) {
             // Gère les erreurs de la base de données de manière plus robuste
             // Tu pourrais lever une exception ou loguer l'erreur
             throw new \PDOException("Erreur dans la récupération des articles par catégorie et genre : " . $e->getMessage());
         }
     
+    }
+
+    
+
+    private static function getArticleByDisponibiliteRequest(bool $disponibilite):array{
+        $requete = "CALL GetArticleByDisponibilite(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$disponibilite);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
     }
 
     /**
@@ -360,8 +424,28 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByDisponibilite(bool $disponibilite): array
     {
-        return array();
+        $articles= self::getArticleByDisponibiliteRequest($disponibilite);
+        $lsArticles = array();
+        foreach($articles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+              
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+            
+            $lsArticles[] = $article;
+        }
+        return $lsArticles;
 
+    }
+
+    private static function getArticleByGenreRequest(string $genre ) :array{
+        $requete = "CALL GetArticleByGenre(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$genre);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
     }
 
     /**
@@ -372,8 +456,28 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByGenre(string $genre): array
     {
-        return array();
+        $articles = self::getArticleByGenreRequest($genre);
+        $lsArticles = array();
+        foreach($articles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+               
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+            
+            $lsArticles[] = $article;
+        }
+        return $lsArticles;
 
+    }
+
+    private static function getArticleByCouleurRequest(string $couleur ){
+        $requete = "CALL GetArticleByCouleur(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$couleur);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
     }
 
     /**
@@ -385,17 +489,34 @@ class DBArticle extends Connexion implements DAOInterface
     public static function getArticleByCouleur(string $couleur): array
     {
 
-        $requete = "CALL GetArticleByCouleur(?)";
-        $stmt = self::$pdo->prepare($requete);
-        $stmt->bindParam(1,$couleur);
-        $stmt->execute();
-        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        return $articles;
+        $articles = self::getArticleByCouleurRequest($couleur);
+        $lsArticles = array();
+        foreach($articles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+               
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+            
+            $lsArticles[] = $article;
+        }
+        return $lsArticles;
         
         
 
     }
 
+
+    private static function getArticleByPrixRequest($prixmin,$prixmax): array{
+        $requete = "CALL GetArticleByPrix(?,?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$prixmin);
+        $stmt->bindParam(2,$prixmax);
+
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
+    }
     /**
      * Donne les articles disponibles
      * 
@@ -410,16 +531,31 @@ class DBArticle extends Connexion implements DAOInterface
             $prixmin = $prix[0];
             $prixmax = $prix[1];
 
-            $requete = "CALL GetArticleByPrix(?,?)";
-            $stmt = self::$pdo->prepare($requete);
-            $stmt->bindParam(1,$prixmin);
-            $stmt->bindParam(2,$prixmax);
-
-            $stmt->execute();
-            $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            return $articles;
+            $articles = getArticleByPrixRequest($prixmin,$prixmax);
+            $lsArticles = array();
+            foreach($articles as $valeurArticle){
+                $id = $valeurArticle["id"];
+                $lsLiens = self::getImagesArticleById($id);
+                $quantite = self::getQuantiteArticleById($id);
+                    
+                $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+                
+                $lsArticles[] = $article;
+            }
+            return $lsArticles;
         }
         return array();
+    }
+
+
+    private static function getArticleByPromoRequest(bool $promo): array
+    {
+        $requete = "CALL GetArticleByPromo(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$promotion);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
     }
 
     /**
@@ -428,11 +564,44 @@ class DBArticle extends Connexion implements DAOInterface
      * @param bool $promo
      * @return ArticleEntity[]
      */
-    public static function getArticleByPromo(array $promo): array
+    public static function getArticleByPromo(bool $promo): array
     {
-        return array();
+        $promotion = 0;
+        if($promo){
+            $promotion = 1;
+        }
+        $articles = self::getArticleByPromoRequest($promo);
+        $lsArticles = array();
+        foreach($articles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+             
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+            
+            $lsArticles[] = $article;
+        }
+        return $lsArticles;
 
     }
+
+
+    private static function getArticleByConditionRequest($categorie,$couleur,$prixmin,$prixmax,$genres,$promo,$disponible):array{
+        $requete = "CALL GetArticleByCondition(?,?,?,?,?,?,?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
+        $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
+        $stmt->bindParam(3,$prixmin);
+        $stmt->bindParam(4,$prixmax);
+        $stmt->bindParam(5,$genres);    
+        $stmt->bindParam(6,$promo,\PDO::PARAM_INT);
+        $stmt->bindParam(7,$disponible);
+
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $articles;
+    }
+
 
     /**
      * Donne les articles par rapport à des conditions
@@ -465,42 +634,29 @@ class DBArticle extends Connexion implements DAOInterface
                 if ( $disponibilite == 1){
                     $disponible = 1;
                 }else if ( $disponibilite == 2){
-                    $requete = "CALL GetArticleByCondition(?,?,?,?,?,?,?)";
-                    $stmt = self::$pdo->prepare($requete);
-                    $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
-                    $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
-                    $stmt->bindParam(3,$prixmin);
-                    $stmt->bindParam(4,$prixmax);
-                    $stmt->bindParam(5,$genres);    
-                    $stmt->bindParam(6,$promo,\PDO::PARAM_INT);
-                    $stmt->bindParam(7,$disponible);
-
-                    $stmt->execute();
-                    $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                    $articles = self::getArticleByConditionRequest($categorie,$couleur,$prixmin,$prixmax,$genres,$promo,$disponible);
                     $mesArticles = array_merge($mesArticles, $articles);
 
                     $disponible = 1;
                     //Puis on sort du if et on récupère les disponible
                 }
-                $requete = "CALL GetArticleByCondition(?,?,?,?,?,?,?)";
-                $stmt = self::$pdo->prepare($requete);
-                $stmt->bindParam(1,$couleur,\PDO::PARAM_STR);
-                $stmt->bindParam(2,$categorie,\PDO::PARAM_STR);
-                $stmt->bindParam(3,$prixmin);
-                $stmt->bindParam(4,$prixmax);
-                $stmt->bindParam(5,$genres);
-                $stmt->bindParam(6,$promo,\PDO::PARAM_INT);
-                $stmt->bindParam(7,$disponible);
-                $stmt->execute();
-                $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $articles = self::getArticleByConditionRequest($categorie,$couleur,$prixmin,$prixmax,$genres,$promo,$disponible);
                 $mesArticles = array_merge($mesArticles, $articles);
 
             }
 
         }
         
-
-        return $mesArticles;
+        $lsArticles = array();
+        foreach($mesArticles as $valeurArticle){
+            $id = $valeurArticle["id"];
+            $lsLiens = self::getImagesArticleById($id);
+            $quantite = self::getQuantiteArticleById($id);
+            $article = ArticleEntity::CreateArticle($id,strval($valeurArticle["nom"]),strval($valeurArticle["category"]),strval($valeurArticle["genre"]),strval($valeurArticle["couleur"]),strval($valeurArticle["description"]),intval($valeurArticle["votant"]),floatval($valeurArticle["notes"]),floatval($valeurArticle["prix"]),floatval($valeurArticle["promo"]),boolval($valeurArticle["disponible"]),$quantite,$lsLiens);
+                       
+            $lsArticles[] = $article;
+        }
+        return $lsArticles;
         
            
 

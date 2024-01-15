@@ -6,7 +6,7 @@
             <a href="/user/admin_space/articles/nouvelArticle" class="White_police_40 small-size button">Ajouter un article</a>
         </div>
                                
-
+        
         <table class="table_admin">
             <thead>
                 <tr>
@@ -16,21 +16,19 @@
                     <th class="White_police_35" >Genre</th>
                     <th class="White_police_35" >Notes</th>
                     <th class="White_police_35" >En catalogue</th>
-                    <th class="White_police_35" >Description</th>
                     <th class="White_police_35" >Actions</th>
                 </tr>
             </thead>
             <tbody>
+                <span>okok</span>
                 <?php foreach( $array_articles as $element) : ?>
-                <?php $listvalues= $element->getArrayOfImportantAttribut()?>
                 <tr>
-                    <td><a href="xx" class="Red_police_50"><?= $listvalues["N°"] ?></a></td>
-                    <td class="Black_police_40"><?= $listvalues["Nom"] ?></td>
-                    <td class="Black_police_40"><?= $listvalues["Catégorie"] ?></td>
-                    <td class="Black_police_40"><?= $listvalues["Genre"] ?></td>
-                    <td class="Black_police_40"><?= $listvalues["Notes"] ?></td>
-                    <td class="Black_police_40"><?= $listvalues["En catalogue"] ?></td>
-                    <td class="Black_police_40"><?= $listvalues["Description"] ?></td>
+                    <td><a href="xx" class="Red_police_50"><?= $element->getId(); ?></a></td>
+                    <td class="Black_police_40"><?= $element->getNom(); ?></td>
+                    <td class="Black_police_40"><?= $element->getCategory(); ?></td>
+                    <td class="Black_police_40"><?= $element->getGenre(); ?></td>
+                    <td class="Black_police_40"><?= $element->getNotes(); ?></td>
+                    <td class="Black_police_40"><?= ($element->getDisponible())? "Disponible" : "Non Disponible" ; ?></td>
                     <td class=action_space>
                         <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
                         <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>

@@ -99,15 +99,16 @@ class user{
             case "articles":
                 $actionSelect = "Base de données articles";
                 $DAOArticle = new \backend\DAO\DBArticle();
-                $array_article = $DAOArticle->getAll();
+                $array_articles = $DAOArticle->getAll();
                 //TODO
+                
 
                 $article = null;
                 if (isset($param[1])){
                     if (is_numeric($param[1])){
                         //vérifier que la command exist
                         //$numArticle = $param[1];
-                        $article = new \backend\Article("T-shirt Rouge","T-shirt","H","/image/truc.png",4.9,3,"compacte et durable","Rouge",true, 23.99 ,0); //modifier
+                        $article = new \backend\entity\Article("T-shirt Rouge","T-shirt","H","/image/truc.png",4.9,3,"compacte et durable","Rouge",true, 23.99 ,0); //modifier
                     }else if ($param[1] == "nouvelArticle"){
                         $article = "nouvelArticle";
                     }else{
@@ -117,6 +118,9 @@ class user{
                 break;
             case "avis":
                 $actionSelect = "Base de données avis";
+
+                $DAOArticle = new \backend\DAO\DBArticle();
+                $array_articles = $DAOArticle->getAll();
                 break;
             case "codes_promotionnel":
                 $actionSelect = "Base de données codes promotionnel";
@@ -194,6 +198,28 @@ class user{
         header("Location: /user/admin_space/commandes");
     }
 
+    function delCommentaire(array $param){
+        $personne = $this->checkRool("admin");
+        
+        if (count($param) != 2 || !is_numeric($param[0]) || !is_numeric($param[1])){
+            require "frontend/404.php";die();
+        }
+        
+        $DAOCommentaire = new \backend\DAO\DBCommentaire();
+        $commentaireToDel = $DAOCommentaire->getById($param[0]);
+        echo "<pre>";
+        var_dump($commentaireToDel);
+        echo "</pre>";
+        
+        if ($commentaireToDel != null){
+            
+            $DAOCommentaire->delete($commentaireToDel);
+            
+        }
+        
+        header("Location: /user/admin_space/commandes");
+    }
+
     function delCodesPromotionnel(array $param){
         
         $personne = $this->checkRool("admin");
@@ -203,11 +229,8 @@ class user{
         }
         
         $DAOCodePromo = new \backend\DAO\DBCodePromo();
-        echo "test";
         $codePromoToDel = $DAOCodePromo->getById($param[0]);
         
-        var_dump($codePromoToDel);
-        echo "<br>";
         if ($codePromoToDel != null){
             
             $DAOCodePromo->delete($codePromoToDel);
@@ -215,6 +238,28 @@ class user{
         }
         
         header("Location: /user/admin_space/codes_promotionnel");
+    }
+
+    function delArticle(array $param){
+        
+        $personne = $this->checkRool("admin");
+        
+        if (count($param) != 1 || !is_numeric($param[0])){
+            require "frontend/404.php";die();
+        }
+        
+        $DAOArticle = new \backend\DAO\DBArticle();
+        $article = $DAOArticle->getById($param[0]);
+        
+        var_dump($article);
+        echo "<br>";
+        if ($article != null){
+            //TODO : 
+            $DAOArticle->delete($article);
+            
+        }
+        
+        header("Location: /user/admin_space/articles");
     }
 
     private function checkRool($rool){
