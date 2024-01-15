@@ -9,7 +9,7 @@ CREATE OR REPLACE PROCEDURE InsertCommentaire(
 ) 
 BEGIN
     -- Ajouter un nouveau commentaire à la table Commentaire
-    INSERT INTO Commentaire (ID_user, ID_article, note, commentaire)
+    INSERT INTO Commentaire(ID_User, ID_Article, note, commentaire)
     VALUES (p_id_user, p_id_article, p_note, p_commentaire);
 END //
 DELIMITER ;
