@@ -149,6 +149,9 @@ class register {
             header("Location: /register");
             exit();
         }
+        
+        // Supprimer les erreurs
+        unset($_SESSION['errors']);
 
         header("Location: /emailConfirmation");
     }

@@ -111,6 +111,10 @@ class login {
             // Si il existe
             // Stocker l'utilisateur dans la session
             $user->saveUserSession();
+            
+            // Supprimer erreurs
+            unset($_SESSION['errors']);
+
             // Rediriger vers la page d'accueil
             header("Location: /user/dashboard/informations");
         }
