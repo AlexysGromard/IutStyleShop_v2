@@ -68,7 +68,7 @@ class commentaire{
 
 
                 $this->dao::add($commentaire,intval($id_article[0]));            
-            
+        
             }
         }
 

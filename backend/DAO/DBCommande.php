@@ -37,7 +37,7 @@ class DBCommande extends Connexion implements DAOInterface
 
         $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
         $stmt->bindParam(2, $entity->getStatut(), \PDO::PARAM_INT);
-
+        
         $stmt->execute();
 
     }
