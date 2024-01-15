@@ -24,13 +24,13 @@ class emailConfirmation {
 
         if (isset($_SESSION['email'])) {
             unset($_SESSION['errors']);
-            session_write_close();
-
-            require "frontend/authentication/email-confirmation.php";
 
             // Send code
             // $this->sendCodeViaSMTP();
             $this->sendCodeIUT();
+
+            require "frontend/authentication/email-confirmation.php";
+
         } else {
             header("Location: /register");
             exit();
@@ -40,17 +40,16 @@ class emailConfirmation {
     /*
     * Cette fonction permet générer un code de confirmation
     */
-    function generateConfirmationCode() {
+    private function generateConfirmationCode() {
         return mt_rand(100000, 999999);
     }
 
-    function sendCodeIUT(){
-        $confirmationCode = 000000;
+    private function sendCodeIUT(){
         // Stockage dans la session
-        $_SESSION['confirmationCode'] = $confirmationCode;
+        $_SESSION['confirmationCode'] = "000000";
     }
 
-    function sendCodeViaSMTP() {
+    private function sendCodeViaSMTP() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
@@ -94,7 +93,9 @@ class emailConfirmation {
     }
 
     function checkCode() {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
         // Récupération des données
         $code = $_POST['digit1'] . $_POST['digit2'] . $_POST['digit3'] . $_POST['digit4'] . $_POST['digit5'] . $_POST['digit6'];
@@ -109,6 +110,9 @@ class emailConfirmation {
 
         // Vérification du code
         if ($code != $_SESSION['confirmationCode']) {
+            echo "le code est incorrect";
+            echo "vous avez saisi : " . $code . "\n";
+            echo "le code est : " . $_SESSION['confirmationCode'] . "\n";
             $this->errors['code'] = true;
         }
 
@@ -116,7 +120,7 @@ class emailConfirmation {
         if (in_array(true, $this->errors)) {
             $_SESSION['errors'] = $this->errors;
 
-            header("Location: /register");
+            // header("Location: /register");
             exit();
         }
 

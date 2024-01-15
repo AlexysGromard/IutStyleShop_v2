@@ -60,8 +60,14 @@ class register {
         $passwordConfirmation = $_POST['password-confirmation'];
         $tokenDuFormulaire = $_POST['csrf_token'];
 
-        echo $_SESSION['csrf_token'];
-        echo $tokenDuFormulaire;
+        // Echapement des caractères spéciaux
+        $civility = htmlspecialchars($civility, ENT_QUOTES, 'UTF-8');
+        $lastname = htmlspecialchars($lastname, ENT_QUOTES, 'UTF-8');
+        $firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
+        $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+        $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
+        $passwordConfirmation = htmlspecialchars($passwordConfirmation, ENT_QUOTES, 'UTF-8');
+        $tokenDuFormulaire = htmlspecialchars($tokenDuFormulaire, ENT_QUOTES, 'UTF-8');
 
         if (!$this->verifierTokenCSRF($tokenDuFormulaire)) {
             // Le jeton CSRF n'est pas valide, traitement de l'erreur ou rejet de la requête
@@ -73,12 +79,6 @@ class register {
 
         unset($_SESSION['csrf_token']);
 
-        // Echapement des caractères spéciaux
-        $civility = htmlspecialchars($civility, ENT_QUOTES, 'UTF-8');
-        $lastname = htmlspecialchars($lastname, ENT_QUOTES, 'UTF-8');
-        $firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
-        $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
-        $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
 
         // Vérification du genre
         if ($civility != "M" && $civility != "W" && $civility != "N") {

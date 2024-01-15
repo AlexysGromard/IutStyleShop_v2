@@ -59,6 +59,11 @@ class login {
         $password = $_POST['password'];
         $tokenDuFormulaire = $_POST['csrf_token'];
 
+        // Echapement des caractères spéciaux
+        $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+        $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
+        $tokenDuFormulaire = htmlspecialchars($tokenDuFormulaire, ENT_QUOTES, 'UTF-8');
+
         if (!$this->verifierTokenCSRF($tokenDuFormulaire)) {
             // Le jeton CSRF n'est pas valide, traitement de l'erreur ou rejet de la requête
             unset($_SESSION['csrf_token']);
@@ -66,9 +71,6 @@ class login {
             exit();
         }
         unset($_SESSION['csrf_token']);
-
-        // Echapement des caractères spéciaux
-        $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
 
         // Vérification de l'email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
