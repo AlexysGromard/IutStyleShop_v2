@@ -3,6 +3,8 @@ namespace controller;
 
 class products{
 
+    private $dao;
+
     function index(){
         $this->dao = new \backend\DAO\DBArticle();
         $mesArticles = $this->dao->getall();
