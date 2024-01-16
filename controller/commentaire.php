@@ -31,10 +31,10 @@ class commentaire{
         session_start();
         if (isset($_SESSION['user'])) {
             
-            $this->dao = new \backend\DAO\DBArticle();
+            $dbarticle = new \backend\DAO\DBArticle();
             
 
-            $article = $this->dao::getById($id_article[0]);
+            $article = $dbarticle::getById(intval($id_article[0]));
     
             if ($article == null) {
                 header("Location: /article/visuel/".$id_article[0]);
@@ -72,12 +72,12 @@ class commentaire{
                
                 $commentaire = new CommentaireEntity($_SESSION['user']->getId(), $_POST['note'], htmlspecialchars($_POST['commentaire'])); 
                 
-                
-                
-
+                $dbCommentaire = new DBCommentaire();
                 
 
-                DBCommentaire::add($commentaire,intval($id_article[0]));            
+                
+
+                $dbCommentaire::add($commentaire,intval($id_article[0]));            
             }
         }
 
