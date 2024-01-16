@@ -2,6 +2,12 @@
 ## Introduction
 Dans le cadre de la SAE du 3ème semestre, nous avons dévellopé un site de e-commerce. Ce site est codé en PHP et utilise une base de données MySQL (MariaDB). Ce document a pour but de présenter les choix que nous avons fait terme de Design Pattern.
 
+## Equipe de développement
+- [Alexys Gromard]
+- [Lancelot Jouault]
+- [Bryan Levy]
+- [Floran Martel]
+
 ## Patrons de conception choisis
 ### 1. MVC
 #### A quel problème répond le design pattern choisi (pourquoi ?)
@@ -516,6 +522,9 @@ La classe fille AccesoireEntity n’a que quantité dans les attributs
 ### 5. Façade
 #### A quel problème répond le design pattern choisi (pourquoi ?)
 Le design pattern façade permet de fournir une interface unifiée à un ensemble d'interfaces d'un sous-système tout en préservant la flexibilité nécessaire. En clair, il ajoute des méthodes privées à une classe qui permettent de simplifier l'utilisation de cette classe. Dans notre cas, nous avons utilisé ce design pattern pour simplifier l'utilisation de la classe PDO.
+
+#### Sa mise en œuvre au niveau de la conception détaillée UML (quoi ?)
+![Image facade](imgQualDev/facade.png/ "Image facade").
 
 
 #### Son développement en PHP (comment ?)
