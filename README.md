@@ -1,6 +1,7 @@
 # ![Logo du Projet](/frontend/assets/favicon/favicon-32x32.png) IutStyleShop - Projet de 2ème année de BUT Informatique 
 Le projet IutStyleShop est un projet de SEA du 3ème semestre de BUT Informatique. Il s'agit d'un site de e-commerce codé en PHP et utilisant une base de données MySQL (MariaDB). Ce projet a été réalisé par 4 étudiants.
 
+Notre site est accessible à l'adresse suivante : [http://172.26.82.50/](http://172.26.82.50) (uniquement accessible depuis le réseau de l'IUT de Nantes).
 ## Sommaire
 - [Installation](#Installation)
 - [Licence](#Licence)
