@@ -21,7 +21,7 @@
             <!-- Complément d'adresse -->
             <div class="input-box">
                 <label class="input-label" for="complement">Complément d'adresse</label>
-                <input class="input-field sidebar" type="text" id="complement" name="complement" placeholder="Entrez votre complément d'adresse" initval="<?= $personne->getComplementAdresse(); ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonaddress')">
+                <input class="input-field sidebar" type="text" id="complement" name="additional-address" placeholder="Entrez votre complément d'adresse" initval="<?= $personne->getComplementAdresse(); ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonaddress')">
                 <span class="input-error-message <?php echo (isset($_SESSION['errors']["complement"]) && $_SESSION['errors']["complement"]) ? "active" : ""; ?>">Complément d'adresse invalide</span>
             </div>
             <!-- Ville -->

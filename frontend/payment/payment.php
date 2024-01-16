@@ -76,17 +76,17 @@
                         <div class="input-radio-choices">
                             <!-- Homme -->
                             <div class="input-radio-element">
-                                <input value="M" type="radio" name="civility" id="man">
+                                <input value="M" type="radio" name="civility" id="man" <?= $personne->genre=='M' ? 'checked' : '' ?>>
                                 <label class="radio-label" for="man">Homme</label>
                             </div>
                             <!-- Femme -->
                             <div class="input-radio-element">
-                                <input value="W" type="radio" name="civility" id="women">
+                                <input value="W" type="radio" name="civility" id="women" <?= $personne->genre=='W' ? 'checked' : '' ?>>
                                 <label class="radio-label" for="women">Femme</label>
                             </div>
                             <!-- Autre -->
                             <div class="input-radio-element">
-                                <input value="N" type="radio" name="civility" id="other">
+                                <input value="N" type="radio" name="civility" id="other" <?= $personne->genre!='M' && $personne->genre!='W' ? 'checked' : '' ?>>
                                 <label class="radio-label" for="other">Ne souhaite pas se prononcer</label>
                             </div>
                         </div>
@@ -98,13 +98,13 @@
                         <!-- Nom -->
                         <div class="input-box">
                             <label class="input-label" for="lastname">Nom</label>
-                            <input class="input-field" type="text" id="lastname" name="lastname" placeholder="Entrez votre nom" value="<?php echo (isset($_SESSION['lastname']) && $_SESSION['lastname']) ? $_SESSION['lastname'] : "";?>">
+                            <input class="input-field" type="text" id="lastname" name="lastname" placeholder="Entrez votre nom" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getNom() : "";?>">
                             <span class="input-error-message <?php echo (isset($_SESSION['errors']["lastname"]) && $_SESSION['errors']["lastname"]) ? "active" : ""; ?>">Nom invalide</span>
                         </div>
                         <!-- Prénom -->
                         <div class="input-box">
                             <label class="input-label" for="firstname">Prénom</label>
-                            <input class="input-field" type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom" value="<?php echo (isset($_SESSION['firstname']) && $_SESSION['firstname']) ? $_SESSION['firstname'] : "";?>">
+                            <input class="input-field" type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getPrenom() : "";?>">
                             <span class="input-error-message <?php echo (isset($_SESSION['errors']["firstname"]) && $_SESSION['errors']["firstname"]) ? "active" : ""; ?>">Prénom invalide</span>
                         </div>
                     </div>
@@ -112,13 +112,13 @@
                         <!-- Adresse email -->
                         <div class="input-box">
                             <label class="input-label" for="email">Adresse mail</label>
-                            <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail" value="<?php echo (isset($_SESSION['email']) && $_SESSION['email']) ? $_SESSION['email'] : "";?>">
+                            <input class="input-field" type="email" id="email" name="email" placeholder="Entrez votre adresse mail" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getEmail() : "";?>">
                             <span class="input-error-message <?php echo (isset($_SESSION['errors']["email"]) && $_SESSION['errors']["email"]) ? "active" : ""; ?>">Adresse mail invalide</span>
                         </div>
                         <!-- Numéro de téléphone -->
                         <div class="input-box">
                             <label class="input-label" for="phone">Numéro de téléphone</label>
-                            <input class="input-field" type="tel" id="phone" name="phone" placeholder="Entrez votre numéro de téléphone" value="<?php echo (isset($_SESSION['phone']) && $_SESSION['phone']) ? $_SESSION['phone'] : "";?>">
+                            <input class="input-field" type="tel" id="phone" name="phone" placeholder="Entrez votre numéro de téléphone" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getTelephone() : "";?>">
                             <span class="input-error-message <?php echo (isset($_SESSION['errors']["phone"]) && $_SESSION['errors']["phone"]) ? "active" : ""; ?>">Numéro de téléphone invalide</span>
                         </div>
                     </div>
@@ -134,13 +134,13 @@
                         <!-- Adresse -->
                         <div class="input-box">
                             <label class="input-label" for="address">Adresse</label>
-                            <input class="input-field sidebar" type="text" id="address" name="address" placeholder="Entrez votre adresse">
+                            <input class="input-field sidebar" type="text" id="address" name="address" placeholder="Entrez votre adresse" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getAdresse() : "";?>">
                             <span class="input-error-message ">Adresse invalide</span>
                         </div>
                         <!-- Code postal -->
                         <div class="input-box">
                             <label class="input-label" for="code">Code postal</label>
-                            <input class="input-field sidebar" type="text" placeholder="Entrez votre code postal" id="code" name="code">
+                            <input class="input-field sidebar" type="text" placeholder="Entrez votre code postal" id="code" name="code" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getCodePostal() : "";?>">
                             <span class="input-error-message ">Code postal invalide</span>
                         </div>
                     </div>
@@ -148,13 +148,13 @@
                         <!-- Complément d'adresse -->
                         <div class="input-box">
                             <label class="input-label" for="complement">Complément d'adresse</label>
-                            <input class="input-field sidebar" type="text" id="complement" name="complement" placeholder="Entrez votre complément d'adresse">
+                            <input class="input-field sidebar" type="text" id="complement" name="complement" placeholder="Entrez votre complément d'adresse" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getComplementAdresse() : "";?>">
                             <span class="input-error-message ">Complément d'adresse invalide</span>
                         </div>
                         <!-- Ville -->
                         <div class="input-box">
                             <label class="input-label" for="city">Ville</label>
-                            <input class="input-field sidebar" type="text" id="city" name="city" placeholder="Entrez votre ville">
+                            <input class="input-field sidebar" type="text" id="city" name="city" placeholder="Entrez votre ville" value="<?= isset($_SESSION['user']) ? $_SESSION['user']->getVille() : "";?>">
                             <span class="input-error-message ">Ville invalide</span>
                         </div>
                     </div>
