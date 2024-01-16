@@ -149,6 +149,16 @@ class register {
             header("Location: /register");
             exit();
         }
+
+        // Vérifier si l'email existe déjà
+        $DAOUser = new \backend\DAO\DBUser();
+        if ($DAOUser->getByEmail($email) != null) {
+            $this->errors['email'] = true;
+            $_SESSION['errors'] = $this->errors;
+
+            header("Location: /register");
+            exit();
+        }
         
         // Supprimer les erreurs
         unset($_SESSION['errors']);

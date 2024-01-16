@@ -147,7 +147,7 @@ class emailConfirmation {
         }
 
         // Stocker l'utilisateur dans la session
-        $user->saveUserSession();
+        $_SESSION['user'] = $user;
 
         // Supprimer les données de la session
         unset($_SESSION['civility']);
