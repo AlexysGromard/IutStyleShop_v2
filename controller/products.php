@@ -9,7 +9,7 @@ class products{
         $dao = new \backend\DAO\DBArticle();
         
         $mesArticles = $dao->getall();
-        $param = array(true,true,true,true,true,true,true,true,true,0,100,true,true,false,true,true); 
+        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","false","true","true",""); 
         require "frontend/all-products/index.php";
     }
 
@@ -30,7 +30,7 @@ class products{
     
     }
     function sweatshirt(){
-        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true");
+        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true","");
         $this->pageTitle = "Sweat-shirts";
         $this->filter($param);
     }
@@ -105,8 +105,10 @@ class products{
             }
             $dao = new \backend\DAO\DBArticle();
             $mesArticles = $dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
+            if ($param[16] != ""){
+                $mesArticles = $this->filiterbyname($param[16], $mesArticles);
+            }
             
-            $mesArticles = $this->filiterbyname($param[16], $mesArticles);
             
             require "frontend/all-products/index.php";
 
@@ -184,30 +186,6 @@ class products{
     
         return $coefficientRessemblance;
     }
-/*
-    function search(){
-        // Récupérer les données du formulaire
-        $search = $_POST['search'];
-
-        // Echapement des données
-        $search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
-
-        if (empty($search)){
-            // Retourner à la page précédente
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
-        }
-
-        require "backend/search.php";
-        $results = search($search);
-
-        echo"<pre>";
-        var_dump($results); 
-        echo"</pre>";
-
-        // Rediriger vers la page des produits
-        require "frontend/all-products/index_bd.php";
-    }
-*/
 }
 
 ?>

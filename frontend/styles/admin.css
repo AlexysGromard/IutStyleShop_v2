@@ -53,6 +53,7 @@ body > * {
 .table_admin a{
     text-decoration: none;
     align-items: center;
+    justify-content: center;
     display: flex;
 }
 
