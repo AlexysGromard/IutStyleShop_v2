@@ -18,9 +18,15 @@ class DBCommande extends Connexion implements DAOInterface
     public static function add($user,$codepromo){
         $requete = "CALL InsertCommande(?,?)";
         $stmt = self::$pdo->prepare($requete);
+        // Code promo
+        if ($codepromo == null){
+            $codepromo = 0;
+        } else {
+            $codepromo = $codepromo->getId();
+        }
 
         $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
-        $stmt->bindParam(2, $codepromo->getId(), \PDO::PARAM_INT);
+        $stmt->bindParam(2, $codepromo, \PDO::PARAM_INT);
 
         $stmt->execute();
     }

@@ -26,7 +26,7 @@
 
     <div class="element_page">
         <!-- ~~~~~~~~~~~~Ajouter des require~~~~~~~~~~~~ -->
-        <form class="payment_left_box" action="xx">
+        <form class="payment_left_box" action="/card/order" method="POST">
             <div class="large_box" >        
                 <span class="Black_police_65">Informations personnelles</span>
                 <div class="civility_choice_space">
@@ -53,7 +53,7 @@
                         </div>
                         <span class="input-error-message <?php echo (isset($_SESSION['errors']["civility"]) && $_SESSION['errors']["civility"]) ? "active" : ""; ?>">Genre incomplet</span>
                     </div>
-                </div>              
+                </div>
                 <div class="square_of_2">
                     <div>
                         <!-- Nom -->
