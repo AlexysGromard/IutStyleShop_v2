@@ -44,7 +44,7 @@
                         </div>
                         <div class="commande_text_box_right">
                             <span class="Black_police_40">Total de la commande</span>
-                            <span class="Black_police_65" ><?= $commande->getPrix() ?></span>
+                            <span class="Black_police_65"><?= number_format($commande->getPrix(), 2) ?>€</span>
                         </div>
                         <label class="drop_down_button">
                             <input type="checkbox" id="checkbox_product_<?= $commande->getId() ?>" onclick="unroll_items(<?= $commande->getId() ?>)">
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="commande_text_box_right">
                                     <span class="Black_police_40">Sous-total</span>
-                                    <span class="Black_police_65" ><?= $article_commande->getPrixUnitaire() ?>€  </span>
+                                    <span class="Black_police_65"><?= number_format($article_commande->getPrixUnitaire(), 2) ?>€</span>
                                 </div>
                             </div>
                         </div>
