@@ -15,9 +15,25 @@
 
                 <div class="commande_box">
                     <div class = "commande_box_left">
-                        <img class="first_product_image" src="/frontend/products/sweatshirt_iut_rouge/image1.png" alt="">
+                        <img class="first_product_image" src="<?= $commande->getArticlesCommandes()[0]->getInfoImage() ?>" alt="">
                         <div class="commande_text_box_left">
-                            <span class="Black_police_55">Sweat rouge IUT, T-Shirt blanc IUT, ...</span>
+                            <span class="Black_police_55">
+                                <?php
+                                    $res = $commande->getArticlesCommandes();
+
+                                    if ( count($res) >= 3 ){
+
+                                        echo $res[0]->getInfoArticle()['nom'] . ", " .  $res[1]->getInfoArticle()['nom'] . ", ...";
+                                    
+                                    } elseif (count($res) == 2){
+                                        echo $res[0]->getInfoArticle()['nom'] . ", " .  $res[1]->getInfoArticle()['nom'] ;
+
+                                    } else {
+                                        echo $res[0]->getInfoArticle()['nom'] ;
+
+                                    }
+                                ?>
+                            </span>
                             <span class="Black_police_40">Commandé le <?= $commande->getDate() ?> </span>
                         </div>
                     </div>
@@ -45,7 +61,6 @@
                         
                         <div class="commande_box product_box_commande">
                             <div class = "commande_box_left">
-                            <?= $article_commande->getInfoImage()?>
                                 <img class="product_image_commande" src="<?= $article_commande->getInfoImage()?>" alt="">
 
                                 <div class="commande_text_box_left">

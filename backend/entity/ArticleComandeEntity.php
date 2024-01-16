@@ -122,9 +122,9 @@ class ArticleComandeEntity
      * 
      * @return string
      */
-    public function getInfoImage(): array {
-        echo "fzhuohfpezbfuizefbpipbjiefbjbpijfebpibpjfpbjepbjfbpjebjpbjbpjebmjebmjbjmebmj";
-        return \backend\DAO\DBArticle::getImagesArticleById($this->id_article)[0];
+    public function getInfoImage(): string {
+        $result = \backend\DAO\DBArticle::getImagesArticleById($this->id_article);
+        return $result[0];
     }
 
 }
