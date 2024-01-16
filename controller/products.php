@@ -104,7 +104,7 @@ class products{
                 $genre .= "F";
             }
             $dao = new \backend\DAO\DBArticle();
-            $mesArticles = $dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
+            $mesArticles = $dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,$promo,2);
             if ($param[16] != ""){
                 $mesArticles = $this->filiterbyname($param[16], $mesArticles);
             }
