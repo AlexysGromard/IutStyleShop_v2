@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="/frontend/styles/homePage.css">
     <link rel="stylesheet" href="/frontend/styles/police.css">
 </head>
-<body>
+<body>   
     
     <!-- Header -->
     <?php include 'frontend/components/header.php'; ?>
+
+
 
     <main class = "user_general">
         <span id="dashboard-title"> Espace utilisateur</span>

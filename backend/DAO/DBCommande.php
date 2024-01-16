@@ -3,7 +3,7 @@
 namespace backend\DAO;
 
 use \backend\entity\CommandeEntity;
-use \backend\entity\ArticleComandeEntity;
+use \backend\entity\ArticleCommandeEntity;
 
 class DBCommande extends Connexion implements DAOInterface
 {
@@ -132,24 +132,24 @@ class DBCommande extends Connexion implements DAOInterface
         try {
             $result = self::getAllCommandeUser($user->getId());
             $commandes = array();
-
+            
             foreach ($result as $commande ){
 
                 $requete2 = "CALL GetAllArticleOfCommande(?)";
                 $stmt2 = self::$pdo->prepare($requete2);
                 // Lie les paramètres d'entrée
                 $stmt2->bindParam(1, $commande["id"], \PDO::PARAM_INT);
-
+                
+                
                 $stmt2->execute();
                 $result2 = $stmt2->fetchAll(\PDO::FETCH_ASSOC);
                 $listArticle = array();
 
-
+                
                 foreach  ($result2 as $article){
-                    $listArticle[] = new ArticleComandeEntity($article["id_Article"],$article["taille"],$article["prix_unitaire"],$article["quantite"]);
+                    $listArticle[] = new ArticleCommandeEntity($article["id_Article"],$article["taille"],$article["prix_unitaire"],$article["quantite"]);
 
                 }
-
 
                 $commandes[] = new CommandeEntity($commande["id"],$listArticle,$commande["date"],$commande["statut"],$commande["prix"]);
             }

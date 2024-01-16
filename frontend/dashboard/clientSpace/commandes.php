@@ -61,7 +61,7 @@
                         
                         <div class="commande_box product_box_commande">
                             <div class = "commande_box_left">
-                                <img class="product_image_commande" src="<?= $article_commande->getInfoImage()?>" alt="">
+                                <img class="product_image_commande" src="<?=$article_commande->getInfoImage()?>" alt="">
 
                                 <div class="commande_text_box_left">
                                     <?php $info = $article_commande->getInfoArticle()?>
