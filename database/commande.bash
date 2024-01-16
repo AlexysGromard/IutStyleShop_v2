@@ -89,15 +89,6 @@ sudo mysql --host=$host --user=$user --database=$database --password=$password <
 
 
 
-# Package
-# echo -e ""
-# echo -e "\e[35m Exécution des fichiers Package :      \e[31m"
-# dossier="Packages "
-# find "$dossier" -type f -name "*.sql" | while read -r fichier; do
-#     echo -e "\e[34m * \e[0m * $fichier"
-#     sudo mysql --host=$host --user=$user --database=$database --password=$password < "$fichier"
-# done
-
 #Procedure Stockée
 echo -e ""
 echo -e "\e[35m Exécution des fichiers Procedure Stockée : "

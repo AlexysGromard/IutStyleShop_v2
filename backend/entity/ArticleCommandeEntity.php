@@ -103,6 +103,28 @@ class ArticleCommandeEntity
         $this->quantite = $quantite;
     }
 
+    /* Get des information d'article */
+
+    /**
+     * Donne le nom et coulleur
+     *
+     * @return array
+     */
+    public function getInfoArticle(): array {
+        return \backend\DAO\DBArticle::getArticleForCommande($this->id_article);
+    }
+
+
+    /**
+     * Donne une image
+     * 
+     * @return string
+     */
+    public function getInfoImage(): string {
+        $result = \backend\DAO\DBArticle::getImagesArticleById($this->id_article);
+        return $result[0];
+    }
+
 }
 
 ?>

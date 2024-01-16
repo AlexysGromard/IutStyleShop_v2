@@ -9,6 +9,6 @@ CREATE OR REPLACE PROCEDURE UpdateArticlePanier(
 BEGIN
     -- update un article du panier
     update Panier set taille = p_taille, quantite = p_quantite
-    where ID=p_id and ID_Utilisateur=p_id_utilisateur;
+    where ID_Article=p_id and ID_User=p_id_utilisateur;
 END //
 DELIMITER ;

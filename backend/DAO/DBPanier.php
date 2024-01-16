@@ -9,14 +9,21 @@ class DBPanier extends Connexion// implements DAOInterface
     public static function add($panierArticle,$user) //\backend\entity\PanierEntity 
     {   
         try {
+            $tailles = ["XS","S","M","L","XL"];
+
             $requete = "CALL InsertPanier(?,?,?,?)";
             $stmt = self::$pdo->prepare($requete);
 
+            $id = $user->getId();
+            $idArticle = $panierArticle->getIdArticle();
+            $taille = $panierArticle->getTaille();
+            $quantite = $panierArticle->getQuantite();
+
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
-            $stmt->bindParam(2, $panierArticle->getId(), \PDO::PARAM_INT);
-            $stmt->bindParam(3, $panierArticle->getTaille(), \PDO::PARAM_STR);
-            $stmt->bindParam(4, $panierArticle->getQuantite(), \PDO::PARAM_INT);
+            $stmt->bindParam(1, $id, \PDO::PARAM_INT);
+            $stmt->bindParam(2, $idArticle, \PDO::PARAM_INT);
+            $stmt->bindParam(3, $taille, \PDO::PARAM_STR);
+            $stmt->bindParam(4, $quantite, \PDO::PARAM_INT);
             $stmt->execute();
         }catch (\PDOException $e ){
             // Gère les erreurs de la base de données
@@ -30,12 +37,19 @@ class DBPanier extends Connexion// implements DAOInterface
         try {
             $requete = "CALL UpdateArticlePanier(?,?,?,?)";
             $stmt = self::$pdo->prepare($requete);
+            
+            $idArticle = $panierArticle->getIdArticle();
+            $id = $user->getId();
+            $taille = $panierArticle->getTaille();
+            $quantite = $panierArticle->getQuantite();
+
+            echo $idArticle." ".$id." ".$taille." ".$quantite;
 
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
-            $stmt->bindParam(2, $panierArticle->getId(), \PDO::PARAM_INT);
-            $stmt->bindParam(3, $panierArticle->getTaille(), \PDO::PARAM_INT);
-            $stmt->bindParam(4, $panierArticle->getQuantite(), \PDO::PARAM_INT);
+            $stmt->bindParam(1, $idArticle, \PDO::PARAM_INT);
+            $stmt->bindParam(2, $id, \PDO::PARAM_INT);
+            $stmt->bindParam(3, $taille, \PDO::PARAM_INT);
+            $stmt->bindParam(4, $quantite, \PDO::PARAM_INT);
             $stmt->execute();
         }catch (\PDOException $e ){
             // Gère les erreurs de la base de données

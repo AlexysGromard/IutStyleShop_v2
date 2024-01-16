@@ -4,7 +4,7 @@
     </div>
     <div class="informations-article">
         <div class="dispo_rect_article">
-            <a href="#" class="medium-important-text"><?php echo $articleName; ?></a>
+            <a href="/article/visuel/<?= $articleId; ?>" class="medium-important-text"><?php echo $articleName; ?></a>
             <div class="availablity">
                 <div class="small-text">Disponibilité :</div>
                 <div class="small-text <?php echo $disponibility ? 'green' : 'red'; ?>"><?php echo $disponibility ? 'Disponible' : 'En rupture'; ?></div>
@@ -19,7 +19,7 @@
                 <?php } ?>
             </select>
             <div class="price2"><?php echo number_format($articlePrice, 2, ',', ' '); ?>€</div>
-            <a href="/card/removeArticleFromCard/<?=$panierArticleEntity[0]."/".$panierArticleEntity[1]."/".$panierArticleEntity[2]?>">
+            <a class="cross" href="/card/removeArticleFromCard/<?=$panierArticleEntity[0]."/".$panierArticleEntity[1]."/".$panierArticleEntity[2]?>">
                 <img src="/frontend/assets/icons/cross.svg" class="cross clickable">
             </a>
         </div>

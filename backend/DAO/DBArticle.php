@@ -86,6 +86,10 @@ class DBArticle extends Connexion// implements DAOInterface
      */
     public static function addAccessoire($nom,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
     {   
+        $dispo = 0;
+        if($disponible == true){
+            $dispo = 1;
+        }
         $categorie = "accessoire";
         $sql = "call InsertArticleAccessoire(?,?,?,?,?,?,?,?,?)";
         $stmt = self::$pdo->prepare($sql);
@@ -96,7 +100,7 @@ class DBArticle extends Connexion// implements DAOInterface
         $stmt->bindParam(5,$description);
         $stmt->bindParam(6,$prix);
         $stmt->bindParam(7,$promo);
-        $stmt->bindParam(8,$disponible);
+        $stmt->bindParam(8,$dispo);
         $stmt->bindParam(9,$quantite,\PDO::PARAM_INT);
 
         $stmt->execute();
@@ -181,11 +185,11 @@ class DBArticle extends Connexion// implements DAOInterface
             $stmt->bindParam(7,$prix);
             $stmt->bindParam(8,$promo);
             $stmt->bindParam(9,$disponibilite);
-            $stmt->bindParam(10,$quantiteXS(),\PDO::PARAM_INT);
-            $stmt->bindParam(11,$quantiteS(),\PDO::PARAM_INT);
-            $stmt->bindParam(12,$quantiteM(),\PDO::PARAM_INT);
-            $stmt->bindParam(13,$quantiteL(),\PDO::PARAM_INT);
-            $stmt->bindParam(14,$quantiteXL(),\PDO::PARAM_INT);
+            $stmt->bindParam(10,$quantiteXS,\PDO::PARAM_INT);
+            $stmt->bindParam(11,$quantiteS,\PDO::PARAM_INT);
+            $stmt->bindParam(12,$quantiteM,\PDO::PARAM_INT);
+            $stmt->bindParam(13,$quantiteL,\PDO::PARAM_INT);
+            $stmt->bindParam(14,$quantiteXL,\PDO::PARAM_INT);
 
             $stmt->execute();
         }
@@ -685,10 +689,26 @@ class DBArticle extends Connexion// implements DAOInterface
             $lsArticles[] = $article;
         }
         return $lsArticles;
-        
-           
 
-        
 
     }
+
+    /**
+     * Renvoie le nom et couleur de l'aricle
+     * 
+     * @param int $id
+     * @return array
+     */
+    public static function getArticleForCommande(int $id) :array
+    {
+        $requete = "CALL GetArticleForCommande(?)";
+        $stmt = self::$pdo->prepare($requete);
+        $stmt->bindParam(1,$id,\PDO::PARAM_INT);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        //var_dump($articles[0]);
+        return $articles[0];
+    }
+
+
 }

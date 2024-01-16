@@ -18,7 +18,7 @@ DELIMITER //
         UPDATE User
         SET email = p_email, telephone = p_telephone, nom = p_nom, prenom = p_prenom
         , genre = p_genre, adresse = p_address, ville = p_ville, code_postal = p_code_postal
-        , complement_adresse = p_complement_adresse
+        , Complement_adresse = p_complement_adresse
         WHERE id = p_id;
     END //
 DELIMITER ;

@@ -17,9 +17,9 @@
         <div class="carousel">
             <a class="prev"><img src="/frontend/assets/icons/arrow.png" alt="Previous button"></a>
             <figure class="carousel-images">
-                <a href="#"><img src="/frontend/assets/images/carousel/promo_1.png" alt="Promo -50% sur les T-Shirts."></a>
-                <a href="#"><img src="/frontend/assets/images/carousel/promo_2.png" alt="Nouveautés."></a>
-                <a href="#"><img src="/frontend/assets/images/carousel/promo_3.png" alt="T-Shirt Nike"></a>
+                <a href="/products/promotion"><img src="/frontend/assets/images/carousel/promo_1.png" alt="Promo -50% sur les T-Shirts."></a>
+                <a href="/products/accessoire"><img src="/frontend/assets/images/carousel/promo_2.png" alt="Nouveautés."></a>
+                <a href="/article/visuel/6"><img src="/frontend/assets/images/carousel/promo_3.png" alt="T-Shirt Nike"></a>
             </figure>
             <a class="next"><img src="/frontend/assets/icons/arrow.png" alt="Next button"></a>
         </div>    
@@ -41,7 +41,7 @@
         <div id="products">
             <?php
                 include_once 'controller/components.php';
-                use controller;
+
                 foreach($bestArticles as $article){
                     $img = ""; 
                     if (count($article->getImages())>=1){

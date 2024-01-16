@@ -3,7 +3,7 @@
 namespace backend\DAO;
 
 use \backend\entity\CommandeEntity;
-use \backend\entity\ArticleComandeEntity;
+use \backend\entity\ArticleCommandeEntity;
 
 class DBCommande extends Connexion implements DAOInterface
 {
@@ -37,7 +37,7 @@ class DBCommande extends Connexion implements DAOInterface
 
         $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
         $stmt->bindParam(2, $entity->getStatut(), \PDO::PARAM_INT);
-
+        
         $stmt->execute();
 
     }
@@ -178,6 +178,29 @@ class DBCommande extends Connexion implements DAOInterface
     }
 
 
+    /**
+     * Donne toutes les commandes d'un utilisateur
+     * 
+     * @param int $id
+     */
+    private static function getAllCommandeUser(int $id): array
+    {
+        /////article dans commande
+        try {
+            $requete = "CALL GetCommande(?)";
+            $stmt = self::$pdo->prepare($requete);
+            // Lie les paramètres d'entrée
+            $stmt->bindParam(1, $id, \PDO::PARAM_INT);
+
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }catch (\PDOException $e ){
+            // Gère les erreurs de la base de données
+            echo "Erreur : " . $e->getMessage();
+        }
+
+    }
+
 
     /**
      * Donne les commandes d'un utilisateur
@@ -188,33 +211,28 @@ class DBCommande extends Connexion implements DAOInterface
     public static function getCommande($user): array
     {
         try {
-            
-
-            /////article dans commande
-            $requete = "CALL GetCommande(?)";
-            $stmt = self::$pdo->prepare($requete);
-            // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
-
-            $stmt->execute();
-            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
+            $result = self::getAllCommandeUser($user->getId());
             $commandes = array();
+            
             foreach ($result as $commande ){
 
                 $requete2 = "CALL GetAllArticleOfCommande(?)";
                 $stmt2 = self::$pdo->prepare($requete2);
                 // Lie les paramètres d'entrée
                 $stmt2->bindParam(1, $commande["id"], \PDO::PARAM_INT);
-
+                
+                
                 $stmt2->execute();
                 $result2 = $stmt2->fetchAll(\PDO::FETCH_ASSOC);
                 $listArticle = array();
+
+                
                 foreach  ($result2 as $article){
-                    $listArticle[] = new ArticleComandeEntity($article["id_Article"],$article["taille"],$article["prix_unitaire"],$article["quantite"]);
+                    $listArticle[] = new ArticleCommandeEntity($article["id_Article"],$article["taille"],$article["prix_unitaire"],$article["quantite"]);
+
                 }
 
-                $commandes[] = new CommandeEntity($commande["id"],$listArticle,$commande["date"],$commande["status"],$commande["price"]);
+                $commandes[] = new CommandeEntity($commande["id"],$listArticle,$commande["date"],$commande["statut"],$commande["prix"]);
             }
 
             return $commandes;
