@@ -241,7 +241,7 @@
     padding: 16px 0;
     display: flex;
     gap:38px;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 
 #recommendations-articles-box .boite_article{

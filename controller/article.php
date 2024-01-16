@@ -3,12 +3,11 @@ namespace controller;
 
 class article{
 
-    private \backend\DAO\DAOInterface $dao;
-
+    private $dao;
 
     function index(){
-        echo "Erreur 404 - Page introuvable";
-        // TODO : Rediriger vers une page 404
+        // Redirection vers page 404
+        require "frontend/404.php";
     }
 
     function visuel($a){
@@ -24,7 +23,7 @@ class article{
             }
             //DAO Commentaire
             $this->dao = new \backend\DAO\DBCommentaire();
-            $comments = $this->dao::getCommentaireByArticle($articleActual);
+            $comments = $this->dao::getCommentaireByIdArticle($articleActual->getId());
             //DAO User
             $this->dao = new \backend\DAO\DBUser();
             $userCommentNames = array();
