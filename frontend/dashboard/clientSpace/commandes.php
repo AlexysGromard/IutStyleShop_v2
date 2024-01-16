@@ -35,8 +35,13 @@
                                 ?>
                             </span>
                             <span class="Black_police_40">Commandé le <?= $commande->getDate() ?> </span>
+
                         </div>
+
+
                     </div>
+                    
+
                     <div class="commande_box_right">
                         <div class="commande_text_box_right">
                             <span class="Black_police_40">Etat de la commande</span>
@@ -55,18 +60,28 @@
 
                 <?php foreach($commande->getArticlesCommandes() as $article_commande) : ?>
                 <!-- 2ème boucle for -->
+
                     <div class="all_products_command box_product_<?= $commande->getId() ?>">
+
                        
 
-                        
+
                         <div class="commande_box product_box_commande">
                             <div class = "commande_box_left">
+
                                 <img class="product_image_commande" src="<?=$article_commande->getInfoImage()?>" alt="">
+
 
                                 <div class="commande_text_box_left">
                                     <?php $info = $article_commande->getInfoArticle()?>
                                     <span class="Black_police_60"><?=$info['nom'] ?></span>
-                                    <span class="Black_police_40">Taille : <?= $article_commande->getTaille() ?></span>
+                                    <?php
+                                    $taille = $article_commande->getTaille();
+
+                                    if ($taille !== null) {
+                                        echo '<span class="Black_police_40">Taille : ' . $taille . '</span>';
+                                    }
+                                    ?>
                                     <span class="Black_police_40">Couleur : <?= $info['couleur'] ?></span>
                                     <span class="Black_police_40">Quantité : <?= $article_commande->getQuantite() ?></span>
                                 </div>
@@ -84,6 +99,7 @@
                             </div>
                         </div>
                     </div>
+
                 <?php endforeach ?>
             </div>
             <hr />
