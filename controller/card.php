@@ -112,6 +112,10 @@ class card{
         
         // Récupérer le panier de l'utilisateur
         $panier = $this->getUserCard();
+
+        // Créer panier pour PDO
+        $panierPDO = new \backend\DAO\DBPanier();
+
         // Récupérer le code promo
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -121,7 +125,6 @@ class card{
         } else {
             $codePromo = null;
         }
-
 
         require "frontend/payment/payment.php";
     }

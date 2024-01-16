@@ -4,7 +4,7 @@
     </div>
     <div class="informations-article">
         <div class="dispo_rect_article">
-            <a href="#" class="medium-important-text"><?php echo $articleName; ?></a>
+            <a href="/article/visuel/<?= $articleId; ?>" class="medium-important-text"><?php echo $articleName; ?></a>
             <div class="availablity">
                 <div class="small-text">Disponibilité :</div>
                 <div class="small-text <?php echo $disponibility ? 'green' : 'red'; ?>"><?php echo $disponibility ? 'Disponible' : 'En rupture'; ?></div>
