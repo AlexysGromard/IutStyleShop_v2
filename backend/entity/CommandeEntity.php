@@ -21,7 +21,7 @@ class CommandeEntity
     /**
      * @var ArticleCommandeEntity[]
      */
-    private array $articlesCommandes; //ArticleComandeEntity
+    private array $articlesCommandes; //ArticleCommandeEntity
     private string $date;
     private string $statut;
     private float $prix;
@@ -56,7 +56,7 @@ class CommandeEntity
      */
     public function getArticlesCommandes(): array
     {
-        return $this->articlesComande;
+        return $this->articlesCommande;
     }
 
     /*
@@ -116,7 +116,7 @@ class CommandeEntity
         $this->prix = $prix;
     }
 
-    /* Fonction pour la liste d'articleComande */
+    /* Fonction pour la liste d'articleCommande */
 
 
     public function addArticleCommande(ArticleCommandeEntity $articleCommande): void
@@ -134,7 +134,4 @@ class CommandeEntity
 
 
 }
-
-
-
 ?>

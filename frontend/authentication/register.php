@@ -83,6 +83,8 @@
                             <input class="input-field" type="password" id="password-confirmation" name="password-confirmation" placeholder="Confirmez votre mot de passe">
                             <span class="input-error-message <?php echo (isset($_SESSION['errors']["passwordConfirmation"]) && $_SESSION['errors']["passwordConfirmation"]) ? "active" : ""; ?>">Confirmation du mot de passe invalide</span>
                         </div>
+                        <!-- Champ pour le jeton CSRF -->
+                        <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <!-- Btn -->
                         <input class="button form-button" type="submit" value="S'inscrire">
                     </div>

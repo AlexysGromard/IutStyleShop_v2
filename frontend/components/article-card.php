@@ -1,8 +1,8 @@
-<div class="boite_article">
+
+
+<div data-id="<?=$id?>" class="boite_article">
     <!-- Image de l'article -->
-    <a href="<?= $id?>">
-        <img class="image" src="<?= $imageSrc ?>" alt="<?= $title ?> image">
-    </a>
+    <img class="image" src="<?= $imageSrc ?>" alt="<?= $title ?> image">
     <div class="bas_article">
         <!-- Titre de l'article -->
         <a href="<?= $id?>" class="medium-important-text"><?= $title ?></a>
@@ -41,3 +41,4 @@
         </div>
     </div>
 </div>
+

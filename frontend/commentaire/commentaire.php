@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>IutStyleShop - Vérification de l'adresse mail</title>
+    <title>Commentaire - IutStyleShop</title>
 
     <?php include 'frontend/common-includes.php'?>
 
@@ -20,10 +20,8 @@
 
     <!-- Main -->
     <main id="commentaire-main">
-        <div>
-            <div>
-                <p class="section-title-name Black_police_70 page-title">Espace de notation</p>
-            </div>
+
+            <span id="note-section-title">Espace de notation</span>
             
 
             <div class="commentaire-block commentaire-contenaire">
@@ -100,7 +98,7 @@
                     </div>
 
                     <div class="form-commentaire-part">
-                        <textarea name="commentaire" id="commentaire" class="Black_police_40"cols="30" rows="10" placeholder="Votre commentaire" oninput="compterCaracteres()"></textarea>
+                        <textarea name="commentaire" id="commentaire" class="Black_police_40" cols="30" rows="10" placeholder="Votre commentaire" oninput="compterCaracteres()"></textarea>
                         <p class="Gray_police_40"> <span id="nb-caractere" class="Gray_police_40">0</span> / 500 caractères</p>
 
                         <div class="button-part">
@@ -115,7 +113,6 @@
 
 
             </div>
-        </div>
     </main>
 
     <!-- Footer -->

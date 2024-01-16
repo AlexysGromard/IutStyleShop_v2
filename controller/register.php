@@ -13,9 +13,36 @@ class register {
     );
 
     function index(){
+        // Générer un jeton CSRF
+        $csrfToken = $this->genererTokenCSRF();
+
         require "frontend/authentication/register.php";
 
         unset($_SESSION['errors']);
+    }
+
+    /*
+    * Cette fonction permet de générer un jeton CSRF
+    */
+    function genererTokenCSRF() {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        $token = bin2hex(random_bytes(32)); // Générer un jeton aléatoire
+        $_SESSION['csrf_token'] = $token; // Stocker le jeton dans la session
+        return $token;
+    }
+
+    /*
+    * Cette fonction permet de vérifier si le jeton CSRF est valide
+    */
+    function verifierTokenCSRF($token) {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
+        return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
     }
 
     /*
@@ -31,6 +58,7 @@ class register {
         $email = $_POST['email'];
         $password = $_POST['password'];
         $passwordConfirmation = $_POST['password-confirmation'];
+        $tokenDuFormulaire = $_POST['csrf_token'];
 
         // Echapement des caractères spéciaux
         $civility = htmlspecialchars($civility, ENT_QUOTES, 'UTF-8');
@@ -38,7 +66,20 @@ class register {
         $firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
         $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
         $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
-        
+        $passwordConfirmation = htmlspecialchars($passwordConfirmation, ENT_QUOTES, 'UTF-8');
+        $tokenDuFormulaire = htmlspecialchars($tokenDuFormulaire, ENT_QUOTES, 'UTF-8');
+
+        if (!$this->verifierTokenCSRF($tokenDuFormulaire)) {
+            // Le jeton CSRF n'est pas valide, traitement de l'erreur ou rejet de la requête
+            // Supprimer de la session 
+            unset($_SESSION['csrf_token']);
+            // header("Location: /register");
+            exit();
+        }
+
+        unset($_SESSION['csrf_token']);
+
+
         // Vérification du genre
         if ($civility != "M" && $civility != "W" && $civility != "N") {
             $this->errors['civility'] = true;
@@ -108,6 +149,9 @@ class register {
             header("Location: /register");
             exit();
         }
+        
+        // Supprimer les erreurs
+        unset($_SESSION['errors']);
 
         header("Location: /emailConfirmation");
     }

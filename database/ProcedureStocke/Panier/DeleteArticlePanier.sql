@@ -6,6 +6,6 @@ CREATE OR REPLACE PROCEDURE DeleteArticlePanier(
 )
 BEGIN
     -- Supprimer un article du panier
-    DELETE FROM Panier WHERE ID_Utilisateur = p_iduser AND ID = p_idArticle;
+    DELETE FROM Panier WHERE ID_User = p_iduser AND id_Article = p_idArticle;
 END //
 DELIMITER ;

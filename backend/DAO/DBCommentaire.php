@@ -13,20 +13,25 @@ class DBCommentaire extends Connexion//  implements DAOInterface
     /**
      * Ajoute un commentaire dans la base
      * 
-     * @param CommentaireEntity $name
+     * @param CommentaireEntity $entity
      * @param int $id_article
      */
     public static function add(CommentaireEntity $entity,int $id_article)
     {
-        $requete = "CALL InsertCommentaire(?, ?, ?, ?)";
-        $stmt = self::$pdo->prepare($requete);
+        try {
+            $requete = "call InsertCommentaire(?, ?, ?, ?)";
+            $stmt = self::$pdo->prepare($requete);
 
-        $stmt->bindParam(1, $entity->getUser(), \PDO::PARAM_INT);
-        $stmt->bindParam(2, $id_article, \PDO::PARAM_INT);
-        $stmt->bindParam(3, $entity->getNote(), \PDO::PARAM_INT);
-        $stmt->bindParam(4, $entity->getCommentaire(), \PDO::PARAM_INT);
+            $stmt->bindParam(1, $entity->getUser(), \PDO::PARAM_INT);
+            $stmt->bindParam(2, $id_article, \PDO::PARAM_INT);
+            $stmt->bindParam(3, floatval($entity->getNote()));
+            $stmt->bindParam(4, $entity->getCommentaire(), \PDO::PARAM_STR);
 
-        $stmt->execute();
+            $stmt->execute();
+          }  catch (\PDOException $e) {
+                // Gérer les erreurs ici, par exemple, loguer l'erreur ou retourner un message d'erreur.
+                echo "Erreur d'exécution de la requête : " . $e->getMessage();
+            }
     }
 
     public static function update($entity)

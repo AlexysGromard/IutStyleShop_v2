@@ -3,7 +3,7 @@
 namespace backend\entity;
 
 /*
-* @Entity @Table(name="ArticleComande")
+* @Entity @Table(name="ArticleCommande")
 */
 class ArticleCommandeEntity
 {
@@ -25,12 +25,10 @@ class ArticleCommandeEntity
     private float $prix_unitaire;
     private int $quantite;
 
-
     public function __construct(int $id_article,
                                 ?string $taille,
                                 float $prix_unitaire,
-                                int $quantite) 
-    {
+                                int $quantite){
         $this->setIdArticle($id_article);
         $this->setTaille($taille);
         $this->setPrixUnitaire($prix_unitaire);

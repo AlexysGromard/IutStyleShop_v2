@@ -19,13 +19,13 @@
         
 
     <main class="admin_general">
-        <span class="Black_police_70"> Espace Administrateur</span>
+        <span id="dashboard-title"> Espace Administrateur</span>
 
         <div class = "admin_general_element_box">
 
             <!-- left -->
             <?php include "controller/components.php"?>
-            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "admin"); ?>
+            <?php generateUserPanelComponent($actionSelect, $personne->getNom()." ".$personne->getPrenom(), $personne->getId(), $personne->getGenre(), "admin",$personne->getRole()); ?>
 
 
             <!-- right -->

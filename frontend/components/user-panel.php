@@ -29,6 +29,11 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </ul>
+        <?php if($userRole == "admin" && $userType=="client"):?>
+        <a class="clear_button Red_police_55" href="/user/admin_space/utilisateurs">Mode Admin</a>
+        <?php elseif($userRole == "admin" && $userType=="admin"):?>
+        <a class="clear_button Red_police_55" href="/user/dashboard/informations">Mode Client</a>
+        <?php endif; ?>
         <!-- Deconnexion -->
         <button class="button" id="logout-button" onclick="showLogoutPopup()">Déconnexion</button>
     </div>

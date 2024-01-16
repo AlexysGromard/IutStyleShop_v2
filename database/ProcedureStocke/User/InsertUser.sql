@@ -15,7 +15,7 @@ DELIMITER //
     )
     BEGIN
         -- Logique pour insérer un nouvel utilisateur dans la table User
-        INSERT INTO User (email, telephone, password, nom, prenom, genre ,role, adresse, ville, code_postal, complement_adresse)
+        INSERT INTO User (email, telephone, password, nom, prenom, genre, role, adresse, ville, code_postal, complement_adresse)
         VALUES (p_email, p_telephone, SHA2(p_password, 256), p_nom, p_prenom, p_genre, 'client', p_address, p_ville, p_code_postal, p_complement_adresse);
     END //
 

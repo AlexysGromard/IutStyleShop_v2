@@ -17,8 +17,8 @@
             <div id="header-products">
                 <!-- Section title -->
                 <div class="section-title">
-                    <span class="section-title-name"><?= isset($search) ? "Résultat de \"".$search."\"" : "Meilleures ventes";?></span>
-                    <span id="nb-articles" class="section-title-results">0 articles</span>
+                <span class="section-title-name"><?= isset($search) ? "Résultat de \"" . $search . "\"" : (isset($pageTitle) ? $pageTitle : "Meilleures ventes"); ?></span>
+                    <span id="nb-articles" class="section-title-results"><?= count($mesArticles);?> articles</span>
                 </div>
                 <!-- Btn 'All products' -->
                 <select title="sort-order" id="sort-order">
@@ -30,6 +30,29 @@
             <!-- Section products -->
             <section id="products-section">
                 <!-- ALL PRODUCTS -->
+                <?php
+                    include_once 'controller/components.php';
+                    use controller;
+
+                    if (isset($mesArticles)){
+                        foreach($mesArticles as $article){
+                            $img = ""; 
+                            if (count($article->getImages())>=1){
+                                $img = $article->getImages()[0];
+                            }
+                            generateArticleComponent(
+                                $id = $article->getId(),
+                                $imageSrc = $img,
+                                $title = $article->getNom(),
+                                $starCount = intval($article->getNotes()),
+                                $availability = $article->getDisponible(),
+                                $promotion = $article->getPromo(),
+                                $price = $article->getPrix()
+                            );
+                        
+                        }
+                    }
+                    ?>
             </section>    
         </div>
         <!-- Section filters -->
@@ -40,11 +63,11 @@
                 <span class="filter-title">prix</span>
                 <div class="range_container">
                     <div class="sliders_control">
-                        <input id="fromSlider" type="range" value="0" min="0" max="100"/>
-                        <input id="toSlider" type="range" value="100" min="0" max="100"/>
+                        <input id="fromSlider" type="range" value="<?=$param[9] ?>" min="0" max="100"/>
+                        <input id="toSlider" type="range" value="<?=$param[10] ?>" min="0" max="100"/>
                         <div id="range-values">
-                            <span id="fromValue">0</span>
-                            <span id="toValue">100</span>
+                            <span id="fromValue"><?=$param[9] ?></span>
+                            <span id="toValue"><?=$param[10] ?></span>
                         </div>
                     </div>
                 </div>
@@ -55,19 +78,19 @@
                 <div class="range_container">
                     <ul id="product-type">
                         <li>
-                            <input checked type="checkbox" id="tshirt" name="tshirt" value="tshirt">
+                            <input <?php if($param[0]=="true"){?> checked  <?php } ?>type="checkbox" id="tshirt" name="tshirt" value="tshirt">
                             <label for="tshirt">T-shirt</label>
                         </li>
                         <li>
-                            <input checked type="checkbox" id="sweatshirt" name="sweatshirt" value="sweatshirt">
+                            <input <?php if($param[1]=="true"){?> checked  <?php } ?> type="checkbox" id="sweatshirt" name="sweatshirt" value="sweatshirt">
                             <label for="sweatshirt">Sweat-shirt</label>
                         </li>
                         <li>
-                            <input checked type="checkbox" id="sportswear" name="sportswear" value="sportswear">
+                            <input <?php if($param[2]=="true"){?> checked  <?php } ?> type="checkbox" id="sportswear" name="sportswear" value="sportswear">
                             <label for="sportswear">Tenue de sport</label>
                         </li>
                         <li>
-                            <input checked type="checkbox" id="accessories" name="accessories" value="accessories">
+                            <input <?php if($param[3]=="true"){?> checked  <?php } ?> type="checkbox" id="accessories" name="accessories" value="accessories">
                             <label for="accessories">Accessoires</label>
                         </li>
                     </ul>
@@ -79,24 +102,40 @@
             <div class="range_container">
                     <ul id="product-color">
                         <li>
-                            <input checked checked type="checkbox" id="red" name="red" value="white">
+                            <input <?php if($param[4]=="true"){?> checked  <?php } ?> type="checkbox" id="red" name="red" value="red">
                             <label for="red">Rouge</label>
                         </li>
                         <li>
-                            <input checked type="checkbox" id="green" name="green" value="white">
+                            <input <?php if($param[5]=="true"){?> checked  <?php } ?> type="checkbox" id="green" name="green" value="green">
                             <label for="green">Vert</label>
                         </li>
                         <li>
-                            <input checked type="checkbox" id="blue" name="blue" value="blue">
+                            <input <?php if($param[6]=="true"){?> checked  <?php } ?> type="checkbox" id="blue" name="blue" value="blue">
                             <label for="blue">Bleu</label>
                         </li>
                         <li>
-                            <input checked type="checkbox" id="white" name="white" value="white">
+                            <input <?php if($param[7]=="true"){?> checked  <?php } ?> type="checkbox" id="white" name="white" value="white">
                             <label for="white">Blanc</label>
                         </li>
                         <li>
-                            <input checked type="checkbox" id="black" name="black" value="black">
+                            <input <?php if($param[8]=="true"){?> checked  <?php } ?> type="checkbox" id="black" name="black" value="black">
                             <label for="black">Noir</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Product gender -->
+            <div class="filter-container" id="gender-checkbox">
+            <span class="filter-title">genre</span>
+            <div class="range_container">
+                    <ul id="product-gender">
+                        <li>
+                            <input <?php if($param[11]=="true"){?> checked  <?php } ?>  type="checkbox" id="homme" name="Homme" value="M">
+                            <label for="homme">Homme</label>
+                        </li>
+                        <li>
+                            <input <?php if($param[12]=="true"){?> checked  <?php } ?> type="checkbox" id="femme" name="Femme" value="F">
+                            <label for="femme">Femme</label>
                         </li>
                     </ul>
                 </div>
@@ -108,6 +147,8 @@
     <!-- Footer -->
     <?php include 'frontend/components/footer.php'; ?>
 </body>
-<script src="/frontend/scripts/all-products.js"></script>
 <script src="/frontend/scripts/products.js"></script>
+<script src="/frontend/scripts/clickOnProduct.js"></script>
+
+
 </html>

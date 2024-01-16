@@ -13,7 +13,8 @@ class user{
     function dashboard(array $param){
         // Redrection vers la page demandée
         if (count($param) != 1 || !in_array($param[0], array("informations","commandes","adresse","parametres"))){
-            echo "Erreur";die();
+            require "frontend/404.php";
+            die();
         }
 
         session_start();
@@ -341,6 +342,10 @@ class user{
         session_start();
         // Supprimer le USER de la session
         unset($_SESSION['user']);
+        // Supprimer le panier de la session
+        if (isset($_SESSION['panier'])){
+            unset($_SESSION['panier']);
+        }
         header("Location: /");
     }
 

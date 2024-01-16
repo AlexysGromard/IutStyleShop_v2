@@ -1,7 +1,6 @@
 articles = document.getElementsByClassName("boite_article");
 Array.from(articles).forEach(function(article) {
     var id = article.dataset.id;
-    console.log(id);
     var img = article.querySelector(".image");
     var text = article.querySelector(".product-btn");
     if (img) {

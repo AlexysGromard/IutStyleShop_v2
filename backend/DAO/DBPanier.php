@@ -66,8 +66,11 @@ class DBPanier extends Connexion// implements DAOInterface
             $stmt = self::$pdo->prepare($requete);
             
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
-            $stmt->bindParam(2, $panierArticle->getId(), \PDO::PARAM_INT);
+            $user = $user->getId();
+            $panierArticle = $panierArticle->getIdArticle();
+
+            $stmt->bindParam(1, $user, \PDO::PARAM_INT);
+            $stmt->bindParam(2, $panierArticle, \PDO::PARAM_INT);
             $stmt->execute();
         }catch (\PDOException $e ){
             // Gère les erreurs de la base de données
@@ -88,14 +91,15 @@ class DBPanier extends Connexion// implements DAOInterface
             $requete = "CALL GetArticlePanier(?)";
             $stmt = self::$pdo->prepare($requete);
             // Lie les paramètres d'entrée
-            $stmt->bindParam(1, $user->getId(), \PDO::PARAM_INT);
+            $id = $user->getId();
+            $stmt->bindParam(1, $id, \PDO::PARAM_INT);
 
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
             $articles = array();
             foreach ($result as $article ){
-                $articles[] = new \backend\entity\PanierArticleEntity($article["id_Article"],$article["taille"],$article["quantite"]);
+                $articles[] = new \backend\entity\PanierArticleEntity($article["ID_Article"],$article["taille"],$article["quantite"]);
             }
             return new \backend\entity\PanierEntity($articles);
             
@@ -106,7 +110,4 @@ class DBPanier extends Connexion// implements DAOInterface
         }
     }
 
-
-
-    
 }

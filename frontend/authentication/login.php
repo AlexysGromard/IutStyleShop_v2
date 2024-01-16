@@ -41,6 +41,8 @@
                         <input required class="input-field" type="password" id="password" name="password" placeholder="Entrez votre mot de passe">
                         <span class="input-error-message <?php echo (isset($_SESSION['errors']["password"]) && $_SESSION['errors']["password"]) ? "active" : ""; ?>">Mot de passe invalide</span>
                     </div>
+                    <!-- Champ pour le jeton CSRF -->
+                    <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                     <!-- Btn -->
                     <input class="button form-button" type="submit" value="Se connecter">
                 </form>

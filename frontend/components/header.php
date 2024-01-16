@@ -1,15 +1,15 @@
 <header>
     <div class="header-top">
         <a class="link-to-home" href="/"><img src="/frontend/assets/images/Header-Image/logo.svg" alt="Image logo"></a>
-        <form class="search-bar-form" action="<?='/products/search'?>" method="POST">
+        <div class="search-bar-form" ><!--action="<?='/products/search'?>" method="POST"-->
             <label class="search-bar" for="search"><!-- Search bar -->
                 <div>
                     <img alt="Image of loupe" src="/frontend/assets/images/loupe.svg" class="/frontend/image-loupe">
-                    <input type="text" id="search" name="search" placeholder="Rechercher un article">
+                    <input type="text" id="search" name="search" placeholder="Rechercher un article" keypress="makesearch(event,this)">
                 </div>
-                <input type="submit" class="small-size button important-text" id="button-rechercher" value="Rechercher"/>
+                <input type="submit" class="small-size button important-text" id="button-rechercher" value="Rechercher" onclick="makesearch()"/>
             </label>
-        </form>
+        </div>
         <div>
             <a href="/login" class="navigation-link-header">
                 <div>
@@ -21,7 +21,7 @@
             <a class="navigation-link-header" href="/card">
                 <div id="shopping-cart-text">
                     <span class="navigation-link-header-title">Panier</span>
-                    <span class="navigation-link-header-desc">0 articles</span>
+                    <span class="navigation-link-header-desc"><?= isset($_SESSION["panier"]) ? count($_SESSION["panier"]->getPanierArticles()) : "0" ?> article<?= isset($_SESSION["panier"]) && count($_SESSION["panier"]->getPanierArticles()) > 1 ? "s" : "" ?></span>
                 </div>
                 <img alt="Image of shopping cart" src="/frontend/assets/images/Header-Image/panier.svg">
             </a>
@@ -55,4 +55,5 @@
             <a class="small-size button basic-text" href="/products/promotion">Promotions</a>
         </div>
     </div>
+    <script src="/frontend/scripts/search.js"></script>
 </header>

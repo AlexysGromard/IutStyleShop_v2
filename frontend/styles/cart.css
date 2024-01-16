@@ -103,6 +103,10 @@
     justify-content: space-between;
     width: 100%;
 }
+.text-espace > div{
+    display: flex;
+    flex-direction: column;
+}
 
 .final-section-payment{
     display: flex;
