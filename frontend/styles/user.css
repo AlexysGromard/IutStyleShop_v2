@@ -28,11 +28,12 @@
 }
 
 .user_general{
-    margin: 45px auto 94px auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
     max-width: 1286px;
+    padding: 45px 10px;
+    margin: 0 auto;
 }
 
 .page-title{
@@ -49,11 +50,11 @@
     gap : 8px ;
 }
 
-.civility_choice_space > div{
+/* .civility_choice_space > div{
     display: flex;
     flex-direction: row;
     gap: 17px;
-}
+} */
 
 
 .button_check{
@@ -291,4 +292,21 @@
 #logout-button{
     color: var(--white);
     width: 100%;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px){
+    .user_general{
+        padding: 15px 10px;
+    }
+    .user_general_element_box{
+        flex-direction: column;
+    }
+    #user-panel-container{
+        max-width: 100%;
+    }
+    .square_of_2 > div{
+        flex-direction: column;
+        gap: 20px;
+    }
 }

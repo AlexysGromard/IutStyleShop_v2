@@ -19,9 +19,7 @@ class Connexion
     public function __construct()
     {
         
-        try{
-            
-            
+        try{            
             $pdoinstance = \system\SPDO::getInstance(
                 DB_CONFIG["type"].':host='.DB_CONFIG["host"].';port='.DB_CONFIG["port"].';dbname='.DB_CONFIG["dbname"],
                 DB_CONFIG["username"],
@@ -31,12 +29,12 @@ class Connexion
                     \PDO::ATTR_TIMEOUT => 3600,
                 ]
                 );
-
             self::$pdo = $pdoinstance->getConnexion();
             
         } catch (\PDOException $e) {
-            echo $e;
-            echo "<script>showErrorPopup('Erreur de connexion','Une erreur est survenue lors de la connexion à la base de données.')</script>";
+            // DEBUG
+            // echo $e;
+            require 'frontend/500.php';
             die();
         }
 

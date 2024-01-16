@@ -14,10 +14,10 @@
     <!-- Main -->
     <main>
         <div class="container">
-            <h1>Erreur 404</h1>
-            <p>La page que vous avez demandé n'existe pas.</p>
+            <h1>Erreur 500</h1>
+            <p>Une erreur est survenue sur le serveur.</p>
         </div>
-        <img src="/frontend/assets/icons/404.png" alt="404">
+        <img src="/frontend/assets/icons/404.png" alt="500">
     </main>
     <!-- Footer -->
     <?php include 'components/footer.php'; ?>

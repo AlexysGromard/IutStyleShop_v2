@@ -3,13 +3,15 @@ namespace controller;
 
 require_once 'backend/config/config.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/PHPMailer.php';
-require_once 'backend/library/PHPMailer-6.9.1/src/SMTP.php';
 require_once 'backend/library/PHPMailer-6.9.1/src/Exception.php';
+require_once 'backend/library/PHPMailer-6.9.1/src/SMTP.php';
+
+include "backend/DAO/DBUser.php";
+include "backend/entity/UserEntity.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
+use PHPMailer\PHPMailer\SMTP;
 
 class emailConfirmation {
 
@@ -21,13 +23,14 @@ class emailConfirmation {
         session_start();
 
         if (isset($_SESSION['email'])) {
+            unset($_SESSION['errors']);
             session_write_close();
+
             require "frontend/authentication/email-confirmation.php";
 
             // Send code
-            $this->sendCode();
-
-            unset($_SESSION['errors']);
+            // $this->sendCodeViaSMTP();
+            $this->sendCodeIUT();
         } else {
             header("Location: /register");
             exit();
@@ -41,10 +44,17 @@ class emailConfirmation {
         return mt_rand(100000, 999999);
     }
 
-    function sendCode() {
+    function sendCodeIUT(){
+        $confirmationCode = 000000;
+        // Stockage dans la session
+        $_SESSION['confirmationCode'] = $confirmationCode;
+    }
+
+    function sendCodeViaSMTP() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
         $confirmationCode = $this->generateConfirmationCode();
         // Stockage dans la session
         $_SESSION['confirmationCode'] = $confirmationCode;
@@ -110,24 +120,30 @@ class emailConfirmation {
             exit();
         }
 
-        // Création de l'utilisateur
-        $user = new \backend\entity\UserEntity();
-        $user->createIdentifiedUser(
-            0,
+        // Création de l'utilisateur dans la base de données
+        $DAOUser = new \backend\DAO\DBUser();
+        $DAOUser->add(
             $_SESSION['email'],
+            null,
+            $_SESSION['password'],
             $_SESSION['lastname'],
             $_SESSION['firstname'],
             $_SESSION['civility'],
-            "client",
-            "",
-            "",
-            "",
-            new \backend\entity\PanierEntity(
-                array(),
-                array(),
-                array()
-            )
+            null,
+            null,
+            null,
+            null
         );
+
+        // Récupération de l'utilisateur dans la base de données
+        $user = $DAOUser->getById($DAOUser->getByEmail($_SESSION['email']));
+        if ($user == null) {
+            echo "<script>showErrorPopup('Erreur lors de la création de l\'utilisateur','Une erreur est survenue lors de la création de l\'utilisateur.')</script>";
+            exit();
+        }
+
+        // Stocker l'utilisateur dans la session
+        $user->saveUserSession();
 
         // Supprimer les données de la session
         unset($_SESSION['civility']);

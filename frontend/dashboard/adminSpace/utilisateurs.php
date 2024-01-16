@@ -14,21 +14,20 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach( $array_user as $element) : ?>
-            <?php $listvalues= $element->getArrayOfImportantAttribut()?>
+            <?php foreach( $array_user as $user) : ?>
             <tr>
-                <td class="Black_police_40"><?= $listvalues["N°"] ?></td>
-                <td class="Black_police_40"><?= $listvalues["Mail"] ?></td>
-                <td class="Black_police_40"><?= $listvalues["Nom"] ?></td>
-                <td class="Black_police_40"><?= $listvalues["Prénom"] ?></td>
-                <td class="Black_police_40"><?= $listvalues["Adresse"] ?></td>
+                <td class="Black_police_40"><?= $user->getId() ?></td>
+                <td class="Black_police_40"><?= $user->getEmail() ?></td>
+                <td class="Black_police_40"><?= $user->getNom() ?></td>
+                <td class="Black_police_40"><?= $user->getPrenom() ?></td>
+                <td class="Black_police_40"><?= $user->getAdresse() ?></td>
                 <td class=action_space>
-                    <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
-                    <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
+                    <?php if ($user->getId() != 1) :?>
+                    <a href="/user/delUser/<?=$user->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
+                    <?php endif;?>
                 </td>
             </tr>
             <?php endforeach; ?>
-
         </tbody>
     </table>
 </div>

@@ -13,9 +13,28 @@ class register {
     );
 
     function index(){
+        // Générer un jeton CSRF
+        $csrfToken = $this->genererTokenCSRF();
+
         require "frontend/authentication/register.php";
 
         unset($_SESSION['errors']);
+    }
+
+    /*
+    * Cette fonction permet de générer un jeton CSRF
+    */
+    function genererTokenCSRF() {
+        $token = bin2hex(random_bytes(32)); // Générer un jeton aléatoire
+        $_SESSION['csrf_token'] = $token; // Stocker le jeton dans la session
+        return $token;
+    }
+
+    /*
+    * Cette fonction permet de vérifier si le jeton CSRF est valide
+    */
+    function verifierTokenCSRF($token) {
+        return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
     }
 
     /*
@@ -31,13 +50,21 @@ class register {
         $email = $_POST['email'];
         $password = $_POST['password'];
         $passwordConfirmation = $_POST['password-confirmation'];
+        $tokenDuFormulaire = $_POST['csrf_token'];
+
+        if (!$this->verifierTokenCSRF($tokenDuFormulaire)) {
+            // Le jeton CSRF n'est pas valide, traitement de l'erreur ou rejet de la requête
+            header("Location: /register");
+            exit();
+        }
 
         // Echapement des caractères spéciaux
         $civility = htmlspecialchars($civility, ENT_QUOTES, 'UTF-8');
         $lastname = htmlspecialchars($lastname, ENT_QUOTES, 'UTF-8');
         $firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
         $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
-        
+        $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');
+
         // Vérification du genre
         if ($civility != "M" && $civility != "W" && $civility != "N") {
             $this->errors['civility'] = true;
@@ -68,6 +95,14 @@ class register {
         } else {
             // Stockage de l'email dans la session
             $_SESSION['email'] = $email;
+        }
+
+        // Vérification du mot de passe
+        if ($password != $passwordConfirmation) {
+            $this->errors['password'] = true;
+        } else {
+            // Stockage du mot de passe dans la session
+            $_SESSION['password'] = $password;
         }
 
         // Si l'un des champs est vide

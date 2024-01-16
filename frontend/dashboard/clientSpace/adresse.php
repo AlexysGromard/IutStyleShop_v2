@@ -1,30 +1,45 @@
-<form class="large_box" action="xx">
+<form class="large_box" action="/user/updateUserAddress" method="POST">
     <!-- infomation sur l'adresse phisique -->
     <span class="Black_police_65">Mon adresse</span>
 
     <div class="square_of_2">
         <div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="adresse">Adresse</label>
-                <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse" initval=<?= $personne->adresse; ?>>
+            <!-- Adresse -->
+            <div class="input-box">
+                <label class="input-label" for="address">Adresse</label>
+                <input class="input-field sidebar" type="text" id="address" name="address" placeholder="Entrez votre adresse" initval="<?= $personne->getAdresse(); ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonaddress')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["address"]) && $_SESSION['errors']["address"]) ? "active" : ""; ?>">Adresse invalide</span>
             </div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="code">Code postal</label>
-                <input class="sidebar" type="text" placeholder="44000" id="code" name="code" initval=<?= $personne->code_postal; ?>>
+            <!-- Code postal -->
+            <div class="input-box">
+                <label class="input-label" for="code">Code postal</label>
+                <input class="input-field sidebar" type="text" placeholder="44000" id="code" name="code" initval="<?= $personne->getCodePostal(); ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonaddress')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["code"]) && $_SESSION['errors']["code"]) ? "active" : ""; ?>">Code postal invalide</span>
             </div>
         </div>
         <div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="complement_adresse">Complément d'adresse</label>
-                <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse" initval=<?= $personne->complement_adresse; ?>>
+            <!-- Complément d'adresse -->
+            <div class="input-box">
+                <label class="input-label" for="complement">Complément d'adresse</label>
+                <input class="input-field sidebar" type="text" id="complement" name="complement" placeholder="Entrez votre complément d'adresse" initval="<?= $personne->getComplementAdresse(); ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonaddress')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["complement"]) && $_SESSION['errors']["complement"]) ? "active" : ""; ?>">Complément d'adresse invalide</span>
             </div>
-            <div class="inputText_space">
-                <label class="Black_police_55" for="ville">Ville</label>
-                <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville" initval=<?= $personne->ville; ?>>
+            <!-- Ville -->
+            <div class="input-box">
+                <label class="input-label" for="city">Ville</label>
+                <input class="input-field sidebar" type="text" id="city" name="city" placeholder="Entrez votre ville" initval="<?= $personne->getVille(); ?>" oninput="checkedUpdateAdresse(this.id,this.value,'buttonaddress')">
+                <span class="input-error-message <?php echo (isset($_SESSION['errors']["city"]) && $_SESSION['errors']["city"]) ? "active" : ""; ?>">Ville invalide</span>
             </div>
         </div>
     </div>
 
-    <button type="submit" class="small-size button White_police_40 button_check" >Valider</button>
-
+    <button id="buttonaddress" type="submit" class="small-size button White_police_40 button_check disabled" >Valider</button>
 </form>
+
+<?php
+    // Supprimer les variables de session d'erreur
+    unset($_SESSION['errors']);
+?>
+
+<script src="/frontend/scripts/pre_fill.js"></script>
+<script src="/frontend/scripts/clientSpace/adresse.js"></script>

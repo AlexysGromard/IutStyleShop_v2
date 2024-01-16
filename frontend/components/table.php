@@ -1,28 +1,4 @@
-<?php
-function generateTable(
-    array $keys,
-    array $arrayElements,
-    ? array $arrayLinks = null
-) {
-
-    if( count($arrayElements) >=1 && count($arrayElements[0]->getArrayOfImportantAttribut()) != count($keys)){
-        echo "ERREUR";die();
-    }
-
-    if ($arrayLinks == null){
-        $arrayLinks = array();
-        foreach($keys as $nom ){
-            $arrayLinks[] = null;
-        }
-    }
-
-    if (count($arrayLinks) != count($keys)){
-        echo "ERREUR";die();
-    }
-    
-?>
-
-<table class="table_admin">              
+<table class="table_admin">
     <thead>
         <tr>
             <?php foreach( $keys as $nomkey) : ?>
@@ -50,7 +26,3 @@ function generateTable(
 
     </tbody>
 </table>
-
-<?php
-}
-?>

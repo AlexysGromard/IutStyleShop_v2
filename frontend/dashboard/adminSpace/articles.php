@@ -3,7 +3,7 @@
     <div class="large_box">
         <div class="title_space">
             <span class="Black_police_65">Base de données articles</span> 
-            <a href="" class="White_police_40 small-size button">Ajouter un article</a>
+            <a href="/user/admin_space/articles/nouvelArticle" class="White_police_40 small-size button">Ajouter un article</a>
         </div>
                                
 

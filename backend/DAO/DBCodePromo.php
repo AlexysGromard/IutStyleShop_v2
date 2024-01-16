@@ -13,12 +13,14 @@ class DBCodePromo extends Connexion implements DAOInterface
      * @param int $promo
      * @return CodePromoEntity
      */
+
     public static function add(string $code,int $promo): CodePromoEntity
     {
         
         $requete = "CALL InsertCodePromo(?,?)";
         
         $stmt = self::$pdo->prepare($requete);
+
 
         $stmt->bindParam(1, $code, \PDO::PARAM_STR);
         $stmt->bindParam(2, $promo, \PDO::PARAM_INT);
@@ -98,6 +100,7 @@ class DBCodePromo extends Connexion implements DAOInterface
      * @param int $id
      * @return CodePromoEntity|null
      */
+
     public static function getById(int $id): ?CodePromoEntity
     {
         $requete = "CALL GetCodePromoById(?)";
@@ -108,16 +111,13 @@ class DBCodePromo extends Connexion implements DAOInterface
 
         $stmt->execute();
 
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        var_dump($row);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if ($row === false) {
             // Aucun résultat trouvé
             return null;
         }
-
-        
         
         // Créez une instance de CodePromoEntity en utilisant les données de la ligne
         return new \backend\entity\CodePromoEntity($row['id'],$row['texte'],$row['promo']);

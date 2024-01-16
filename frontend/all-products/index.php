@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tous les produits - IutStyleShop</title>
-    <link rel="stylesheet" href="/frontend/styles/variables.css">
-    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <?php include 'frontend/common-includes.php'?>
     <link rel="stylesheet" href="/frontend/styles/all-products.css">
 </head>
 <body>
@@ -18,7 +17,7 @@
             <div id="header-products">
                 <!-- Section title -->
                 <div class="section-title">
-                    <span class="section-title-name">Meilleures ventes</span>
+                    <span class="section-title-name"><?= isset($search) ? "Résultat de \"".$search."\"" : "Meilleures ventes";?></span>
                     <span id="nb-articles" class="section-title-results">0 articles</span>
                 </div>
                 <!-- Btn 'All products' -->
@@ -102,6 +101,8 @@
                     </ul>
                 </div>
             </div>
+            <!-- Boutton Valider -->
+            <button class="small-size button important-text" id="button-validate">Valider les filtres</button>
         </section>
     </main>
     <!-- Footer -->

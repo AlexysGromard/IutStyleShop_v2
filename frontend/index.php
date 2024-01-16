@@ -40,7 +40,8 @@
         </div>
         <div id="products">
             <?php
-                include 'components/article-card.php';
+                include_once 'controller/components.php';
+                use controller;
                 foreach($bestArticles as $article){
                     $img = ""; 
                     if (count($article->getImages())>=1){

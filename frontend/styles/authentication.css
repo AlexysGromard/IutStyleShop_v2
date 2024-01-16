@@ -82,6 +82,10 @@ form .action-box{
     color: var(--red);
     font-size: var(--small);
     text-decoration: none;
+    /* For button */
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 .link-to-password-recovery:hover{
     text-decoration: underline;
@@ -124,6 +128,7 @@ form .action-box{
     font-size: var(--small);
     text-decoration: none;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .button.without-passkey{
@@ -199,6 +204,10 @@ form .action-box{
         justify-content: space-between;
     }
     .confirmation-form-part{
+        gap: 5px;
+    }
+    .action-box.change-method{
+        flex-direction: column;
         gap: 5px;
     }
 }

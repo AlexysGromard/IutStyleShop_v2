@@ -73,14 +73,19 @@ const priceSlider = document.getElementById('price-slider');
 const typeCheckbox = document.getElementById('type-checkbox');
 const colorCheckbox = document.getElementById('color-checkbox');
 const filterSectionTitle = document.getElementById('filter-section-title');
+const button = document.getElementById('button-validate');
 
 // Quand on clique sur filter-section-title:after
 filterSectionTitle.addEventListener('click', function () {
-    // Mettre les ID à display: none
-    priceSlider.style.display = (priceSlider.style.display === 'none') ? 'block' : 'none';
-    if (typeCheckbox) {
-        typeCheckbox.style.display = (typeCheckbox.style.display === 'none') ? 'block' : 'none';
+    // Si résolution < 768px
+    if (window.innerWidth < 768) {
+        // Mettre les ID à display: none
+        priceSlider.style.display = (priceSlider.style.display === 'none') ? 'block' : 'none';
+        if (typeCheckbox) {
+            typeCheckbox.style.display = (typeCheckbox.style.display === 'none') ? 'block' : 'none';
+        }
+        colorCheckbox.style.display = (colorCheckbox.style.display === 'none') ? 'block' : 'none';
+        button.style.display = (button.style.display === 'none') ? 'block' : 'none';
     }
-    colorCheckbox.style.display = (colorCheckbox.style.display === 'none') ? 'block' : 'none';
 });
 

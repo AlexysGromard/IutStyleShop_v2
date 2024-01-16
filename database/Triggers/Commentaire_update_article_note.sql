@@ -29,13 +29,25 @@ CREATE OR REPLACE TRIGGER Commentaire_update_article_note_d
 AFTER DELETE ON Commentaire
 FOR EACH ROW
 BEGIN
+UPDATE Article
+    SET Article.notes = 0.0
+    WHERE Article.id = OLD.id_Article and null in (
+        SELECT AVG(Commentaire.note)
+        FROM Commentaire
+        WHERE Commentaire.id_Article = OLD.id_Article
+    );
+    
     UPDATE Article
     SET Article.notes = (
         SELECT AVG(Commentaire.note)
         FROM Commentaire
         WHERE Commentaire.id_Article = OLD.id_Article
     )
-    WHERE Article.id = OLD.id_Article;
+    WHERE Article.id = OLD.id_Article and null not in (
+        SELECT AVG(Commentaire.note)
+        FROM Commentaire
+        WHERE Commentaire.id_Article = OLD.id_Article
+    );
 END;
 //
 DELIMITER ;

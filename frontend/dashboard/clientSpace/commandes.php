@@ -67,3 +67,5 @@
     </div>
     
 </div>
+
+<script src="/frontend/scripts/clientSpace/commande.js"></script>

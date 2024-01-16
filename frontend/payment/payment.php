@@ -75,21 +75,21 @@
                     <div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="last-name">Nom</label>
-                            <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" value=<?= $personne->nom;?> >
+                            <input class="sidebar" type="text" placeholder="Votre nom" id="last-name" name="Nom" initval="<?= $personne->nom;?>" >
                         </div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="first-name">Prénom</label>
-                            <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" value=<?= $personne->prenom;?>>
+                            <input class="sidebar" type="text" placeholder="Prénom" id="first-name" name="Prenom" initval="<?= $personne->prenom;?>">
                         </div>
                     </div>
                     <div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="mail">Adresse mail</label>
-                            <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" value=<?= $personne->mail;?>>
+                            <input class="sidebar" type="mail" placeholder="Votre adresse mail" id="mail" name="mail" initval="<?= $personne->mail;?>">
                         </div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="phone">Numéro de téléphone</label>
-                            <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel">
+                            <input class="sidebar" type="phone" placeholder="06 00 00 00 00" id="phone" name="tel" initval="">
                         </div>
                     </div>
                 </div>
@@ -103,21 +103,21 @@
                     <div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="adresse">Adresse</label>
-                            <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse" value=<?= $personne->adresse;?>>
+                            <input class="sidebar" type="text" placeholder="1 Rue du marechal joffre" id="adresse" name="adresse" initval="<?= $personne->adresse;?>">
                         </div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="code">Code postal</label>
-                            <input class="sidebar" type="text" placeholder="44000" id="code" name="code" value=<?= $personne->code_postal;?>>
+                            <input class="sidebar" type="text" placeholder="44000" id="code" name="code" initval="<?= $personne->code_postal;?>">
                         </div>
                     </div>
                     <div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="complement_adresse">Complément d'adresse</label>
-                            <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse" value=<?= $personne->complement_adresse;?>>
+                            <input class="sidebar" type="text" placeholder="Appartement B15" id="complement_adresse" name="complement_adresse" initval="<?= $personne->complement_adresse;?>">
                         </div>
                         <div class="inputText_space">
                             <label class="Black_police_55" for="ville">Ville</label>
-                            <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville" value=<?= $personne->ville;?>>
+                            <input class="sidebar" type="text" placeholder="Nantes" id="ville" name="ville" initval="<?= $personne->ville;?>">
                         </div>
                     </div>
                 </div>
