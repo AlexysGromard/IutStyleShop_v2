@@ -111,3 +111,20 @@
     <?php include 'frontend/components/footer.php'; ?>
 </body>
 </html>
+
+<script>
+    // Si la valeur d'un select .quantity-size clickable change
+    document.querySelectorAll(".quantity-size.clickable").forEach((select) => {
+        select.addEventListener("change", (e) => {
+            // Récupérer l'élément parent
+            let parent = e.target.parentElement.parentElement.parentElement.parentElement;
+            // Récupérer id, size, quantity
+            let id = parent.querySelector(".cross").href.split("/")[5];
+            let size = parent.querySelector(".cross").href.split("/")[6];
+            let quantity = e.target.value;
+
+            // Renvoyer vers updateQuantityProduct
+            window.location.href = "/card/updateQuantityProduct/" + id + "/" + size + "/" + quantity;
+        });
+    });
+</script>
