@@ -37,7 +37,7 @@
                             <?php endif ?>
                             <?php endforeach ?>
                         </div>
-                        <span class="small-article-text"><?= $articleActual->getVotant()?> évaluation(s)</span>
+                        <span class="small-article-text"><?= $articleActual->getVotant()?> évaluation<?= $articleActual->getVotant() > 1 ? "s" : "" ?></span>
                     </div>
                     <div class="article-more-info">
                         <div>
