@@ -4,8 +4,8 @@ namespace controller;
 class products{
 
     function index(){
-        $this->dao = new \backend\DAO\DBArticle();
-        $mesArticles = $this->dao->getall();
+        $dao = new \backend\DAO\DBArticle();
+        $mesArticles = $dao->getall();
         foreach($mesArticles as $art){
             if ($art == null){
                 echo "<h1> OUIIIII </h1>";
@@ -59,7 +59,6 @@ class products{
 
     */
     function filter($param){
-        $this->dao = new \backend\DAO\DBArticle();
         $longueur = 17;
 
         
@@ -86,8 +85,10 @@ class products{
             if ($param[12]=="true"){
                 $genre .= "F";
             }
-            $mesArticles = $this->dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
-            //todo : filiterbyname()
+            $dao = new \backend\DAO\DBArticle();
+            $mesArticles = $dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
+
+            $mesArticles = $this->filiterbyname($param[16], $mesArticles);
 
             require "frontend/all-products/index_bd.php";
 
@@ -97,29 +98,51 @@ class products{
         }
     }
 
-    private function filiterbyname($search,$articles){ //TODO : doit retourner les articles
-        // Récupérer tous les articles
-        $products = getProductNames();
-
-        // Limite de coeefficient de ressemblance
-        $limiteCoefficientRessemblance = 0.25;
+    private function filiterbyname($search,$products){ //TODO : doit retourner les articles
 
         // Calculer les coefficients de ressemblance pour chaque produit
-        $coefficients = array();
-        foreach ($products as $product) {
-            $coefficient = calculerCoefficientRessemblance($query, $product);
-            $coefficients[$product] = $coefficient;
-        }
 
-        // Trier les résultats en fonction des coefficients de ressemblance (du plus grand au plus petit)
-        arsort($coefficients);
+        $n = count($products)-1;
+        $i = 0;
+        $listCoefficient=[];
+        while ($i <= $n-1){
+            $j = $i+1;
+            while ($j <= $n){
+                if ($listCoefficient[$i] != null){
+                    $coefi = $listCoefficient[$i];
+                }else{
+                    $coefi = calculerCoefficientRessemblance($search, $products[$i]);
+                    $listCoefficient[$i] = $coefi;
+                }
 
-        // Supprimer les résultats dont le coefficient de ressemblance est inférieur à la limite
-        $coefficients = array_filter($coefficients, function($coefficient) use ($limiteCoefficientRessemblance) {
-            return $coefficient >= $limiteCoefficientRessemblance;
-        });
+                if ($listCoefficient[$j] != null){
+                    $coefj = $listCoefficient[$j];
+                }else{
+                    $coefj = calculerCoefficientRessemblance($search, $products[$j]);
+                    $listCoefficient[$j] = $coefj;
+                }
 
-        return $coefficients;
+
+                if ($coefi < $coefj){
+                    $valtemp = $products[$i];
+                    $products[$i] = $products[$j];
+                    $products[$j] = $valtemp;
+
+                    $valtemp2 = $listCoefficient[$i];
+                    $listCoefficient[$i] = $listCoefficient[$j];
+                    $listCoefficient[$j] = $valtemp2;
+                }
+                $j++;
+            }
+            if ($listCoefficient[$i] < 0.2){
+                return array_slice($products,0,$i);
+                break;
+            }
+            $i++;
+            
+        } 
+
+        return $products;
     }
 
     function search(){
