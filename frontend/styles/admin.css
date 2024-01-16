@@ -3,10 +3,13 @@ body > * {
 }
 
 .admin_general{
-    margin: 45px 77px 94px 77px;
+    max-width: 1286px;
+    padding: 45px 10px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 }
 
 .admin_general_element_box{

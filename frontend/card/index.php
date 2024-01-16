@@ -72,10 +72,10 @@
                     </div>
 
                     <div class="text-espace">
-                        <div class="payment-text grey">
+                        <div class="payment-text <?php echo isset($codePromo) && $codePromo->getPromo() != 0 ? "green" : "grey"; ?>">
                             Code promotionnel <?= isset($codePromo) && $codePromo->getPromo() != 0 ? " : ".$codePromo->getCode() : "";?>
                         </div>
-                        <div class="payment-text text-weight-price">
+                        <div class="payment-text text-weight-price <?php echo isset($codePromo) && $codePromo->getPromo() != 0 ? "green" : ""; ?>">
                             <?= (isset($codePromo) && $codePromo->getPromo() != 0 )? "-".number_format($panier->getPrixTotal() * $codePromo->getPromo() / 100, 2) : "0"; ?>€
                         </div>
                     </div>

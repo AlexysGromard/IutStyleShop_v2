@@ -6,6 +6,6 @@ CREATE OR REPLACE  PROCEDURE GetCommandeByIdUser
 )
 BEGIN
     -- Sortir les informations d'une commande
-    SELECT * FROM Commande WHERE id = p_iduser;
+    SELECT * FROM Commande WHERE id_user = p_iduser;
 END //
 DELIMITER ;

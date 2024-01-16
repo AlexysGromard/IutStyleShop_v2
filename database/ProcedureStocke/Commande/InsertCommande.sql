@@ -12,7 +12,7 @@ BEGIN
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
     INSERT INTO Commande (id_user, statut, prix)
-    VALUES (p_iduser, 'En cours', (SELECT SUM(Article.prix * quantite) FROM Panier INNER JOIN Article ON Panier.ID_article = Article.ID WHERE ID_user = p_iduser));
+    VALUES (p_iduser, 'En cours', round((SELECT SUM(Article.prix * quantite) * (1 - (SELECT promo FROM CodePromo WHERE ID = p_idcodepromo LIMIT 1) / 100) FROM Panier INNER JOIN Article ON Panier.ID_article = Article.ID WHERE ID_user = p_iduser),2));
 
     OPEN cur;
 
@@ -23,9 +23,18 @@ BEGIN
         END IF;
 
         INSERT INTO ArticleCommande (ID_commande, ID_article, taille ,prix_unitaire, quantite)
-        VALUES ((SELECT MAX(ID) FROM Commande), v_ID_article, v_taille, (SELECT prix * (1 - promo) * (1 - COALESCE((SELECT promo FROM CodePromo WHERE ID = p_idcodepromo LIMIT 1), 0.0)) FROM Article WHERE ID = v_ID_article) ,v_quantite);
+        VALUES (
+            (SELECT MAX(ID) FROM Commande), 
+            v_ID_article, 
+            v_taille, 
+            ROUND(
+                (SELECT prix * (1 - COALESCE((SELECT promo FROM CodePromo WHERE ID = p_idcodepromo LIMIT 1), 0.0) / 100) FROM Article WHERE ID = v_ID_article),
+                2
+            ),
+            v_quantite
+        );
     END LOOP;
-
+    
     CLOSE cur;
 END //
 DELIMITER ;

@@ -20,7 +20,7 @@
                 <td class="Black_police_40"><?= $user->getEmail() ?></td>
                 <td class="Black_police_40"><?= $user->getNom() ?></td>
                 <td class="Black_police_40"><?= $user->getPrenom() ?></td>
-                <td class="Black_police_40"><?= $user->getAdresse() ?></td>
+                <td class="Black_police_40"><?= $user->getAdresse()." ".$user->getCodePostal()." ".$user->getVille() ?></td>
                 <td class=action_space>
                     <?php if ($user->getId() != 1) :?>
                     <a href="/user/delUser/<?=$user->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
