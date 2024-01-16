@@ -261,7 +261,10 @@
             <div class="third-section-payment">
                 <span class="Black_police_45">Code promo</span>
                 <div class="boite-code-promo">
-                    <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                    <form action="/card/addPromoCode" method="POST">
+                        <input class="code-promo" type="text" name="code" placeholder="Renseigner votre code ici">
+                        <button class="button">Valider</button>
+                    </form>
                 </div>
             </div>
             <div class="line"></div>

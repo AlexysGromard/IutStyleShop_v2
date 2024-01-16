@@ -91,7 +91,8 @@ class card{
         foreach ($codePromoList as $code) {
             if($code->getCode() == $codePromo){
                 $_SESSION["codePromo"] = $code;
-                header("Location: /card");
+                // Renvoyer vers la page précédente
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit();
             }
         }
@@ -101,7 +102,8 @@ class card{
             unset($_SESSION["codePromo"]);
         }
 
-        header("Location: /card");
+        // Renvoyer vers la page précédente
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     /*
