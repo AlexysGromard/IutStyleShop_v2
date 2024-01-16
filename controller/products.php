@@ -3,41 +3,51 @@ namespace controller;
 
 class products{
 
-    private $dao;
     private $pageTitle;
 
     function index(){
-        $this->dao = new \backend\DAO\DBArticle();
-        $mesArticles = $this->dao->getall();
-        $param = array(true,true,true,true,true,true,true,true,true,0,100,true,true,false,true,true); 
+        $dao = new \backend\DAO\DBArticle();
+        
+        $mesArticles = $dao->getall();
+        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","false","true","true",""); 
         require "frontend/all-products/index.php";
     }
 
     function accessoire(){
-        $param = array("false","false","false","true","true","true","true","true","true",0,100,"true","true","false","true","true");
+        $param = array("false","false","false","true","true","true","true","true","true",0,100,"true","true","false","true","true","");
         $this->pageTitle = "Accessoires";
         $this->filter($param);
     }
     function tshirt(){
-        $param = array("true","false","false","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("true","false","false","false","true","true","true","true","true",0,100,"true","true","false","true","true",""); 
         $this->pageTitle = "T-shirts";
         $this->filter($param);
     }
     function sportswear(){
-        $param = array("false","false","true","false","true","true","true","true","true",0,100,"true","true","false","true","true");
+        $param = array("false","false","true","false","true","true","true","true","true",0,100,"true","true","false","true","true","");
         $this->pageTitle = "Tenues de sport";
         $this->filter($param);
     
     }
     function sweatshirt(){
-        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true");
+        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true","");
         $this->pageTitle = "Sweat-shirts";
         $this->filter($param);
     }
     function promotion(){
-        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true");
+        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true","");
         $this->pageTitle = "Promotions";
         $this->filter($param);
+    }
+
+    function search(array $param){
+        if (count($param) && isset($param[0])){
+            $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true",$param[0]);
+            $this->filter($param);
+        }else{
+            require "frontend/404.php";die();
+        }
+        
     }
 
     /*
@@ -57,12 +67,10 @@ class products{
         13 promo (booléen) : Indique d'afficher seulement les articles en promo.
         14 disponible (booléen) : Indique d'afficher les articles disponible
         15 nondisponible (booléen) : Indique d'afficher les articles non disponible
-
-
+        16 motsderecherche (string) : indique la recherche effectuer
     */
     function filter($param){
-        $this->dao = new \backend\DAO\DBArticle();
-        $longueur = 16;
+        $longueur = 17;
 
         // Récupérer nom de page
         $pageTitle = $this->pageTitle;
@@ -95,33 +103,89 @@ class products{
             if ($param[12]=="true"){
                 $genre .= "F";
             }
-            $mesArticles = $this->dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,$promo,2);
+            $dao = new \backend\DAO\DBArticle();
+            $mesArticles = $dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,false,2);
+            if ($param[16] != ""){
+                $mesArticles = $this->filiterbyname($param[16], $mesArticles);
+            }
+            
+            
             require "frontend/all-products/index.php";
+
+
 
         }else{
-            require "frontend/all-products/index.php";
+            require "frontend/404.php";
         }
     }
 
-    function search(){
-        // Récupérer les données du formulaire
-        $search = $_POST['search'];
+    private function filiterbyname(string $search,array $products){
 
-        // Echapement des données
-        $search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
+        // Calculer les coefficients de ressemblance pour chaque produit
 
-        if (empty($search)){
-            // Retourner à la page précédente
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        $n = count($products)-1;
+        $i = 0;
+        $listCoefficient=[];
+        while ($i <= $n-1){
+            $j = $i+1;
+            while ($j <= $n){
+                if ($listCoefficient[$i] != null){
+                    $coefi = $listCoefficient[$i];
+                }else{
+                    $coefi = $this->calculerCoefficientRessemblance($search, ($products[$i])->getNom());
+                    $listCoefficient[$i] = $coefi;
+                }
+
+                if ($listCoefficient[$j] != null){
+                    $coefj = $listCoefficient[$j];
+                }else{
+                    $coefj = $this->calculerCoefficientRessemblance($search, $products[$j]->getNom());
+                    $listCoefficient[$j] = $coefj;
+                }
+
+
+                if ($coefi < $coefj){
+                    $valtemp = $products[$i];
+                    $products[$i] = $products[$j];
+                    $products[$j] = $valtemp;
+
+                    $valtemp2 = $listCoefficient[$i];
+                    $listCoefficient[$i] = $listCoefficient[$j];
+                    $listCoefficient[$j] = $valtemp2;
+                }
+                $j++;
+            }
+            $i++;
+            if ($listCoefficient[$i-1] < 0.25){
+                return array_slice($products,0,$i-1);
+            }
+            
         }
-
-        require "backend/search.php";
-        $results = search($search);
-
-        // Rediriger vers la page des produits
-        require "frontend/all-products/index.php";
+        return $products;
     }
 
+    private function calculerCoefficientRessemblance(string $search, string $productname){
+        // Vous pouvez ajuster ces poids en fonction de l'importance de chaque critère
+        $poidsSimilariteJaccard = 1.0;
+        $poidsSimilariteLevenshtein = 0.5;
+
+        //split les chène de carracter
+        $searchSplit = str_split($search);
+        $productnameSplit = str_split($productname);
+
+        // Calculer la similarité de Jaccard
+        $intersection = count(array_intersect($searchSplit, $productnameSplit));
+        $union = count(array_unique(array_merge($searchSplit, $productnameSplit)));
+        $similariteJaccard = $union > 0 ? $intersection / $union : 0;
+    
+        // Calculer la similarité de Levenshtein
+        $similariteLevenshtein = 1 - levenshtein($search, $productname) / max(strlen($search), strlen($productname));
+    
+        // Calculer le coefficient de ressemblance pondéré
+        $coefficientRessemblance = ($poidsSimilariteJaccard * $similariteJaccard) + ($poidsSimilariteLevenshtein * $similariteLevenshtein);
+    
+        return $coefficientRessemblance;
+    }
 }
 
 ?>

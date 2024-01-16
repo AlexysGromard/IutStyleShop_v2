@@ -21,16 +21,14 @@ class ArticleCommandeEntity
 
 
     private int $id_article;
-    private string $taille;
+    private ?string $taille;
     private float $prix_unitaire;
     private int $quantite;
 
-
     public function __construct(int $id_article,
-                                string $taille,
+                                ?string $taille,
                                 float $prix_unitaire,
-                                int $quantite) 
-    {
+                                int $quantite){
         $this->setIdArticle($id_article);
         $this->setTaille($taille);
         $this->setPrixUnitaire($prix_unitaire);
@@ -84,7 +82,7 @@ class ArticleCommandeEntity
     /*
     * @param string $taille
     */
-    public function setTaille(string $taille): void
+    public function setTaille(?string $taille): void
     {
         $this->taille = $taille;
     }

@@ -34,7 +34,6 @@
                     include_once 'controller/components.php';
                     use controller;
 
-
                     if (isset($mesArticles)){
                         foreach($mesArticles as $article){
                             $img = ""; 
@@ -54,10 +53,6 @@
                         }
                     }
                     ?>
-                    
-                    
-                
-
             </section>    
         </div>
         <!-- Section filters -->

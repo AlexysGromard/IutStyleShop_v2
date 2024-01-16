@@ -17,13 +17,13 @@ BEGIN
 
     SELECT * FROM Article 
     WHERE 
-        couleur = p_couleur COLLATE utf8mb4_general_ci
-        AND category = p_categorie COLLATE utf8mb4_general_ci
+        couleur = p_couleur --  COLLATE utf8mb4_general_ci
+        AND category = p_categorie -- COLLATE utf8mb4_general_ci
         AND prix >= p_prix_min 
         AND prix <= p_prix_max 
         AND (
-            (genre = p_genre COLLATE utf8mb4_general_ci) 
-            OR (category NOT LIKE 'accessoire' AND p_genre LIKE 'MF' ) -- COLLATE utf8mb4_general_ci)
+            (genre = p_genre) --  COLLATE utf8mb4_general_ci) 
+            OR (category NOT LIKE 'accessoire' AND p_genre LIKE 'MF') --  COLLATE utf8mb4_general_ci)
         )
         AND (
             (p_promo = 1 AND promo > 0) 

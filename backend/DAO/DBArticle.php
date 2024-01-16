@@ -8,7 +8,7 @@ use \backend\entity\VetementEntity;
 
 
 
-class DBArticle extends Connexion implements DAOInterface
+class DBArticle extends Connexion// implements DAOInterface
 {
     /**
      * Ajoute un vetement
@@ -235,6 +235,39 @@ class DBArticle extends Connexion implements DAOInterface
         return $lsArticles;
 
     }
+    // private static function getrequestGetAllArticle(){
+    //     $requete = "CALL GetAllArticle()";
+    //     $stmt = self::$pdo->prepare($requete);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    // }
+
+    // private static function getrequestGetImageOfArticle($id_article){
+    //     $requete = "CALL GetImageArticle(?)";
+    //     $stmt = self::$pdo->prepare($requete);
+    //     $stmt->bindParam(1,$id_article);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    // }
+
+
+
+    // public static function getall2()
+    // {
+    //     $res = self::getrequestGetAllArticle();
+
+    //     $articles = [];
+    //     foreach ($res as $element){
+    //         $res2 = self::getrequestGetImageOfArticle();
+    //         $image = [];
+    //         foreach ($res2 as $images){
+    //             $image[] = $res2["lien"];
+    //         }
+
+    //         $articles[] = new \backend\entity\ArticleEntity($element["id"],$element["nom"],$element["category"],$element["genre"],$element["couleur"],$element["description"],$element["votant"],$element["notes"],$element["prix"],$element["promo"],$element["disponible"],$image);
+    //     }
+
+    // }
 
     private static function getallRequest():array{
         $requete = "CALL GetAllArticle()";

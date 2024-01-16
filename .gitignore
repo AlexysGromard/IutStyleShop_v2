@@ -1,8 +1,7 @@
 # MacOS Files
 .DS_Store
 # Accès to the database
+/backend/config/config.php
 backend/config/config.php
 
-# commande pour ignorer les fichiers commandes
-database/commande.bash
-database/commande.ps1
+config.php

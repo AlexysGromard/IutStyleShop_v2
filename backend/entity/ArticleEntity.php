@@ -170,6 +170,11 @@ class ArticleEntity
         return $this->images;
     }
 
+    public function getCommantaire() : array{
+        $DAOCommantaire = new \backend\DAO\DBCommentaire();
+        return $DAOCommantaire->getCommentaireByIdArticle($this->getId());
+    }
+
     /*
     * @param string $nom
     */

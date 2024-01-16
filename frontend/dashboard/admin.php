@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/admin.css">
     
-    <?php include 'frontend/components/table.php'; ?>
     
 </head>
 <body>

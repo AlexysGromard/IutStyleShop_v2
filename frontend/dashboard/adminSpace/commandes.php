@@ -1,5 +1,5 @@
 <div class="large_box">
-    <?php if ($numcommande == null) : //modifier en juste commande?>
+    <?php if ($commande == null) : //modifier en juste commande?>
         <span class="Black_police_65">Base de données commandes</span>
 
         <table class="table_admin">
@@ -15,23 +15,25 @@
                 </tr>
             </thead>
             <tbody>
+                <?php foreach($array_user as $ElementUser):?>
+                <?php $array_commandes = $ElementUser->getAllCommande();?>
                 <?php foreach( $array_commandes as $element) : ?>
-                <?php $listvalues= $element->getArrayOfImportantAttribut()?>
                 <tr>
-                    <td><a href="xx" class="Red_police_50"><?= $listvalues["N°"] ?></a></td>
-                    <td><a href="xx" class="Red_police_50"><?= $listvalues["N° Utilisateur"] ?></a></td>
-                    <td class="Black_police_40"><?= $listvalues["Date"] ?></td>
-                    <td><a href="xx" class="Red_police_50"><?= $listvalues["Statut"] ?></a></td>
-                    <td class="Black_police_40"><?= $listvalues["Prix"] ?></td>
+                    <td><a href="xx" class="Red_police_50"><?=$element->getId()?></a></td>
+                    <td><a href="xx" class="Red_police_50"><?= $ElementUser->getId()?></a></td>
+                    <td class="Black_police_40"><?=$element->getDate()?></td>
+                    <td><a href="xx" class="Red_police_50"><?=$element->getStatut()?></a></td>
+                    <td class="Black_police_40"><?=$element->getPrix()."€"?></td>
                     <td class=action_space>
-                        <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
+                        <a href="/user/delCommande/<?=$element->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
                     </td>
                 </tr>
+                <?php endforeach; ?>
                 <?php endforeach; ?>
 
             </tbody>
         </table>
-    <?php else: ?>
+    <?php elseif (gettype($commande)=="object"):?>
         <span class="Black_police_65">Commande N°<?=$commande->id?> appartenant à xxxxx xxxxx du <?=$commande->date ?> </span>
 
         <div class="all_commande_box">

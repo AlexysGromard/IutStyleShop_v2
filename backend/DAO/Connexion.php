@@ -33,8 +33,8 @@ class Connexion
             
         } catch (\PDOException $e) {
             // DEBUG
-            // echo $e;
-            require 'frontend/500.php';
+            echo $e;
+            //require 'frontend/500.php';
             die();
         }
 

@@ -18,12 +18,12 @@
             <?php foreach( $array_code_promo as $code) : ?>
             <tr>
                 
-                <td><a href="xx" class="Red_police_50"><?= $code->getId(); ?></a></td>
+                <td><?= $code->getId(); ?></td>
                 <td class="Black_police_40"><?= $code->getCode(); ?></td>
                 <td class="Black_police_40"><?= $code->getPromo()."%"; ?></td>
                 <td class=action_space>
                     <a href=<?= "codes_promotionnel/".$code->getId(); ?>><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
-                    <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
+                    <a href="/user/delCodesPromotionnel/<?=$code->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -32,30 +32,32 @@
     </table>
 </div>
 <?php elseif ($codePromo=="nouveauCodePromotionnel"): ?>
-    <form class="large_box" action="">
+    <form class="large_box" action="/user/addCodePromotionnel" method="POST">
         <span class="Black_police_65">Code promotionnel N°xxx</span>
 
         <div class="large_inputText_space">
             <label for="article-name" class="Black_police_55">Code promotionnel</label>
-            <input id="Code promotionnel" placeholder="Mon nom de code" type="text" class="sidebar">
+            <input name="Code promotionnel" id="Code promotionnel" placeholder="Mon nom de code" type="text" class="sidebar">
         </div>  
         <div class="large_inputText_space">
             <label for="reduction" class="Black_police_55">Réduction (en %)</label>
-            <input id="reduction" placeholder="Réduction (en %)" type="text" class="sidebar">
+            <input name="reduction" id="reduction" placeholder="Réduction (en %)" type="number" class="sidebar">
         </div>
         <button type="submit" class="medium-size button basic-text button_check">Ajouter code promotionnel</button>
     </form>
 <?php elseif (gettype($codePromo)=="object"):?>
-    <form class="large_box" action="">
+    <form class="large_box" action="/user/updateCodePromotionnel" method="POST">
         <span class="Black_police_65">Code promotionnel N°<?=$codePromo->getId();?></span>
 
+        <input  name="id" class="sidebar" type="number" initval=<?=$codePromo->getId()?> style="display: none;">
+        
         <div class="large_inputText_space">
             <label for="article-name" class="Black_police_55">Code promotionnel</label>
-            <input id="Code promotionnel" placeholder="Mon nom de code" type="text" class="sidebar" initval=<?=$codePromo->getCode()?>>
+            <input name="Code promotionnel" id="Code promotionnel" placeholder="Mon nom de code" type="text" class="sidebar" initval=<?=$codePromo->getCode()?>>
         </div>  
         <div class="large_inputText_space">
             <label for="reduction" class="Black_police_55">Réduction (en %)</label>
-            <input id="reduction" placeholder="Réduction (en %)" type="text" class="sidebar" initval=<?=$codePromo->getPromo()?>>
+            <input name="reduction" id="reduction" placeholder="Réduction (en %) (10.50)" type="number" class="sidebar" initval=<?=$codePromo->getPromo()?>>
         </div>
         <button type="submit" class="medium-size button basic-text button_check">Modifier code promotionnel</button>
     </form>

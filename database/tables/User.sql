@@ -19,4 +19,4 @@ CREATE OR REPLACE TABLE User (
 
 -- Insertion de l'utilisateur admin avec le mot de passe hashé
 INSERT INTO User (email, telephone, password, nom, prenom, genre, role, adresse, ville, code_postal, Complement_adresse)
-VALUES ('admin@iutstyleshop.com', '0102030405', SHA2('admin', 256), "admin", "admin", "N", 'admin', 'admin', 'admin', 0, 'admin');
+VALUES ('admin@iutstyleshop.com', '0102030405', SHA2('admin', 256), 'admin', 'admin', 'N', 'admin', 'admin', 'admin', 0, 'admin');

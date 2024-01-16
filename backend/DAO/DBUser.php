@@ -119,10 +119,12 @@ class DBUser extends Connexion implements DAOInterface
         $requete = "CALL DeleteUser(?)";
 
         $stmt = self::$pdo->prepare($requete);
-        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+        
+        $id = $entity->getId();
+        $stmt->bindParam(1, $id, \PDO::PARAM_INT);
+
 
         $stmt->execute();
-        var_dump($entity);
     }
 
     /**
@@ -185,13 +187,17 @@ class DBUser extends Connexion implements DAOInterface
 
 
     /**
-     * Donne l'id d'un utilisateur par son email
+     * Donne le UserEntity d'un utilisateur par son id
      * 
      * @param int $id
      * @return UserEntity|null
      */
     public static function getById(int $id): ?\backend\entity\UserEntity
     {
+        assert(is_numeric($id),"L'id demandé n'est pas correcte (Il doit être un nombre !)");
+        assert($id>0,"L'id demandé n'est pas correcte (<=0)");
+
+
         $requete = "CALL GetUserInfo(?)";
         $stmt = self::$pdo->prepare($requete);
 
@@ -199,28 +205,25 @@ class DBUser extends Connexion implements DAOInterface
         
         $stmt->execute();
         
-        $usersData = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        
-
-        $userEntities = [];
-        foreach ($usersData as $userData) {
+        $userData = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if($userData){
             $userEntity = new \backend\entity\UserEntity(
-                $userData['id'],
-                $userData['email'],
-                $userData['telephone'],
-                $userData['nom'],
-                $userData['prenom'],
-                $userData['genre'],
-                $userData['role'],
-                $userData['adresse'],
-                $userData['ville'],
-                $userData['code_postal'],
-                $userData['Complement_adresse']
-            );
-            $userEntities[] = $userEntity;
-
+                            $userData['id'],
+                            $userData['email'],
+                            $userData['telephone'],
+                            $userData['nom'],
+                            $userData['prenom'],
+                            $userData['genre'],
+                            $userData['role'],
+                            $userData['adresse'],
+                            $userData['ville'],
+                            $userData['code_postal'],
+                            $userData['Complement_adresse']
+                        );
+            return $userEntity;
         }
-        return $userEntities ? $userEntities[0] : null;
+
+        return null;
     }
 
 
@@ -285,6 +288,19 @@ class DBUser extends Connexion implements DAOInterface
 
         return $userEntities ? $userEntities[0] : null;
     }
+
+    /*
+    public function getCommandeOfAllUser(){
+        $users = self::getall();
+
+        $DAOCommande = new DBUser;
+
+        $commandes = []
+        foreach ($users as $user){
+            $commandesUser = DBCommande::getCommandeByIdUser()
+        }
+    }
+    */
     
 
 }
