@@ -166,6 +166,34 @@ class card{
         header("Location: /card");
     }
 
+    function updateQuantityProduct(array $params){
+        $id = $params[0];
+        $size = $params[1];
+        $quantity = $params[2];
+
+        // Echaper les données
+        $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
+        $size = htmlspecialchars($size, ENT_QUOTES, 'UTF-8');
+        $quantity = htmlspecialchars($quantity, ENT_QUOTES, 'UTF-8');
+
+        // Créer un PanierArticleEntity à modifier
+        $articleUpdate = new \backend\entity\PanierArticleEntity($id, $size, $quantity);
+
+        // Si il n'y a pas de session, en créer une
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        // Si USER est connecté, modifier dans la BD
+        if(isset($_SESSION["user"])){
+            $DAOPanier = new \backend\DAO\DBPanier();
+            $DAOPanier::update($articleUpdate, $_SESSION["user"]);
+        }
+
+        header("Location: /card");
+
+    }
+
 }
 
 ?>

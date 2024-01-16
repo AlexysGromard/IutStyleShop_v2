@@ -32,19 +32,24 @@ class user{
         }
         
         $personne = $DAOUser->getById($id);
-        
         switch ($param[0]) {
             case "informations":
                 $actionSelect = "Mes informations";
                 break;
             case "commandes":
+                
+                // Recuperer tout les commandes d'un client
+                $array_commandes = \backend\DAO\DBCommande::getCommande($personne);
+                
                 $actionSelect = "Mes commandes";
+                
                 break;
             case "adresse":
                 $actionSelect = "Mon adresse";
                 break;
             case "parametres":
                 $actionSelect = "Mes paramètres";
+                break;
         }
         
     
