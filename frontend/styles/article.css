@@ -49,6 +49,10 @@
     transition: border 0.2s;
 }
 
+#add-card{
+    width: 200px;
+}
+
 .article-image + div button:hover{
     border: 1px solid var(--black);
 }
@@ -129,6 +133,12 @@
 }
 
 .acticle-info-box div:last-child{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.acticle-info-box form:last-child{
     display: flex;
     flex-direction: column;
     gap: 14px;

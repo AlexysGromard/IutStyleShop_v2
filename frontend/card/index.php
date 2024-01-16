@@ -45,7 +45,7 @@
                             [$article->getIdArticle(), $article->getTaille(), $article->getQuantite()]
                         );
                     };
-                
+
                 ?>
             </div> 
 

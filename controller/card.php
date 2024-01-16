@@ -7,12 +7,6 @@ class card{
         $panier = $this->getUserCard();
         $articlePanier = [];
 
-        // DEBUG DEBUT
-        // $article = new \backend\entity\PanierArticleEntity(1,"M",1);
-        // $panier->addPanierArticle($article);
-        // $article2 = new \backend\entity\PanierArticleEntity(2,"L",1);
-        // $panier->addPanierArticle($article2);
-        // DEBUG FIN
         // Récupéérer article grâce à id et mettre id en clé
         foreach ($panier->getPanierArticles() as $article) {
             $DAOArticle = new \backend\DAO\DBArticle();
@@ -29,6 +23,9 @@ class card{
         require "frontend/card/index.php";
     }
 
+    /*
+    * Récupérer le panier de l'utilisateur (inscrit ou non)
+    */
     private function getUserCard() : \backend\entity\PanierEntity{
         session_start();
         // Si USER est connecté
@@ -46,6 +43,9 @@ class card{
         return $panier;
     }
 
+    /*
+    * Retirer un article du panier
+    */
     function removeArticleFromCard(array $params){
         $id = $params[0];
         $size = $params[1];
@@ -72,6 +72,9 @@ class card{
         header("Location: /card");
     }
 
+    /*
+    * Ajouter un code promo
+    */
     function addPromoCode(){
         $codePromo = $_POST["code"];
 
@@ -101,6 +104,9 @@ class card{
         header("Location: /card");
     }
 
+    /*
+    *  Afficher la page de paiement
+    */
     function payment(){
         $personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
         
@@ -118,6 +124,41 @@ class card{
 
 
         require "frontend/payment/payment.php";
+    }
+
+    /*
+    *   Ajouter un article au panier
+    */
+    function addProduct($productId){
+        if (!isset($productId[0]) || !isset($_POST["size"]) || empty($_POST["size"])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        $id = $productId[0];
+        // Récupérer valeur en POST
+        $size = $_POST["size"];
+
+        // Echaper les données
+        $size = htmlspecialchars($size, ENT_QUOTES, 'UTF-8');
+
+        // Créer un PanierArticleEntity à ajouter
+        $articleAdd = new \backend\entity\PanierArticleEntity($id, $size, 1);
+
+        // Si il n'y a pas de session, en créer une
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        // Si USER est connecté, ajouter à la BD
+        if(isset($_SESSION["user"])){
+            $DAOPanier = new \backend\DAO\DBPanier();
+            $DAOPanier::add($articleAdd, $_SESSION["user"]);
+        } else {
+            $panier = $this->getUserCard();
+            $panier->addPanierArticle($articleAdd);
+            $_SESSION["panier"] = $panier; 
+        }
+
+        header("Location: /card");
     }
 
 }
