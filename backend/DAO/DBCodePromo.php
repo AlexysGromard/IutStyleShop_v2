@@ -3,7 +3,7 @@
 namespace backend\DAO;
 
 use \backend\entity\CodePromoEntity;
-class DBCodePromo extends Connexion// implements DAOInterface
+class DBCodePromo extends Connexion
 {
 
     /**

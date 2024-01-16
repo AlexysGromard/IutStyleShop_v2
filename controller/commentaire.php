@@ -5,6 +5,9 @@ namespace controller;
 
 use backend\entity\CommentaireEntity;
 
+use backend\DAO\DBCommentaire;
+
+
 class commentaire{
 
     private \backend\DAO\DAOInterface $dao;
@@ -13,6 +16,7 @@ class commentaire{
      * Cette fonction permet d'afficher le formulaire pour ajouter un commentaire
      */
     function index(){
+       // require "frontend\404.php";
         
 
     }
@@ -23,10 +27,12 @@ class commentaire{
      */
     function form(array $id_article)
     {
+        
         session_start();
         if (isset($_SESSION['user'])) {
+            
             $this->dao = new \backend\DAO\DBArticle();
-
+            
 
             $article = $this->dao::getById($id_article[0]);
     
@@ -54,21 +60,25 @@ class commentaire{
             header('Location: /');
             exit();
         }
+        
 
         session_start();
         if (isset($_SESSION['user'])) {
             echo $_SESSION['user']->getId();
+            
 
             if (!empty($_POST['note'])) {
+                
                
                 $commentaire = new CommentaireEntity($_SESSION['user']->getId(), $_POST['note'], htmlspecialchars($_POST['commentaire'])); 
                 
-                $this->dao = new \backend\DAO\DBCommentaire();
+                
+                
 
+                
 
-
-                $this->dao::add($commentaire,intval($id_article[0]));            
-        
+                DBCommentaire::add($commentaire,intval($id_article[0]));            
+                echo "commentaire ajouté";
             }
         }
 

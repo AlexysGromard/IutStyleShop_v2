@@ -8,7 +8,7 @@ use \backend\entity\VetementEntity;
 
 
 
-class DBArticle extends Connexion// implements DAOInterface
+class DBArticle extends Connexion implements DAOInterface
 {
     /**
      * Ajoute un vetement

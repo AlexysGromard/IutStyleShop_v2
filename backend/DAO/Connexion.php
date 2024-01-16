@@ -4,7 +4,7 @@ namespace backend\DAO;
 
 use Exception;
 
-require_once 'backend/config/config.php'; //TODO : A corriger avec MVC
+require_once 'backend/config/config.php'; 
 
 /**
  * Class Connexion

@@ -8,7 +8,7 @@ use \backend\entity\CommentaireEntity;
 use \backend\entity\ArticleEntity;
 use \backend\entity\UserEntity;
 
-class DBCommentaire extends Connexion//  implements DAOInterface 
+class DBCommentaire extends Connexion
 {
 
     /**
@@ -42,17 +42,6 @@ class DBCommentaire extends Connexion//  implements DAOInterface
             }
     }
 
-    public static function update($entity)
-    {
-        // $requete = "call UpdateCommentaire(:id, :idArticle, :idUser, :note, :commentaire)";
-        // $stmt = self::pdo->prepare($requete);
-        // $stmt->execute([
-        //     'idArticle' => $entity->getIdArticle(),
-        //     'idUser' => $entity->getIdUser(),
-        //     'note' => $entity->getNote(),
-        //     'commentaire' => $entity->getCommentaire()
-        // ]);
-    }
 
     /**
      * Delete un commentaire 
