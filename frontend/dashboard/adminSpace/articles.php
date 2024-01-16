@@ -20,7 +20,6 @@
                 </tr>
             </thead>
             <tbody>
-                <span>okok</span>
                 <?php foreach( $array_articles as $element) : ?>
                 <tr>
                     <td><a href="xx" class="Red_police_50"><?= $element->getId(); ?></a></td>
