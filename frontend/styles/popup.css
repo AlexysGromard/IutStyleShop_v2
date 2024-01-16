@@ -183,3 +183,46 @@ background-color: #D1E6CC;
     background-color: transparent;
     border: solid 2px var(--red);
 }
+
+
+
+
+/* commentaires */
+
+
+.popupCommentaire {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Coins arrondis avec une valeur plus grande */
+    padding: 40px 20px 20px 20px; /* Augmentation du padding */
+    max-width: 80%; /* Largeur maximale du popup */
+    min-width: 300px; /* Largeur minimale du popup */
+    max-height: 80%; /* Hauteur maximale du popup */
+    overflow: auto; /* Ajout de défilement si le contenu dépasse la taille du popup */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+    z-index: 1;
+  }
+  
+  .popupCommentaire h2 {
+    margin: 0;
+    position: absolute;
+    top: 10px; 
+  
+  
+  }
+  
+  .popupCommentaire p {
+  
+    top: 30px;
+    margin-top: 10px;
+  
+    border-radius: 50%;
+  
+    align-items: center;
+  }
+  

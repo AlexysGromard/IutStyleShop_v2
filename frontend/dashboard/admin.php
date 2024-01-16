@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/frontend/styles/police.css">
     <link rel="stylesheet" href="/frontend/styles/user.css">
     <link rel="stylesheet" href="/frontend/styles/admin.css">
+    <link rel="stylesheet" href="/frontend/styles/popup.css">
     
     
 </head>

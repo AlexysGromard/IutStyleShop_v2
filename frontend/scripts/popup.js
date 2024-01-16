@@ -91,3 +91,36 @@ function showLogoutPopup() {
 function hideLogoutPopup() {
     logoutPopupOverlay.classList.remove('active');
 }
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Ajouter un gestionnaire d'événements à la fenêtre pour fermer le popup en dehors
+    window.addEventListener('click', function(event) {
+      var popups = document.querySelectorAll('.popupCommentaire');
+      for (var i = 0; i < popups.length; i++) {
+        var popup = popups[i];
+        if (event.target !== popup && !popup.contains(event.target)) {
+          popup.style.display = 'none';
+        }
+      }
+    });
+  
+    // Ajouter un gestionnaire d'événements à chaque bouton de déclenchement du popup
+    var triggers = document.querySelectorAll('[id^="commentPopupTrigger"]');
+    for (var i = 0; i < triggers.length; i++) {
+      var trigger = triggers[i];
+      trigger.addEventListener('click', function(event) {
+        event.stopPropagation(); // Éviter la propagation du clic à la fenêtre
+        var identifier = this.id.replace('commentPopupTrigger', '');
+        openPopup(identifier);
+      });
+    }
+  
+    // Fonction pour ouvrir le popup
+    function openPopup(identifier) {
+      var popup = document.getElementById('commentPopup' + identifier);
+      popup.style.display = 'block';
+    }
+  });

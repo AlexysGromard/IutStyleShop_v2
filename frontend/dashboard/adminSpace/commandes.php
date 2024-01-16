@@ -16,19 +16,19 @@
             </thead>
             <tbody>
                 <?php foreach($array_user as $ElementUser):?>
-                <?php $array_commandes = $ElementUser->getAllCommande();?>
-                <?php foreach( $array_commandes as $element) : ?>
-                <tr>
-                    <td><a href="xx" class="Red_police_50"><?=$element->getId()?></a></td>
-                    <td><a href="xx" class="Red_police_50"><?= $ElementUser->getId()?></a></td>
-                    <td class="Black_police_40"><?=$element->getDate()?></td>
-                    <td><a href="xx" class="Red_police_50"><?=$element->getStatut()?></a></td>
-                    <td class="Black_police_40"><?=$element->getPrix()."€"?></td>
-                    <td class=action_space>
-                        <a href="/user/delCommande/<?=$element->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
+                    <?php $array_commandes = $ElementUser->getAllCommande();?>
+                    <?php foreach( $array_commandes as $element) : ?>
+                        <tr>
+                            <td><a href="xx" class="Red_police_50"><?=$element->getId()?></a></td>
+                            <td><a href="xx" class="Red_police_50"><?= $ElementUser->getId()?></a></td>
+                            <td class="Black_police_40"><?=$element->getDate()?></td>
+                            <td><a href="xx" class="Red_police_50"><?=$element->getStatut()?></a></td>
+                            <td class="Black_police_40"><?=$element->getPrix()."€"?></td>
+                            <td class=action_space>
+                                <a href="/user/delCommande/<?=$element->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
 
             </tbody>

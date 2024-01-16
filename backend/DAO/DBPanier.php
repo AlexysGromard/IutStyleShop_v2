@@ -4,9 +4,9 @@ namespace backend\DAO;
 
 use Override;
 
-class DBPanier extends Connexion// implements DAOInterface
+class DBPanier extends Connexion
 {
-    public static function add($panierArticle,$user) //\backend\entity\PanierEntity 
+    public static function add($panierArticle,$user) 
     {   
         try {
             $tailles = ["XS","S","M","L","XL"];
