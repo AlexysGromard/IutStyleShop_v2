@@ -23,7 +23,7 @@ BEGIN
         AND prix <= p_prix_max 
         AND (
             (genre = p_genre COLLATE utf8mb4_general_ci) 
-            OR (category NOT LIKE 'accessoire' AND p_genre LIKE 'MF' COLLATE utf8mb4_general_ci)
+            OR (category NOT LIKE 'accessoire' AND p_genre LIKE 'MF' ) -- COLLATE utf8mb4_general_ci)
         )
         AND (
             (p_promo = 1 AND promo > 0) 

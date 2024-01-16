@@ -185,11 +185,11 @@ class DBArticle extends Connexion implements DAOInterface
             $stmt->bindParam(7,$prix);
             $stmt->bindParam(8,$promo);
             $stmt->bindParam(9,$disponibilite);
-            $stmt->bindParam(10,$quantiteXS(),\PDO::PARAM_INT);
-            $stmt->bindParam(11,$quantiteS(),\PDO::PARAM_INT);
-            $stmt->bindParam(12,$quantiteM(),\PDO::PARAM_INT);
-            $stmt->bindParam(13,$quantiteL(),\PDO::PARAM_INT);
-            $stmt->bindParam(14,$quantiteXL(),\PDO::PARAM_INT);
+            $stmt->bindParam(10,$quantiteXS,\PDO::PARAM_INT);
+            $stmt->bindParam(11,$quantiteS,\PDO::PARAM_INT);
+            $stmt->bindParam(12,$quantiteM,\PDO::PARAM_INT);
+            $stmt->bindParam(13,$quantiteL,\PDO::PARAM_INT);
+            $stmt->bindParam(14,$quantiteXL,\PDO::PARAM_INT);
 
             $stmt->execute();
         }

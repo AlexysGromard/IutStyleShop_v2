@@ -394,18 +394,18 @@ class user{
                     if ($_POST["article-category"] == "accessory"){
                         $quantite = $_POST["Aucun"];
                         $DAOArticle::addAccessoire($nom,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images);
-                        header("Location: /");
-        
                     }else{
                         $quantite = array($_POST["XS"],$_POST["S"],$_POST["M"],$_POST["L"],$_POST["XL"]);
                         $DAOArticle::addVetement($nom,$categorie,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images);
-                        header("Location: /");
-        
-        
                     }
+                    header("Location: /");
+                    die();
                 }
             }
         }
+        header("Location: /user/admin_space/articles/nouvelArticle");
+
+        
         
 
 

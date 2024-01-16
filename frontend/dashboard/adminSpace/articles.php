@@ -43,18 +43,18 @@
     </div>
 <?php elseif ($article=="nouvelArticle"): ?>
     
-    <form class="large_box" action="#" method="GET">
+    <form class="large_box" action="/user/addArticle" method="POST">
         <span class="Black_police_65">Article N°xxxx - xxxxxxxxxxxx</span>
         <div class="top_ajout_article">
             <div class="input_box">
                 <div>
                     <div class="large_inputText_space">
                         <label for="article-name" class="Black_police_55">Nom de l'article</label>
-                        <input id="article-name" placeholder="Nom de l'article" type="text" class="sidebar">
+                        <input id="article-name" name="article-name" placeholder="Nom de l'article" type="text" class="sidebar">
                     </div>  
                     <div class="large_inputText_space">
                         <label for="article-description" class="Black_police_55">Description de l'article</label>
-                        <textarea id="article-description" placeholder="Description" class="textArea"></textarea>
+                        <textarea id="article-description" name="article-description" placeholder="Description" class="textArea"></textarea>
                     </div>
                         
                 </div>
@@ -62,7 +62,7 @@
                 
                     <div class="large_inputText_space">
                         <label for="article-category" class="Black_police_55">Catégorie de l'article</label>
-                        <select id="article-category" class="sidebar">
+                        <select id="article-category" name="article-category" class="sidebar">
                             <option value="" selected disabled>--Catégorie à selectionner--</option>
                             <option value="t-shirt">T-shirt</option>
                             <option value="sweat">Sweat-shirt</option>
@@ -73,7 +73,7 @@
                     <div class="large_inputText_space">
                         <label for="article-gender" class="Black_police_55">Genre de l'article</label>
 
-                        <select id="article-gender" class="sidebar">
+                        <select id="article-gender" name="article-gender" class="sidebar">
                             <option value="" selected disabled>--Genre à selectionner--</option>
                             <option value="none">Aucun</option>
                             <option value="man">Homme</option>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="large_inputText_space">
                         <label for="article-color" class="Black_police_55">Couleur de l'article</label>
-                        <select id="article-color" class="sidebar">
+                        <select id="article-color" name="article-color" class="sidebar">
                             <option value="" selected disabled>--Couleur à selectionner--</option>
                             <option value="none">Aucun</option>
                             <option value="red">Rouge</option>
@@ -96,11 +96,11 @@
                     <div class="price-section">
                         <div class="inputText_space">
                             <label for="article-price" class="Black_police_55">Prix</label>
-                            <input id="article-price" placeholder="Prix de l'article" type="number" class="sidebar">
+                            <input id="article-price" name="article-price" placeholder="Prix de l'article" type="number" class="sidebar">
                         </div>
                         <div class="inputText_space">
                             <label for="article-promo" class="Black_police_55">Promo</label>
-                            <input id="article-promo" placeholder="Promotion (en %)" type="number" class="sidebar">
+                            <input id="article-promo" name="article-promo" placeholder="Promotion (en %)" type="number" class="sidebar">
                         </div>
                     </div>
                 </div>
@@ -183,17 +183,17 @@
                 
                 <tbody>
                     <tr>
-                        <td><input id="Aucun" placeholder="0" type="number" class="sidebar"></td>
-                        <td><input id="XS" placeholder="0" type="number" class="sidebar"></td>
-                        <td><input id="S" placeholder="0" type="number" class="sidebar"></td>
-                        <td><input id="L" placeholder="0" type="number" class="sidebar"></td>
-                        <td><input id="L" placeholder="0" type="number" class="sidebar"></td>
-                        <td><input id="XL" placeholder="0" type="number" class="sidebar"></td>
+                        <td><input id="Aucun" placeholder="0" value="0" type="number" class="sidebar" name="Aucun"></td>
+                        <td><input id="XS" placeholder="0"  value="0" type="number" class="sidebar" name="XS"></td>
+                        <td><input id="S" placeholder="0" value="0" type="number" class="sidebar" name="S"></td>
+                        <td><input id="L" placeholder="0" value="0" type="number" class="sidebar" name="M"></td>
+                        <td><input id="L" placeholder="0" value="0" type="number" class="sidebar" name="L"></td>
+                        <td><input id="XL" placeholder="0" value="0" type="number" class="sidebar" name="XL"></td>
 
                     </tr>
                 </tbody>
             </table>
-            <input id="addProductButton" class="medium-size button basic-text"  value="Ajouter un article" href="#">
+            <input id="addProductButton" class="medium-size button basic-text"  value="Ajouter un article" type="submit">
 
         </div>
         
