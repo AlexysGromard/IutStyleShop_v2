@@ -226,7 +226,7 @@ class user{
             
         }
         
-        header("Location: /user/admin_space/commandes");
+        header("Location: /user/admin_space/avis");
     }
 
     function delCodesPromotionnel(array $param){
@@ -264,7 +264,7 @@ class user{
         echo "<br>";
         if ($article != null){
             //TODO : 
-            $DAOArticle->delete($article);
+            $DAOArticle->delete($article->getId());
             
         }
         

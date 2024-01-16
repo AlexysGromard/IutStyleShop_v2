@@ -21,11 +21,6 @@
                     <span id="nb-articles" class="section-title-results"><?= count($mesArticles);?> articles</span>
                 </div>
                 <!-- Btn 'All products' -->
-                <select title="sort-order" id="sort-order">
-                    <option value="pertinance">Pertinence</option>
-                    <option value="ascending-price">Prix croissant</option>
-                    <option value="descending-price">Prix décroissant</option>
-                </select>
             </div>
             <!-- Section products -->
             <section id="products-section">

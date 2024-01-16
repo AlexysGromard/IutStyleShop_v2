@@ -7,13 +7,13 @@
             <div class="footer-box">
                 <ul>
                     <li><a href="/">Accueil</a></li>
-                    <li><a href="/frontend/all-products/">Tous les articles</a></li>
-                    <li><a href="/frontend/all-products/t-shirt/">T-Shirt</a></li>
-                    <li><a href="/frontend/all-products/sweatshirt/">Sweat-shirt</a></li>
+                    <li><a href="/products">Tous les articles</a></li>
+                    <li><a href="/products/tshirt">T-Shirt</a></li>
+                    <li><a href="/products/sweatshirt">Sweat-shirt</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/frontend/all-products/sportswear/">Tenue de sport</a></li>
-                    <li><a href="/frontend/all-products/accessories/">Accessoires</a></li>
+                    <li><a href="/products/sportswear">Tenue de sport</a></li>
+                    <li><a href="/products/accessoire">Accessoires</a></li>
                     <li><a href="/login">Connexion</a></li>
                     <li><a href="/register">Inscription</a></li>
                 </ul>

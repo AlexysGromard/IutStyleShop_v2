@@ -23,15 +23,15 @@
                 <span>okok</span>
                 <?php foreach( $array_articles as $element) : ?>
                 <tr>
-                    <td><a href="xx" class="Red_police_50"><?= $element->getId(); ?></a></td>
+                    <td><a href="#" class="Red_police_50"><?= $element->getId(); ?></a></td>
                     <td class="Black_police_40"><?= $element->getNom(); ?></td>
                     <td class="Black_police_40"><?= $element->getCategory(); ?></td>
                     <td class="Black_police_40"><?= $element->getGenre(); ?></td>
                     <td class="Black_police_40"><?= $element->getNotes(); ?></td>
                     <td class="Black_police_40"><?= ($element->getDisponible())? "Disponible" : "Non Disponible" ; ?></td>
                     <td class=action_space>
-                        <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
-                        <a href="xx"><img src="/frontend/assets/icons/bin.png" alt="crayon rouge"></a>
+                        <!--a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="crayon rouge"></a-->
+                        <!--a href="/user/delArticle/<?=$element->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a-->
                     </td>
                 </tr>
                 <?php endforeach; ?>

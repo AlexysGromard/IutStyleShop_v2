@@ -187,7 +187,7 @@ class DBCommande extends Connexion implements DAOInterface
     {
         /////article dans commande
         try {
-            $requete = "CALL GetCommande(?)";
+            $requete = "CALL GetCommandeByIdUser(?)";
             $stmt = self::$pdo->prepare($requete);
             // Lie les paramètres d'entrée
             $stmt->bindParam(1, $id, \PDO::PARAM_INT);

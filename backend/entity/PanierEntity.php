@@ -55,7 +55,7 @@ class PanierEntity
     {
         $prixTotal = 0;
         foreach ($this->panierArticles as $panierArticle) {
-            $article = \backend\dao\DBArticle::getById($panierArticle->getIdArticle());
+            $article = \backend\DAO\DBArticle::getById($panierArticle->getIdArticle());
             $prixTotal += $article->getPrix() * $panierArticle->getQuantite();
         }
         return $prixTotal;

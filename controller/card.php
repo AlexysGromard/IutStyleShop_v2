@@ -110,7 +110,6 @@ class card{
     *  Afficher la page de paiement
     */
     function payment(){
-        $personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
         
         // Récupérer le panier de l'utilisateur
         $panier = $this->getUserCard();

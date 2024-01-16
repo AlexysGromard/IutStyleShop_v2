@@ -10,13 +10,6 @@ class commentaire{
     private \backend\DAO\DAOInterface $dao;
 
     /**
-     * Cette fonction permet d'afficher le formulaire pour ajouter un commentaire
-     */
-    function index(){
-        
-
-    }
-    /**
      * charge le formulaire pour un commentaire
      * 
      * @param int $id_article
@@ -25,10 +18,11 @@ class commentaire{
     {
         session_start();
         if (isset($_SESSION['user'])) {
-            $this->dao = new \backend\DAO\DBArticle();
+
+            $dao = new \backend\DAO\DBArticle();
 
 
-            $article = $this->dao::getById($id_article[0]);
+            $article = $dao::getById($id_article[0]);
     
             if ($article == null) {
                 header("Location: /article/visuel/".$id_article[0]);
@@ -63,11 +57,8 @@ class commentaire{
                
                 $commentaire = new CommentaireEntity($_SESSION['user']->getId(), $_POST['note'], htmlspecialchars($_POST['commentaire'])); 
                 
-                $this->dao = new \backend\DAO\DBCommentaire();
-
-
-
-                $this->dao::add($commentaire,intval($id_article[0]));            
+                $dao = new \backend\DAO\DBCommentaire();
+                $dao::add($commentaire,intval($id_article[0]));            
         
             }
         }

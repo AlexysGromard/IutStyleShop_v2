@@ -20,11 +20,11 @@ class PanierArticleEntity
 
 
     private int $id_article;
-    private string $taille;
+    private ?string $taille;
     private int $quantite;
 
     function __construct(int $id_article,
-                         string $taille,
+                         ?string $taille,
                          int $quantite)
     {
         $this->setIdArticle($id_article);
@@ -46,7 +46,7 @@ class PanierArticleEntity
     /*
     * @return string
     */
-    public function getTaille(): string
+    public function getTaille(): ?string
     {
         return $this->taille;
     }
@@ -70,7 +70,7 @@ class PanierArticleEntity
     /*
     * @param string $taille
     */
-    public function setTaille(string $taille): void
+    public function setTaille(?string $taille): void
     {
         $this->taille = $taille;
     }

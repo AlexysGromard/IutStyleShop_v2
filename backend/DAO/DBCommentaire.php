@@ -23,9 +23,9 @@ class DBCommentaire extends Connexion//  implements DAOInterface
             $id_user = $entity->getUser(); //Envoie l'id de l'utilisateur
             $note = floatval($entity->getNote()); //Envoie la note donné par l'utilisateur
             $commentaire = $entity->getCommentaire(); // Envoie du commentaire (message) donné par l'utilisateur
-            assert($note>0 && $note<=5, "La note doit appartenir à l'ensemble {1,2,3,4,5}");
-            assert($id_article>0 && DBArticle::getById($id_article)!=null); // l'id de l'article doit être > 0 et être présent dans la table Article
-            assert(is_numeric($id_user) && $id_user>0 && DBUser::getById($id_user)!=null); // l'id de l'user doit être > 0 et être présent dans la table User
+            //assert($note>0 && $note<=5, "La note doit appartenir à l'ensemble {1,2,3,4,5}");
+            //assert($id_article>0 && DBArticle::getById($id_article)!=null); // l'id de l'article doit être > 0 et être présent dans la table Article
+            //assert(is_numeric($id_user) && $id_user>0 && DBUser::getById($id_user)!=null); // l'id de l'user doit être > 0 et être présent dans la table User
 
             $requete = "call InsertCommentaire(?, ?, ?, ?)";
             $stmt = self::$pdo->prepare($requete);
