@@ -49,7 +49,7 @@ class ArticleCommandeEntity
     /*
     * @return string
     */
-    public function getTaille(): string
+    public function getTaille(): ?string
     {
         return $this->taille;
     }
