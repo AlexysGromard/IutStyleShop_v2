@@ -8,8 +8,11 @@ BEGIN
     DECLARE done INT DEFAULT FALSE;
     DECLARE v_ID_article, v_quantite INT;
     DECLARE v_taille VARCHAR(255);
-    DECLARE cur CURSOR FOR SELECT ID_article, taille, quantite FROM Panier WHERE ID_user = p_id_user;
+    DECLARE cur CURSOR FOR SELECT ID_article, taille, quantite FROM Panier WHERE ID_user = p_iduser;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    INSERT INTO Commande (id_user, statut, prix)
+    VALUES (p_iduser, 'En cours', (SELECT SUM(Article.prix * quantite) FROM Panier INNER JOIN Article ON Panier.ID_article = Article.ID WHERE ID_user = p_iduser));
 
     OPEN cur;
 
@@ -19,8 +22,8 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO CommandeArticle (ID_commande, ID_article, taille ,prix_unitaire, quantite)
-        VALUES ((SELECT MAX(ID) FROM Commande), v_ID_article, v_taille, (SELECT prix * (1 - promo) * (1 - COALESCE((SELECT promo FROM CodePromo WHERE ID = p_id_CodePromo LIMIT 1), 0.0)) FROM Article WHERE ID = v_ID_article) ,v_quantite);
+        INSERT INTO ArticleCommande (ID_commande, ID_article, taille ,prix_unitaire, quantite)
+        VALUES ((SELECT MAX(ID) FROM Commande), v_ID_article, v_taille, (SELECT prix * (1 - promo) * (1 - COALESCE((SELECT promo FROM CodePromo WHERE ID = p_idcodepromo LIMIT 1), 0.0)) FROM Article WHERE ID = v_ID_article) ,v_quantite);
     END LOOP;
 
     CLOSE cur;

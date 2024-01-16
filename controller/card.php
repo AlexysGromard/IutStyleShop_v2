@@ -192,6 +192,64 @@ class card{
 
     }
 
+    /*
+    * Cette fonction permet de confirmer le paiement et de créer la commande
+    */
+    function order(){
+        // Réception des données
+        $civility = $_POST["civility"];
+        $lastname = $_POST["lastname"];
+        $firstname = $_POST["firstname"];
+        $email = $_POST["email"];
+        $phone = $_POST["phone"];
+        $address = $_POST["address"];
+        $postalCode = $_POST["code"];
+        $complement = $_POST["complement"];
+        $city = $_POST["city"];
+
+        // Echaper les données
+        $civility = htmlspecialchars($civility, ENT_QUOTES, 'UTF-8');
+        $lastname = htmlspecialchars($lastname, ENT_QUOTES, 'UTF-8');
+        $firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
+        $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+        $phone = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
+        $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
+        $postalCode = htmlspecialchars($postalCode, ENT_QUOTES, 'UTF-8');
+        $complement = htmlspecialchars($complement, ENT_QUOTES, 'UTF-8');
+        $city = htmlspecialchars($city, ENT_QUOTES, 'UTF-8');
+
+
+        // Récupérer utilisateur
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(isset($_SESSION["user"])){
+            $user = $_SESSION["user"];
+        } else {
+            $user = null;
+        }
+
+        // Récupérer le code promo
+        if(isset($_SESSION["codePromo"])){
+            $codePromo = $_SESSION["codePromo"];
+        } else {
+            $codePromo = null;
+        }
+
+        // Ajouter la commande
+        $DAOCommande = new \backend\DAO\DBCommande();
+        $DAOCommande::add($user, $codePromo);
+
+        // Supprimer le panier
+        $DAOPanier = new \backend\DAO\DBPanier();
+        $DAOPanier::delete($user);
+
+        // Récpuérer panier vide pour l'utilisateur
+        
+        header("Location: /user/dashboard/commandes");
+
+    }
+
 }
 
 ?>
