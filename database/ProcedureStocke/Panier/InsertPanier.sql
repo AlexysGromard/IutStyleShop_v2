@@ -8,7 +8,7 @@ CREATE OR REPLACE PROCEDURE InsertPanier(
 )
 BEGIN
     -- Ajouter un article au panier
-    INSERT INTO Panier (ID, ID_Utilisateur, taille, quantite)
+    INSERT INTO Panier (ID_User, ID_Article, taille, quantite)
     VALUES (p_id, p_id_utilisateur, p_taille, p_quantite);
 END //
 DELIMITER ;

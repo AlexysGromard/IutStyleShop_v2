@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>IutStyleShop - Vérification de l'adresse mail</title>
+    <title>Commentaire - IutStyleShop</title>
 
     <?php include 'frontend/common-includes.php'?>
 
@@ -21,7 +21,7 @@
     <!-- Main -->
     <main id="commentaire-main">
 
-            <p class="section-title-name Black_police_70 page-title">Espace de notation</p>
+            <span id="note-section-title">Espace de notation</span>
             
 
             <div class="commentaire-block commentaire-contenaire">

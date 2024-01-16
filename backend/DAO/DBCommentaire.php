@@ -107,7 +107,8 @@ class DBCommentaire extends Connexion  implements DAOInterface
         $stmt = self::$pdo->prepare($requete);
 
         // Lie les paramètres d'entrée
-        $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
+        $entityId = $entity->getId();
+        $stmt->bindParam(1, $entityId, \PDO::PARAM_INT);
         $stmt->execute();
 
         $resultats = $stmt->fetchAll(\PDO::FETCH_ASSOC);

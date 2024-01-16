@@ -17,7 +17,7 @@
     <?php include 'frontend/components/header.php'; ?>
 
     <main class = "user_general">
-        <span class="Black_police_70"> Espace utilisateur</span>
+        <span id="dashboard-title"> Espace utilisateur</span>
         <div class = "user_general_element_box">
             <!-- left -->
             <?php include "controller/components.php"?>

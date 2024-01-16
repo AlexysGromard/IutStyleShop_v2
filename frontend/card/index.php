@@ -35,6 +35,7 @@
                     foreach ($panier->getPanierArticles() as $article) {
                         // Récupérer l'article avec l'id
                         generateCartItemComponent(
+                            $article->getIdArticle(),
                             $articlePanier[$article->getIdArticle()]->getNom(),
                             $article->getTaille(),
                             true,
@@ -45,7 +46,7 @@
                             [$article->getIdArticle(), $article->getTaille(), $article->getQuantite()]
                         );
                     };
-                
+
                 ?>
             </div> 
 

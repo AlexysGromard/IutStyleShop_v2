@@ -48,6 +48,7 @@ function generateArticleComponent(
  * Elle prend en paramètre les informations de l'article à afficher.
  */
 function generateCartItemComponent(
+    $articleId = null,
     $articleName = "Unknown",
     $articleSize = "Unknown",
     $disponibility = false,

@@ -22,6 +22,7 @@
             <h1 id="title">Vérification</h1>
             <h2 id="subtitle">Entrez le code reçu par mail à :</h2>
             <h2 id="subtitle"><?php echo $_SESSION['email']?></h2>
+            <h2 id="subtitle">Pour des raisons techniques, le code est <?php echo $_SESSION['confirmationCode']?></h2>
         </div>
         <section id="actions-container">
             <div class="action-box">

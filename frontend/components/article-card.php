@@ -5,7 +5,8 @@
     <img class="image" src="<?= $imageSrc ?>" alt="<?= $title ?> image">
     <div class="bas_article">
         <!-- Titre de l'article -->
-        <a href="/article/visuel/<?= $id?>" class="medium-important-text"><?= $title ?></a>
+        <a href="/article/visuel/<?= $id ?>" class="medium-important-text"><?= $title ?></a>
+            
         <!-- Etoiles (note)-->
         <div class="stars">
             <?php
@@ -35,8 +36,8 @@
                 <span class="price"><?= $price ?>€</span>
             </div>
             <!-- BTN Ajouter au panier-->
-            <a class="button medium-size basic-text <?php echo $availability ?: 'disabled'?>" href="#">
-                <?php echo $availability ? 'Ajouter au panier' : 'Indisponible'; ?>
+            <a class="button medium-size basic-text <?php echo $availability ?: 'disabled'?>" href="/article/visuel/<?= $id ?>">
+                <?php echo $availability ? 'Afficher l\'article' : 'Indisponible'; ?>
             </a>
         </div>
     </div>

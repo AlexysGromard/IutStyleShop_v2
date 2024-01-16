@@ -3,32 +3,40 @@ namespace controller;
 
 class products{
 
+    private $dao;
+    private $pageTitle;
+
     function index(){
         $this->dao = new \backend\DAO\DBArticle();
         $mesArticles = $this->dao->getall();
         $param = array(true,true,true,true,true,true,true,true,true,0,100,true,true,false,true,true); 
-        require "frontend/all-products/index_bd.php";
+        require "frontend/all-products/index.php";
     }
 
     function accessoire(){
-        $param = array("false","false","false","true","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("false","false","false","true","true","true","true","true","true",0,100,"true","true","false","true","true");
+        $this->pageTitle = "Accessoires";
         $this->filter($param);
     }
     function tshirt(){
         $param = array("true","false","false","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $this->pageTitle = "T-shirts";
         $this->filter($param);
     }
     function sportswear(){
-        $param = array("false","false","true","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("false","false","true","false","true","true","true","true","true",0,100,"true","true","false","true","true");
+        $this->pageTitle = "Tenues de sport";
         $this->filter($param);
     
     }
     function sweatshirt(){
-        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true"); 
+        $param = array("false","true","false","false","true","true","true","true","true",0,100,"true","true","false","true","true");
+        $this->pageTitle = "Sweat-shirts";
         $this->filter($param);
     }
     function promotion(){
-        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true"); 
+        $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true");
+        $this->pageTitle = "Promotions";
         $this->filter($param);
     }
 
@@ -55,6 +63,9 @@ class products{
     function filter($param){
         $this->dao = new \backend\DAO\DBArticle();
         $longueur = 16;
+
+        // Récupérer nom de page
+        $pageTitle = $this->pageTitle;
 
         
         if(count($param)==$longueur){
@@ -85,7 +96,7 @@ class products{
                 $genre .= "F";
             }
             $mesArticles = $this->dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,$promo,2);
-            require "frontend/all-products/index_bd.php";
+            require "frontend/all-products/index.php";
 
         }else{
             require "frontend/all-products/index.php";

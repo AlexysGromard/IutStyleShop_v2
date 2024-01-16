@@ -15,7 +15,7 @@ class DBUser extends Connexion implements DAOInterface
     { 
         $requete = "CALL InsertUserClient(?,?,?,?,?,?,?,?,?,?)";
 
-        $stmt = self::pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR); // Mail
@@ -234,7 +234,7 @@ class DBUser extends Connexion implements DAOInterface
     public static function getByEmail(string $email): ?int
     {
         $requete = "CALL GetUserId(?)";
-        $stmt = $this->pdo->prepare($requete);
+        $stmt = self::$pdo->prepare($requete);
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR);
  

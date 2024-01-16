@@ -1,3 +1,8 @@
+/*
+    * Ce script permet de rediriger vers la page de l'article
+    * lorsque l'on clique sur l'image ou le texte de l'article
+    * dans la page d'accueil
+*/
 articles = document.getElementsByClassName("boite_article");
 Array.from(articles).forEach(function(article) {
     var id = article.dataset.id;
@@ -16,4 +21,3 @@ Array.from(articles).forEach(function(article) {
         });
     }
 });
-
