@@ -56,7 +56,7 @@ class CommandeEntity
      */
     public function getArticlesCommandes(): array
     {
-        return $this->articlesCommande;
+        return $this->articlesCommandes;
     }
 
     /*
