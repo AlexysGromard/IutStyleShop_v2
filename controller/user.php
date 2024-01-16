@@ -38,6 +38,10 @@ class user{
                 $actionSelect = "Mes informations";
                 break;
             case "commandes":
+
+                // Recuperer tout les commandes d'un client
+                $array_commandes = \backend\DAO\DBCommande::getCommande($personne);
+
                 $actionSelect = "Mes commandes";
                 break;
             case "adresse":

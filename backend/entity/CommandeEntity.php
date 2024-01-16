@@ -3,7 +3,7 @@
 namespace backend\entity;
 
 /*  @Entity @Table(name="commande") */
-class ComandeEntity
+class CommandeEntity
 {
 
     /*
@@ -27,13 +27,13 @@ class ComandeEntity
     private float $prix;
 
     public function __construct(int $id,
-                                array $articlesComande,
+                                array $articlesCommande,
                                 string $date,
                                 string $statut,
                                 float $prix)
     {
         $this->id = $id;
-        $this->setArticlesCommandes($articlesComande);
+        $this->setArticlesCommandes($articlesCommande);
         $this->setDate($date);
         $this->setStatut($statut);
         $this->setPrix($prix);
@@ -56,7 +56,7 @@ class ComandeEntity
      */
     public function getArticlesCommandes(): array
     {
-        return $this->articlesComande;
+        return $this->articlesCommande;
     }
 
     /*
@@ -95,9 +95,9 @@ class ComandeEntity
     /**
      * @param ArticleCommandeEntity[] $articlesCommandes
      */
-    public function setArticlesCommandes(array $articlesComande): void
+    public function setArticlesCommandes(array $articlesCommande): void
     {
-        $this->articlesComande = $articlesComande;
+        $this->articlesCommande = $articlesCommande;
     }
 
     /*
