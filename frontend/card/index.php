@@ -17,7 +17,7 @@
     <main class="sections-panier">
             <!-- Section title -->
             <div class="section-title">
-                <span class="section-title-name">Votre pannier</span>
+                <span class="section-title-name">Votre panier</span>
                 <span class="section-title-results"> <?php echo count($panier->getPanierArticles()); ?> article<?= count($panier->getPanierArticles()) > 1 ? "s" : "" ?></span>
             </div>
             <div class="articles-payment-box">

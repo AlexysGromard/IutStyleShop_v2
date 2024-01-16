@@ -45,8 +45,9 @@
                             <span class="small-article-text">Tous les prix inclus la TVA.</span>
                         </div>
                         <span class="small-article-text">Votre article sera à récupérer sur votre campus.</span>
-                        <?php if ($articleActual->getCategory() != "Accessoire"): ?>
+                        
                         <form action="/card/addProduct/<?= $articleActual->getId()?>" method="post">
+                            <?php if ($articleActual->getCategory() != "accessoire"): ?>
                             <div>
                                 <span class="small-article-text">Taille:</span>
                                 <select required class="select-taille" name="size" id="taille">
@@ -58,6 +59,11 @@
                                     <option value="XL">XL</option>
                                 </select>
                             </div>
+                            <?php else:?>
+                                <span class="small-article-text">Taille:</span>
+                                <select required class="select-taille" name="size" id="taille">
+                                    <option selected value="None">Aucune</option>
+                                </select>
                             <?php endif ?>
                             <span class="small-article-text article-description"><?= $articleActual->getDescription() ?></span>
                             <button id="add-card" class="button basic-text" type="submit" name="add-card">Ajouter au panier</button>
