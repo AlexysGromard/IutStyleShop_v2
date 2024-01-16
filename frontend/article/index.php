@@ -37,7 +37,7 @@
                             <?php endif ?>
                             <?php endforeach ?>
                         </div>
-                        <span class="small-article-text"><?= $articleActual->getVotant()?> évaluation(s)</span>
+                        <span class="small-article-text"><?= $articleActual->getVotant()?> évaluation<?= $articleActual->getVotant() > 1 ? "s" : "" ?></span>
                     </div>
                     <div class="article-more-info">
                         <div>
@@ -46,21 +46,22 @@
                         </div>
                         <span class="small-article-text">Votre article sera à récupérer sur votre campus.</span>
                         <?php if ($articleActual->getCategory() != "Accessoire"): ?>
-                        <div>
-                            <span class="small-article-text">Taille:</span>
-                            <select class="select-taille" name="taille" id="taille">
-                                <option selected disabled value="">Selectionner</option>
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                            </select>
-                        </div>
-                        <?php endif ?>
-                        <span class="small-article-text article-description"><?= $articleActual->getDescription() ?></span>
-
-                        <a id="add-card" class="button basic-text">Ajouter au panier</a>
+                        <form action="/card/addProduct/<?= $articleActual->getId()?>" method="post">
+                            <div>
+                                <span class="small-article-text">Taille:</span>
+                                <select required class="select-taille" name="size" id="taille">
+                                    <option selected disabled value="">Selectionner</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                            </div>
+                            <?php endif ?>
+                            <span class="small-article-text article-description"><?= $articleActual->getDescription() ?></span>
+                            <button id="add-card" class="button basic-text" type="submit" name="add-card">Ajouter au panier</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -82,7 +83,6 @@
             <div id="recommendations-articles-box">
                 <?php
                     include_once 'controller/components.php';
-                    use controller;
                     
                     foreach($articlesSimilaire as $article){
                         $img = ""; 
