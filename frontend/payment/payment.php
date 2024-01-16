@@ -30,45 +30,6 @@
             <div class="large_box" >        
                 <span class="Black_police_65">Informations personnelles</span>
                 <div class="civility_choice_space">
-                    <!-- <span class="Black_police_55" >Civilité</span>
-                    <div>
-                        <label for="civility-woman" class="radio_button_space">
-                            <?php
-                                $input = '<input class="radioButton" type="radio" value="Femme" id="civility-woman" name="civility" ';
-                                if ($personne->genre=='F' ) {
-                                    $input.= 'checked ';
-                                }
-                                $input.= '/> ';
-                                echo $input;
-
-                            ?>
-                            <span class="Black_police_40" >Femme</span>
-                        </label>
-                        <label for="civility-man" class="radio_button_space">
-                            <?php
-                                $input = '<input class="radioButton" type="radio" value="Homme" id="civility-man" name="civility" ';
-                                if ($personne->genre=='M' ) {
-                                    $input.= 'checked ';
-                                }
-                                $input.= '/> ';
-                                echo $input;
-
-                            ?>
-                            <span class="Black_police_40"  >Homme</span>
-                        </label>
-                        <label for="civility-none" class="radio_button_space">
-                            <?php
-                                $input = '<input class="radioButton" type="radio" value="Ne souhaite pas se prononcer" id="civility-none" name="civility" ';
-                                if ($personne->genre!='M' && $personne->genre!='F' ) {
-                                    $input.= 'checked ';
-                                }
-                                $input.= '/> ';
-                                echo $input;
-
-                            ?>  
-                            <span class="Black_police_40" >Ne souhaite pas se prononcer</span>
-                        </label>
-                    </div> -->
                     <!-- Genre -->
                     <div class="input-box">
                         <span class="input-label">Civilité</span>
@@ -76,17 +37,17 @@
                         <div class="input-radio-choices">
                             <!-- Homme -->
                             <div class="input-radio-element">
-                                <input value="M" type="radio" name="civility" id="man" <?= $personne->genre=='M' ? 'checked' : '' ?>>
+                                <input value="M" type="radio" name="civility" id="man" <?= (isset($_SESSION['user']) && $_SESSION['user']->getGenre()=='M') ? 'checked' : '' ?>>
                                 <label class="radio-label" for="man">Homme</label>
                             </div>
                             <!-- Femme -->
                             <div class="input-radio-element">
-                                <input value="W" type="radio" name="civility" id="women" <?= $personne->genre=='W' ? 'checked' : '' ?>>
+                                <input value="W" type="radio" name="civility" id="women" <?= (isset($_SESSION['user']) && $_SESSION['user']->getGenre()=='W') ? 'checked' : '' ?>>
                                 <label class="radio-label" for="women">Femme</label>
                             </div>
                             <!-- Autre -->
                             <div class="input-radio-element">
-                                <input value="N" type="radio" name="civility" id="other" <?= $personne->genre!='M' && $personne->genre!='W' ? 'checked' : '' ?>>
+                                <input value="N" type="radio" name="civility" id="other" <?= (isset($_SESSION['user']) && $_SESSION['user']->getGenre()=='N') ? 'checked' : '' ?>>
                                 <label class="radio-label" for="other">Ne souhaite pas se prononcer</label>
                             </div>
                         </div>
