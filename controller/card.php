@@ -245,7 +245,7 @@ class card{
         $DAOPanier::delete($user);
 
         // Récpuérer panier vide pour l'utilisateur
-        
+
         header("Location: /user/dashboard/commandes");
 
     }
