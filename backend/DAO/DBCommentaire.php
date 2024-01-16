@@ -51,15 +51,24 @@ class DBCommentaire extends Connexion
      */
     public static function delete($entity,$article)//, $id_article
     {
+
         $requete = "CALL DeleteCommentaire(?,?)";
         $stmt = self::$pdo->prepare($requete);
 
         $idUser = $entity->getUser();
         $idArticle = $article->getId();
+
         $stmt->bindParam(1, $idUser , \PDO::PARAM_INT);
         $stmt->bindParam(2, $idArticle, \PDO::PARAM_INT);
 
+
         $stmt->execute();
+
+        
+        echo "<pre>";
+        var_dump($entity);
+        var_dump($article);
+        echo "</pre>";
 
     }
 

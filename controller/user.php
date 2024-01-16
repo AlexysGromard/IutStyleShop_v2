@@ -212,21 +212,18 @@ class user{
         }
         
         $DAOCommentaire = new \backend\DAO\DBCommentaire();
-        $commentaireToDel = $DAOCommentaire->getById($param[0],$param[1]);
+        $commentaireToDel = $DAOCommentaire::getById($param[0],$param[1]);
         $DAOArticle = new \backend\DAO\DBArticle();
-        $article = $DAOArticle->getById($param[1]);
+        $article = $DAOArticle::getById($param[1]);
 
-        echo "<pre>";
-        var_dump($commentaireToDel);
-        echo "</pre>";
-        
+
         if ($commentaireToDel != null && $article != null){
-            
-            $DAOCommentaire->delete($commentaireToDel,$article);
-            
+                        
+            $DAOCommentaire::delete($commentaireToDel,$article);
+
         }
         
-        header("Location: /user/admin_space/commandes");
+        header("Location: /user/admin_space/avis");
     }
 
     function delCodesPromotionnel(array $param){

@@ -78,7 +78,6 @@ class commentaire{
                 
 
                 DBCommentaire::add($commentaire,intval($id_article[0]));            
-                echo "commentaire ajouté";
             }
         }
 
