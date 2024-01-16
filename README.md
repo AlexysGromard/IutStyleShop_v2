@@ -32,7 +32,7 @@ Le projet est sous licence ... (à définir). Pour plus d'informations, veuillez
 ## Documentation
 Voici la liste des documents disponibles pour le projet :
 - [suivi.pdf](/docs/suivi.md) : Document de suivi du projet
-- [analyse.pdf](/docs/analyse.md) : Document d'analyse du projet (R303)
+- [analyse.pdf](/docs/analyse.pdf) : Document d'analyse du projet (R303)
 - [management.pdf](/docs/management.md) : Document de management du projet (R310)
 - [qualite_developpement.pdf](/docs/qualite_developpement.md) : Document de qualité du développement du projet (R302)
 

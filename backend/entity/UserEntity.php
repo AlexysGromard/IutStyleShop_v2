@@ -73,23 +73,6 @@ class UserEntity
     }
 
     /*
-    * Sauvegarder l'utilisateur dans la session
-    */
-    public function saveUserSession()
-    {
-        // Si il n'y a pas de session, en créer une
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $_SESSION['user'] = $this;
-    }
-
-    public function askForCookies()
-    {
-        echo "<script>showCookiesPopup()</script>";
-    }
-
-    /*
     * Getters & Setters
     */
 
