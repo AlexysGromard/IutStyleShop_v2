@@ -86,6 +86,10 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function addAccessoire($nom,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images)
     {   
+        $dispo = 0;
+        if($disponible == true){
+            $dispo = 1;
+        }
         $categorie = "accessoire";
         $sql = "call InsertArticleAccessoire(?,?,?,?,?,?,?,?,?)";
         $stmt = self::$pdo->prepare($sql);
@@ -96,7 +100,7 @@ class DBArticle extends Connexion implements DAOInterface
         $stmt->bindParam(5,$description);
         $stmt->bindParam(6,$prix);
         $stmt->bindParam(7,$promo);
-        $stmt->bindParam(8,$disponible);
+        $stmt->bindParam(8,$dispo);
         $stmt->bindParam(9,$quantite,\PDO::PARAM_INT);
 
         $stmt->execute();

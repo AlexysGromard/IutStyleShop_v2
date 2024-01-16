@@ -369,6 +369,48 @@ class user{
         // Redirection vers la page d'informations
         header("Location: /user/dashboard/informations");
     }
+
+    function addArticle(){
+        //TODO vérifier si il est admin
+        if(isset($_POST)){
+            if(isset($_POST["article-name"])){
+                $DAOArticle = new \backend\DAO\DBArticle();
+                $nom =$_POST["article-name"];
+                $categorie =$_POST["article-category"];
+                $genre = $_POST["article-gender"];
+                $couleur = $_POST["article-color"];
+                $description =$_POST["article-description"];
+                $prix =$_POST["article-price"];
+                $promo = $_POST["article-promo"];
+                $catalog = $_POST["catalog"];
+                $disponible = false;
+                if($catalog == "oui"){
+                    $disponible = true;
+                }
+        
+                $quantite = array();
+                $images = array();
+                if (isset($_POST["article-category"])){
+                    if ($_POST["article-category"] == "accessory"){
+                        $quantite = $_POST["Aucun"];
+                        $DAOArticle::addAccessoire($nom,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images);
+                        header("Location: /");
+        
+                    }else{
+                        $quantite = array($_POST["XS"],$_POST["S"],$_POST["M"],$_POST["L"],$_POST["XL"]);
+                        $DAOArticle::addVetement($nom,$categorie,$genre,$couleur,$description,$prix,$promo,$disponible,$quantite,$images);
+                        header("Location: /");
+        
+        
+                    }
+                }
+            }
+        }
+        
+
+
+
+    }
 }
 
 ?>

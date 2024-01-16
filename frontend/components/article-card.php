@@ -5,7 +5,7 @@
     <img class="image" src="<?= $imageSrc ?>" alt="<?= $title ?> image">
     <div class="bas_article">
         <!-- Titre de l'article -->
-        <a href="<?= $id?>" class="medium-important-text"><?= $title ?></a>
+        <a href="/article/visuel/<?= $id?>" class="medium-important-text"><?= $title ?></a>
         <!-- Etoiles (note)-->
         <div class="stars">
             <?php

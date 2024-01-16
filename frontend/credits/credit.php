@@ -42,8 +42,7 @@
                     <div>
                         <span id="link-text">Bryan</span>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus beatae at ea quam atque accusantium tempora, accusamus facere aperiam quod aspernatur, aliquid dolorum dolore modi nemo labore. Iure, corporis impedit.
-                            Repellendus quo assumenda molestias possimus hic delectus quasi at omnis nisi tempora excepturi unde reprehenderit quisquam iusto neque consequatur provident, id aliquid veniam dolor laborum corrupti impedit perspiciatis quas? Veritatis?
+                        Étudiant en informatique, je suis actuellement en deuxième année d'un BUT en Informatique. Mon ambition est de devenir ingénieur logiciel. Cependant, je désire également explorer divers domaines de l'informatique, tels que l'intelligence artificielle. Passionné par la programmation, je suis déterminé à développer de nombreuses solutions informatiques, toujours plus audacieuses les unes que les autres !   
                         </p>
                     </div>
                     <div class="bas_article">
