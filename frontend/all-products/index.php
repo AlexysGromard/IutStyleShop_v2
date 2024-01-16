@@ -32,7 +32,6 @@
                 <!-- ALL PRODUCTS -->
                 <?php
                     include_once 'controller/components.php';
-                    use controller;
 
                     if (isset($mesArticles)){
                         foreach($mesArticles as $article){

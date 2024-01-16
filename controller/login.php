@@ -112,7 +112,7 @@ class login {
         } else {
             // Si il existe
             // Stocker l'utilisateur dans la session
-            $user->saveUserSession();
+            $_SESSION['user'] = $user;
             
             // Supprimer erreurs
             unset($_SESSION['errors']);
