@@ -43,6 +43,7 @@ class products{
     function search(array $param){
         if (count($param) && isset($param[0])){
             $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true",$param[0]);
+            $this->pageTitle = "Résultat pour : \"".$param[16]."\"";
             $this->filter($param);
         }else{
             require "frontend/404.php";die();
@@ -129,14 +130,14 @@ class products{
         while ($i <= $n-1){
             $j = $i+1;
             while ($j <= $n){
-                if ($listCoefficient[$i] != null){
+                if (isset($listCoefficient[$i]) && $listCoefficient[$i] != null){
                     $coefi = $listCoefficient[$i];
                 }else{
                     $coefi = $this->calculerCoefficientRessemblance($search, ($products[$i])->getNom());
                     $listCoefficient[$i] = $coefi;
                 }
 
-                if ($listCoefficient[$j] != null){
+                if (isset($listCoefficient[$j]) && $listCoefficient[$j] != null){
                     $coefj = $listCoefficient[$j];
                 }else{
                     $coefj = $this->calculerCoefficientRessemblance($search, $products[$j]->getNom());
