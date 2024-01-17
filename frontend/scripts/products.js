@@ -131,3 +131,60 @@ function reload_pageName(){
 
 validate_button = document.getElementById('button-validate');
 validate_button.addEventListener("click", reload_pageName);
+
+// ==================== //
+// Script tri par prix croissant/décroissant
+// ==================== //
+// Récupérer les éléments du DOM
+const priceSort = document.getElementById('sort-order');
+
+// Quand on change la valeur du select
+priceSort.addEventListener('change', function () {
+    let articles = document.querySelectorAll('.boite_article');
+    let prices = [];
+
+    articles.forEach(article => {
+        // Convertir la chaîne de caractères en nombre
+        let price = parseFloat(article.querySelector('.price').innerHTML);
+        prices.push(price);
+    });
+
+
+    if (priceSort.value === 'pertinance') {
+        // Remettre les articles dans l'ordre initial - Recharger la page
+        document.location.reload();
+    
+    } else {
+        if (priceSort.value === 'ascending-price') {
+            prices.sort(function(a, b) {
+                return a - b;
+            });
+        } else if (priceSort.value === 'descending-price') {
+            prices.sort(function(a, b) {
+                return b - a;
+            });        
+        }
+    
+    
+        let sortedArticles = [];
+    
+        prices.forEach(price => {
+            articles.forEach(article => {
+                // Convertir la chaîne de caractères en nombre
+                let articlePrice = parseFloat(article.querySelector('.price').innerHTML);
+                if (articlePrice === price) {
+                    sortedArticles.push(article);
+                }
+            });
+        });
+    
+        let articlesDiv = document.getElementById('products-section');
+        articlesDiv.innerHTML = '';
+    
+        sortedArticles.forEach(article => {
+            articlesDiv.appendChild(article);
+        });
+    
+    }
+
+});
