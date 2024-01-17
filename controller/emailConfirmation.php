@@ -26,7 +26,6 @@ class emailConfirmation {
             unset($_SESSION['errors']);
 
             // Send code
-            // $this->sendCodeViaSMTP();
             $this->sendCodeIUT();
 
             require "frontend/authentication/email-confirmation.php";
@@ -120,7 +119,7 @@ class emailConfirmation {
         if (in_array(true, $this->errors)) {
             $_SESSION['errors'] = $this->errors;
 
-            // header("Location: /register");
+            header("Location: /register");
             exit();
         }
 

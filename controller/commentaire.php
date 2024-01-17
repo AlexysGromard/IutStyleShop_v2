@@ -10,16 +10,6 @@ use backend\DAO\DBCommentaire;
 
 class commentaire{
 
-    private \backend\DAO\DAOInterface $dao;
-
-    /**
-     * Cette fonction permet d'afficher le formulaire pour ajouter un commentaire
-     */
-    function index(){
-       // require "frontend\404.php";
-        
-
-    }
     /**
      * charge le formulaire pour un commentaire
      * 
@@ -84,12 +74,6 @@ class commentaire{
         header('Location: /article/visuel/'.$id_article[0]);
         exit();
             
-            
-        
-
-
-
-
     }
 
 }

@@ -73,7 +73,7 @@ class register {
             // Le jeton CSRF n'est pas valide, traitement de l'erreur ou rejet de la requête
             // Supprimer de la session 
             unset($_SESSION['csrf_token']);
-            // header("Location: /register");
+            header("Location: /register");
             exit();
         }
 
