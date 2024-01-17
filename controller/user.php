@@ -17,12 +17,18 @@ class user{
             die();
         }
 
-        session_start();
+        // Si pas de session, on démarre la session
+        if (!isset($_SESSION)){
+            session_start();
+        }
+
         $DAOUser = new \backend\DAO\DBUser();
         if (!isset($_SESSION['user'])){
             header("Location: /login");
             die();
         }
+
+        
         $id = $_SESSION['user']->getId();
 
         // Vérifier que l'utilisateur existe dans la base de données
@@ -54,7 +60,7 @@ class user{
         
     
         require "frontend/dashboard/client.php";
-    }
+        }
 
 
     function admin_space(array $param){
@@ -518,8 +524,8 @@ class user{
         // Mettre à jour le mot de passe de l'utilisateur dans la base de données
         $DAOUser::updatePassword($id, $new_password);
 
-        // Pop-up de confirmation
-        $_SESSION['popup'] = ["title" => "Mot de passe modifié", "message" => "Votre mot de passe a bien été modifié"];
+        // // Pop-up de confirmation
+        // $_SESSION['popup'] = ["title" => "Mot de passe modifié", "message" => "Votre mot de passe a bien été modifié"];
 
         // Redirection vers la page d'informations
         header("Location: /user/dashboard/informations");

@@ -81,11 +81,6 @@
 </form>
 
 <?php
-    // Popup de succès
-    if (isset($_SESSION['popup'])) {
-        echo '<script>showSuccessPopup("'.$_SESSION['popup']['title'].'","'.$_SESSION['popup']['message'].'");</script>';
-        unset($_SESSION['popup']);
-    }
     // Supprimer les variables de session d'erreur
     unset($_SESSION['errors']);
 ?>

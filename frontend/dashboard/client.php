@@ -12,11 +12,16 @@
     <link rel="stylesheet" href="/frontend/styles/police.css">
 </head>
 <body>   
-    
+    <!-- <?php
+        // Popup de succès
+        if (isset($_SESSION['popup'])) {
+            $title = $_SESSION['popup']['title'];
+            $message = $_SESSION['popup']['message'];
+            echo '<script>showSuccessPopup("' . $title . '","' . $message . '");</script>';
+        }
+    ?> -->
     <!-- Header -->
     <?php include 'frontend/components/header.php'; ?>
-
-
 
     <main class = "user_general">
         <span id="dashboard-title"> Espace utilisateur</span>
