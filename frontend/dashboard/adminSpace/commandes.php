@@ -25,9 +25,11 @@
                             <td><a href="xx" class="Red_police_50"><?=$element->getStatut()?></a></td>
                             <td class="Black_police_40"><?=$element->getPrix()."€"?></td>
                             <td class=action_space>
-                                <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
-                                <a href="/user/delCommande/<?=$element->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
-
+                                <?php if ($element->getStatut() != "Terminé"  && $element->getStatut() != "Annule"):?>
+                                    <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
+                                    
+                                    <a href="/user/delCommande/<?=$element->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
+                                <?php endif ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

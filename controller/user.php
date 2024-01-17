@@ -191,17 +191,20 @@ class user{
         
         $DAOCommande = new \backend\DAO\DBCommande();
         $commandeToDel = $DAOCommande->getById($param[0]);
-        echo "<pre>";
-        var_dump($commandeToDel);
-        echo "</pre>";
+
         
         if ($commandeToDel != null){
+            var_dump($commandeToDel);
+            echo "<br>";
+            $commandeToDel->setStatut("Annule");
+
             
-            $DAOCommande->delete($commandeToDel);
-            
+            $DAOCommande->update($commandeToDel);
+            var_dump($commandeToDel);
+            echo "<br>";
         }
         
-        header("Location: /user/admin_space/commandes");
+        header("Location: /user/admin_space/commandes");die();
     }
 
     function delCommentaire(array $param){
