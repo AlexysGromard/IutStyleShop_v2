@@ -113,6 +113,21 @@ class card{
         // Récupérer le panier de l'utilisateur
         $panier = $this->getUserCard();
 
+        // Si panier vide, renvoyer vers la page précédente
+        if($panier->getPanierArticles() == []){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+
+        // Si l'utilisateur n'a pas de compte, renvoyer vers register
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(!isset($_SESSION["user"])){
+            header("Location: /register");
+            exit();
+        }
+
         // Créer panier pour PDO
         $panierPDO = new \backend\DAO\DBPanier();
 
