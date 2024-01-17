@@ -11,6 +11,12 @@ class article{
     }
 
     function visuel($a){
+        // Si pas numérique
+        if(!is_numeric($a[0])){
+            // Redirection vers page 404
+            require "frontend/404.php";
+            die();
+        }
         if(count($a)==1){
             $id = intval($a[0]);
             //DAO Article
