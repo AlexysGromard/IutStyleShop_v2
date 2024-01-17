@@ -59,6 +59,13 @@ class login {
         $password = $_POST['password'];
         $tokenDuFormulaire = $_POST['csrf_token'];
 
+        // Vérification taille des données
+        if (strlen($email) > 255 || strlen($password) > 128) {
+            header("Location: /login");
+            exit();
+        }
+
+
         // Echapement des caractères spéciaux
         $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
         $password = htmlspecialchars($password, ENT_QUOTES, 'UTF-8');

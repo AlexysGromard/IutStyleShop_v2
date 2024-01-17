@@ -69,6 +69,12 @@ class register {
         $passwordConfirmation = htmlspecialchars($passwordConfirmation, ENT_QUOTES, 'UTF-8');
         $tokenDuFormulaire = htmlspecialchars($tokenDuFormulaire, ENT_QUOTES, 'UTF-8');
 
+        // Vérification taille des données
+        if (strlen($civility) > 1 || strlen($lastname) > 64 || strlen($firstname) > 54 || strlen($email) > 255 || strlen($password) > 128 || strlen($passwordConfirmation) > 128) {
+            header("Location: /register");
+            exit();
+        }
+
         if (!$this->verifierTokenCSRF($tokenDuFormulaire)) {
             // Le jeton CSRF n'est pas valide, traitement de l'erreur ou rejet de la requête
             // Supprimer de la session 
