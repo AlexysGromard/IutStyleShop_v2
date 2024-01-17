@@ -192,13 +192,12 @@ class user{
         
         if ($commandeToDel != null){
             var_dump($commandeToDel);
-            echo "<br>";
+
             $commandeToDel->setStatut("Annule");
 
             
             $DAOCommande->update($commandeToDel);
-            var_dump($commandeToDel);
-            echo "<br>";
+
         }
         
         header("Location: /user/admin_space/commandes");die();
