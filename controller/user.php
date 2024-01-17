@@ -96,7 +96,11 @@ class user{
                 $commande = null;
                 if (isset($param[1])){
                     if (is_numeric($param[1])){
-                        //pass
+
+
+                        $commande = \backend\DAO\DBCommande::getById($param[1]);
+                        //$user = DAOUser::getById($commande->)
+
                     }else{
                         require "frontend/404.php";die();
                     }

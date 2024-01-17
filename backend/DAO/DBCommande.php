@@ -79,7 +79,12 @@ class DBCommande extends Connexion implements DAOInterface
         return $result;
     }
 
-    private static function getCommandeById($id){
+    /**
+     * Donne la  commande par rapport a l'id de la commande
+     * 
+     * @param int $id
+    */
+    private static function getCommandeById(int $id){
         $requete = "CALL GetCommandeById(?)";
         $stmt = self::$pdo->prepare($requete);
 
@@ -161,6 +166,12 @@ class DBCommande extends Connexion implements DAOInterface
         return $commandes;
     }
 
+    /**
+     * Donne la commande par son id
+     * 
+     * @param int $int
+     * @return ?CommandeEntity
+     */
     public static function getById($id): ?\backend\entity\CommandeEntity{
 
         $res1 = self::getCommandeById($id);
