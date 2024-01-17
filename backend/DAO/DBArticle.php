@@ -507,7 +507,7 @@ class DBArticle extends Connexion implements DAOInterface
             $prixmin = $prix[0];
             $prixmax = $prix[1];
 
-            $articles = getArticleByPrixRequest($prixmin,$prixmax);
+            $articles = self::getArticleByPrixRequest($prixmin,$prixmax);
             $lsArticles = array();
             foreach($articles as $valeurArticle){
                 $id = $valeurArticle["id"];
