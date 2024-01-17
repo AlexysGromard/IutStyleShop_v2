@@ -156,6 +156,9 @@ function generateCommentComponent(
     $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
     $commentText = htmlspecialchars($commentText, ENT_QUOTES, 'UTF-8');
 
+    // Decode HTML entities
+    $commentText = html_entity_decode($commentText);
+
     require "frontend/components/comment.php";
 }
 
