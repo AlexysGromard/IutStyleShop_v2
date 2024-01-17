@@ -38,16 +38,17 @@ class DBCommande extends Connexion implements DAOInterface
      */
     public static function update($entity)
     {
-        $requete = "CALL DeleteCommande(?)";
+        $requete = "CALL UpdateStatutCommande(?,?)";
         $stmt = self::$pdo->prepare($requete);
+        
 
         $stmt->bindParam(1, $entity->getId(), \PDO::PARAM_INT);
         $stmt->bindParam(2, $entity->getStatut(), \PDO::PARAM_INT);
         
         $stmt->execute();
 
-    }
 
+    }
 
     /**
      * Supprimme une commande
@@ -78,7 +79,12 @@ class DBCommande extends Connexion implements DAOInterface
         return $result;
     }
 
-    private static function getCommandeById($id){
+    /**
+     * Donne la  commande par rapport a l'id de la commande
+     * 
+     * @param int $id
+    */
+    private static function getCommandeById(int $id){
         $requete = "CALL GetCommandeById(?)";
         $stmt = self::$pdo->prepare($requete);
 
@@ -160,6 +166,12 @@ class DBCommande extends Connexion implements DAOInterface
         return $commandes;
     }
 
+    /**
+     * Donne la commande par son id
+     * 
+     * @param int $int
+     * @return ?CommandeEntity
+     */
     public static function getById($id): ?\backend\entity\CommandeEntity{
 
         $res1 = self::getCommandeById($id);
@@ -250,28 +262,6 @@ class DBCommande extends Connexion implements DAOInterface
         }
     }
 
-
-
-    /**
-     * Donne les commandes d'une date
-     * 
-     * @param string $date
-     * @return array
-     */
-    public static function getCommandeByDate(string $date): array
-    {
-    }
-
-    /**
-     * Donne les commandes d'un utilisateur et d'une date
-     * 
-     * @param int $id
-     * @param string $date
-     * @return array
-     */
-    public static function getCommandeByUserAndDate(int $id, string $date): array
-    {
-    }
 
 
 }

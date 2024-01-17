@@ -673,7 +673,6 @@ class DBArticle extends Connexion implements DAOInterface
         $stmt->bindParam(1,$id,\PDO::PARAM_INT);
         $stmt->execute();
         $articles = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        //var_dump($articles[0]);
         return $articles[0];
     }
 

@@ -26,7 +26,6 @@ class emailConfirmation {
             unset($_SESSION['errors']);
 
             // Send code
-            // $this->sendCodeViaSMTP();
             $this->sendCodeIUT();
 
             require "frontend/authentication/email-confirmation.php";
@@ -120,7 +119,7 @@ class emailConfirmation {
         if (in_array(true, $this->errors)) {
             $_SESSION['errors'] = $this->errors;
 
-            // header("Location: /register");
+            header("Location: /register");
             exit();
         }
 
@@ -155,6 +154,21 @@ class emailConfirmation {
         unset($_SESSION['firstname']);
         unset($_SESSION['email']);
         unset($_SESSION['confirmationCode']);
+
+        // Si l'utilisateur a un panier non-vide
+        if (isset($_SESSION['panier'])) {
+            // Récupérer le panier de l'utilisateur
+            $cart = $_SESSION['panier'];
+
+            // Ajouter les articles du panier de l'utilisateur dans la base de données
+            $DAOPanier = new \backend\DAO\DBPanier();
+            foreach ($cart->getPanierArticles() as $article) {
+                $DAOPanier->add($article,$user);
+            }
+
+            // Supprimer le panier de la session
+            unset($_SESSION['panier']);
+        }
         
         // Renvoyer vers le dashboard
         header("Location: /user/dashboard/informations");

@@ -83,9 +83,4 @@ class PanierArticleEntity
         $this->quantite = $quantite;
     }
 
-    /*
-    public function getArticle(): ArticleEntity{
-        //TODO
-    }*/
-
 }

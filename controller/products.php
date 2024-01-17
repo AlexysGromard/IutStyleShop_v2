@@ -43,6 +43,7 @@ class products{
     function search(array $param){
         if (count($param) && isset($param[0])){
             $param = array("true","true","true","true","true","true","true","true","true",0,100,"true","true","true","true","true",$param[0]);
+            $this->pageTitle = "Résultat pour : \"".$param[16]."\"";
             $this->filter($param);
         }else{
             require "frontend/404.php";die();
@@ -106,7 +107,7 @@ class products{
             $dao = new \backend\DAO\DBArticle();
             $mesArticles = $dao->getArticleByCondition($categorieChoisi,$couleurChoisi,array($param[9],$param[10]),$genre,$promo,2);
             if ($param[16] != ""){
-                $mesArticles = $this->filiterbyname($param[16], $mesArticles);
+                $mesArticles = $this->filiterbyname($param[16], $dao->getall());
             }
             
             
@@ -129,14 +130,14 @@ class products{
         while ($i <= $n-1){
             $j = $i+1;
             while ($j <= $n){
-                if ($listCoefficient[$i] != null){
+                if (isset($listCoefficient[$i]) && $listCoefficient[$i] != null){
                     $coefi = $listCoefficient[$i];
                 }else{
                     $coefi = $this->calculerCoefficientRessemblance($search, ($products[$i])->getNom());
                     $listCoefficient[$i] = $coefi;
                 }
 
-                if ($listCoefficient[$j] != null){
+                if (isset($listCoefficient[$j]) && $listCoefficient[$j] != null){
                     $coefj = $listCoefficient[$j];
                 }else{
                     $coefj = $this->calculerCoefficientRessemblance($search, $products[$j]->getNom());
@@ -156,7 +157,7 @@ class products{
                 $j++;
             }
             $i++;
-            if ($listCoefficient[$i-1] < 0.25){
+            if ($listCoefficient[$i-1] < 0.3){
                 return array_slice($products,0,$i-1);
             }
             

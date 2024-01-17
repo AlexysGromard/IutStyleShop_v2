@@ -1,5 +1,4 @@
 <!-- Common-includes.php -->
-
 <!-- CSS files -->
 <link rel="stylesheet" href="/frontend/styles/variables.css">
 <link rel="stylesheet" href="/frontend/styles/general.css">
@@ -25,7 +24,14 @@
 <script src="/frontend/scripts/popup.js"></script>
 
 <!-- Call cookies verification -->
-<?php include_once 'backend'.DIRECTORY_SEPARATOR.'cookies.php'; Cookies::verifyCookies() ?>
+<?php 
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+  if (!isset($_SESSION['cookieAccept'])) {
+    echo "<script>showCookiesPopup()</script>";
+  }
+?>
 
 <?php 
 if (session_status() == PHP_SESSION_NONE) {

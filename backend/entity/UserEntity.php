@@ -64,12 +64,6 @@ class UserEntity
         $this->setVille($ville);
         $this->setCodePostal($code_postal);
         $this->setComplementAdresse($complement_adresse);
-        // Si l'utilisateur n'a pas de cookie, ouvrir pop-up de cookie
-        // $this->cookieAccepted = isset($_COOKIE['cookie']) ? $_COOKIE['cookie'] : null;
-        // if ($this->cookieAccepted == null) {
-        //     $this->askForCookies();
-        // }
-        // $this->saveUserSession();
     }
 
     /*

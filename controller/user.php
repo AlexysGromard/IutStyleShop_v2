@@ -17,12 +17,18 @@ class user{
             die();
         }
 
-        session_start();
+        // Si pas de session, on démarre la session
+        if (!isset($_SESSION)){
+            session_start();
+        }
+
         $DAOUser = new \backend\DAO\DBUser();
         if (!isset($_SESSION['user'])){
             header("Location: /login");
             die();
         }
+
+        
         $id = $_SESSION['user']->getId();
 
         // Vérifier que l'utilisateur existe dans la base de données
@@ -54,7 +60,7 @@ class user{
         
     
         require "frontend/dashboard/client.php";
-    }
+        }
 
 
     function admin_space(array $param){
@@ -74,8 +80,6 @@ class user{
         if (count($param) < 1 || !in_array($param[0], array("utilisateurs","commandes","articles","avis","codes_promotionnel"))){
             require "frontend/404.php";die();
         }
-
-        //$personne = new \backend\User(1,"Marcel.Claude@gmail.com","1234","Marcel","Claude","M","admin","rue claude","Nantes","44000","N°4");
         
         switch ($param[0]) {
             case "utilisateurs":
@@ -88,14 +92,15 @@ class user{
                 $actionSelect = "Base de données commandes";
                 $DAOUser = new \backend\DAO\DBUser();
                 $array_user = $DAOUser->getall();
-                //$array_commandes = \backend\DAO\DBCommande::getAll();
 
                 $commande = null;
                 if (isset($param[1])){
                     if (is_numeric($param[1])){
-                        //TODO : si il existe 
-                        //vérifier que la command exist
-                        $commande = new \backend\Commande(100,2,"06/01/2024 13:07","Expédié",50.0);
+
+
+                        $commande = \backend\DAO\DBCommande::getById($param[1]);
+                        //$user = DAOUser::getById($commande->)
+
                     }else{
                         require "frontend/404.php";die();
                     }
@@ -105,16 +110,12 @@ class user{
             case "articles":
                 $actionSelect = "Base de données articles";
                 $DAOArticle = new \backend\DAO\DBArticle();
-                $array_articles = $DAOArticle->getAll();
-                //TODO
-                
+                $array_articles = $DAOArticle->getAll();                
 
                 $article = null;
                 if (isset($param[1])){
                     if (is_numeric($param[1])){
-                        //vérifier que la command exist
-                        //$numArticle = $param[1];
-                        $article = new \backend\entity\Article("T-shirt Rouge","T-shirt","H","/image/truc.png",4.9,3,"compacte et durable","Rouge",true, 23.99 ,0); //modifier
+                        require "frontend/404.php";die();
                     }else if ($param[1] == "nouvelArticle"){
                         $article = "nouvelArticle";
                     }else{
@@ -191,17 +192,44 @@ class user{
         
         $DAOCommande = new \backend\DAO\DBCommande();
         $commandeToDel = $DAOCommande->getById($param[0]);
-        echo "<pre>";
-        var_dump($commandeToDel);
-        echo "</pre>";
+
         
         if ($commandeToDel != null){
+            var_dump($commandeToDel);
+
+            $commandeToDel->setStatut("-1");
+
             
-            $DAOCommande->delete($commandeToDel);
-            
+            $DAOCommande->update($commandeToDel);
+
         }
         
-        header("Location: /user/admin_space/commandes");
+        header("Location: /user/admin_space/commandes");die();
+    }
+
+    function ValideCommande(array $param){
+        $personne = $this->checkRool("admin");
+
+        
+        if (count($param) != 1 || !is_numeric($param[0])){
+            require "frontend/404.php";die();
+        }
+
+        $DAOCommande = new \backend\DAO\DBCommande();
+        $commandeToDel = $DAOCommande->getById($param[0]);
+
+        
+        if ($commandeToDel != null){
+            var_dump($commandeToDel);
+
+            $commandeToDel->setStatut("1");
+
+            
+            $DAOCommande->update($commandeToDel);
+
+        }
+        
+        header("Location: /user/admin_space/commandes");die();
     }
 
     function delCommentaire(array $param){
@@ -257,10 +285,7 @@ class user{
         $DAOArticle = new \backend\DAO\DBArticle();
         $article = $DAOArticle->getById($param[0]);
         
-        var_dump($article);
-        echo "<br>";
         if ($article != null){
-            //TODO : 
             $DAOArticle->delete($article);
             
         }
@@ -310,7 +335,6 @@ class user{
     public function updateCodePromotionnel(){
 
         $this->checkRool("admin");
-        var_dump($_POST);
         if ( isset($_POST["id"]) && is_numeric($_POST["id"]) && isset($_POST["Code_promotionnel"]) && isset($_POST["reduction"]) && is_numeric($_POST["reduction"])){
             $id = intval($_POST["id"]);
             $nomcode = $_POST["Code_promotionnel"];
@@ -518,15 +542,14 @@ class user{
         // Mettre à jour le mot de passe de l'utilisateur dans la base de données
         $DAOUser::updatePassword($id, $new_password);
 
-        // Pop-up de confirmation
-        $_SESSION['popup'] = ["title" => "Mot de passe modifié", "message" => "Votre mot de passe a bien été modifié"];
-
         // Redirection vers la page d'informations
         header("Location: /user/dashboard/informations");
     }
 
     function addArticle(){
-        //TODO vérifier si il est admin
+        
+        $this->checkRool("admin");
+
         if(isset($_POST)){
             if(isset($_POST["article-name"])){
                 $DAOArticle = new \backend\DAO\DBArticle();
@@ -559,11 +582,6 @@ class user{
             }
         }
         header("Location: /user/admin_space/articles/nouvelArticle");
-
-        
-        
-
-
 
     }
 }

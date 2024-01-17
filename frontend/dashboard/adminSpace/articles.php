@@ -29,7 +29,7 @@
                     <td class="Black_police_40"><?= $element->getNotes(); ?></td>
                     <td class="Black_police_40"><?= ($element->getDisponible())? "Disponible" : "Non Disponible" ; ?></td>
                     <td class=action_space>
-                        <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
+                        <!--a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a-->
 
                     </td>
                 </tr>

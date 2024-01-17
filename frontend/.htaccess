@@ -1,2 +1,19 @@
-order deny,allow
-deny from all
+<Files "common-includes.php">
+    Order Deny,Allow
+    Allow from all
+</Files>
+
+<Files "500.php">
+    Order Deny,Allow
+    Allow from all
+</Files>
+
+<Files "404.php">
+    Order Deny,Allow
+    Allow from all
+</Files>
+
+<FilesMatch "\.(?i:php)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
