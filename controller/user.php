@@ -193,7 +193,32 @@ class user{
         if ($commandeToDel != null){
             var_dump($commandeToDel);
 
-            $commandeToDel->setStatut("Annule");
+            $commandeToDel->setStatut("-1");
+
+            
+            $DAOCommande->update($commandeToDel);
+
+        }
+        
+        header("Location: /user/admin_space/commandes");die();
+    }
+
+    function ValideCommande(array $param){
+        $personne = $this->checkRool("admin");
+
+        
+        if (count($param) != 1 || !is_numeric($param[0])){
+            require "frontend/404.php";die();
+        }
+
+        $DAOCommande = new \backend\DAO\DBCommande();
+        $commandeToDel = $DAOCommande->getById($param[0]);
+
+        
+        if ($commandeToDel != null){
+            var_dump($commandeToDel);
+
+            $commandeToDel->setStatut("1");
 
             
             $DAOCommande->update($commandeToDel);

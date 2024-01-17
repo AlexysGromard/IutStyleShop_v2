@@ -45,7 +45,15 @@
                     <div class="commande_box_right">
                         <div class="commande_text_box_right">
                             <span class="Black_police_40">Etat de la commande</span>
-                            <span class="Black_police_65"><?= $commande->getStatut() ?></span>
+                            <span class="Black_police_65">                                <?php
+                                if ($commande->getStatut() == -1){
+                                    echo "Annule";
+                                }elseif ($commande->getStatut() == 1){
+                                    echo "Termine";
+                                }else{
+                                    echo $commande->getStatut();
+                                }
+                            ?></span>
                         </div>
                         <div class="commande_text_box_right">
                             <span class="Black_police_40">Total de la commande</span>

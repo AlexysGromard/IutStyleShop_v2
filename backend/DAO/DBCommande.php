@@ -50,7 +50,6 @@ class DBCommande extends Connexion implements DAOInterface
 
     }
 
-
     /**
      * Supprimme une commande
      * 

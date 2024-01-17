@@ -22,11 +22,20 @@
                             <td><a href="xx" class="Red_police_50"><?=$element->getId()?></a></td>
                             <td><a href="xx" class="Red_police_50"><?= $ElementUser->getId()?></a></td>
                             <td class="Black_police_40"><?=$element->getDate()?></td>
-                            <td><a href="xx" class="Red_police_50"><?=$element->getStatut()?></a></td>
+                            <td><a href="xx" class="Red_police_50"><?php
+                            if ($element->getStatut() == -1){
+                                echo "Annule";
+                            }elseif ($element->getStatut() == 1){
+                                echo "Termine";
+                            }else{
+                                echo $element->getStatut();
+                            }
+
+                            ?></a></td>
                             <td class="Black_police_40"><?=$element->getPrix()."€"?></td>
                             <td class=action_space>
-                                <?php if ($element->getStatut() != "Terminé"  && $element->getStatut() != "Annule"):?>
-                                    <a href="xx"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
+                                <?php if ($element->getStatut() != "Terminé"  && $element->getStatut() != "Annule" && $element->getStatut() != "1"  && $element->getStatut() != "-1"):?>
+                                    <a href="/user/ValideCommande/<?=$element->getId()?>"><img src="/frontend/assets/icons/pencil.png" alt="poubelle rouge"></a>
                                     
                                     <a href="/user/delCommande/<?=$element->getId()?>"><img src="/frontend/assets/icons/bin.png" alt="poubelle rouge"></a>
                                 <?php endif ?>
