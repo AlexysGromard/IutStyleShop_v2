@@ -60,7 +60,7 @@ class commentaire{
             if (!empty($_POST['note'])) {
                 
                
-                $commentaire = new CommentaireEntity($_SESSION['user']->getId(), $_POST['note'], htmlspecialchars($_POST['commentaire'])); 
+                $commentaire = new CommentaireEntity($_SESSION['user']->getId(), $_POST['note'], htmlspecialchars($_POST['commentaire'],ENT_QUOTES,'UTF-8')); 
                 
                 $dbCommentaire = new DBCommentaire();
                 
