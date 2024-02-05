@@ -20,7 +20,7 @@
             </select>
             <div class="price2"><?php echo number_format($articlePrice, 2, ',', ' '); ?>€</div>
             <a class="cross" href="/card/removeArticleFromCard/<?=$panierArticleEntity[0]."/".$panierArticleEntity[1]."/".$panierArticleEntity[2]?>">
-                <img src="/frontend/assets/icons/cross.svg" class="cross clickable">
+                <img src="/frontend/assets/icons/cross.svg" class="clickable">
             </a>
         </div>
     </div>
