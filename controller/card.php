@@ -115,7 +115,11 @@ class card{
 
         // Si panier vide, renvoyer vers la page précédente
         if($panier->getPanierArticles() == []){
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            if (isset($_SERVER['HTTP_REFERER'])) {
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            } else {
+                header("Location: /");
+            }
             exit();
         }
 

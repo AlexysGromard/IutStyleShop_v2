@@ -25,8 +25,11 @@
     </div>
 
     <div class="element_page">
-        <!-- ~~~~~~~~~~~~Ajouter des require~~~~~~~~~~~~ -->
         <form class="payment_left_box" action="/card/order" method="POST">
+            <!-- Message prevention -->
+            <div class="warning_message">
+                <span>Ce site étant une version de démonstration, les informations ne sont pas réelles. Merci de ne pas renseigner de données sensibles.</span>
+            </div>
             <div class="large_box" >        
                 <span class="Black_police_65">Informations personnelles</span>
                 <div class="civility_choice_space">

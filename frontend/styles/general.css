@@ -759,3 +759,17 @@ footer{
 
 
 }
+
+/* Message de prévention */
+.warning_message{
+    background-color: var(--red);
+    color: var(--white);
+    font-size: var(--medium);
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 100%;
+    height: max-content;
+    text-wrap: justify;
+}

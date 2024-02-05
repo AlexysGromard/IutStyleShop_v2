@@ -1,3 +1,7 @@
+<!-- Message prevention -->
+<div class="warning_message">
+    <span>Ce site étant une version de démonstration, les informations ne sont pas réelles. Merci de ne pas renseigner de données sensibles.</span>
+</div>
 <!-- information personnel -->
 <form class="large_box" action="/user/updateUserInformations" method="POST">
     <span class="Black_police_65">Informations personnelles</span>
