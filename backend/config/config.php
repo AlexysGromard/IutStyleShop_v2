@@ -1,14 +1,14 @@
 <?php
     const DB_CONFIG = array(
-        "dbname" => "DB_IutStyleShop",
-        "username" => "sql",
-        "password" => "sql",
-        "host" => "localhost",
-        "type" => "mysql",
-        "port" => "3306" 
+        "dbname" => "DBNAME",
+        "username" => "USERNAME",
+        "password" => "PASSWORD",
+        "host" => "HOST",
+        "type" => "TYPE",
+        "port" => "PORT" 
     );
     const MAIL_CONFIG = array(
-        "email" => "iutstyleshop@gmail.com",
-        "password" => "guaf eoov nycx bfrz",
+        "email" => "EMAIL",
+        "password" => "PASSWORD",
     );
 ?>
