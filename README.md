@@ -41,6 +41,8 @@ Voici la liste des documents disponibles pour le projet :
 ## Maquette FIGMA
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FkuvaY0SaERNiGETCjodf2p%2FProjet-Shop-IUT%3Ftype%3Ddesign%26node-id%3D13%253A2%26mode%3Ddesign%26t%3DCcyz2avKd2919NRW-1" allowfullscreen></iframe>
 
+Lien vers la maquette : [https://www.figma.com/file/kuvaY0SaERNiGETCjodf2p/Projet-Shop-IUT?type=design&node-id=13%3A2&mode=design&t=Ccyz2avKd2919NRW-1](https://www.figma.com/file/kuvaY0SaERNiGETCjodf2p/Projet-Shop-IUT?type=design&node-id=13%3A2&mode=design&t=Ccyz2avKd2919NRW-1)
+
 ## Auteurs
 - [Alexys Gromard](https://github.com/AlexysGromard)
 - [Lancelot Jouault](https://github.com/IIXIVII)
