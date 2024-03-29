@@ -44,7 +44,7 @@ Voici quelques images du site sur mobile et sur ordinateur :
 <img src="docs/assets/homepage.png" alt="Homepage" style="max-width:800px;width:100%;">
 <img src="docs/assets/login.png" alt="Login" style="max-width:800px;width:100%;">
 <img src="docs/assets/article.png" alt="Article" style="max-width:800px; width:100%;">
-<img src="docs/assets/article_mobile.png" alt="Cart" style="max-width:400px;">
+<img src="docs/assets/article_mobile.png" alt="Cart" style="width:400px;">
 
 ## Maquette FIGMA
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FkuvaY0SaERNiGETCjodf2p%2FProjet-Shop-IUT%3Ftype%3Ddesign%26node-id%3D13%253A2%26mode%3Ddesign%26t%3DCcyz2avKd2919NRW-1" allowfullscreen></iframe>
