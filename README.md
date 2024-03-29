@@ -6,6 +6,7 @@ Notre site est accessible à l'adresse suivante : [http://172.26.82.50/](http://
 - [Installation](#Installation)
 - [Licence](#Licence)
 - [Documentation](#Documentation)
+- [Images](#Images)
 - [Maquette FIGMA](#Maquette-FIGMA)
 - [Auteurs](#Auteurs)
 
@@ -37,6 +38,13 @@ Voici la liste des documents disponibles pour le projet :
 - [analyse.pdf](/docs/analyse.pdf) : Document d'analyse du projet (R303)
 - [management.pdf](/docs/management.md) : Document de management du projet (R310)
 - [qualite_developpement.pdf](/docs/qualite_developpement.md) : Document de qualité du développement du projet (R302)
+
+## Images
+Voici quelques images du site sur mobile et sur ordinateur :
+<img src="docs/assets/homepage.png" alt="Homepage" style="max-width:800px;width:100%;">
+<img src="docs/assets/login.png" alt="Login" style="max-width:800px;width:100%;">
+<img src="docs/assets/article.png" alt="Article" style="max-width:800px; width:100%;">
+<img src="docs/assets/article_mobile.png" alt="Cart" style="max-width:400px;">
 
 ## Maquette FIGMA
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FkuvaY0SaERNiGETCjodf2p%2FProjet-Shop-IUT%3Ftype%3Ddesign%26node-id%3D13%253A2%26mode%3Ddesign%26t%3DCcyz2avKd2919NRW-1" allowfullscreen></iframe>
