@@ -1,0 +1,10 @@
+.git
+.gitignore
+.env
+.DS_Store
+README.md
+docs/
+.vscode/
+*.log
+node_modules/
+vendor/

@@ -292,7 +292,7 @@ class DBArticle extends Connexion implements DAOInterface
         $lsLiens = array();
         foreach($imagesArticle as $img) { 
 
-            $lsLiens[]= $img["lien"] ;
+            $lsLiens[]= $img["url"] ;
         } 
         return $lsLiens;
     }
@@ -617,6 +617,61 @@ class DBArticle extends Connexion implements DAOInterface
      */
     public static function getArticleByCondition(array $categories, array $couleurs, array $prix,string $genres, bool $promo, int $disponibilite): array  
     {
+        // Mapping des catégories depuis le frontend vers la base de données
+        $categoryMap = [
+            't-shirt' => 'T-Shirt',
+            'sweat-short' => 'Sweatshirt',
+            'sports-wear' => 'Maillot',
+            'accessoire' => 'Accessoire'
+        ];
+        
+        // Mapping pour filtrer par type de vêtement (basé sur le nom)
+        $typeFilters = [
+            't-shirt' => ['T-Shirt', 't-shirt'],
+            'sweat-short' => ['Sweat', 'sweat'],
+            'sports-wear' => ['Maillot', 'maillot']
+        ];
+        
+        // Mapping des couleurs depuis le frontend vers la base de données
+        $colorMap = [
+            'red' => 'Rouge',
+            'green' => 'Vert',
+            'blue' => 'Bleu',
+            'white' => 'Blanc',
+            'black' => 'Noir'
+        ];
+        
+        // Convertir les catégories et couleurs
+        $mappedCategories = [];
+        $activeTypeFilters = [];
+        foreach($categories as $cat) {
+            if (isset($categoryMap[$cat])) {
+                if (!in_array($categoryMap[$cat], $mappedCategories)) {
+                    $mappedCategories[] = $categoryMap[$cat];
+                }
+                // Stocker les filtres de type actifs
+                if (isset($typeFilters[$cat])) {
+                    $activeTypeFilters = array_merge($activeTypeFilters, $typeFilters[$cat]);
+                }
+            }
+        }
+        
+        $mappedCouleurs = [];
+        foreach($couleurs as $color) {
+            if (isset($colorMap[$color])) {
+                $mappedCouleurs[] = $colorMap[$color];
+            }
+        }
+        
+        // Si aucune catégorie ou couleur mappée, utiliser toutes
+        if (empty($mappedCategories)) {
+            $mappedCategories = ['T-Shirt', 'Sweatshirt', 'Maillot', 'Accessoire'];
+            $activeTypeFilters = []; // Pas de filtre si on affiche tout
+        }
+        if (empty($mappedCouleurs)) {
+            $mappedCouleurs = ['Rouge', 'Vert', 'Bleu', 'Blanc', 'Noir'];
+        }
+        
         $mesArticles = array();
         $prixmin = 0;
         $prixmax = 100;
@@ -627,8 +682,8 @@ class DBArticle extends Connexion implements DAOInterface
         if ($genres==""){
             $genres = "MF";
         }
-        foreach($categories as $categorie){
-            foreach($couleurs as $couleur){
+        foreach($mappedCategories as $categorie){
+            foreach($mappedCouleurs as $couleur){
                 $disponible = 0;
                 if ( $disponibilite == 1){
                     $disponible = 1;
@@ -648,6 +703,21 @@ class DBArticle extends Connexion implements DAOInterface
         
         $lsArticles = array();
         foreach($mesArticles as $valeurArticle){
+            // Filtrer par type de vêtement si nécessaire
+            if (!empty($activeTypeFilters)) {
+                $nomArticle = strval($valeurArticle["nom"]);
+                $matchFound = false;
+                foreach($activeTypeFilters as $filter) {
+                    if (stripos($nomArticle, $filter) !== false) {
+                        $matchFound = true;
+                        break;
+                    }
+                }
+                if (!$matchFound) {
+                    continue; // Skip cet article
+                }
+            }
+            
             $id = $valeurArticle["id"];
             $lsLiens = self::getImagesArticleById($id);
             $quantite = self::getQuantiteArticleById($id);

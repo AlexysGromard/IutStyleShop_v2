@@ -1,4 +1,15 @@
 # MacOS Files
 .DS_Store
+
 # Accès to the database
-backend/config/config.php
+# backend/config/config.php (commenté car maintenant géré par .env)
+
+# Docker & Environment
+.env
+docker-compose.override.yml
+
+# Logs
+*.log
+
+# Backups
+backup_*.sql

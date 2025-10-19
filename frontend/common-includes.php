@@ -25,18 +25,12 @@
 
 <!-- Call cookies verification -->
 <?php 
-  if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-  }
   if (!isset($_SESSION['cookieAccept'])) {
     echo "<script>showCookiesPopup()</script>";
   }
 ?>
 
-<?php 
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
+<?php
 if (isset($_SESSION['cookieAccept']) && $_SESSION['cookieAccept'] == true) {
   echo "
     <!-- Google tag (gtag.js) -->
