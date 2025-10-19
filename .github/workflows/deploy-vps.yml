@@ -1,0 +1,71 @@
+name: Déploiement VPS IutStyleShop
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    name: Vérifier build (dry-run)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Vérifier la configuration Docker Compose
+        run: |
+          docker compose -f ./docker-compose.yml config --services
+          docker compose -f ./docker-compose.yml build --no-cache --parallel || true
+
+  deploy:
+    name: Déployer sur VPS
+    needs: check
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: VPS
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+      - name: Deploy via SSH
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          PROJECT_PATH: ${{ secrets.PROJECT_PATH }}
+        run: |
+            ssh -o StrictHostKeyChecking=no -p ${VPS_PORT} ${VPS_USER}@${VPS_HOST} << 'EOF'
+                cd ${PROJECT_PATH}/iutStyleShop_v2
+                git config --global --add safe.directory ${PROJECT_PATH}/iutStyleShop_v2
+                git pull origin main
+                docker compose down || true
+                docker compose pull || true
+                docker compose up -d --build
+                echo "✅ Déploiement terminé avec succès"
+            EOF
+
+      - name: Vérifier le déploiement
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          PROJECT_PATH: ${{ secrets.PROJECT_PATH }}
+        run: |
+            ssh -o StrictHostKeyChecking=no -p ${VPS_PORT} ${VPS_USER}@${VPS_HOST} << 'EOF'
+                cd ${PROJECT_PATH}/IutStyleShop_v2
+                echo "=== État des conteneurs ==="
+                docker compose ps
+                echo ""
+                echo "=== Logs récents ==="
+                docker compose logs --tail=20
+            EOF
