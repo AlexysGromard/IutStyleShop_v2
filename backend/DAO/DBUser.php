@@ -13,10 +13,11 @@ class DBUser extends Connexion implements DAOInterface
      */
     public static function add($email, $telephone, $password, $nom, $prenom, $genre, $address, $ville, $code_postal, $complement_adresse)
     { 
-        $requete = "CALL InsertUserClient(?,?,?,?,?,?,?,?,?,?)";
+        $requete = "CALL InsertUser(?,?,?,?,?,?,?,?,?,?,?)";
 
         $stmt = self::$pdo->prepare($requete);
 
+        $role = 'Client'; // Rôle par défaut pour les inscriptions
 
         $stmt->bindParam(1, $email, \PDO::PARAM_STR); // Mail
         $stmt->bindParam(2, $telephone, \PDO::PARAM_STR); // Téléphone
@@ -24,10 +25,11 @@ class DBUser extends Connexion implements DAOInterface
         $stmt->bindParam(4, $nom, \PDO::PARAM_STR); // Nom
         $stmt->bindParam(5, $prenom, \PDO::PARAM_STR); // Prénom
         $stmt->bindParam(6, $genre, \PDO::PARAM_STR); // Genre
-        $stmt->bindParam(7, $address, \PDO::PARAM_STR); // Adresse
-        $stmt->bindParam(8, $ville, \PDO::PARAM_STR); // Ville
-        $stmt->bindParam(9, $code_postal, \PDO::PARAM_INT); // Code postal
-        $stmt->bindParam(10, $complement_adresse, \PDO::PARAM_STR); // Complément d'adresse
+        $stmt->bindParam(7, $role, \PDO::PARAM_STR); // Rôle (Client par défaut)
+        $stmt->bindParam(8, $address, \PDO::PARAM_STR); // Adresse
+        $stmt->bindParam(9, $ville, \PDO::PARAM_STR); // Ville
+        $stmt->bindParam(10, $code_postal, \PDO::PARAM_INT); // Code postal
+        $stmt->bindParam(11, $complement_adresse, \PDO::PARAM_STR); // Complément d'adresse
 
         $stmt->execute();
     }
