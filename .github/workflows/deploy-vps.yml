@@ -19,8 +19,8 @@ jobs:
 
       - name: Vérifier la configuration Docker Compose
         run: |
-          docker-compose -f ./docker-compose.yml config --services
-          docker-compose -f ./docker-compose.yml build --no-cache --parallel || true
+          docker compose -f ./docker-compose.yml config --services
+          docker compose -f ./docker-compose.yml build --no-cache --parallel || true
 
   deploy:
     name: Déployer sur VPS
