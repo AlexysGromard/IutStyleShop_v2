@@ -19,8 +19,8 @@ jobs:
 
       - name: Vérifier la configuration Docker Compose
         run: |
-          docker compose -f ./docker-compose.yml config --services
-          docker compose -f ./docker-compose.yml build --no-cache --parallel || true
+          docker-compose -f ./docker-compose.yml config --services
+          docker-compose -f ./docker-compose.yml build --no-cache --parallel || true
 
   deploy:
     name: Déployer sur VPS
@@ -48,9 +48,9 @@ jobs:
                 cd ${PROJECT_PATH}/iutStyleShop_v2
                 git config --global --add safe.directory ${PROJECT_PATH}/iutStyleShop_v2
                 git pull origin main
-                docker compose down || true
-                docker compose pull || true
-                docker compose up -d --build
+                docker-compose down || true
+                docker-compose pull || true
+                docker-compose up -d --build
                 echo "✅ Déploiement terminé avec succès"
             EOF
 
@@ -64,8 +64,8 @@ jobs:
             ssh -o StrictHostKeyChecking=no -p ${VPS_PORT} ${VPS_USER}@${VPS_HOST} << 'EOF'
                 cd ${PROJECT_PATH}/IutStyleShop_v2
                 echo "=== État des conteneurs ==="
-                docker compose ps
+                docker-compose ps
                 echo ""
                 echo "=== Logs récents ==="
-                docker compose logs --tail=20
+                docker-compose logs --tail=20
             EOF
